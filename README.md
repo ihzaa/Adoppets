@@ -1,3 +1,16 @@
+LANGKAH MELAKUKAN CLONE FILE :
+
+1. buka cmd, cd ke folder project
+2. composer install
+3. buat db dengan nama website_donasi
+4. cp .env.example .env (untuk linux dan windows diatas 10)
+5. php artisan key:generate
+6. php artisan migrate:fresh --seed
+7. php artisan serve
+KALAU SETELAH MEMBUAT ROUTE TAPI ROUTE "ERROR" DENGAN KETERANGAN ROUTE TIDAK ADA
+
+LAKUKAN PERINTAH : php artisan optimaze
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
