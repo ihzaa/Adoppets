@@ -14,15 +14,23 @@ class posting extends Model
     }
 
     public function user_adoppted_history(){
-        return $this->belongsToMany('App\User', 'user_adoppted_histories', 'user_id', 'posting_id');
+        return $this->belongsToMany('App\User', 'user_accept_choices', 'user_id', 'posting_id');
     }
 
     public function user_like_posting(){
         return $this->belongsToMany('App\User', 'user_like_postings', 'user_id', 'posting_id');
     }
 
-    public function adopted_history(){
-        return $this->hasMany('App\Adoppted_history', 'posting_id', 'id');
+    public function adopted_history_animal(){
+        return $this->hasMany('App\Adoppted_history_animal', 'posting_id', 'id');
+    }
+
+    public function report_posting(){
+        return $this-> belongsToMany('App\Report_posting', 'information_posting_reports', 'report_posting_id', 'posting_id');
+    }
+
+    public function report_posting(){
+        return $this->hasMany('App\Report_posting', 'posting_id', 'id');
     }
 
 }

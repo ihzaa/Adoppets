@@ -18,11 +18,27 @@ class User extends Authenticatable
         return $this->hasMany('App\posting', 'user_id', 'id');
     }
 
-    public function user_adoppted_history(){
-        return $this->belongsToMany('App\posting', 'user_adoppted_histories', 'posting_id', 'user_id');
+    public function user_accept_choice(){
+        return $this->belongsToMany('App\posting', 'user_accept_choices', 'posting_id', 'user_id');
     }
 
     public function user_like_posting(){
         return $this->belongsToMany('App\posting', 'user_like_postings', 'posting_id', 'user_id');
+    }
+
+    public function adoppted_history_animal(){
+        return $this->belongsToMany('App\Adoppted_history_animal', 'user_adoppted_histories', 'adoppted_history_animal_id','user_id');
+    }
+
+    public function blog(){
+        return $this->hasMany('App\Blog', 'user_id', 'id');
+    }
+
+    public function user_like_blog(){
+        return $this->belongsToMany('App\Blog', 'user_like_blogs', 'blog_id', 'user_id');
+    }
+
+    public function clinic_information(){
+        return $this->hasMany('App\Clinic_information', 'user_id', 'id');
     }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User_adoppted_history extends Model
+class User_like_blog extends Model
 {
     //
     protected $fillable =[];
