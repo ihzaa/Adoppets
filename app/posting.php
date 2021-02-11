@@ -29,8 +29,8 @@ class posting extends Model
         return $this-> belongsToMany('App\Report_posting', 'information_posting_reports', 'report_posting_id', 'posting_id');
     }
 
-    public function report_posting(){
-        return $this->hasMany('App\Report_posting', 'posting_id', 'id');
+    public function asset_posting(){
+        return $this->hasMany('App\Asset_posting', 'posting_id', 'id');
     }
 
 }
