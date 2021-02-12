@@ -18,4 +18,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'user_Controller\posting\LandingpageController@index')->name('landingpage');
+Route::get('/register', 'user_Controller\auth\RegisterController@index')->name('register');
+Route::get('/login', 'user_Controller\auth\LoginController@index')->name('login');

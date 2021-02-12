@@ -41,4 +41,5 @@ class User extends Authenticatable
     public function clinic_information(){
         return $this->hasMany('App\Clinic_information', 'user_id', 'id');
     }
+
 }
