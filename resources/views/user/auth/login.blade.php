@@ -41,15 +41,15 @@ sub-page
             <div class="col-md-4">
                 <form class="form clearfix">
                     <div class="form-group">
-                        <label for="email" class="col-form-label required">Email</label>
-                        <input name="email" type="email" class="form-control" id="email" placeholder="Your Email"
-                            required>
+                        <label for="username" class="col-form-label required">Username</label>
+                        <input name="username" type="text" class="form-control" id="username"
+                            placeholder="Your Username" required>
                     </div>
                     <!--end form-group-->
                     <div class="form-group">
                         <label for="password" class="col-form-label required">Password</label>
-                        <input name="password" type="password" class="form-control" id="password" placeholder="Password"
-                            required>
+                        <input name="password" type="password" class="form-control" id="password"
+                            placeholder="Enter Your Password" required>
                     </div>
                     <!--end form-group-->
                     <div class="d-flex justify-content-between align-items-baseline">
@@ -62,7 +62,7 @@ sub-page
                 </form>
                 <hr>
                 <p>
-                    Troubles with signing? <a href="#" class="link">Click here.</a>
+                    Don't have an account? <a href="{{route('register')}}" class="link">Click here.</a>
                 </p>
             </div>
             <!--end col-md-6-->

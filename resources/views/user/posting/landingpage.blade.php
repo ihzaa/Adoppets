@@ -17,7 +17,7 @@ has-dark-background
 @endsection
 
 @section('brand-logo')
-{{asset('user/assets/img/logo-inverted.png')}}
+{{asset('user/assets/img/include image/logo_adoptpets.png')}}
 @endsection
 
 @section('hero-form')
@@ -63,31 +63,7 @@ has-dark-background
         </div>
         <!--end main-search-form-->
         <!--Alternative Form-->
-        <div class="alternative-search-form text-center">
-            <a href="#collapseAlternativeSearchForm" class="icon text-center" data-toggle="collapse"
-                aria-expanded="false" aria-controls="collapseAlternativeSearchForm"><i class="fa fa-plus"></i>More
-                Options</a>
-            <div class="collapse text-center" id="collapseAlternativeSearchForm">
-                <div class="wrapper">
-                    <div class="form-row">
-                        <div
-                            class="col-xl-6 col-lg-12 col-md-12 col-sm-12 d-xs-grid d-flex align-items-center justify-content-between">
-                            <label>
-                                <input type="checkbox" name="new">
-                                Latest Post
-                            </label>
-                            <label>
-                                <input type="checkbox" name="used">
-                                Top Post
-                            </label>
-                        </div>
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end wrapper-->
-            </div>
-            <!--end collapse-->
-        </div>
+
         <!--end alternative-search-form-->
     </div>
     <!--end container-->
@@ -97,7 +73,7 @@ has-dark-background
 @section('background')
 <div class="background">
     <div class="background-image">
-        <img src="{{asset('user/assets/img/hero-background-image-01.jpg')}}" alt="">
+        <img src="{{asset('user/assets/img/include image/background_2.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
