@@ -39,18 +39,27 @@ sub-page
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <form class="form clearfix">
+                <form class="form clearfix" action="{{route('post_login')}}" method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="username" class="col-form-label required">Username</label>
-                        <input name="username" type="text" class="form-control" id="username"
+                        <label for="username"
+                            class="col-form-label required @error('username') is-invalid @enderror">Username</label>
+                        <input name=" username" type="text" class="form-control" id="username"
                             placeholder="Your Username" required>
                     </div>
+                    @error('username')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <!--end form-group-->
                     <div class="form-group">
-                        <label for="password" class="col-form-label required">Password</label>
+                        <label for="password"
+                            class="col-form-label required @error('password') is-invalid @enderror">Password</label>
                         <input name="password" type="password" class="form-control" id="password"
                             placeholder="Enter Your Password" required>
                     </div>
+                    @error('password')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <!--end form-group-->
                     <div class="d-flex justify-content-between align-items-baseline">
                         <label>
@@ -72,4 +81,18 @@ sub-page
     <!--end container-->
 </section>
 <!--end block-->
+@endsection
+
+@section('js_after')
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+Swal.fire({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
+
 @endsection

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\user_Controller\auth;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -15,72 +19,31 @@ class LoginController extends Controller
     public function index()
     {
         //
+        // $data = User::all();
         return view('user/auth/login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function loginPost(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'username' => 'required',
+    //         'password' => 'required'
+    //     ]);
+    //     $user = User::where('username', $request->username)->first();
+    //     if ($user != []) {
+    //         if (Hash::check($request->password, $user->password)) {
+    //             $remember = $request->has('remember') ? true : false;
+    //             Auth::guard('admin')->loginUsingId($user->id, $remember);
+    //             if (Session::get('url.intended')) {
+    //                 return redirect()->intended();
+    //             } else {
+    //                 return redirect()->route('landingpage');
+    //             }
+    //         } else {
+    //             return back()->with('icon', 'error')->with('title', 'Maaf')->with('text', 'username atau password salah!');
+    //         }
+    //     } else {
+    //         return back()->with('icon', 'error')->with('title', 'Maaf')->with('text', 'username atau password salah!');
+    //     }
+    // }
 }
