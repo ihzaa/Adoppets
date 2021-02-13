@@ -46,13 +46,13 @@
                                         <a class="nav-link" href="{{route('landingpage')}}">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Blog</a>
+                                        <a class="nav-link" href="{{route('blog')}}">Blog</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Clinic Information</a>
+                                        <a class="nav-link" href="{{route('clinic')}}">Clinic Information</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact</a>
+                                        <a class="nav-link" href="{{route('contact')}}">Contact</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="submit.html"
