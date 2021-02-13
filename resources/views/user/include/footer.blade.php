@@ -7,8 +7,9 @@
                         <img src="{{asset('user/assets/img/logo.png')}}" alt="">
                     </a>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit amet
-                        fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
+                        Dengan platform adopt pets Anda dapat memilih hewan favorit Anda
+                        dan mari bersama memberikan kehidupan yang baik untuk hewan - hewan
+                        di sekitar Anda.
                     </p>
                 </div>
                 <!--end col-md-5-->
@@ -22,19 +23,16 @@
                                         <a href="#">Home</a>
                                     </li>
                                     <li>
-                                        <a href="#">Listing</a>
+                                        <a href="#">Blog</a>
                                     </li>
                                     <li>
-                                        <a href="#">Pages</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Extras</a>
+                                        <a href="#">Clinic Info</a>
                                     </li>
                                     <li>
                                         <a href="#">Contact</a>
                                     </li>
                                     <li>
-                                        <a href="#">Submit Ad</a>
+                                        <a href="#">Submit Posting</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -43,7 +41,7 @@
                             <nav>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="#">My Ads</a>
+                                        <a href="#">My Posting</a>
                                     </li>
                                     <li>
                                         <a href="#">Sign In</a>
@@ -61,13 +59,13 @@
                     <h2>Contact</h2>
                     <address>
                         <figure>
-                            124 Abia Martin Drive<br>
-                            New York, NY 10011
+                            Malang<br>
+                            Jawa Timur, Indonesia
                         </figure>
                         <br>
-                        <strong>Email:</strong> <a href="#">hello@example.com</a>
+                        <strong>Email:</strong> <a href="#">adoptpets@gmail.com</a>
                         <br>
-                        <strong>Skype: </strong> Craigs
+                        <strong>Instagram: </strong> @adoptpets
                         <br>
                         <br>
                         <a href="contact.html" class="btn btn-primary text-caps btn-framed">Contact Us</a>

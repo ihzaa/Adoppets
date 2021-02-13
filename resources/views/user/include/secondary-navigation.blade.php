@@ -11,7 +11,7 @@
         <ul class="right">
             <li>
                 <a href="my-ads.html">
-                    <i class="fa fa-heart"></i>My Ads
+                    <i class="fa fa-heart"></i>My Posting
                 </a>
             </li>
             <li>

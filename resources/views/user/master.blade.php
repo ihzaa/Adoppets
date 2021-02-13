@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('user/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('user/assets/css/user.css')}}">
 
-    <title>Craigs - Easy Buy & Sell Listing HTML Template</title>
+    <title>Adopt Pets</title>
 
 </head>
 
