@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <a href="#" class="brand">
-                        <img src="{{asset('user/assets/img/include image/logo_adoptpets.png')}}" alt="">
+                        <img src="{{asset('user/assets/img/include_image/logo_adoptpets.png')}}" alt="">
                     </a>
                     <p>
                         Dengan platform adopt pets Anda dapat memilih hewan favorit Anda

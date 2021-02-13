@@ -55,6 +55,9 @@
                                         <a class="nav-link" href="{{route('contact')}}">Contact</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="contact.html">Admin</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="submit.html"
                                             class="btn btn-primary text-caps btn-rounded btn-framed">Submit
                                             Posting</a>
@@ -109,6 +112,7 @@
     <script src="{{asset('user/assets/js/icheck.min.js')}}"></script>
     <script src="{{asset('user/assets/js/jquery.validate.min.js')}}"></script>
     <script src="{{asset('user/assets/js/custom.js')}}"></script>
+    @yield('js_after')
 
 </body>
 
