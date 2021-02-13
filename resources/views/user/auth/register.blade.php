@@ -50,6 +50,36 @@ sub-page
                     </div>
                     <!--end form-group-->
                     <div class="form-group">
+                        <label for="username" class="col-form-label required">Username</label>
+                        <input name="username" type="text" class="form-control" id="username"
+                            placeholder="Your Username" required>
+                    </div>
+                    <!--end form-group-->
+                    <div class="form-group">
+                        <label for="alamat_asal" class="col-form-label required">Address Origin</label>
+                        <input name="alamat_asal" type="text" class="form-control" id="alamat_asal"
+                            placeholder="Your Address Origin" required>
+                    </div>
+                    <!--end form-group-->
+                    <div class="form-group">
+                        <label for="domisili_sekarang" class="col-form-label required">Current Address</Address></label>
+                        <input name="domisili_sekarang" type="text" class="form-control" id="domisili_sekarang"
+                            placeholder="Your Current Address" required>
+                    </div>
+                    <!--end form-group-->
+                    <div class="form-group">
+                        <label for="nomor_telpon" class="col-form-label required">Phone Number</Address></label>
+                        <input name="nomor_telpon" type="text" class="form-control" id="nomor_telpon"
+                            placeholder="Your Phone Number" required>
+                    </div>
+                    <!--end form-group-->
+                    <div class="form-group">
+                        <label for="no_wa" class="col-form-label required">Whatsapp Number</Address></label>
+                        <input name="no_wa" type="text" class="form-control" id="no_wa"
+                            placeholder="Your Whatsapp Number" required>
+                    </div>
+                    <!--end form-group-->
+                    <div class="form-group">
                         <label for="password" class="col-form-label required">Password</label>
                         <input name="password" type="password" class="form-control" id="password" placeholder="Password"
                             required>

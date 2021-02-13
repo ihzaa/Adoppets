@@ -23,9 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->integer('no_wa');
             $table->string('foto_profil');
+            $table->string('password');
             $table->timestamps();
-
-            });
+        });
     }
 
     /**
