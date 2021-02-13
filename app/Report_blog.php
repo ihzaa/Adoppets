@@ -8,11 +8,16 @@ class Report_blog extends Model
 {
     //
     protected $fillable = [
-        'jawaban_report'
+        'jawaban_report',
     ];
 
-    public function blog()
+    public function User()
     {
-        return $this->belongsToMany('App\Blog', 'information_blog_reports', 'blog_id', 'report_blog_id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    public function Posting()
+    {
+        return $this->belongsTo('App\posting', 'posting_id', 'id');
     }
 }

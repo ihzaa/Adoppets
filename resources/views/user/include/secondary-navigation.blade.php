@@ -10,8 +10,8 @@
         <!--end left-->
         <ul class="right">
             <li>
-                <a href="my-ads.html">
-                    <i class="fa fa-heart"></i>My Posting
+                <a href="{{route('account')}}">
+                    <i class="fa fa-heart"></i>My Account
                 </a>
             </li>
             <li>

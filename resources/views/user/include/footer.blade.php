@@ -41,7 +41,7 @@
                             <nav>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="#">My Posting</a>
+                                        <a href="#">My Account</a>
                                     </li>
                                     <li>
                                         <a href="#">Sign In</a>
