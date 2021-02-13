@@ -14,4 +14,8 @@ class Report_clinic extends Model
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+    public function Posting()
+    {
+        return $this->belongsTo('App\posting', 'posting_id', 'id');
+    }
 }
