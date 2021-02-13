@@ -22,8 +22,9 @@ class CreateUsersTable extends Migration
             $table->integer('nomor_telpon');
             $table->string('email');
             $table->integer('no_wa');
-            $table->string('foto_profil');
+            $table->string('foto_profil')->nullable();
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

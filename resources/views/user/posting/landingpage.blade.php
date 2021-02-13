@@ -17,7 +17,7 @@ has-dark-background
 @endsection
 
 @section('brand-logo')
-{{asset('user/assets/img/include image/logo_adoptpets.png')}}
+{{asset('user/assets/img/include_image/logo_adoptpets-inverted.png')}}
 @endsection
 
 @section('hero-form')
@@ -73,7 +73,7 @@ has-dark-background
 @section('background')
 <div class="background">
     <div class="background-image">
-        <img src="{{asset('user/assets/img/include image/background_2.jpg')}}" alt="">
+        <img src="{{asset('user/assets/img/include_image/bg_landingpage.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
