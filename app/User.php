@@ -58,4 +58,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Report_posting', 'user_id', 'id');
     }
 
+    public function Report_Blog()
+    {
+        return $this->hasMany('App\Report_blog', 'user_id', 'id');
+    }
+
 }
