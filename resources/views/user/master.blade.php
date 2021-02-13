@@ -49,10 +49,10 @@
                                         <a class="nav-link" href="{{route('blog')}}">Blog</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('clinic')}}">Clinic Information</a>
+                                        <a class="nav-link" href="{{route('clinic')}}">Informasi Klinik</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('contact')}}">Contact</a>
+                                        <a class="nav-link" href="{{route('contact')}}">Kontak</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="contact.html">Admin</a>

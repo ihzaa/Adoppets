@@ -5,7 +5,7 @@
 <div class="page-title">
     <div class="container">
         <h1 class="center">
-            Let's Adopt Your Favorite, Pets !
+            Silahkan Memilih Hewan Peliharaan yang Anda Sukai!
         </h1>
     </div>
     <!--end container-->
@@ -30,9 +30,9 @@ has-dark-background
                 <!--end col-md-3-->
                 <div class="col-md-3 col-sm-3">
                     <div class="form-group">
-                        <label for="input-location" class="col-form-label">Where?</label>
+                        <label for="input-location" class="col-form-label">Dimana?</label>
                         <input name="location" type="text" class="form-control" id="input-location"
-                            placeholder="Enter Location">
+                            placeholder="Masukkan Lokasi">
                         <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
                             title="Find My Position"><i class="fa fa-map-marker"></i></span>
                     </div>
@@ -41,9 +41,9 @@ has-dark-background
                 <!--end col-md-3-->
                 <div class="col-md-3 col-sm-3">
                     <div class="form-group">
-                        <label for="category" class="col-form-label">Category?</label>
+                        <label for="category" class="col-form-label">Kategori?</label>
                         <select name="category" id="category" data-placeholder="Select Category">
-                            <option value="">Select Category</option>
+                            <option value="">Pilih Kategori</option>
                             <option value="1">Computers</option>
                             <option value="2">Real Estate</option>
                             <option value="3">Cars & Motorcycles</option>
@@ -55,7 +55,7 @@ has-dark-background
                 </div>
                 <!--end col-md-3-->
                 <div class="col-md-3 col-sm-3">
-                    <button type="submit" class="btn btn-primary width-100">Search</button>
+                    <button type="submit" class="btn btn-primary width-100">Cari</button>
                 </div>
                 <!--end col-md-3-->
             </div>
@@ -86,9 +86,9 @@ has-dark-background
             <!--============ Section Title===================================================================-->
             <div class="section-title clearfix">
                 <div class="float-left float-xs-none">
-                    <label class="mr-3 align-text-bottom">Sort by: </label>
+                    <label class="mr-3 align-text-bottom">Urutkan Berdasarkan: </label>
                     <select name="sorting" id="sorting" class="small width-200px" data-placeholder="Default Sorting">
-                        <option value="">Default Sorting</option>
+                        <option value="">Urutan Default</option>
                         <option value="1">Newest First</option>
                         <option value="2">Oldest First</option>
                         <option value="3">Lowest Price First</option>

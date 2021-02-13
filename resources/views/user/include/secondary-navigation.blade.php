@@ -11,7 +11,7 @@
         <ul class="right">
             <li>
                 <a href="{{route('account')}}">
-                    <i class="fa fa-heart"></i>My Account
+                    <i class="fa fa-heart"></i>Akun Saya
                 </a>
             </li>
             <li>

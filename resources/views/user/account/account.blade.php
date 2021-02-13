@@ -41,19 +41,19 @@ sub-page
             <div class="col-md-3">
                 <nav class="nav flex-column side-nav">
                     <a class="nav-link active icon" href="my-profile.html">
-                        <i class="fa fa-user"></i>My Profile
+                        <i class="fa fa-user"></i>Profil Saya
                     </a>
                     <a class="nav-link icon" href="my-ads.html">
-                        <i class="fa fa-heart"></i>My Pets Posting
+                        <i class="fa fa-heart"></i>Postingan Saya
                     </a>
                     <a class="nav-link icon" href="bookmarks.html">
                         <i class="fa fa-star"></i>Bookmarks
                     </a>
                     <a class="nav-link icon" href="change-password.html">
-                        <i class="fa fa-recycle"></i>Change Password
+                        <i class="fa fa-recycle"></i>Ubah Password
                     </a>
                     <a class="nav-link icon" href="sold-items.html">
-                        <i class="fa fa-check"></i>Pets Already Adopt
+                        <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
                 </nav>
             </div>
@@ -62,10 +62,10 @@ sub-page
                 <form class="form">
                     <div class="row">
                         <div class="col-md-8">
-                            <h2>Personal Information</h2>
+                            <h2>Informasi Pribadi</h2>
                             <section>
                                 <div class="form-group">
-                                    <label for="Name" class="col-form-label required">Your Name</label>
+                                    <label for="Name" class="col-form-label required">Nama Anda</label>
                                     <input name="Name" type="text" class="form-control" id="input-name"
                                         placeholder="Your Name" value="Tiara Intana Sari" required>
                                 </div>
@@ -77,23 +77,21 @@ sub-page
                                 </div>
                                 <!--end row-->
                                 <div class="form-group">
-                                    <label for="Origin Address" class="col-form-label required">Your Origin
-                                        Address</label>
+                                    <label for="Origin Address" class="col-form-label required">Alamat Asal</label>
                                     <input name="Origin Address" type="text" class="form-control"
                                         id="input-originaddress" placeholder="Your Location"
                                         value="Lamongan, Jawa Timur" required>
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
-                                    <label for="Current Address" class="col-form-label required">Your Current
-                                        Address</label>
+                                    <label for="Current Address" class="col-form-label required">Alamat Sekarang</label>
                                     <input name="Current Address" type="text" class="form-control"
                                         id="input-currentaddress" placeholder="Your Location" value="Malang, Jawa Timur"
                                         required>
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
-                                    <label for="about" class="col-form-label">More About You</label>
+                                    <label for="about" class="col-form-label">Tentang Anda</label>
                                     <textarea name="about" id="about" class="form-control"
                                         rows="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</textarea>
                                 </div>
@@ -101,15 +99,15 @@ sub-page
                             </section>
 
                             <section>
-                                <h2>Contact</h2>
+                                <h2>Kontak</h2>
                                 <div class="form-group">
-                                    <label for="phone" class="col-form-label">Phone</label>
+                                    <label for="phone" class="col-form-label">Telepon</label>
                                     <input name="phone" type="text" class="form-control" id="phone"
                                         placeholder="Your Phone" value="08115618291">
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
-                                    <label for="whatsapp_number" class="col-form-label">Whatsapp Number</label>
+                                    <label for="whatsapp_number" class="col-form-label">Nomer Whatsapp</label>
                                     <input name="phone" type="text" class="form-control" id="phone"
                                         placeholder="Your Whatsapp Number" value="081220904695">
                                 </div>
@@ -123,7 +121,7 @@ sub-page
                             </section>
 
                             <section>
-                                <h2>Social</h2>
+                                <h2>Sosial Media</h2>
                                 <div class="form-group">
                                     <label for="twitter" class="col-form-label">Twitter</label>
                                     <input name="twitter" type="text" class="form-control" id="twitter"

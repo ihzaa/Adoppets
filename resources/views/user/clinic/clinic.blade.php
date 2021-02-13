@@ -10,7 +10,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1>Pet Clinic Care About Your Pets</h1>
+        <h1>Pilih Pet Klinik Terbaik untuk Perawatan Hewan Peliharan Anda</h1>
     </div>
     <!--end container-->
 </div>

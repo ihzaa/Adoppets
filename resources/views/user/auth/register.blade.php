@@ -43,7 +43,7 @@ sub-page
                     @csrf
                     <!-- nama -->
                     <div class="form-group">
-                        <label for="name" class="col-form-label required">Your Name</label>
+                        <label for="name" class="col-form-label required">Nama Anda</label>
                         <input name="name" type="text" class="form-control @error('name') is-invalid @enderror"
                             id="name" placeholder="Your Name" required value="{{old('nama')}}">
                     </div>
@@ -76,7 +76,7 @@ sub-page
 
                     <!-- alamat asal -->
                     <div class="form-group">
-                        <label for="alamat_asal" class="col-form-label required">Address Origin</label>
+                        <label for="alamat_asal" class="col-form-label required">Alamat Asal</label>
                         <input name="alamat_asal" type="text"
                             class="form-control @error('alamat_asal') is-invalid @enderror" id="alamat_asal"
                             placeholder="Your Address Origin" required required value="{{old('alamat_asal')}}">
@@ -88,7 +88,7 @@ sub-page
 
                     <!-- domisili_sekarang -->
                     <div class="form-group">
-                        <label for="domisili_sekarang" class="col-form-label required">Current Address</Address></label>
+                        <label for="domisili_sekarang" class="col-form-label required">Alamat Sekarang</Address></label>
                         <input name="domisili_sekarang" type="text"
                             class="form-control @error('domisili_sekarang') is-invalid @enderror" id="domisili_sekarang"
                             placeholder="Your Current Address" required required value="{{old('domisili_sekarang')}}">
@@ -100,7 +100,7 @@ sub-page
 
                     <!-- nomor telpon -->
                     <div class="form-group">
-                        <label for="nomor_telpon" class="col-form-label required">Phone Number</Address></label>
+                        <label for="nomor_telpon" class="col-form-label required">Nomer Telepon</Address></label>
                         <input name="nomor_telpon" type="text"
                             class="form-control @error('nomor_telpon') is-invalid @enderror" id="nomor_telpon"
                             placeholder="Your Phone Number" required required value="{{old('nomor_telpon')}}">
@@ -112,7 +112,7 @@ sub-page
 
                     <!-- whatsapp number -->
                     <div class="form-group">
-                        <label for="no_wa" class="col-form-label required">Whatsapp Number</Address></label>
+                        <label for="no_wa" class="col-form-label required">Nomer Whatsapp</Address></label>
                         <input name="no_wa" type="text" class="form-control @error('no_wa') is-invalid @enderror"
                             id="no_wa" placeholder="Your Whatsapp Number" required required value="{{old('no_wa')}}">
                     </div>

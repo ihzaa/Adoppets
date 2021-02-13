@@ -95,12 +95,12 @@ sub-page
                     </div>
                     <!--end form-group-->
                     <div class="form-group">
-                        <label for="message" class="col-form-label required">Your Message</label>
+                        <label for="message" class="col-form-label required">Pesan Anda</label>
                         <textarea name="message" id="message" class="form-control" rows="4" placeholder="Your Message"
                             required></textarea>
                     </div>
                     <!--end form-group-->
-                    <button type="submit" class="btn btn-primary float-right">Send Message</button>
+                    <button type="submit" class="btn btn-primary float-right">Kirim Pesan</button>
                 </form>
                 <!--end form-->
             </div>
