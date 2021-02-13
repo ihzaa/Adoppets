@@ -17,7 +17,7 @@ sub-page
 @endsection
 
 @section('brand-logo')
-{{asset('user/assets/img/logo.png')}}
+{{asset('user/assets/img/include image/logo_adoptpets.png')}}
 @endsection
 
 @section('hero-form')
@@ -26,7 +26,7 @@ sub-page
 @section('background')
 <div class="background">
     <div class="background-image original-size">
-        <img src="{{asset('user/assets/img/footer-background-icons.jpg')}}" alt="">
+        <img src="{{asset('user/assets/img/include image/footer-background-icons.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
@@ -92,17 +92,14 @@ sub-page
                     </div>
                     <!--end form-group-->
                     <div class="d-flex justify-content-between align-items-baseline">
-                        <label>
-                            <input type="checkbox" name="newsletter" value="1">
-                            Receive Newsletter
-                        </label>
+                        <label for=""></label>
                         <button type="submit" class="btn btn-primary">Register</button>
                     </div>
+
                 </form>
                 <hr>
                 <p>
-                    By clicking "Register" button, you agree with our <a href="#" class="link">Terms &
-                        Conditions.</a>
+                    To Login Please Click <a href="{{route('login')}}" class="link">Here</a>
                 </p>
             </div>
             <!--end col-md-6-->

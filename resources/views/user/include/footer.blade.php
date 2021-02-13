@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <a href="#" class="brand">
-                        <img src="{{asset('user/assets/img/logo.png')}}" alt="">
+                        <img src="{{asset('user/assets/img/include image/logo_adoptpets.png')}}" alt="">
                     </a>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit amet
