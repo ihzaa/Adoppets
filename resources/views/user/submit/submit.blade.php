@@ -1,11 +1,10 @@
 @extends('user/master')
 
-@section('nama-page', 'home-page')
 @section('page-title')
 <div class="page-title">
     <div class="container">
         <h1 class="center">
-            Silahkan Memilih Hewan Peliharaan yang Anda Sukai!
+            ini submmit
         </h1>
     </div>
     <!--end container-->
@@ -148,7 +147,7 @@ has-dark-background
                 </div>
                 <!--end item-->
 
-                <a href="{{route('get_submit_postingan')}}" class="item call-to-action">
+                <a href="submit.html" class="item call-to-action">
                     <div class="wrapper">
                         <div class="title">
                             <i class="fa fa-plus-square-o"></i>
@@ -156,14 +155,6 @@ has-dark-background
                         </div>
                     </div>
                 </a>
-                <button class="item call-to-action" id="btn_like">
-                    <div class="wrapper">
-                        <div class="title">
-                            <i class="fa fa-plus-square-o"></i>
-                            LIKE
-                        </div>
-                    </div>
-                </button>
                 <!--end item-->
 
 
@@ -206,39 +197,4 @@ has-dark-background
     </section>
     <!--end block-->
 </section>
-@endsection
-
-@section('js_after')
-<script>
-    $('#btn_like').click(function(){
-        let data = {
-            id : 123
-        }
-        fetch("{{route('likePostingan')}}",{
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-            'Content-Type': 'application/json',
-            "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        })
-        .then(response => {
-            if(response.status == 201){
-                return "EROR"
-            }else{
-                return response.json()
-            }
-        })
-        .then(data => {
-            if(data == "EROR"){
-                window.location.replace("{{route('get_login')}}");
-            }else{
-                console.log(data);
-            }
-        })
-        .catch(err => console.log(err));
-    })
-</script>
 @endsection

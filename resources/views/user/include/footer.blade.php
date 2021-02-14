@@ -14,7 +14,7 @@
                 </div>
                 <!--end col-md-5-->
                 <div class="col-md-3">
-                    <h2>Navigation</h2>
+                    <h2>Navigasi</h2>
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <nav>
@@ -26,10 +26,10 @@
                                         <a href="#">Blog</a>
                                     </li>
                                     <li>
-                                        <a href="#">Clinic Info</a>
+                                        <a href="#">Info Klinik</a>
                                     </li>
                                     <li>
-                                        <a href="#">Contact</a>
+                                        <a href="#">Kontak</a>
                                     </li>
                                     <li>
                                         <a href="#">Submit Posting</a>
@@ -41,7 +41,7 @@
                             <nav>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="#">My Posting</a>
+                                        <a href="#">Akun Saya</a>
                                     </li>
                                     <li>
                                         <a href="#">Sign In</a>
@@ -56,7 +56,7 @@
                 </div>
                 <!--end col-md-3-->
                 <div class="col-md-4">
-                    <h2>Contact</h2>
+                    <h2>Kontak</h2>
                     <address>
                         <figure>
                             Malang<br>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -42,14 +44,14 @@ class RegisterController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users',
             'alamat_asal' => 'required',
             'domisili_sekarang' => 'required',
             'nomor_telpon' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users|email',
             'no_wa' => 'required',
             'foto_profil' => 'required|image|mimes:jpeg,svg,jfif,png,jpg|max:256',
-            'password' => 'required',
+            'password' => 'required|min:6',
         ]);
         $data = new User();
         $data->name = $request->name;
@@ -60,7 +62,7 @@ class RegisterController extends Controller
         $data->email = $request->username;
         $data->no_wa = $request->no_wa;
         $data->foto_profil = $request->foto_profil;
-        $data->password = $request->password;
+        $data->password = Hash::make($request->password);
         $data->save();
 
         $extension = $request->file('foto_profil')->getClientOriginalExtension();
@@ -71,9 +73,8 @@ class RegisterController extends Controller
         $data->foto_profil = $filepath;
         $data->save();
 
-        return redirect(route('login'))->with('sukses_tambah', 'Greate! Register Was successfully.');
+        return redirect(route('get_login'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Registrasi berhasil!');
     }
-
     /**
      * Display the specified resource.
      *

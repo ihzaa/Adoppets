@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="ThemeStarz">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('user/assets/bootstrap/css/bootstrap.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('user/assets/fonts/font-awesome.css')}}" type="text/css">
@@ -32,7 +32,7 @@
                 <div class="main-navigation">
                     <div class="container">
                         <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                            <a class="navbar-brand" href="index.html">
+                            <a class="navbar-brand" href="{{route('landingpage')}}">
                                 <img src="@yield('brand-logo')" alt="">
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
@@ -49,14 +49,16 @@
                                         <a class="nav-link" href="{{route('blog')}}">Blog</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('clinic')}}">Clinic Information</a>
+                                        <a class="nav-link" href="{{route('clinic')}}">Informasi Klinik</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('contact')}}">Contact</a>
+                                        <a class="nav-link" href="{{route('contact')}}">Kontak</a>
                                     </li>
+                                    @if (Auth::guard('admin')->check())
                                     <li class="nav-item">
                                         <a class="nav-link" href="contact.html">Admin</a>
                                     </li>
+                                    @endif
                                     <li class="nav-item">
                                         <a href="submit.html"
                                             class="btn btn-primary text-caps btn-rounded btn-framed">Submit

@@ -16,7 +16,12 @@ class CreateReportBlogsTable extends Migration
         Schema::create('report_blogs', function (Blueprint $table) {
             $table->id();
             $table->string('jawaban_report');
+            $table->unsignedBigInteger('posting_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('posting_id')->references('id')->on('postings')->onDelete('cascade');
         });
     }
 

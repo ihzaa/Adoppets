@@ -21,3 +21,4 @@ Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
 Route::get('/blog/{$id}', 'user_Controller\blog\BlogController@detail');
 Route::get('/contact', 'user_Controller\contact\ContactController@index')->name('contact');
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
+Route::get('/account', 'user_Controller\account\AccountController@index')->name('account');

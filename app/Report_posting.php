@@ -10,7 +10,12 @@ class Report_posting extends Model
     protected $fillable = [
         'jawaban_report'];
 
-        public function posting(){
-            return $this-> belongsToMany('App\posting', 'information_posting_reports', 'posting_id', 'report_posting_id');
-        }
+    public function User()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+    public function Posting()
+    {
+        return $this->belongsTo('App\posting', 'posting_id', 'id');
+    }
 }

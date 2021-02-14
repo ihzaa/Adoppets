@@ -22,5 +22,15 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'password' => Hash::make('1234')
         ]);
+        DB::table('users')->insert([
+            'name' => "ulfah",
+            'username' => 'ulfah',
+            'password' => Hash::make('1234'),
+            'alamat_asal' => 'tulung',
+            'domisili_sekarang' => 'agung',
+            'nomor_telpon' => '08',
+            'email' => 'ulfah@gmail.com',
+            'no_wa' => '08',
+        ]);
     }
 }

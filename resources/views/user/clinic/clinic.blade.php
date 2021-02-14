@@ -10,14 +10,14 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1>Let's Search Information About Your Pets</h1>
+        <h1>Pilih Pet Klinik Terbaik untuk Perawatan Hewan Peliharan Anda</h1>
     </div>
     <!--end container-->
 </div>
 @endsection
 
 @section('brand-logo')
-{{asset('user/assets/img/include image/logo_adoptpets.png')}}
+{{asset('user/assets/img/include_image/logo_adoptpets.png')}}
 @endsection
 
 @section('hero-form')
