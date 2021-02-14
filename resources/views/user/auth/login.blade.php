@@ -39,7 +39,7 @@ sub-page
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <form class="form clearfix" action="{{route('post_login')}}" method="POST">
+                <form class="form clearfix" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="username"

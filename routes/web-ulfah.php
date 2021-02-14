@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 // halaman register
 Route::post('/postregister', 'user_Controller\auth\RegisterController@store')->name('post_register');
+Route::get('/detailPosting', 'user_Controller\posting\LandingpageController@index_detail')->name('detail_posting');
