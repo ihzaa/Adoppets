@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user_Controller\account;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,10 +14,12 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
-        return view('user/account/account');
+        $data = User::find($id);
+        dd($data);
+        return view('user/account/account', compact('data'));
     }
 
     /**

@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             'domisili_sekarang' => 'agung',
             'nomor_telpon' => '08',
             'email' => 'ulfah@gmail.com',
+            'instagram' => 'ulfahnur_oktaviana',
             'no_wa' => '08',
         ]);
     }

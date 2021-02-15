@@ -65,7 +65,7 @@ sub-page
                             <h2>Informasi Pribadi</h2>
                             <section>
                                 <div class="form-group">
-                                    <label for="Name" class="col-form-label required">Nama Anda</label>
+                                    <label for="Name" class="col-form-label required">{{$data->name}}</label>
                                     <input name="Name" type="text" class="form-control" id="input-name"
                                         placeholder="Your Name" value="" required>
                                 </div>
@@ -123,17 +123,13 @@ sub-page
                             <section>
                                 <h2>Sosial Media</h2>
                                 <div class="form-group">
-                                    <label for="twitter" class="col-form-label">Twitter</label>
-                                    <input name="twitter" type="text" class="form-control" id="twitter"
-                                        placeholder="http://" value="http://www.twitter.com/jane.doe">
+                                    <label for="instagram" class="col-form-label">Instagram</label>
+                                    <input name="instagram" type="text" class="form-control" id="instagram"
+                                        placeholder="your username at instagram" value="">
                                 </div>
+
                                 <!--end form-group-->
-                                <div class="form-group">
-                                    <label for="facebook" class="col-form-label">Facebook</label>
-                                    <input name="facebook" type="text" class="form-control" id="facebook"
-                                        placeholder="http://" value="http://www.facebook.com/jane.doe">
-                                </div>
-                                <!--end form-group-->
+
                             </section>
 
                             <section class="clearfix">

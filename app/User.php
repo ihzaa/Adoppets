@@ -10,11 +10,15 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'username', 'alamat_asal', 'domisili_sekarang', 'nomor_telpon', 'email', 'no_wa', 'foto_profil',
+        'name', 'username', 'alamat_asal', 'domisili_sekarang', 'nomor_telpon', 'email', 'instagram', 'no_wa', 'foto_profil'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $attributes = [
+        'instagram' => 'a',
     ];
 
     public function posting()

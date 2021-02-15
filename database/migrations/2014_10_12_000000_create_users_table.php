@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->longText('domisili_sekarang');
             $table->bigInteger('nomor_telpon');
             $table->string('email');
+            $table->string('instagram')->nullable(true);
             $table->bigInteger('no_wa');
             $table->string('foto_profil')->nullable();
             $table->string('password');
