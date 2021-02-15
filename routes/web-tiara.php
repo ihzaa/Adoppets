@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-//untuk blog
+//untuk blog, tampilan awal blog
 Route::get('/blog/{$id}', 'user_Controller\blog\BlogController@detail');
-
+//detail blog ketika diklik "read more"
 Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
+//kontak
 Route::get('/contact', 'user_Controller\contact\ContactController@index')->name('contact');
+//informasi klinik
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
 
 Route::middleware('auth:admin')->group(function () {
