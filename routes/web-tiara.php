@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+//untuk blog
 Route::get('/blog/{$id}', 'user_Controller\blog\BlogController@detail');
-Route::get('/account', 'user_Controller\account\AccountController@index')->name('account');
+
 Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
 Route::get('/contact', 'user_Controller\contact\ContactController@index')->name('contact');
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
@@ -29,6 +30,7 @@ Route::middleware('auth:admin')->group(function () {
 
 Route::middleware('auth:user')->group(function () {
     // HALAMAN YG HARUS LOGIN USER
+    Route::get('/account', 'user_Controller\account\AccountController@index')->name('account');
     Route::get('/mypostingan', 'user_Controller\account\MypostinganController@index')->name('mypostingan');
     Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
 
