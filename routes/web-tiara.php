@@ -17,10 +17,24 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
 Route::get('/blog/{$id}', 'user_Controller\blog\BlogController@detail');
+Route::get('/account', 'user_Controller\account\AccountController@index')->name('account');
+Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
 Route::get('/contact', 'user_Controller\contact\ContactController@index')->name('contact');
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
-Route::get('/account', 'user_Controller\account\AccountController@index')->name('account');
-Route::get('/mypostingan', 'user_Controller\account\MypostinganController@index')->name('mypostingan');
-Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
+
+Route::middleware('auth:admin')->group(function () {
+    // HALAMAN YG HARUS LOGIN ADMIN
+});
+
+Route::middleware('auth:user')->group(function () {
+    // HALAMAN YG HARUS LOGIN USER
+    Route::get('/mypostingan', 'user_Controller\account\MypostinganController@index')->name('mypostingan');
+    Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
+
+});
+
+Route::middleware('guest')->group(function () {
+    // HALAMAN YG DIBUKA HARUS DALAM KEADAAAN BELUM ADA YG LOGIN
+
+});
