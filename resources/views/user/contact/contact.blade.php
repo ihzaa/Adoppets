@@ -5,8 +5,6 @@
 sub-page
 @endsection
 
-
-
 @section('page-title')
 <div class="page-title">
     <div class="container">
