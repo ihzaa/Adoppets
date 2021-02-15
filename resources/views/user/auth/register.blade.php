@@ -45,7 +45,7 @@ sub-page
                     <div class="form-group">
                         <label for="name" class="col-form-label required">Nama Anda</label>
                         <input name="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                            id="name" placeholder="Your Name" required value="{{old('nama')}}">
+                            id="name" placeholder="Your Name" required value="{{old('name')}}">
                     </div>
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -160,7 +160,7 @@ sub-page
                 </form>
                 <hr>
                 <p>
-                    To Login Please Click <a href="{{route('login')}}" class="link">Here</a>
+                    To Login Please Click <a href="{{route('get_login')}}" class="link">Here</a>
                 </p>
             </div>
             <!--end col-md-6-->

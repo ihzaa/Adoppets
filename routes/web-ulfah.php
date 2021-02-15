@@ -18,4 +18,28 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // halaman register
-Route::post('/postregister', 'user_Controller\auth\RegisterController@store')->name('post_register');
+Route::get('/detailPosting', 'user_Controller\posting\LandingpageController@index_detail')->name('detail_posting');
+Route::get('/logout', 'auth\allAuthController@logout')->name('logout');
+
+
+Route::middleware('auth:admin')->group(function () {
+    // HALAMAN YG HARUS LOGIN ADMIN
+});
+
+Route::middleware('auth:user')->group(function () {
+    // HALAMAN YG HARUS LOGIN USER
+    Route::get('/submit', 'user_Controller\posting\PostingController@index')->name('get_submit_postingan');
+});
+
+Route::middleware('checkfetch')->group(function () {
+    Route::post('like', 'user_Controller\posting\PostingController@like')->name('likePostingan');
+});
+
+Route::middleware('guest')->group(function () {
+    // HALAMAN YG DIBUKA HARUS DALAM KEADAAAN BELUM ADA YG LOGIN
+    Route::get('/login', 'user_Controller\auth\LoginController@index')->name('get_login');
+    Route::post('/login', 'auth\allAuthController@login')->name('post_login');
+
+    Route::post('/postregister', 'user_Controller\auth\RegisterController@store')->name('post_register');
+    Route::get('/register', 'user_Controller\auth\RegisterController@index')->name('register');
+});

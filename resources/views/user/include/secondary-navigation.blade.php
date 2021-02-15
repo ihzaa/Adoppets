@@ -9,13 +9,20 @@
         </ul>
         <!--end left-->
         <ul class="right">
+            @if (Auth::guard('admin')->check() ||Auth::guard('user')->check())
             <li>
                 <a href="{{route('account')}}">
                     <i class="fa fa-heart"></i>Akun Saya
                 </a>
             </li>
             <li>
-                <a href="{{route('login')}}">
+                <a href="{{route('logout')}}">
+                    <i class="fa fa-sign-out"></i>Logout
+                </a>
+            </li>
+            @else
+            <li>
+                <a href="{{route('get_login')}}">
                     <i class="fa fa-sign-in"></i>Sign In
                 </a>
             </li>
@@ -24,6 +31,7 @@
                     <i class="fa fa-pencil-square-o"></i>Register
                 </a>
             </li>
+            @endif
         </ul>
         <!--end right-->
     </div>

@@ -83,4 +83,11 @@ class LandingpageController extends Controller
     {
         //
     }
+
+
+    // DETAIL
+    public function index_detail()
+    {
+        return view('user/posting/detail');
+    }
 }

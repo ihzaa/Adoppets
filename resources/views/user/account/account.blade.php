@@ -67,7 +67,7 @@ sub-page
                                 <div class="form-group">
                                     <label for="Name" class="col-form-label required">Nama Anda</label>
                                     <input name="Name" type="text" class="form-control" id="input-name"
-                                        placeholder="Your Name" value="Tiara Intana Sari" required>
+                                        placeholder="Your Name" value="" required>
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">

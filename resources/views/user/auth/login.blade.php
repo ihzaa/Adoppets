@@ -39,7 +39,7 @@ sub-page
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <form class="form clearfix" action="{{route('post_login')}}" method="POST">
+                <form class="form clearfix" method="POST" action="{{route('post_login')}}">
                     @csrf
                     <div class="form-group">
                         <label for="username"
@@ -85,7 +85,7 @@ sub-page
 
 @section('js_after')
 @if(Session::get('icon'))
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.14.1/sweetalert2.all.min.js" integrity="sha512-bAf9HaXHkP7iIxf9gcA8h3d2CyiWcvnswDS+XeoWo4me/DgMQNDoigQqxN34zBSlyA0SGn5/tZmfkxnUAtULAA==" crossorigin="anonymous"></script>
 <script>
 Swal.fire({
     icon: "{{Session::get('icon')}}",

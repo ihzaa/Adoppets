@@ -13,6 +13,10 @@ class User extends Authenticatable
         'name', 'username', 'alamat_asal', 'domisili_sekarang', 'nomor_telpon', 'email', 'no_wa', 'foto_profil',
     ];
 
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
     public function posting()
     {
         return $this->hasMany('App\posting', 'user_id', 'id');
@@ -62,5 +66,4 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Report_blog', 'user_id', 'id');
     }
-
 }
