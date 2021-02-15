@@ -35,7 +35,6 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/account', 'user_Controller\account\AccountController@index')->name('account');
     Route::get('/mypostingan', 'user_Controller\account\MypostinganController@index')->name('mypostingan');
     Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
-
 });
 
 Route::middleware('guest')->group(function () {
