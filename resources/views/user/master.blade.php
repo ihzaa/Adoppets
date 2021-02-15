@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('user/assets/css/selectize.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('user/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('user/assets/css/user.css')}}">
+    @yield('include-css')
 
     <title>Adopt Pets</title>
 
