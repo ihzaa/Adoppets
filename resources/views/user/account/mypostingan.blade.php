@@ -40,10 +40,10 @@ sub-page
         <div class="row">
             <div class="col-md-3">
                 <nav class="nav flex-column side-nav">
-                    <a class="nav-link active icon" href="{{route('account')}}">
+                    <a class="nav-link active icon" href="">
                         <i class="fa fa-user"></i>Profil Saya
                     </a>
-                    <a class="nav-link icon" href="{{route('mypostingan')}}">
+                    <a class="nav-link icon" href="">
                         <i class="fa fa-heart"></i>Postingan Saya
                     </a>
                     <a class="nav-link icon" href="bookmarks.html">
@@ -52,7 +52,7 @@ sub-page
                     <a class="nav-link icon" href="change-password.html">
                         <i class="fa fa-recycle"></i>Ubah Password
                     </a>
-                    <a class="nav-link icon" href="{{route('alreadyadopt')}}">
+                    <a class="nav-link icon" href="">
                         <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
                 </nav>
