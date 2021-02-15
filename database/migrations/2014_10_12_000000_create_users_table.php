@@ -19,9 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();;
             $table->longText('alamat_asal');
             $table->longText('domisili_sekarang');
-            $table->integer('nomor_telpon');
+            $table->bigInteger('nomor_telpon');
             $table->string('email');
-            $table->integer('no_wa');
+            $table->bigInteger('no_wa');
             $table->string('foto_profil')->nullable();
             $table->string('password');
             $table->rememberToken();
