@@ -17,9 +17,7 @@ class AccountController extends Controller
     public function index($id)
     {
         //
-        $data = User::find($id);
-        dd($data);
-        return view('user/account/account', compact('data'));
+
     }
 
     /**
