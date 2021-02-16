@@ -121,6 +121,17 @@ sub-page
                     @enderror
                     <!--end form-group-->
 
+                     <!-- instagram -->
+                     <div class="form-group">
+                        <label for="instagram" class="col-form-label required">Instagram</Address></label>
+                        <input name="instagram" type="text" class="form-control @error('instagram') is-invalid @enderror"
+                            id="instagram" placeholder="Your username at instagram" value="{{old('instagram')}}">
+                    </div>
+                    @error('instagram')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <!--end form-group-->
+
                     <!-- foto profil -->
                     <div class="form-group">
                         @csrf
@@ -201,6 +212,13 @@ $("#register").form("show");
 @enderror
 
 @error('username')
+<script>
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
+
+@error('instagram')
 <script>
 $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");

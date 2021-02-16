@@ -49,6 +49,7 @@ class RegisterController extends Controller
             'domisili_sekarang' => 'required',
             'nomor_telpon' => 'required',
             'email' => 'required|unique:users|email',
+            'instagram' => 'nullable',
             'no_wa' => 'required',
             'foto_profil' => 'required|image|mimes:jpeg,svg,jfif,png,jpg|max:256',
             'password' => 'required|min:6',
@@ -59,7 +60,8 @@ class RegisterController extends Controller
         $data->alamat_asal = $request->alamat_asal;
         $data->domisili_sekarang = $request->domisili_sekarang;
         $data->nomor_telpon = $request->nomor_telpon;
-        $data->email = $request->username;
+        $data->email = $request->email;
+        $data->instagram = $request->instagram;
         $data->no_wa = $request->no_wa;
         $data->foto_profil = $request->foto_profil;
         $data->password = Hash::make($request->password);
