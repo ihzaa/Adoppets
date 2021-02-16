@@ -126,7 +126,7 @@ sub-page
                                 <div class="form-group">
                                     <label for="instagram" class="col-form-label">Instagram</label>
                                     <input name="instagram" type="text" class="form-control" id="instagram"
-                                        placeholder="your username at instagram" value="">
+                                        placeholder="your username at instagram" value="{{ $user->instagram }}">
                                 </div>
 
                                 <!--end form-group-->
