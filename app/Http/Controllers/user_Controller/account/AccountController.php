@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user_Controller\account;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,10 @@ class AccountController extends Controller
     public function index()
     {
         //
-        return view('user/account/account');
+        //return view('user/account/account');
+        $user = User::where('id', Auth::user()->id)->first();
+
+        return view('user.account.account', compact('user'));
     }
 
     /**
@@ -24,6 +28,29 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function update(Request $request)
+    {
+        // $this->validate($request, [
+        //     'password' => 'confirmed',
+        // ]);
+
+        // $user = User::where('id', Auth::user()->id)->first();
+        // $user->name = $request->name;
+        // $user->username = $request->username;
+        // $user->email = $request->email;
+        // $user->alamat_asal = $request->alamat_asal;
+        // $user->domisili_sekarang = $request->domisili_sekarang;
+        // $user->nomor_telpon = $request->nomor_telpon;
+        // $user->no_wa = $request->no_wa;
+
+        // // // if (!empty($request->password)) {
+        // // //     $user->password = Hash::make($request->password);
+        // // // }
+
+        // $user->update();
+
+        // return redirect('user.account.account');
+    }
 
     public function create()
     {
@@ -70,10 +97,6 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

@@ -61,7 +61,7 @@
                                     </li>
                                     @endif
                                     <li class="nav-item">
-                                        <a href="submit.html"
+                                        <a href="{{route('get_submit_postingan')}}"
                                             class="btn btn-primary text-caps btn-rounded btn-framed">Submit
                                             Posting</a>
                                     </li>

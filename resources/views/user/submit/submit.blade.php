@@ -537,18 +537,16 @@
 
                 <div class="form-group">
                     <label for="kodisi_fisik" class="col-form-label">Informasi Vaksin</label>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Tanggal Vaksin</th>
-                                <th>Jenis Vaksin</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <td>25-02-2021</td>
-                            <td>Vaksin Rabies</td>
-                        </tbody>
-                    </table>
+                    <div class="form-group">
+                        <label for="tanggal_vaksin" class="col-form-label">Tanggal Vaksin</label>
+                        <input name="tanggal_vaksin" type="text" class="form-control" id="tanggal_vaksin"
+                            placeholder="contoh : 25-01-2021">
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis_vaksin" class="col-form-label">Jenis Vaksin</label>
+                        <input name="jenis_vaksin" type="text" class="form-control" id="jenis_vaksin"
+                            placeholder="contoh : vaksin rabies">
+                    </div>
                 </div>
 
                 <!--end form-group-->

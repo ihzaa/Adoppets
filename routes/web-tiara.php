@@ -33,8 +33,10 @@ Route::middleware('auth:admin')->group(function () {
 Route::middleware('auth:user')->group(function () {
     // HALAMAN YG HARUS LOGIN USER
     Route::get('/account', 'user_Controller\account\AccountController@index')->name('account');
+    //Route::post('/account', 'user_Controller\account\AccountController@update');
     Route::get('/mypostingan', 'user_Controller\account\MypostinganController@index')->name('mypostingan');
     Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
+
 });
 
 Route::middleware('guest')->group(function () {

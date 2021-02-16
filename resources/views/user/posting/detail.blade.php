@@ -9,7 +9,7 @@
 <div class="page-title">
     <div class="container clearfix">
         <div class="float-left float-xs-none">
-            <h1>Furniture For Sale
+            <h1>Hewan Siap Adopsi
                 <span class="tag">Offer</span>
             </h1>
             <h4 class="location">
@@ -17,9 +17,9 @@
             </h4>
         </div>
         <div class="float-right float-xs-none price">
-            <div class="number">$80</div>
+            <div class="number">Like</div>
             <div class="id opacity-50">
-                <strong>ID: </strong>3479
+                <strong>56789</strong>
             </div>
         </div>
     </div>
@@ -92,40 +92,64 @@
                     <!--Description-->
                     <section>
                         <h2>Description</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                            amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                            per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                            risus mi euismod elit, in dictum justo lacus sit amet dui. Sed faucibus vitae nisl
-                            at dignissim.
-                        </p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Ras</td>
+                                    <td width="10">:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis Kelamin</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Umur</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Makanan</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Warna</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Kondisi Fisik</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Informasi Lain</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
                     <!--end Description-->
                     <!--Details & Location-->
                     <section>
                         <div class="row">
                             <div class="col-md-4">
-                                <h2>Details</h2>
-                                <dl>
-                                    <dt>Date Added</dt>
-                                    <dd>05.04.2017</dd>
-                                    <dt>Type</dt>
-                                    <dd>Offer</dd>
-                                    <dt>Status</dt>
-                                    <dd>Used</dd>
-                                    <dt>First Owner</dt>
-                                    <dd>Yes</dd>
-                                    <dt>Material</dt>
-                                    <dd>Wood, Leather</dd>
-                                    <dt>Color</dt>
-                                    <dd>White, Grey</dd>
-                                    <dt>Height</dt>
-                                    <dd>47cm</dd>
-                                    <dt>Width</dt>
-                                    <dd>203cm</dd>
-                                    <dt>Length</dt>
-                                    <dd>54cm</dd>
-                                </dl>
+                                <h2>Informasi vaksin</h2>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal Vaksin</th>
+                                            <th>Jenis Vaksin</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>Jenis Vaksin</td>
+                                        <td></td>
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="col-md-8">
                                 <h2>Location</h2>
@@ -182,17 +206,20 @@
                                     <form class="form email">
                                         <div class="form-group">
                                             <label for="name" class="col-form-label">Name</label>
-                                            <input name="name" type="text" class="form-control" id="name" placeholder="Your Name">
+                                            <input name="name" type="text" class="form-control" id="name"
+                                                placeholder="Your Name">
                                         </div>
                                         <!--end form-group-->
                                         <div class="form-group">
                                             <label for="email" class="col-form-label">Email</label>
-                                            <input name="email" type="email" class="form-control" id="email" placeholder="Your Email">
+                                            <input name="email" type="email" class="form-control" id="email"
+                                                placeholder="Your Email">
                                         </div>
                                         <!--end form-group-->
                                         <div class="form-group">
                                             <label for="message" class="col-form-label">Message</label>
-                                            <textarea name="message" id="message" class="form-control" rows="4" placeholder="Hi there! I am interested in your offer ID 53951. Please give me more details."></textarea>
+                                            <textarea name="message" id="message" class="form-control" rows="4"
+                                                placeholder="Hi there! I am interested in your offer ID 53951. Please give me more details."></textarea>
                                         </div>
                                         <!--end form-group-->
                                         <button type="submit" class="btn btn-primary">Send</button>
@@ -321,13 +348,17 @@
                             <form class="sidebar-form form">
                                 <div class="form-group">
                                     <label for="what" class="col-form-label">What?</label>
-                                    <input name="keyword" type="text" class="form-control" id="what" placeholder="What are you looking for?">
+                                    <input name="keyword" type="text" class="form-control" id="what"
+                                        placeholder="What are you looking for?">
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
                                     <label for="input-location" class="col-form-label">Where?</label>
-                                    <input name="location" type="text" class="form-control" id="input-location" placeholder="Enter Location">
-                                    <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>
+                                    <input name="location" type="text" class="form-control" id="input-location"
+                                        placeholder="Enter Location">
+                                    <span class="geo-location input-group-addon" data-toggle="tooltip"
+                                        data-placement="top" title="Find My Position"><i
+                                            class="fa fa-map-marker"></i></span>
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
@@ -346,7 +377,9 @@
 
                                 <!--Alternative Form-->
                                 <div class="alternative-search-form">
-                                    <a href="#collapseAlternativeSearchForm" class="icon" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseAlternativeSearchForm"><i class="fa fa-plus"></i>More Options</a>
+                                    <a href="#collapseAlternativeSearchForm" class="icon" data-toggle="collapse"
+                                        aria-expanded="false" aria-controls="collapseAlternativeSearchForm"><i
+                                            class="fa fa-plus"></i>More Options</a>
                                     <div class="collapse" id="collapseAlternativeSearchForm">
                                         <div class="wrapper">
                                             <label>
@@ -366,17 +399,20 @@
                                                 Featured
                                             </label>
                                             <div class="form-group">
-                                                <input name="min_price" type="text" class="form-control small" id="min-price" placeholder="Minimal Price">
+                                                <input name="min_price" type="text" class="form-control small"
+                                                    id="min-price" placeholder="Minimal Price">
                                                 <span class="input-group-addon small">$</span>
                                             </div>
                                             <!--end form-group-->
                                             <div class="form-group">
-                                                <input name="max_price" type="text" class="form-control small" id="max-price" placeholder="Maximal Price">
+                                                <input name="max_price" type="text" class="form-control small"
+                                                    id="max-price" placeholder="Maximal Price">
                                                 <span class="input-group-addon small">$</span>
                                             </div>
                                             <!--end form-group-->
                                             <div class="form-group">
-                                                <select name="distance" id="distance" class="small" data-placeholder="Distance" >
+                                                <select name="distance" id="distance" class="small"
+                                                    data-placeholder="Distance">
                                                     <option value="">Distance</option>
                                                     <option value="1">1km</option>
                                                     <option value="2">5km</option>
@@ -410,11 +446,11 @@
 <script src="{{asset('user/assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('user/assets/js/custom.js')}}"></script>
 <script>
-    var latitude = 51.511971;
-    var longitude = -0.137597;
-    var markerImage = "{{asset('user/assets/img/map-marker.png')}}";
-    var mapTheme = "light";
-    var mapElement = "map-small";
-    simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
+var latitude = 51.511971;
+var longitude = -0.137597;
+var markerImage = "{{asset('user/assets/img/map-marker.png')}}";
+var mapTheme = "light";
+var mapElement = "map-small";
+simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 </script>
 @endsection

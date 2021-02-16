@@ -60,62 +60,63 @@ sub-page
             <!--end col-md-3-->
             <div class="col-md-9">
                 <form class="form">
+                    @csrf
                     <div class="row">
                         <div class="col-md-8">
                             <h2>Informasi Pribadi</h2>
                             <section>
                                 <div class="form-group">
-                                    <label for="Name" class="col-form-label required">Nama Anda</label>
-                                    <input name="Name" type="text" class="form-control" id="input-name"
-                                        placeholder="Your Name" value="" required>
+                                    <label for="name" class="col-form-label required">{{ __('Name') }}</label>
+                                    <input name="name" type="text" class="form-control" id="name"
+                                        placeholder="Your Name" value="{{ $user->name }}" required>
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
-                                    <label for="Username" class="col-form-label required">Username</label>
-                                    <input name="Username" type="text" class="form-control" id="input-username"
-                                        placeholder="Your Name" value="TiaraIntana" required>
+                                    <label for="username" class="col-form-label required">Username</label>
+                                    <input name="username" type="text" class="form-control" id="username"
+                                        placeholder="Your Name" value="{{ $user->username }}" required>
                                 </div>
                                 <!--end row-->
                                 <div class="form-group">
-                                    <label for="Origin Address" class="col-form-label required">Alamat Asal</label>
-                                    <input name="Origin Address" type="text" class="form-control"
-                                        id="input-originaddress" placeholder="Your Location"
-                                        value="Lamongan, Jawa Timur" required>
+                                    <label for="alamat_asal" class="col-form-label required">Alamat Asal</label>
+                                    <input name="alamat_asal" type="text" class="form-control" id="alamat_asal"
+                                        placeholder="Your Location" value="{{ $user->alamat_asal }}" required>
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
-                                    <label for="Current Address" class="col-form-label required">Alamat Sekarang</label>
-                                    <input name="Current Address" type="text" class="form-control"
-                                        id="input-currentaddress" placeholder="Your Location" value="Malang, Jawa Timur"
-                                        required>
+                                    <label for="domisili_sekarang" class="col-form-label required">Alamat
+                                        Sekarang</label>
+                                    <input name="domisili_sekarang" type="text" class="form-control"
+                                        id="domisili_sekarang" placeholder="Your Location"
+                                        value="{{ $user->domisili_sekarang }}" required>
                                 </div>
                                 <!--end form-group-->
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="about" class="col-form-label">Tentang Anda</label>
                                     <textarea name="about" id="about" class="form-control"
                                         rows="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</textarea>
-                                </div>
+                                </div> -->
                                 <!--end form-group-->
                             </section>
 
                             <section>
                                 <h2>Kontak</h2>
                                 <div class="form-group">
-                                    <label for="phone" class="col-form-label">Telepon</label>
-                                    <input name="phone" type="text" class="form-control" id="phone"
-                                        placeholder="Your Phone" value="08115618291">
+                                    <label for="nomor_telpon" class="col-form-label">Telepon</label>
+                                    <input name="nomor_telpon" type="text" class="form-control" id="nomor_telpon"
+                                        placeholder="Your Phone" value="{{ $user->nomor_telpon }}">
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
-                                    <label for="whatsapp_number" class="col-form-label">Nomer Whatsapp</label>
-                                    <input name="phone" type="text" class="form-control" id="phone"
-                                        placeholder="Your Whatsapp Number" value="081220904695">
+                                    <label for="no_wa" class="col-form-label">Nomer Whatsapp</label>
+                                    <input name="no_wa" type="text" class="form-control" id="no_wa"
+                                        placeholder="Your Whatsapp Number" value="{{ $user->no_wa }}">
                                 </div>
                                 <!--end form-group-->
                                 <div class="form-group">
                                     <label for="email" class="col-form-label">Email</label>
                                     <input name="email" type="email" class="form-control" id="email"
-                                        placeholder="Your Email" value="adoptpets@example.com">
+                                        placeholder="Your Email" value="{{ $user->email }}">
                                 </div>
                                 <!--end form-group-->
                             </section>
@@ -144,7 +145,7 @@ sub-page
                         <div class="col-md-4">
                             <div class="profile-image">
                                 <div class="image background-image">
-                                    <img src="assets/img/author-09.jpg" alt="">
+                                    <img src="{{ $user->foto_profil }}" alt="">
                                 </div>
                                 <div class="single-file-input">
                                     <input type="file" id="user_image" name="user_image">
