@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class AccountController extends Controller
 {
@@ -27,28 +29,52 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request)
     {
-        // $this->validate($request, [
-        //     'password' => 'confirmed',
-        // ]);
 
-        // $user = User::where('id', Auth::user()->id)->first();
-        // $user->name = $request->name;
-        // $user->username = $request->username;
-        // $user->email = $request->email;
-        // $user->alamat_asal = $request->alamat_asal;
-        // $user->domisili_sekarang = $request->domisili_sekarang;
-        // $user->nomor_telpon = $request->nomor_telpon;
-        // $user->no_wa = $request->no_wa;
+        $request->validate([
+            'name' => '',
+            'username' => '',
+            'alamat_asal' => '',
+            'domisili_sekarang' => '',
+            'nomor_telpon' => '',
+            'email' => 'email',
+            'instagram' => 'nullable',
+            'no_wa' => '',
+            'foto_profil' => 'image|mimes:jpeg,svg,jfif,png,jpg|max:256'
+        ]);
 
-        // // // if (!empty($request->password)) {
-        // // //     $user->password = Hash::make($request->password);
-        // // // }
+        $this->validate($request, [
+            'password' => 'confirmed',
+        ]);
+        $data = User::where('id', Auth::user()->id)->first();
+        $data->name = $request->name;
+        $data->username = $request->username;
+        $data->alamat_asal = $request->alamat_asal;
+        $data->domisili_sekarang = $request->domisili_sekarang;
+        $data->nomor_telpon = $request->nomor_telpon;
+        $data->email = $request->email;
+        $data->instagram = $request->instagram;
+        $data->no_wa = $request->no_wa;
+        $data->foto_profil = $request->foto_profil;
 
-        // $user->update();
+        if (!empty($request->password)) {
+            $data->password = Hash::make($request->password);
+        }
 
-        // return redirect('user.account.account');
+        if ($request->file('foto_profil') != "") {
+            File::delete($data->foto_profil);
+            $extension = $request->file('foto_profil')->getClientOriginalExtension();
+            $location = 'images/foto_profil';
+            $nameUpload = $data->id . 'thumbnail.' . $extension;
+            $request->file('foto_profil')->move('assets/' . $location, $nameUpload);
+            $filepath = 'assets/' . $location . '/' . $nameUpload;
+            $data->foto_profil = $filepath;
+        }
+
+        $data->save();
+        return redirect(route('account'))->with('sukses_edit', 'Greate! Product created successfully.');
     }
 
     public function create()
