@@ -29,6 +29,9 @@ Route::middleware('auth:admin')->group(function () {
 Route::middleware('auth:user')->group(function () {
     // HALAMAN YG HARUS LOGIN USER
     Route::get('/submit', 'user_Controller\posting\PostingController@index')->name('get_submit_postingan');
+
+    // edit account
+    Route::post('/posteditaccount', 'user_Controller\account\AccountController@update')->name('post_update_account');
 });
 
 Route::middleware('checkfetch')->group(function () {

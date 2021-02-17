@@ -154,7 +154,7 @@ sub-page
                     <div class="form-group">
                         <label for="password" class="col-form-label required">Password</label>
                         <input name="password" type="password"
-                            class="form-control @error('alamat_asal') is-invalid @enderror" id="password"
+                            class="form-control @error('password') is-invalid @enderror" id="password"
                             placeholder="Password" required required value="{{old('password')}}">
                     </div>
                     @error('password')
