@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user_Controller\blog;
 
+use App\Blog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,15 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
         return view('user/blog/blog');
+    }
+
+    public function index_detail()
+    {
+        return view('user/blog/detailblog');
     }
 
     /**
@@ -23,10 +29,7 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function detail($id)
-    {
-        return view('user/blog/blogdetail');
-    }
+
     public function create()
     {
         //
@@ -38,10 +41,6 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
