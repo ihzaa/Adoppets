@@ -4,6 +4,8 @@ namespace App\Http\Controllers\user_Controller\contact;
 
 use App\Http\Controllers\Controller;
 use App\Kontak;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -38,24 +40,22 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $request->validate([
-            'name' => '',
-            'email' => '',
-            'subject' => '',
-            'message' => '',
+            'subject' => 'required',
+            'message' => 'required',
         ]);
 
+        // dd(Auth::user());
+        $data2 = User::where('id', Auth::user()->id)->first();
         $data = Kontak::all();
-        $data->name = $request->name;
-        $data->email = $request->email;
 
-        //$data2 =
         $data->subject = $request->subject;
         $data->message = $request->message;
+        $data->user_id = $data2->id;
+        $data->save();                                                                                                                                                                                                          
 
-        return redirect(route('contact'))->with('sukses_edit', 'Greate! Product created successfully.');
-
+        return redirect(route('contact'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Terimakasih Masukannya!');
     }
 
     /**

@@ -51,8 +51,8 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/submitclinic', 'user_Controller\posting\PostingController@index_clinic')->name('submit_clinic');
     Route::post('/postclinic', 'user_Controller\posting\PostingController@store_clinic')->name('post_clinic');
 
+    // post blog
     Route::post('/contact', 'user_Controller\contact\ContactController@store')->name('post_contact');
-
 });
 
 Route::middleware('guest')->group(function () {

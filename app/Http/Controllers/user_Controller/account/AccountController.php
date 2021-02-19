@@ -74,7 +74,7 @@ class AccountController extends Controller
         }
 
         $data->save();
-        return redirect(route('account'))->with('sukses_edit', 'Greate! Product created successfully.');
+        return redirect(route('account'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Update Profil berhasil!');
     }
 
     public function create()
