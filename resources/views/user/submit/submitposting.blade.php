@@ -26,6 +26,14 @@
 @section('background')
 @endsection
 
+@section('include-css')
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+@endsection
+
 @section('content')
 <section class="block">
     <div class="container">
@@ -138,7 +146,7 @@
 
             <section>
                 <h2>Lokasi</h2>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="city" class="col-form-label required">Provinsi</label>
@@ -167,18 +175,19 @@
                         <!--end form-group-->
                     </div>
                     <!--end col-md-6-->
-                </div>
+                </div> --}}
                 <!--end row-->
                 <div class="form-group">
                     <label for="input-location" class="col-form-label">Detail Lokasi</label>
-                    <input name="location" type="text" class="form-control" id="input-location"
-                        placeholder="Enter Location">
+                    <input name="city" type="text" class="form-control" id="city" placeholder="Location" disabled
+                        value="Jakarta">
                     <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
                         title="Find My Position"><i class="fa fa-map-marker"></i></span>
                 </div>
                 <!--end form-group-->
                 <label>Map</label>
-                <div class="map height-400px" id="map-submit"></div>
+                <div id="map" style="width: 100%; height: 480px"></div>
+                {{-- <div class="map height-400px" id="map-submit"></div> --}}
                 <input name="latitude" type="text" class="form-control" id="latitude" hidden>
                 <input name="longitude" type="text" class="form-control" id="longitude" hidden>
             </section>
@@ -227,4 +236,8 @@
     <!--end container-->
 </section>
 <!--end block-->
+@endsection
+
+@section('js_after')
+<script src="{{asset('user/assets/js/page/submitpostingan.js')}}"></script>
 @endsection
