@@ -57,7 +57,7 @@ class AccountController extends Controller
         $data->email = $request->email;
         $data->instagram = $request->instagram;
         $data->no_wa = $request->no_wa;
-        $data->foto_profil = $request->foto_profil;
+        // $data->foto_profil = $request->foto_profil;
 
         if (!empty($request->password)) {
             $data->password = Hash::make($request->password);
