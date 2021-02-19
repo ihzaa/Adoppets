@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'username', 'alamat_asal', 'domisili_sekarang', 'nomor_telpon', 'email', 'instagram', 'no_wa', 'foto_profil'
+        'name', 'username', 'alamat_asal', 'domisili_sekarang', 'nomor_telpon', 'email', 'instagram', 'no_wa', 'foto_profil',
     ];
 
     protected $hidden = [
@@ -69,5 +69,10 @@ class User extends Authenticatable
     public function Report_Blog()
     {
         return $this->hasMany('App\Report_blog', 'user_id', 'id');
+    }
+
+    public function kontak()
+    {
+        return $this->hasMany('App\Kontak');
     }
 }

@@ -65,23 +65,31 @@ sub-page
             <!--end col-md-4-->
             <div class="col-md-8">
                 <h2>Contact Form</h2>
-                <form class="form email">
+                <form class="form email" method="POST" action="{{route('post_contact')}}" id="contact">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name" class="col-form-label required">Your Name</label>
-                                <input name="name" type="text" class="form-control" id="name" placeholder="Your Name"
-                                    required>
+                                <input name="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                    id="name" placeholder="Your Name" required value="{{old('name')}}">
                             </div>
+                            @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <!--end form-group-->
                         </div>
                         <!--end col-md-6-->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email" class="col-form-label required">Your Email</label>
-                                <input name="email" type="email" class="form-control" id="email"
-                                    placeholder="Your Email" required>
+                                <input name="email" type="email"
+                                    class="form-control @error('email') is-invalid @enderror" id="email"
+                                    placeholder="Your Email" required value="{{old('email')}}">
                             </div>
+                            @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <!--end form-group-->
                         </div>
                         <!--end col-md-6-->
@@ -89,14 +97,22 @@ sub-page
                     <!--end row-->
                     <div class="form-group">
                         <label for="subject" class="col-form-label">Subject</label>
-                        <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject">
+                        <input name="subject" type="text" class="form-control @error('subject') is-invalid @enderror"
+                            id="subject" placeholder="Subject" required value="{{old('subject')}}">
                     </div>
+                    @error('subject')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <!--end form-group-->
                     <div class="form-group">
                         <label for="message" class="col-form-label required">Pesan Anda</label>
-                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="Your Message"
-                            required></textarea>
+                        <textarea name="message" id="message"
+                            class="form-control @error('message') is-invalid @enderror" rows="4"
+                            placeholder="Your Message" required value="{{old('message')}}"></textarea>
                     </div>
+                    @error('message')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <!--end form-group-->
                     <button type="submit" class="btn btn-primary float-right">Kirim Pesan</button>
                 </form>

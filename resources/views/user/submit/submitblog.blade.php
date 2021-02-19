@@ -24,19 +24,14 @@
 @endsection
 
 @section('background')
-<div class="background">
-    <div class="background-image">
-        <img src="{{asset('user/assets/img/include_image/bg_landingpage.jpg')}}" alt="">
-    </div>
-    <!--end background-image-->
-</div>
+
 @endsection
 
 @section('content')
 <section class="block">
     <div class="container">
         <form class="form form-submit" method="POST" action="{{route('post_blog')}}" id="submitblog">
-
+            @csrf
             <!--end basic information-->
 
             <section>

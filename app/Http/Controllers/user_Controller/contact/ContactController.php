@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user_Controller\contact;
 
 use App\Http\Controllers\Controller;
+use App\Kontak;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -38,6 +39,23 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => '',
+            'email' => '',
+            'subject' => '',
+            'message' => '',
+        ]);
+
+        $data = Kontak::all();
+        $data->name = $request->name;
+        $data->email = $request->email;
+
+        //$data2 =
+        $data->subject = $request->subject;
+        $data->message = $request->message;
+
+        return redirect(route('contact'))->with('sukses_edit', 'Greate! Product created successfully.');
+
     }
 
     /**

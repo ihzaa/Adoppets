@@ -70,41 +70,7 @@ sub-page
                             per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
                             risus mi euismod elit
                         </p>
-                        <a href="{{ url('blog/{$id}') }}" class="btn btn-primary btn-framed detail">Read more</a>
-                    </div>
-                </article>
-
-                <article class="blog-post clearfix">
-                    <a href="blog-post.html">
-                        <img src="assets/img/blog-image-02.jpg" alt="">
-                    </a>
-                    <div class="article-title">
-                        <h2><a href="blog-post.html">Cara Merawat Kucing Tipe Persia</a></h2>
-                        <div class="tags framed">
-                            <a href="#" class="tag">Cat</a>
-                            <a href="#" class="tag">Treat</a>
-                        </div>
-                    </div>
-                    <div class="meta">
-                        <figure>
-                            <a href="#" class="icon">
-                                <i class="fa fa-user"></i>
-                                John Doe
-                            </a>
-                        </figure>
-                        <figure>
-                            <i class="fa fa-calendar-o"></i>
-                            02.05.2017
-                        </figure>
-                    </div>
-                    <div class="blog-post-content">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                            amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                            per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                            risus mi euismod elit
-                        </p>
-                        <a href="blog-post.html" class="btn btn-primary btn-framed detail">Read more</a>
+                        <a href="{{route('blog_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
 
@@ -138,7 +104,7 @@ sub-page
                             per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
                             risus mi euismod elit
                         </p>
-                        <a href="blog-post.html" class="btn btn-primary btn-framed detail">Read more</a>
+                        <a href="{{route('blog_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
 

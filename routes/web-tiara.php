@@ -23,10 +23,11 @@ Route::get('/blog/{$id}', 'user_Controller\blog\BlogController@detail');
 Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
 //kontak
 Route::get('/contact', 'user_Controller\contact\ContactController@index')->name('contact');
+Route::post('/contact', 'user_Controller\contact\ContactController@store')->name('post_contact');
 //informasi klinik
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
 //read more pada blog
-//Route::get('/blog', 'user_Controller\blog\BlogController@index_detail')->name('read_more');
+Route::get('/detailblog', 'user_Controller\blog\BlogController@index_detail')->name('blog_detail');
 
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
