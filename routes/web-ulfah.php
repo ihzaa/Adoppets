@@ -24,6 +24,7 @@ Route::get('/logout', 'auth\allAuthController@logout')->name('logout');
 
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
+    Route::get('/home_admin', 'admin\AdminController@index')->name('home_admin');
 });
 
 Route::middleware('auth:user')->group(function () {

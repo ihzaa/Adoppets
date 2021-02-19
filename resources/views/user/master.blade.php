@@ -57,7 +57,7 @@
                                     </li>
                                     @if (Auth::guard('admin')->check())
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Admin</a>
+                                        <a class="nav-link" href="{{route('home_admin')}}">Admin</a>
                                     </li>
                                     @endif
                                     <li class="nav-item">
