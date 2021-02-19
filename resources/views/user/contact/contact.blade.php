@@ -68,30 +68,7 @@ sub-page
                 <form class="form email" method="POST" action="{{route('post_contact')}}" id="contact">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name" class="col-form-label required">Your Name</label>
-                                <input name="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" placeholder="Your Name" required value="{{old('name')}}">
-                            </div>
-                            @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <!--end form-group-->
-                        </div>
-                        <!--end col-md-6-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email" class="col-form-label required">Your Email</label>
-                                <input name="email" type="email"
-                                    class="form-control @error('email') is-invalid @enderror" id="email"
-                                    placeholder="Your Email" required value="{{old('email')}}">
-                            </div>
-                            @error('email')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <!--end form-group-->
-                        </div>
+
                         <!--end col-md-6-->
                     </div>
                     <!--end row-->
@@ -125,4 +102,18 @@ sub-page
     <!--end container-->
 </section>
 <!--end block-->
+@endsection
+
+@section('js_after')
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
+
 @endsection
