@@ -10,7 +10,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1>Pilih Pet Klinik Terbaik untuk Perawatan Hewan Peliharan Anda</h1>
+        <h1>Pilih Pets Clinic Terbaik untuk Perawatan Hewan Peliharan Anda</h1>
     </div>
     <!--end container-->
 </div>
@@ -45,7 +45,7 @@ sub-page
                         <img src="assets/img/blog-image-01.jpg" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">PET CLINIC HUSADA BAKTI</a></h2>
+                        <h2><a href="blog-post.html">PETS CLINIC HUSADA BAKTI</a></h2>
                     </div>
                     <div class="meta">
                         <figure>
@@ -75,7 +75,7 @@ sub-page
                         <img src="assets/img/blog-image-02.jpg" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">PET CLINIC TRISANI SEHAT</a></h2>
+                        <h2><a href="blog-post.html">PETS CLINIC TRISANI SEHAT</a></h2>
                     </div>
                     <div class="meta">
                         <figure>
@@ -105,7 +105,7 @@ sub-page
                         <img src="assets/img/blog-image-06.jpg" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">PET CLINIC INTERNASIONAL</a></h2>
+                        <h2><a href="blog-post.html">PETS CLINIC INTERNASIONAL</a></h2>
                     </div>
                     <div class="meta">
                         <figure>
