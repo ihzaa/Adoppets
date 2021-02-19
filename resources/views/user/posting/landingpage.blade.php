@@ -44,11 +44,11 @@ has-dark-background
                         <label for="category" class="col-form-label">Kategori?</label>
                         <select name="category" id="category" data-placeholder="Select Category">
                             <option value="">Pilih Kategori</option>
-                            <option value="1">Computers</option>
-                            <option value="2">Real Estate</option>
-                            <option value="3">Cars & Motorcycles</option>
-                            <option value="4">Furniture</option>
-                            <option value="5">Pets & Animals</option>
+                            <option value="1">Reptil</option>
+                            <option value="2">Mamalia</option>
+                            <option value="3">Aves/burung</option>
+                            <option value="4">Amfibi</option>
+                            <option value="5">Ikan</option>
                         </select>
                     </div>
                     <!--end form-group-->
