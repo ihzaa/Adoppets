@@ -73,6 +73,6 @@ class User extends Authenticatable
 
     public function kontak()
     {
-        return $this->hasMany('App\Kontak');
+        return $this->hasMany('App\Kontak', 'user_id', 'id');
     }
 }

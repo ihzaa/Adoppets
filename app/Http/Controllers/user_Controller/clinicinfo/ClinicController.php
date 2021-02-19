@@ -23,9 +23,9 @@ class ClinicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function detail($id)
+    public function index_detail()
     {
-        return view('user/blog/blogdetail');
+        return view('user/clinic/detailclinic');
     }
     public function create()
     {

@@ -36,7 +36,7 @@
 @section('content')
 <section class="block">
     <div class="container">
-        <form class="form form-submit" method="POST" action="{{route('post_blog')}}" id="submitblog">
+        <form class="form form-submit" action="{{route('post_blog')}}" method="POST" id="submitblog">
             @csrf
             <!--end basic information-->
             <section>
@@ -55,31 +55,32 @@
                     <textarea name="isi" id="warna" class="form-control @error('isi') is-invalid @enderror" rows="4"
                         placeholder="isi dari informasi yang akan anda berikan" required
                         value="{{old('isi')}}"></textarea>
-                </div>
-                @error('isi')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror --}}
-                <!--end form-group-->
-
-                {{-- summernote --}}
-                <div class="form-group">
-                    <label for="isi" class="col-form-label">Isi Blog</label>
-                    <textarea id="summernote" name="isi" class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
-                </div>
-                @error('isi')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </section>
-
-            <section class="clearfix">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary large icon float-right">Submit</button>
-                </div>
-            </section>
-        </form>
-        <!--end form-submit-->
     </div>
-    <!--end container-->
+    @error('isi')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror --}}
+    <!--end form-group-->
+
+    {{-- summernote --}}
+    <div class="form-group">
+        <label for="isi" class="col-form-label">Isi Blog</label>
+        <textarea id="summernote" name="isi"
+            class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
+    </div>
+    @error('isi')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</section>
+
+<section class="clearfix">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary large icon float-right">Submit</button>
+    </div>
+</section>
+</form>
+<!--end form-submit-->
+</div>
+<!--end container-->
 </section>
 <!--end block-->
 @endsection
@@ -88,31 +89,33 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 {{-- summernote --}}
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-      $('#summernote').summernote({
-        placeholder: 'Tulis Deskripsi Iklan Disini',
-        tabsize: 4,
-        height: 190,
-        minHeight: null,
-        maxHeight: null,
-        focus: true,
-        toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['fontname', ['fontname']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-        ]
-      });
+$('#summernote').summernote({
+    placeholder: 'Tulis Deskripsi Iklan Disini',
+    tabsize: 4,
+    height: 190,
+    minHeight: null,
+    maxHeight: null,
+    focus: true,
+    toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['fontname', ['fontname']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+    ]
+});
 
-      $(document).ready(function() {
-        $('#summernote').summernote();
-       });
+$(document).ready(function() {
+    $('#summernote').summernote();
+});
 </script>
 
 <script>

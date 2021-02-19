@@ -66,7 +66,7 @@ sub-page
                             per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
                             risus mi euismod elit
                         </p>
-                        <a href="{{ url('blog/{$id}') }}" class="btn btn-primary btn-framed detail">Read more</a>
+                        <a href="{{route('clinic_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
 

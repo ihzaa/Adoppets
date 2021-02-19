@@ -5,8 +5,8 @@ namespace App\Http\Controllers\user_Controller\contact;
 use App\Http\Controllers\Controller;
 use App\Kontak;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -48,12 +48,12 @@ class ContactController extends Controller
 
         // dd(Auth::user());
         $data2 = User::where('id', Auth::user()->id)->first();
-        $data = Kontak::all();
+        $data = new Kontak();
 
         $data->subject = $request->subject;
         $data->message = $request->message;
         $data->user_id = $data2->id;
-        $data->save();                                                                                                                                                                                                          
+        $data->save();
 
         return redirect(route('contact'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Terimakasih Masukannya!');
     }

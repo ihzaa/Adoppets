@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //untuk blog, tampilan awal blog
-Route::get('/blog/{$id}', 'user_Controller\blog\BlogController@detail');
 //detail blog ketika diklik "read more"
 Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
 //kontak
@@ -27,6 +26,8 @@ Route::get('/contact', 'user_Controller\contact\ContactController@index')->name(
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
 //read more pada blog
 Route::get('/detailblog', 'user_Controller\blog\BlogController@index_detail')->name('blog_detail');
+
+Route::get('/detailclinic', 'user_Controller\clinicinfo\ClinicController@index_detail')->name('clinic_detail');
 
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN

@@ -6,7 +6,9 @@ use App\Blog;
 use App\Clinic_information;
 use App\Http\Controllers\Controller;
 use App\posting;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostingController extends Controller
 {
@@ -45,16 +47,32 @@ class PostingController extends Controller
 
     public function store_blog(Request $request)
     {
+        // $request->validate([
+        //     'title' => 'required',
+        //     'isi' => 'required',
+        // ]);
+        // $blog = new Blog();
+        // $blog->title = $request->title;
+        // $blog->isi = $request->isi;
+        // $blog->save();
+
+        // return redirect(route('blog'));
+
         $request->validate([
             'title' => 'required',
             'isi' => 'required',
         ]);
-        $blog = new Blog();
-        $blog->title = $request->title;
-        $blog->isi = $request->isi;
-        $blog->save();
 
-        return redirect(route('blog'));
+        // dd(Auth::user());
+        $data2 = User::where('id', Auth::user()->id)->first();
+        $data = new Blog();
+
+        $data->title = $request->title;
+        $data->isi = $request->isi;
+        $data->user_id = $data2->id;
+        $data->save();
+
+        return redirect(route('blog_detail'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Terimakasih Masukannya!');
 
     }
 

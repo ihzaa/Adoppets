@@ -222,26 +222,6 @@ sub-page
 
                     </section>
 
-                    <section>
-                        <h2>Popular Post</h2>
-                        <ul class="sidebar-list list-unstyled">
-                            <li>
-                                <a href="#">January 2017<span>4</span></a>
-                            </li>
-                            <li>
-                                <a href="#">February 2017<span>12</span></a>
-                            </li>
-                            <li>
-                                <a href="#">October 2016<span>8</span></a>
-                            </li>
-                            <li>
-                                <a href="#">August 2016<span>3</span></a>
-                            </li>
-                            <li>
-                                <a href="#">May 2016<span>11</span></a>
-                            </li>
-                        </ul>
-                    </section>
                 </aside>
                 <!--============ End Side Bar ===========================================================-->
             </div>

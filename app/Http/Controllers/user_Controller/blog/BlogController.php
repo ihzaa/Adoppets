@@ -21,7 +21,8 @@ class BlogController extends Controller
 
     public function index_detail()
     {
-        return view('user/blog/detailblog');
+        $blog = new Blog();
+        return view('user/blog/detailblog', compact('blog'));
     }
 
     /**
