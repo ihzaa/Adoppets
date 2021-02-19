@@ -23,7 +23,6 @@ Route::get('/blog/{$id}', 'user_Controller\blog\BlogController@detail');
 Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
 //kontak
 Route::get('/contact', 'user_Controller\contact\ContactController@index')->name('contact');
-Route::post('/contact', 'user_Controller\contact\ContactController@store')->name('post_contact');
 //informasi klinik
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
 //read more pada blog
@@ -52,6 +51,8 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/submitclinic', 'user_Controller\posting\PostingController@index_clinic')->name('submit_clinic');
     Route::post('/postclinic', 'user_Controller\posting\PostingController@store_clinic')->name('post_clinic');
 
+    // post blog
+    Route::post('/contact', 'user_Controller\contact\ContactController@store')->name('post_contact');
 });
 
 Route::middleware('guest')->group(function () {

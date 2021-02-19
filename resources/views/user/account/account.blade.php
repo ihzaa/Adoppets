@@ -213,7 +213,7 @@ sub-page
 
 
 @section('js_after')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.14.1/sweetalert2.all.min.js" integrity="sha512-bAf9HaXHkP7iIxf9gcA8h3d2CyiWcvnswDS+XeoWo4me/DgMQNDoigQqxN34zBSlyA0SGn5/tZmfkxnUAtULAA==" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <script>
@@ -232,19 +232,20 @@ function readURL(input) {
 $("#imgInp").change(function() {
     readURL(this);
 });
+
 </script>
 
-
-@if(session('sukses_edit'))
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil',
-        text: 'Selamat Data Berhasil Diedit',
-        // footer: '<a href>Why do I have this issue?</a>'
-    })
+swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
 </script>
 @endif
+
 
 @error('name')
 <script>
