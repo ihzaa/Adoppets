@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'user_Controller\posting\LandingpageController@index')->name('landingpage');
+
