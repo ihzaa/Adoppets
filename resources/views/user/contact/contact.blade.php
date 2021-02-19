@@ -65,7 +65,7 @@ sub-page
             <!--end col-md-4-->
             <div class="col-md-8">
                 <h2>Contact Form</h2>
-                <form class="form email" method="POST" action="{{route('post_contact')}}" id="contact">
+                <form class="form email" action="{{route('post_contact')}}" method="POST" id="contact">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
