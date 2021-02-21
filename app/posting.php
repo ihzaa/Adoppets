@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class posting extends Model
 {
     //
-    protected $fillable = ['informasi_vaksin', 'jenis_kelamin', 'ras', 'kondisi_fisik', 'umur', 'makanan', 'warna', 'lokasi', 'jenis_hewan', 'informasi_lain'];
+    protected $fillable = ['jenis_kelamin', 'ras', 'kondisi_fisik', 'umur', 'makanan', 'warna', 'lokasi', 'informasi_lain'];
 
     public function user()
     {
@@ -47,5 +47,15 @@ class posting extends Model
     public function Report_Blog()
     {
         return $this->hasMany('App\Report_blog', 'posting_id', 'id');
+    }
+
+    public function vaccine()
+    {
+        return $this->hasMany('App\Vaccine', 'posting_id', 'id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category', 'category_id', 'id');
     }
 }

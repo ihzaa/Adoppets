@@ -46,12 +46,6 @@ sub-page
                     <a class="nav-link icon" href="">
                         <i class="fa fa-heart"></i>Postingan Saya
                     </a>
-                    <a class="nav-link icon" href="bookmarks.html">
-                        <i class="fa fa-star"></i>Bookmarks
-                    </a>
-                    <a class="nav-link icon" href="change-password.html">
-                        <i class="fa fa-recycle"></i>Ubah Password
-                    </a>
                     <a class="nav-link icon" href="">
                         <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
@@ -59,7 +53,8 @@ sub-page
             </div>
             <!--end col-md-3-->
             <div class="col-md-9">
-                <form class="form" action="{{route('post_update_account')}}" method="POST" enctype="multipart/form-data" id="register">
+                <form class="form" action="{{route('post_update_account')}}" method="POST" enctype="multipart/form-data"
+                    id="register">
                     @csrf
                     <div class="row">
                         <div class="col-md-8">
@@ -67,7 +62,8 @@ sub-page
                             <section>
                                 <div class="form-group">
                                     <label for="name" class="col-form-label required">{{ __('Name') }}</label>
-                                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                    <input name="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" id="name"
                                         placeholder="Your Name" value="{{ $user->name }}" required>
                                 </div>
                                 @error('name')
@@ -76,7 +72,8 @@ sub-page
                                 <!--end form-group-->
                                 <div class="form-group">
                                     <label for="username" class="col-form-label required">Username</label>
-                                    <input name="username" type="text" class="form-control  @error('username') is-invalid @enderror" id="username"
+                                    <input name="username" type="text"
+                                        class="form-control  @error('username') is-invalid @enderror" id="username"
                                         placeholder="Your Name" value="{{ $user->username }}" required>
                                 </div>
                                 @error('username')
@@ -85,7 +82,8 @@ sub-page
                                 <!--end row-->
                                 <div class="form-group">
                                     <label for="alamat_asal" class="col-form-label required">Alamat Asal</label>
-                                    <input name="alamat_asal" type="text" class="form-control @error('alamat_asal') is-invalid @enderror" id="alamat_asal"
+                                    <input name="alamat_asal" type="text"
+                                        class="form-control @error('alamat_asal') is-invalid @enderror" id="alamat_asal"
                                         placeholder="Your Location" value="{{ $user->alamat_asal }}" required>
                                 </div>
                                 @error('alamat_asal')
@@ -95,7 +93,8 @@ sub-page
                                 <div class="form-group">
                                     <label for="domisili_sekarang" class="col-form-label required">Alamat
                                         Sekarang</label>
-                                    <input name="domisili_sekarang" type="text" class="form-control @error('domisili_sekarang') is-invalid @enderror"
+                                    <input name="domisili_sekarang" type="text"
+                                        class="form-control @error('domisili_sekarang') is-invalid @enderror"
                                         id="domisili_sekarang" placeholder="Your Location"
                                         value="{{ $user->domisili_sekarang }}" required>
                                 </div>
@@ -115,8 +114,9 @@ sub-page
                                 <h2>Kontak</h2>
                                 <div class="form-group">
                                     <label for="nomor_telpon" class="col-form-label">Telepon</label>
-                                    <input name="nomor_telpon" type="text" class="form-control @error('nomor_telpon') is-invalid @enderror" id="nomor_telpon"
-                                        placeholder="Your Phone" value="{{ $user->nomor_telpon }}">
+                                    <input name="nomor_telpon" type="text"
+                                        class="form-control @error('nomor_telpon') is-invalid @enderror"
+                                        id="nomor_telpon" placeholder="Your Phone" value="{{ $user->nomor_telpon }}">
                                 </div>
                                 @error('nomor_telpon')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -124,7 +124,8 @@ sub-page
                                 <!--end form-group-->
                                 <div class="form-group">
                                     <label for="no_wa" class="col-form-label">Nomer Whatsapp</label>
-                                    <input name="no_wa" type="text" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa"
+                                    <input name="no_wa" type="text"
+                                        class="form-control @error('no_wa') is-invalid @enderror" id="no_wa"
                                         placeholder="Your Whatsapp Number" value="{{ $user->no_wa }}">
                                 </div>
                                 @error('no_wa')
@@ -133,7 +134,8 @@ sub-page
                                 <!--end form-group-->
                                 <div class="form-group">
                                     <label for="email" class="col-form-label">Email</label>
-                                    <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                    <input name="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" id="email"
                                         placeholder="Your Email" value="{{ $user->email }}">
                                 </div>
                                 @error('email')
@@ -145,7 +147,8 @@ sub-page
                             <section>
                                 <h2>Sosial Media</h2>
                                 <div class="form-group">
-                                    <label for="instagram" class="col-form-label @error('instagram') is-invalid @enderror">Instagram</label>
+                                    <label for="instagram"
+                                        class="col-form-label @error('instagram') is-invalid @enderror">Instagram</label>
                                     <input name="instagram" type="text" class="form-control" id="instagram"
                                         placeholder="your username at instagram" value="{{ $user->instagram }}">
                                 </div>
@@ -160,7 +163,8 @@ sub-page
                                 <h2>Password</h2>
                                 <div class="form-group">
                                     <label for="password" class="col-form-label">Password</label>
-                                    <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password"
+                                    <input name="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" id="password"
                                         placeholder="your New password">
                                 </div>
 
@@ -179,22 +183,22 @@ sub-page
                                     <img id="blah" src="{{ $user->foto_profil }}" alt="">
                                 </div>
                                 <div class="single-file-input">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="imgInp" value={{old('foto_profil')}}
-                                                required name="foto_profil" {{request()->is('/posteditaccount')?"required":""}}
-                                                name="foto">
-                                            <label class="custom-file-label" id="labelnya_gambar"
-                                                for="imgInp">{{request()->is('/posteditaccount')?"Image Profile":"Foto Profile.jpg"}}</label>
-                                                <br>
-                                                <br>
-                                            <small class="form-text text-muted">- Ukuran max 256KB</small>
-                                            <small class="form-text text-muted">- Harus berupa gambar (format:
-                                                jpg, jpeg, svg, jfif,
-                                                png)</small>
-                                        </div>
-                                        @error('foto_profil')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="imgInp"
+                                            value={{old('foto_profil')}} required name="foto_profil"
+                                            {{request()->is('/posteditaccount')?"required":""}} name="foto">
+                                        <label class="custom-file-label" id="labelnya_gambar"
+                                            for="imgInp">{{request()->is('/posteditaccount')?"Image Profile":"Foto Profile.jpg"}}</label>
+                                        <br>
+                                        <br>
+                                        <small class="form-text text-muted">- Ukuran max 256KB</small>
+                                        <small class="form-text text-muted">- Harus berupa gambar (format:
+                                            jpg, jpeg, svg, jfif,
+                                            png)</small>
+                                    </div>
+                                    @error('foto_profil')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     {{-- <div class="btn btn-framed btn-primary small">Upload a picture</div> --}}
                                 </div>
                             </div>
@@ -232,7 +236,6 @@ function readURL(input) {
 $("#imgInp").change(function() {
     readURL(this);
 });
-
 </script>
 
 @if(Session::get('icon'))
@@ -311,4 +314,3 @@ $("#register").form("show");
 </script>
 @enderror
 @endsection
-

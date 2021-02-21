@@ -15,7 +15,6 @@ class CreatePostingsTable extends Migration
     {
         Schema::create('postings', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('informasi_vaksin');
             $table->string('jenis_kelamin');
             $table->string('ras');
             $table->longText('kondisi_fisik');
@@ -23,12 +22,13 @@ class CreatePostingsTable extends Migration
             $table->string('makanan');
             $table->longText('warna');
             $table->string('lokasi');
-            $table->string('jenis_hewan');
             $table->longText('informasi_lain');
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
