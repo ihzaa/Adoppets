@@ -89,7 +89,7 @@
                 </li> --}}
                 <!--Menu list item-->
                 <li class="active-sub">
-                    <a href="widgets.html">
+                    <a href="{{route('')}}">
                         <i class="demo-pli-gear"></i>
                         <span class="menu-title">
                             Widgets

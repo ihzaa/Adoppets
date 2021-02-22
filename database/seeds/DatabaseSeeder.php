@@ -33,5 +33,8 @@ class DatabaseSeeder extends Seeder
             'instagram' => 'ulfahnur_oktaviana',
             'no_wa' => '08',
         ]);
+        DB::table('categories')->insert([
+            'nama' => "manusia comel"
+        ]);
     }
 }

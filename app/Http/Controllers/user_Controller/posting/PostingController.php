@@ -7,6 +7,7 @@ use App\Clinic_information;
 use App\Http\Controllers\Controller;
 use App\posting;
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,8 +26,8 @@ class PostingController extends Controller
     //posting hewan peliharaan
     public function index_posting()
     {
-        $data = posting::all();
-        // dd($data);
+        // $data = posting::all();
+        $data = Category::all();
         return view('user.submit.submitposting', compact('data'));
     }
 
@@ -73,7 +74,6 @@ class PostingController extends Controller
         $data->save();
 
         return redirect(route('blog_detail'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Terimakasih Masukannya!');
-
     }
 
     //posting informasi klinik
@@ -102,6 +102,5 @@ class PostingController extends Controller
         $clinic->save();
 
         return redirect(route('clinic'));
-
     }
 }

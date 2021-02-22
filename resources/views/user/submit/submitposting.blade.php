@@ -1,5 +1,48 @@
 @extends('user/master')
 
+@section('include-css')
+{{-- data picker --}}
+
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+{{-- for maps --}}
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
+{{-- form informasi vaksin --}}
+<style>
+    .delete {
+        background-color: #fd1200;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .add_form_field {
+        background-color: #1c97f3;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: 1px solid #186dad;
+    }
+</style>
+@endsection
+
 @section('page-title')
 <div class="page-title">
     <div class="container">
@@ -78,10 +121,11 @@
                             <select class="change-tab" data-change-tab-target="category-tabs" name="submit_category"
                                 id="submit-category" data-placeholder="Select Category">
                                 <option value="">Pilih Jenis Hewan</option>
-                                <option value="computers">Anjing</option>
-                                <option value="real_estate">Kucing</option>
-                                <option value="cars_motorcycles">Ular</option>
-                                <option value="furniture">Hamster</option>
+                                @foreach ($data as $item)
+                                <option @if ($item->id == old("submit_category"))
+                                    {{ "selected" }}
+                                    @endif value="{{$item->id}}">{{$item->nama}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <!--end form-group-->
@@ -134,11 +178,21 @@
                         placeholder="contoh : ada luka dibagian telinga" required value=""></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="informasi_vaksin" class="col-form-label">Informasi Vaksin</label>
-                    <input name="informasi_vaksin" type="text"
+                <div class="form-group container1">
+                    {{-- button tambah vaksin --}}
+                    <label for="informasi_vaksin" class="col-form-label">Informasi Vaksin</label><br>
+                    <button type="button" class="btn add_form_field btn-info small icon float-left">Tambah
+                        Vaksin</i></button>
+                    {{-- akhir button tambah vaksin --}}
+
+                    {{-- <input name="informasi_vaksin[]" type="text"
                         class="form-control @error('informasi_vaksin') is-invalid @enderror" id=" informasi_vaksin"
                         placeholder="" value="">
+                    <small class="form-text">Masukkan Nama Vaksin</small>
+                    <input name="tanggal[]" id="datepicker" type="text"
+                        class="form-control @error('tanggal') is-invalid @enderror" id=" tanggal" placeholder=""
+                        value="">
+                    <small class="form-text">Masukkan Tanggal Vaksin</small> --}}
                 </div>
 
                 <!--end form-group-->
@@ -146,36 +200,6 @@
 
             <section>
                 <h2>Lokasi</h2>
-                {{-- <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="city" class="col-form-label required">Provinsi</label>
-                            <select name="city" id="city" data-placeholder="Select City" required>
-                                <option value="">Provinsi</option>
-                                <option value="1">London</option>
-                                <option value="2">New York</option>
-                                <option value="3">Paris</option>
-                                <option value="4">Moscow</option>
-                            </select>
-                        </div>
-                        <!--end form-group-->
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="district" class="col-form-label required">Kota</label>
-                            <select name="district" id="district" data-placeholder="Select District" required>
-                                <option value="">Kota</option>
-                                <option value="1">Manhattan</option>
-                                <option value="2">Brooklyn</option>
-                                <option value="3">Queens</option>
-                                <option value="4">The Bronx</option>
-                                <option value="5">Staten Island</option>
-                            </select>
-                        </div>
-                        <!--end form-group-->
-                    </div>
-                    <!--end col-md-6-->
-                </div> --}}
                 <!--end row-->
                 <div class="form-group">
                     <label for="input-location" class="col-form-label">Detail Lokasi</label>
@@ -240,4 +264,39 @@
 
 @section('js_after')
 <script src="{{asset('user/assets/js/page/submitpostingan.js')}}"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+{{-- js datepicker --}}
+<script>
+    // add form dynamic
+    $(document).ready(function() {
+    var max_fields      = 10;
+    var wrapper         = $(".container1");
+    var add_button      = $(".add_form_field");
+
+    var x = 1;
+    $(add_button).click(function(e){
+        e.preventDefault();
+        if(x < max_fields){
+            x++;
+            $(wrapper).append('<div><input name="informasi_vaksin[]" type="text" class="form-control @error('informasi_vaksin') is-invalid @enderror" id=" informasi_vaksin" placeholder="" value=""> <small class="form-text">Masukkan Nama Vaksin</small> @error('informasi_vaksin') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]" id="datepicker" type="text" class="form-control @error('tanggal') is-invalid @enderror" id=" tanggal" placeholder="" value=""/><small class="form-text">Masukkan Tanggal Vaksin</small> <br> @error('tanggal') <div class="alert alert-danger">{{ $message }}</div> @enderror <a href="#" class=" btn small btn-danger delete">Delete</a></div>'); //add input box
+        }
+  else
+  {
+  alert('You Reached the limits')
+  }
+    });
+
+    $(wrapper).on("click",".delete", function(e){
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+</script>
+
+<script>
+    // datepicker
+$('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+});
+</script>
+{{-- end datepicker --}}
 @endsection
