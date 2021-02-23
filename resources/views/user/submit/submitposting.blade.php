@@ -205,15 +205,6 @@
                         class="btn add_info_button add_form_field btn-info small icon float-left">Tambah
                         Vaksin</i></button>
                     {{-- akhir button tambah vaksin --}}
-
-                    {{-- <input name="informasi_vaksin[]" type="text"
-                        class="form-control @error('informasi_vaksin') is-invalid @enderror" id="informasi_vaksin"
-                        placeholder="" value="">
-                    <small class="form-text">Masukkan Nama Vaksin</small>
-                    <input name="tanggal[]" id="datepicker" type="text"
-                        class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" placeholder=""
-                        value="">
-                    <small class="form-text">Masukkan Tanggal Vaksin</small> --}}
                 </div>
 
                 <!--end form-group-->
@@ -242,12 +233,12 @@
                 <h2>Pilih Gambar</h2>
                 <div class="file-upload-previews"></div>
                 <div class="file-upload">
-                    <input type="file" name="files[]"
-                        class="file-upload-input with-preview @error('files') is-invalid @enderror" multiple
-                        title="Click to add files" maxlength="10" accept="gif|jpg|png">
+                    <input type="file" name="path[]"
+                        class="file-upload-input with-preview @error('path') is-invalid @enderror" multiple
+                        title="Click to add path" maxlength="10" accept="gif|jpg|png">
                     <span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
                 </div>
-                @error('files')
+                @error('path')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </section>

@@ -8,9 +8,11 @@ class Asset_posting extends Model
 {
     //
     protected $fillable = [
-        'path', 'name'];
+        'path'
+    ];
 
-        public function posting(){
-            return $this->belongsTo('App\posting', 'posting_id', 'id');
-        }
+    public function posting()
+    {
+        return $this->belongsTo('App\posting', 'posting_id', 'id');
+    }
 }

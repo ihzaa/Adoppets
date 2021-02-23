@@ -16,7 +16,6 @@ class CreateAssetPostingsTable extends Migration
         Schema::create('asset_postings', function (Blueprint $table) {
             $table->id();
             $table->string('path');
-            $table->string('name');
             $table->unsignedBigInteger('posting_id');
             $table->timestamps();
 

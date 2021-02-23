@@ -9,7 +9,9 @@ use App\posting;
 use App\User;
 use App\Category;
 use App\Vaccine;
+use App\Asset_posting;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,8 +37,7 @@ class PostingController extends Controller
 
     public function store_posting(Request $request)
     {
-        // dd($request);
-        // dd(Carbon::parse($request->tanggal[0]));
+
         $posting = posting::create([
             'jenis_kelamin' => $request->jenis_kelamin,
             'ras' => $request->ras,
@@ -56,6 +57,28 @@ class PostingController extends Controller
                 'posting_id' => $posting->id
             ]);
         }
+
+
+        $images = $request->file('path');
+        $images = array();
+        foreach ($images as $item) {
+            $extension = $item->getClientOriginalName();
+            $location = 'images/posting';
+            $nameUpload = $posting->id . 'thumbnail.' . $extension;
+            $item->move('assets/' . $location, $nameUpload);
+            $filepath = 'assets/' . $location . '/' . $nameUpload;
+            $data_image[] = $filepath;
+            Asset_posting::create([
+                'path' => $data_image,
+                'posting_id' => $posting->id
+            ]);
+        }
+
+
+
+
+
+
         return redirect(route('landingpage'));
     }
 
