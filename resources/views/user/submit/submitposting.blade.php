@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-.delete {
-    background-color: #fd1200;
-    border: none;
-    color: white;
-    padding: 5px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+    .delete {
+        background-color: #fd1200;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
 
-.add_form_field {
-    background-color: #1c97f3;
-    border: none;
-    color: white;
-    padding: 8px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 1px solid #186dad;
-}
+    .add_form_field {
+        background-color: #1c97f3;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: 1px solid #186dad;
+    }
 </style>
 @endsection
 
@@ -80,7 +80,9 @@
 @section('content')
 <section class="block">
     <div class="container">
-        <form class="form form-submit" action="{{route('post_posting')}}" method="POST" id="submitposting">
+        <form class="form form-submit" action="{{route('post_posting')}}" method="POST" id="submitposting"
+            enctype="multipart/form-data">
+            @csrf
             <section>
                 <h2>Informasi Pemilik</h2>
                 <div class="row">
@@ -199,7 +201,8 @@
                 <div class="form-group container1">
                     {{-- button tambah vaksin --}}
                     <label for="informasi_vaksin" class="col-form-label">Informasi Vaksin</label><br>
-                    <button type="button" class="btn add_form_field btn-info small icon float-left">Tambah
+                    <button type="button"
+                        class="btn add_info_button add_form_field btn-info small icon float-left">Tambah
                         Vaksin</i></button>
                     {{-- akhir button tambah vaksin --}}
 
@@ -239,10 +242,14 @@
                 <h2>Pilih Gambar</h2>
                 <div class="file-upload-previews"></div>
                 <div class="file-upload">
-                    <input type="file" name="files[]" class="file-upload-input with-preview" multiple
+                    <input type="file" name="files[]"
+                        class="file-upload-input with-preview @error('files') is-invalid @enderror" multiple
                         title="Click to add files" maxlength="10" accept="gif|jpg|png">
                     <span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
                 </div>
+                @error('files')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </section>
             <!--end gallery-->
 
@@ -254,7 +261,8 @@
                         <div class="panel-heading" role="tab" id="accordion-heading-1">
                             <h4 class="panel-title">
                                 <div class="form-group">
-                                    <textarea name="informasi_lain" id="informasi_lain" class="form-control" rows="4"
+                                    <textarea name="informasi_lain" id="informasi_lain"
+                                        class="form-control @error('informasi_lain') is-invalid @enderror" rows="4"
                                         placeholder="contoh : kebiasaan kucing suka makan daun"></textarea>
                                 </div>
                             </h4>
@@ -264,6 +272,9 @@
                     <!--end panel-->
                 </div>
                 <!--end panel-group-->
+                @error('informasi_lain')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </section>
             <!--end additional informatian-->
 
@@ -280,12 +291,16 @@
 <!--end block-->
 @endsection
 
+@section('js_mid')
+<script src="{{asset('user/assets/js/jQuery.MultiFile.min.js')}}"></script>
+@endsection
+
 @section('js_after')
 <script src="{{asset('user/assets/js/page/submitpostingan.js')}}"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 {{-- js datepicker --}}
 <script>
-// add form dynamic
+    // add form dynamic
 $(document).ready(function() {
     var max_fields = 10;
     var wrapper = $(".container1");
@@ -299,13 +314,18 @@ $(document).ready(function() {
             $(wrapper).append(
                 '<div><input name="informasi_vaksin[]" type="text" class="form-control @error('
                 informasi_vaksin ') is-invalid @enderror" id=" informasi_vaksin" placeholder="" value=""> <small class="form-text">Masukkan Nama Vaksin</small> @error('
-                informasi_vaksin ') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]" id="datepicker" type="text" class="form-control @error('
+                informasi_vaksin ') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]"  type="text" class="datepicker form-control @error('
                 tanggal ') is-invalid @enderror" id="tanggal" placeholder="" value=""/><small class="form-text">Masukkan Tanggal Vaksin</small> <br> @error('
                 tanggal ') <div class="alert alert-danger">{{ $message }}</div> @enderror <a href="#" class=" btn small btn-danger delete">Delete</a></div>'
             ); //add input box
+
         } else {
             alert('You Reached the limits')
         }
+    });
+
+    $(document).on('focus',".datepicker", function(){
+        $(this).datepicker({ uiLibrary: 'bootstrap4'});
     });
 
     $(wrapper).on("click", ".delete", function(e) {
@@ -317,10 +337,15 @@ $(document).ready(function() {
 </script>
 
 <script>
-// datepicker
-$('#datepicker').datepicker({
-    uiLibrary: 'bootstrap4'
-});
+    // datepicker
+// $(document).ready(function() {
+//     $('.add_info_button').click(function(e) {
+//         $(".datepicker").datepicker({
+//             uiLibrary: 'bootstrap4'
+//         });
+//     })
+// })
+
 </script>
 {{-- end datepicker --}}
 @endsection

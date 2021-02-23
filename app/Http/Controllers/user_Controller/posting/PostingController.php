@@ -33,8 +33,7 @@ class PostingController extends Controller
 
     public function store_posting(Request $request)
     {
-        //
-
+        dd($request);
     }
 
     //posting blog
@@ -48,23 +47,11 @@ class PostingController extends Controller
 
     public function store_blog(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'isi' => 'required',
-        // ]);
-        // $blog = new Blog();
-        // $blog->title = $request->title;
-        // $blog->isi = $request->isi;
-        // $blog->save();
-
-        // return redirect(route('blog'));
-
         $request->validate([
             'title' => 'required',
             'isi' => 'required',
         ]);
 
-        // dd(Auth::user());
         $data2 = User::where('id', Auth::user()->id)->first();
         $data = new Blog();
 
