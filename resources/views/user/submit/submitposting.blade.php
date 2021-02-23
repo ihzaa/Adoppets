@@ -80,7 +80,7 @@
 @section('content')
 <section class="block">
     <div class="container">
-        <form class="form form-submit" action="{{route('post_posting')}}" method="POST" id="submitposting"
+        <form class="form" action="{{route('post_posting')}}" method="POST" id="submitposting"
             enctype="multipart/form-data">
             @csrf
             <section>
@@ -224,8 +224,8 @@
                 <!--end row-->
                 <div class="form-group">
                     <label for="input-location" class="col-form-label">Detail Lokasi</label>
-                    <input name="city" type="text" class="form-control" id="city" placeholder="Location" disabled
-                        value="Jakarta">
+                    <input name="city" type="text" class="form-control" id="city" placeholder="Location"
+                        readonly="readonly" value="Jakarta" name="city">
                     <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
                         title="Find My Position"><i class="fa fa-map-marker"></i></span>
                 </div>
@@ -233,8 +233,8 @@
                 <label>Map</label>
                 <div id="map" style="width: 100%; height: 480px"></div>
                 {{-- <div class="map height-400px" id="map-submit"></div> --}}
-                <input name="latitude" type="text" class="form-control" id="latitude" hidden>
-                <input name="longitude" type="text" class="form-control" id="longitude" hidden>
+                <input name="latitude" type="text" class="form-control" id="latitude" value="-6.200000" hidden>
+                <input name="longitude" type="text" class="form-control" id="longitude" value="106.816666" hidden>
             </section>
             <!--end location-->
 
@@ -308,6 +308,8 @@ $(document).ready(function() {
 
     var x = 1;
     $(add_button).click(function(e) {
+        // console.log("1");
+
         e.preventDefault();
         if (x < max_fields) {
             x++;
@@ -329,9 +331,13 @@ $(document).ready(function() {
     });
 
     $(wrapper).on("click", ".delete", function(e) {
+        // console.log("2");
         e.preventDefault();
         $(this).parent('div').remove();
         x--;
+    })
+    $("#submitposting").on("submit",function(){
+        console.log(this);
     })
 });
 </script>

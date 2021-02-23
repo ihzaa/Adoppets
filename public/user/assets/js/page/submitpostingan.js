@@ -1,3 +1,6 @@
+const elLat = document.getElementById("latitude");
+const elLng = document.getElementById("longitude");
+
 navigator.geolocation.getCurrentPosition(
     (pos) => {
         localLoc = pos.coords;
@@ -112,6 +115,8 @@ navigator.geolocation.getCurrentPosition(
             lat: "-6.200000",
             lng: "106.816666",
         };
+        // elLat.value = objCoords.lat;
+        // elLng.value = objCoords.lng;
         function addDraggableMarker(map, behavior) {
             var marker = new H.map.Marker(objCoords, {
                 volatility: true,
@@ -180,8 +185,7 @@ navigator.geolocation.getCurrentPosition(
         var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
         var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
         addDraggableMarker(map, behavior);
-        const elLat = document.getElementById("latitude");
-        const elLng = document.getElementById("longitude");
+
         map.addEventListener("dragend", function (ev) {
             let target = ev.target;
             if (target instanceof H.map.Marker) {

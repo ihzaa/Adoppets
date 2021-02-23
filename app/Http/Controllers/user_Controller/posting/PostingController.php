@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\posting;
 use App\User;
 use App\Category;
+use App\Vaccine;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +35,28 @@ class PostingController extends Controller
 
     public function store_posting(Request $request)
     {
-        dd($request);
+        // dd($request);
+        // dd(Carbon::parse($request->tanggal[0]));
+        $posting = posting::create([
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'ras' => $request->ras,
+            'kondisi_fisik' => $request->kondisi_fisik,
+            'umur' => $request->umur,
+            'makanan' => $request->makanan,
+            'warna' => $request->warna,
+            'lokasi' => $request->city,
+            'informasi_lain' => $request->informasi_lain,
+            'user_id' => Auth::user()->id,
+            'category_id' => $request->submit_category
+        ]);
+        foreach ($request->informasi_vaksin as $k => $v) {
+            Vaccine::create([
+                'keterangan' => $v,
+                'tanggal' => Carbon::parse($request->tanggal[$k]),
+                'posting_id' => $posting->id
+            ]);
+        }
+        return redirect(route('landingpage'));
     }
 
     //posting blog

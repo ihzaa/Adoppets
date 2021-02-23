@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Vaccine extends Model
 {
     //
-    protected $fillable = ['keterangan', 'tanggal'];
+    // protected $fillable = ['keterangan', 'tanggal'];
+    protected $guarded = [];
 
     public function posting()
     {

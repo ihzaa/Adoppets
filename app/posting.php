@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class posting extends Model
 {
     //
-    protected $fillable = ['jenis_kelamin', 'ras', 'kondisi_fisik', 'umur', 'makanan', 'warna', 'lokasi', 'informasi_lain'];
-
+    // protected $fillable = ['jenis_kelamin', 'ras', 'kondisi_fisik', 'umur', 'makanan', 'warna', 'lokasi', 'informasi_lain', 'category_id', 'user_id'];
+    protected $guarded = [];
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
