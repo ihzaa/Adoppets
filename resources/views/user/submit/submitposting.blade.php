@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-    .delete {
-        background-color: #fd1200;
-        border: none;
-        color: white;
-        padding: 5px 15px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
+.delete {
+    background-color: #fd1200;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
-    .add_form_field {
-        background-color: #1c97f3;
-        border: none;
-        color: white;
-        padding: 8px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border: 1px solid #186dad;
-    }
+.add_form_field {
+    background-color: #1c97f3;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 1px solid #186dad;
+}
 </style>
 @endsection
 
@@ -145,6 +145,9 @@
                     <input name="ras" type="text" class="form-control @error('ras') is-invalid @enderror" id=" ras"
                         placeholder="contoh : persia" required value="">
                 </div>
+                @error('ras')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class=" form-group">
                     <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
@@ -152,24 +155,36 @@
                         class="form-control @error('jenis_kelamin') is-invalid @enderror" id=" jenis_kelamin"
                         placeholder="contoh : betina" required value="">
                 </div>
+                @error('jenis_kelamin')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group">
                     <label for="umur" class="col-form-label">Umur</label>
                     <input name="umur" type="text" class="form-control @error('umur') is-invalid @enderror" id=" umur"
                         placeholder="contoh : 1 Tahun" value="{{old('umur')}}">
                 </div>
+                @error('umur')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group">
                     <label for="makanan" class="col-form-label">Makanan</label>
                     <input name="makanan" type="text" class="form-control @error('makanan') is-invalid @enderror" id="
                         makanan" placeholder="contoh : Makanan Kering/Basah" required value="">
                 </div>
+                @error('makanan')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group">
                     <label for="warna" class="col-form-label">Warna</label>
                     <textarea name="warna" id="warna" class="form-control @error('warna') is-invalid @enderror" rows="
                         4" placeholder="contoh : abu mix putih" required value=""> </textarea>
                 </div>
+                @error('warna')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group">
                     <label for="kondisi_fisik" class="col-form-label">Kondisi Fisik</label>
@@ -177,6 +192,9 @@
                         class="form-control @error('kondisi_fisik') is-invalid @enderror" rows=" 4"
                         placeholder="contoh : ada luka dibagian telinga" required value=""></textarea>
                 </div>
+                @error('kondisi_fisik')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group container1">
                     {{-- button tambah vaksin --}}
@@ -186,11 +204,11 @@
                     {{-- akhir button tambah vaksin --}}
 
                     {{-- <input name="informasi_vaksin[]" type="text"
-                        class="form-control @error('informasi_vaksin') is-invalid @enderror" id=" informasi_vaksin"
+                        class="form-control @error('informasi_vaksin') is-invalid @enderror" id="informasi_vaksin"
                         placeholder="" value="">
                     <small class="form-text">Masukkan Nama Vaksin</small>
                     <input name="tanggal[]" id="datepicker" type="text"
-                        class="form-control @error('tanggal') is-invalid @enderror" id=" tanggal" placeholder=""
+                        class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" placeholder=""
                         value="">
                     <small class="form-text">Masukkan Tanggal Vaksin</small> --}}
                 </div>
@@ -267,35 +285,41 @@
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 {{-- js datepicker --}}
 <script>
-    // add form dynamic
-    $(document).ready(function() {
-    var max_fields      = 10;
-    var wrapper         = $(".container1");
-    var add_button      = $(".add_form_field");
+// add form dynamic
+$(document).ready(function() {
+    var max_fields = 10;
+    var wrapper = $(".container1");
+    var add_button = $(".add_form_field");
 
     var x = 1;
-    $(add_button).click(function(e){
+    $(add_button).click(function(e) {
         e.preventDefault();
-        if(x < max_fields){
+        if (x < max_fields) {
             x++;
-            $(wrapper).append('<div><input name="informasi_vaksin[]" type="text" class="form-control @error('informasi_vaksin') is-invalid @enderror" id=" informasi_vaksin" placeholder="" value=""> <small class="form-text">Masukkan Nama Vaksin</small> @error('informasi_vaksin') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]" id="datepicker" type="text" class="form-control @error('tanggal') is-invalid @enderror" id=" tanggal" placeholder="" value=""/><small class="form-text">Masukkan Tanggal Vaksin</small> <br> @error('tanggal') <div class="alert alert-danger">{{ $message }}</div> @enderror <a href="#" class=" btn small btn-danger delete">Delete</a></div>'); //add input box
+            $(wrapper).append(
+                '<div><input name="informasi_vaksin[]" type="text" class="form-control @error('
+                informasi_vaksin ') is-invalid @enderror" id=" informasi_vaksin" placeholder="" value=""> <small class="form-text">Masukkan Nama Vaksin</small> @error('
+                informasi_vaksin ') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]" id="datepicker" type="text" class="form-control @error('
+                tanggal ') is-invalid @enderror" id="tanggal" placeholder="" value=""/><small class="form-text">Masukkan Tanggal Vaksin</small> <br> @error('
+                tanggal ') <div class="alert alert-danger">{{ $message }}</div> @enderror <a href="#" class=" btn small btn-danger delete">Delete</a></div>'
+            ); //add input box
+        } else {
+            alert('You Reached the limits')
         }
-  else
-  {
-  alert('You Reached the limits')
-  }
     });
 
-    $(wrapper).on("click",".delete", function(e){
-        e.preventDefault(); $(this).parent('div').remove(); x--;
+    $(wrapper).on("click", ".delete", function(e) {
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
     })
 });
 </script>
 
 <script>
-    // datepicker
+// datepicker
 $('#datepicker').datepicker({
-        uiLibrary: 'bootstrap4'
+    uiLibrary: 'bootstrap4'
 });
 </script>
 {{-- end datepicker --}}
