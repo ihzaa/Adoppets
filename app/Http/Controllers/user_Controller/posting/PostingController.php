@@ -99,9 +99,10 @@ class PostingController extends Controller
     }
 
     // halaman edit posting
-    public function edit_posting(){
-        $data = posting::all();
-        return view();
+    public function edit_posting()
+    {
+        $edit = posting::where('user_id', Auth::user()->id)->first();
+        return view('user/account/mypostingan', compact('edit'));
     }
 
     //posting blog
@@ -109,7 +110,6 @@ class PostingController extends Controller
     {
 
         $blog = Blog::all();
-
         return view('user.submit.submitblog', compact('blog'));
     }
 

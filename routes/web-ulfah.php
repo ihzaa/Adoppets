@@ -32,7 +32,7 @@ Route::middleware('auth:user')->group(function () {
     // HALAMAN YG HARUS LOGIN USER
     // posting hewan
     Route::get('/submit', 'user_Controller\posting\PostingController@index')->name('get_submit_postingan');
-    Route::get('/edit_posting', 'user_Controller\posting\PostingController@edit_posting')->name('edit_posting');
+    Route::get('/editPosting', 'user_Controller\posting\PostingController@edit_posting')->name('edit_posting');
 
 
     // edit account
