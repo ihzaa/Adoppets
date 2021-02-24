@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use League\CommonMark\Block\Element\Document;
 
 class PostingController extends Controller
 {
@@ -58,26 +59,21 @@ class PostingController extends Controller
             ]);
         }
 
-
-        $images = $request->file('path');
-        $images = array();
-        foreach ($images as $item) {
-            $extension = $item->getClientOriginalName();
-            $location = 'images/posting';
-            $nameUpload = $posting->id . 'thumbnail.' . $extension;
-            $item->move('assets/' . $location, $nameUpload);
-            $filepath = 'assets/' . $location . '/' . $nameUpload;
-            $data_image[] = $filepath;
-            Asset_posting::create([
-                'path' => $data_image,
-                'posting_id' => $posting->id
-            ]);
+        if ($request->hasfile('path')) {
+            foreach ($request->file('path') as $item) {
+                $extension = $item->getClientOriginalName();
+                $location = 'images/posting';
+                $nameUpload = $posting->id . 'thumbnail.' . $extension;
+                $item->move('assets/' . $location, $nameUpload);
+                $filepath = 'assets/' . $location . '/' . $nameUpload;
+                $data_image[] = $filepath;
+            }
         }
 
-
-
-
-
+        $file = new Asset_posting();
+        $file->path = json_encode($data_image);
+        $file->posting_id = $posting->id;
+        $file->save();
 
         return redirect(route('landingpage'));
     }
