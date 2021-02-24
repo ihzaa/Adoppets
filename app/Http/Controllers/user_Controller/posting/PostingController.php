@@ -38,6 +38,18 @@ class PostingController extends Controller
     public function store_posting(Request $request)
     {
 
+        $request->validate([
+            'jenis_kelamin' => 'required',
+            'ras' => 'required',
+            'kondisi_fisik' => 'required',
+            'umur' => 'required|integer',
+            'makanan' => 'required',
+            'warna' => 'required',
+            'lokasi' => '',
+            'informasi_lain' => '',
+
+        ]);
+
         $posting = posting::create([
             'jenis_kelamin' => $request->jenis_kelamin,
             'ras' => $request->ras,
@@ -73,10 +85,8 @@ class PostingController extends Controller
         //     ]);
         // }
         $this->validate($request, [
-
             'path' => 'required',
             'path.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
         ]);
 
         if ($request->hasfile('path')) {
