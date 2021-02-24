@@ -43,7 +43,7 @@ sub-page
                     <a class="nav-link active icon" href="">
                         <i class="fa fa-user"></i>Profil Saya
                     </a>
-                    <a class="nav-link icon" href="">
+                    <a class="nav-link icon" href="{{route('mypostingan')}}">
                         <i class="fa fa-heart"></i>Postingan Saya
                     </a>
                     <a class="nav-link icon" href="">

@@ -46,12 +46,6 @@ sub-page
                     <a class="nav-link icon" href="">
                         <i class="fa fa-heart"></i>Postingan Saya
                     </a>
-                    <a class="nav-link icon" href="bookmarks.html">
-                        <i class="fa fa-star"></i>Bookmarks
-                    </a>
-                    <a class="nav-link icon" href="change-password.html">
-                        <i class="fa fa-recycle"></i>Ubah Password
-                    </a>
                     <a class="nav-link icon" href="">
                         <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
@@ -106,11 +100,8 @@ sub-page
                             </h4>
                             <div class="price">$80</div>
                             <div class="admin-controls">
-                                <a href="edit-ad.html">
+                                <a href="{{route('submit_posting')}}">
                                     <i class="fa fa-pencil"></i>Edit
-                                </a>
-                                <a href="#" class="ad-hide">
-                                    <i class="fa fa-eye-slash"></i>Hide
                                 </a>
                                 <a href="#" class="ad-remove">
                                     <i class="fa fa-trash"></i>Remove
@@ -122,7 +113,7 @@ sub-page
                                 </p>
                             </div>
                             <!--end description-->
-                            <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
+                            <a href="{{route('detail_posting')}}" class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
                     <!--end item-->
