@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\user_Controller\posting;
 
+use App\Asset_posting;
 use App\Blog;
+use App\Category;
 use App\Clinic_information;
 use App\Http\Controllers\Controller;
 use App\posting;
 use App\User;
-use App\Category;
 use App\Vaccine;
-use App\Asset_posting;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Block\Element\Document;
+use Illuminate\Support\Facades\File;
 
 class PostingController extends Controller
 {
@@ -39,6 +39,19 @@ class PostingController extends Controller
     public function store_posting(Request $request)
     {
 
+        // validasi posting
+        $request->validate([
+            'jenis_kelamin' => 'required',
+            'ras' => 'required',
+            'kondisi_fisik' => 'required',
+            'umur' => 'required|integer',
+            'makanan' => 'required',
+            'warna' => 'required',
+            'lokasi' => '',
+            'informasi_lain' => '',
+
+        ]);
+
         $posting = posting::create([
             'jenis_kelamin' => $request->jenis_kelamin,
             'ras' => $request->ras,
@@ -49,7 +62,7 @@ class PostingController extends Controller
             'lokasi' => $request->city,
             'informasi_lain' => $request->informasi_lain,
             'user_id' => Auth::user()->id,
-            'category_id' => $request->submit_category
+            'category_id' => $request->submit_category,
         ]);
         foreach ($request->informasi_vaksin as $k => $v) {
             Vaccine::create([
@@ -58,6 +71,13 @@ class PostingController extends Controller
                 'posting_id' => $posting->id
             ]);
         }
+
+
+        // validasi asset posting
+        $this->validate($request, [
+            'path' => 'required',
+            'path.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
         if ($request->hasfile('path')) {
             foreach ($request->file('path') as $item) {
@@ -76,6 +96,12 @@ class PostingController extends Controller
         $file->save();
 
         return redirect(route('landingpage'));
+    }
+
+    // halaman edit posting
+    public function edit_posting(){
+        $data = posting::all();
+        return view();
     }
 
     //posting blog

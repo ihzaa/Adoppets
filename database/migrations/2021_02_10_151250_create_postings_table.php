@@ -22,7 +22,7 @@ class CreatePostingsTable extends Migration
             $table->string('makanan');
             $table->longText('warna');
             $table->string('lokasi');
-            $table->longText('informasi_lain');
+            $table->longText('informasi_lain')->nullable(true);
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');

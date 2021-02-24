@@ -2,9 +2,12 @@
 
 // namespace database\seeds;
 
+use App\Http\Controllers\user_Controller\posting\PostingController;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\posting;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,5 +39,11 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'nama' => "manusia comel"
         ]);
+
+
+        $records = [
+            ['Echo', DB::table('postings')->get('id')]
+        ];
+
     }
 }

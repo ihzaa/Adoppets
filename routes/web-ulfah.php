@@ -30,7 +30,10 @@ Route::middleware('auth:admin')->group(function () {
 
 Route::middleware('auth:user')->group(function () {
     // HALAMAN YG HARUS LOGIN USER
+    // posting hewan
     Route::get('/submit', 'user_Controller\posting\PostingController@index')->name('get_submit_postingan');
+    Route::get('/edit_posting', 'user_Controller\posting\PostingController@edit_posting')->name('edit_posting');
+
 
     // edit account
     Route::post('/posteditaccount', 'user_Controller\account\AccountController@update')->name('post_update_account');

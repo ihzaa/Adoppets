@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-    .delete {
-        background-color: #fd1200;
-        border: none;
-        color: white;
-        padding: 5px 15px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
+.delete {
+    background-color: #fd1200;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
-    .add_form_field {
-        background-color: #1c97f3;
-        border: none;
-        color: white;
-        padding: 8px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border: 1px solid #186dad;
-    }
+.add_form_field {
+    background-color: #1c97f3;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 1px solid #186dad;
+}
 </style>
 @endsection
 
@@ -145,7 +145,7 @@
                 <div class="form-group">
                     <label for="ras" class="col-form-label">Ras</label>
                     <input name="ras" type="text" class="form-control @error('ras') is-invalid @enderror" id=" ras"
-                        placeholder="contoh : persia" required value="">
+                        placeholder="contoh : persia" required value="{{old('ras')}}">
                 </div>
                 @error('ras')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -155,7 +155,7 @@
                     <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                     <input name="jenis_kelamin" type="text"
                         class="form-control @error('jenis_kelamin') is-invalid @enderror" id=" jenis_kelamin"
-                        placeholder="contoh : betina" required value="">
+                        placeholder="contoh : betina" required value="{{old('jenis_kelamin')}}">
                 </div>
                 @error('jenis_kelamin')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -173,7 +173,7 @@
                 <div class="form-group">
                     <label for="makanan" class="col-form-label">Makanan</label>
                     <input name="makanan" type="text" class="form-control @error('makanan') is-invalid @enderror" id="
-                        makanan" placeholder="contoh : Makanan Kering/Basah" required value="">
+                        makanan" placeholder="contoh : Makanan Kering/Basah" required value="{{old('makanan')}}">
                 </div>
                 @error('makanan')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -182,7 +182,7 @@
                 <div class="form-group">
                     <label for="warna" class="col-form-label">Warna</label>
                     <textarea name="warna" id="warna" class="form-control @error('warna') is-invalid @enderror" rows="
-                        4" placeholder="contoh : abu mix putih" required value=""> </textarea>
+                        4" placeholder="contoh : abu mix putih">{{old('warna')}}</textarea>
                 </div>
                 @error('warna')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -192,7 +192,7 @@
                     <label for="kondisi_fisik" class="col-form-label">Kondisi Fisik</label>
                     <textarea name="kondisi_fisik" id="kondisi_fisik"
                         class="form-control @error('kondisi_fisik') is-invalid @enderror" rows=" 4"
-                        placeholder="contoh : ada luka dibagian telinga" required value=""></textarea>
+                        placeholder="contoh : ada luka dibagian telinga" required>{{old('kondisi_fisik')}}</textarea>
                 </div>
                 @error('kondisi_fisik')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -254,7 +254,7 @@
                                 <div class="form-group">
                                     <textarea name="informasi_lain" id="informasi_lain"
                                         class="form-control @error('informasi_lain') is-invalid @enderror" rows="4"
-                                        placeholder="contoh : kebiasaan kucing suka makan daun"></textarea>
+                                        placeholder="contoh : kebiasaan kucing suka makan daun">{{old('informasi_lain')}}</textarea>
                                 </div>
                             </h4>
                         </div>
@@ -291,7 +291,7 @@
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 {{-- js datepicker --}}
 <script>
-    // add form dynamic
+// add form dynamic
 $(document).ready(function() {
     var max_fields = 10;
     var wrapper = $(".container1");
@@ -317,8 +317,10 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('focus',".datepicker", function(){
-        $(this).datepicker({ uiLibrary: 'bootstrap4'});
+    $(document).on('focus', ".datepicker", function() {
+        $(this).datepicker({
+            uiLibrary: 'bootstrap4'
+        });
     });
 
     $(wrapper).on("click", ".delete", function(e) {
@@ -327,14 +329,14 @@ $(document).ready(function() {
         $(this).parent('div').remove();
         x--;
     })
-    $("#submitposting").on("submit",function(){
+    $("#submitposting").on("submit", function() {
         console.log(this);
     })
 });
 </script>
 
 <script>
-    // datepicker
+// datepicker
 // $(document).ready(function() {
 //     $('.add_info_button').click(function(e) {
 //         $(".datepicker").datepicker({
@@ -342,7 +344,6 @@ $(document).ready(function() {
 //         });
 //     })
 // })
-
 </script>
 {{-- end datepicker --}}
 @endsection
