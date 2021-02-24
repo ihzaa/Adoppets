@@ -15,9 +15,9 @@ class CreateVaccinesTable extends Migration
     {
         Schema::create('vaccines', function (Blueprint $table) {
             $table->id();
-            $table->string('keterangan');
-            $table->dateTime('tanggal');
-            $table->unsignedBigInteger('posting_id');
+            $table->string('keterangan')->nullable(true);
+            $table->dateTime('tanggal')->nullable(true);
+            $table->unsignedBigInteger('posting_id')->nullable(true);
             $table->timestamps();
 
             $table->foreign('posting_id')->references('id')->on('postings')->onDelete('cascade');

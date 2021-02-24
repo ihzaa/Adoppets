@@ -13,6 +13,7 @@ use App\Vaccine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use League\CommonMark\Block\Element\Document;
 use Illuminate\Support\Facades\File;
 
 class PostingController extends Controller
@@ -38,6 +39,7 @@ class PostingController extends Controller
     public function store_posting(Request $request)
     {
 
+        // validasi posting
         $request->validate([
             'jenis_kelamin' => 'required',
             'ras' => 'required',
@@ -66,45 +68,40 @@ class PostingController extends Controller
             Vaccine::create([
                 'keterangan' => $v,
                 'tanggal' => Carbon::parse($request->tanggal[$k]),
-                'posting_id' => $posting->id,
+                'posting_id' => $posting->id
             ]);
         }
 
-        // $images = $request->file('path');
-        // $images = array();
-        // foreach ($images as $item) {
-        //     $extension = $item->getClientOriginalName();
-        //     $location = 'images/posting';
-        //     $nameUpload = $posting->id . 'thumbnail.' . $extension;
-        //     $item->move('assets/' . $location, $nameUpload);
-        //     $filepath = 'assets/' . $location . '/' . $nameUpload;
-        //     $data_image[] = $filepath;
-        //     Asset_posting::create([
-        //         'path' => $data_image,
-        //         'posting_id' => $posting->id
-        //     ]);
-        // }
+
+        // validasi asset posting
         $this->validate($request, [
             'path' => 'required',
             'path.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         if ($request->hasfile('path')) {
-
-            foreach ($request->file('path') as $image) {
-                $name = $image->getClientOriginalName();
-                $image->move(public_path() . 'images/posting', $name);
-                $data[] = $name;
-
+            foreach ($request->file('path') as $item) {
+                $extension = $item->getClientOriginalName();
+                $location = 'images/posting';
+                $nameUpload = $posting->id . 'thumbnail.' . $extension;
+                $item->move('assets/' . $location, $nameUpload);
+                $filepath = 'assets/' . $location . '/' . $nameUpload;
+                $data_image[] = $filepath;
             }
         }
 
-        $form = new Asset_posting();
-        $form->path = json_encode($data);
-        $form->posting_id = $posting->id;
-        $form->save();
+        $file = new Asset_posting();
+        $file->path = json_encode($data_image);
+        $file->posting_id = $posting->id;
+        $file->save();
 
         return redirect(route('landingpage'));
+    }
+
+    // halaman edit posting
+    public function edit_posting(){
+        $data = posting::all();
+        return view();
     }
 
     //posting blog
