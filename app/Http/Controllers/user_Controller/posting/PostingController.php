@@ -101,8 +101,10 @@ class PostingController extends Controller
     // halaman edit posting
     public function edit_posting()
     {
-        $edit = posting::where('user_id', Auth::user()->id)->first();
-        return view('user/account/mypostingan', compact('edit'));
+        $edit = posting::where('user_id', Auth::user()->id)->get();
+        // dd($edit);
+        $category = Category::pluck('nama', 'id');
+        return view('user/account/mypostingan', compact('edit', 'category'));
     }
 
     //posting blog

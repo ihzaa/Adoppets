@@ -81,14 +81,13 @@ sub-page
                 <!--============ Items ==========================================================================-->
                 <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
 
-
                     @foreach ($edit as $item)
                     <div class="item">
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="#" class="tag category">{{$item->jenis_kelamin}}</a>
-                                    <a href="single-listing-1.html" class="title">Creative Course</a>
+                                    <a href="#" class="tag category">{{$category[$item->category_id]}}</a>
+                                    <a href="single-listing-1.html" class="title"></a>
                                     <span class="tag">Offer</span>
                                 </h3>
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
@@ -103,9 +102,6 @@ sub-page
                             <div class="admin-controls">
                                 <a href="edit-ad.html">
                                     <i class="fa fa-pencil"></i>Edit
-                                </a>
-                                <a href="#" class="ad-hide">
-                                    <i class="fa fa-eye-slash"></i>Hide
                                 </a>
                                 <a href="#" class="ad-remove">
                                     <i class="fa fa-trash"></i>Remove
