@@ -40,26 +40,28 @@ sub-page
             <div class="col-md-4">
                 <h2>Get In Touch</h2>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                    amet fermentum sem. Class aptent taciti sociosqu ad litora
+                    Jika Anda memiliki pertanyaan tentang kami silahkan kunjungi salah satu narahubung dibawah ini. Kami
+                    siap menjawab dan memberikan pelayanan yang baik kepada Anda
                 </p>
                 <br>
                 <figure class="with-icon">
                     <i class="fa fa-map-marker"></i>
-                    <span>Malang<br>Jawa Timur, Indonesia</span>
+                    <span><a href="https://goo.gl/maps/2UQANNTdu5QS5V2bA" target="_blank">Malang<br>Jawa Timur,
+                            Indonesia</a></span>
                 </figure>
                 <br>
                 <figure class="with-icon">
                     <i class="fa fa-phone"></i>
-                    <span>+1 516-480-4273</span>
+                    <span><a href="https://api.whatsapp.com/send?phone=+6281330904695"
+                            target="_blank">081330904695</a></span>
                 </figure>
                 <figure class="with-icon">
                     <i class="fa fa-envelope"></i>
-                    <a href="#">adoptpets@gmail.com</a>
+                    <a href="mailto:adoptpets477@gmail.com" target="_blank">adoptpets477@gmail.com</a>
                 </figure>
                 <figure class="with-icon">
                     <i class="fa fa-envelope"></i>
-                    <a href="#">@adoptpets</a>
+                    <a href="https://www.instagram.com/adoptpets477/?hl=en" target="_blank">@adoptpets</a>
                 </figure>
             </div>
             <!--end col-md-4-->
@@ -108,7 +110,7 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
