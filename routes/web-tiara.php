@@ -37,7 +37,7 @@ Route::middleware('auth:user')->group(function () {
     // HALAMAN YG HARUS LOGIN USER
     Route::get('/account', 'user_Controller\account\AccountController@index')->name('account');
     //route untuk di my profile
-    Route::get('/mypostingan', 'user_Controller\account\MypostinganController@index')->name('mypostingan');
+    // Route::get('/mypostingan', 'user_Controller\account\MypostinganController@index')->name('mypostingan');
     Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
     //untuk submit posting, submit blog dan submit informasi klinik di bagian veew submit postingan
     //untuk posting hewan
