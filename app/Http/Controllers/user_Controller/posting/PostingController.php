@@ -104,7 +104,14 @@ class PostingController extends Controller
         $edit = posting::where('user_id', Auth::user()->id)->get();
         // dd($edit);
         $category = Category::pluck('nama', 'id');
-        return view('user/account/mypostingan', compact('edit', 'category'));
+        $vaccines = Vaccine::get(['keterangan', 'tanggal']);
+        // foreach ($vaccines as $item) {
+        //     $vaksin[$item->posting_id] = $item->keterangan . " Tanggal : " . $item->tanggal;
+        // }
+
+        $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
+        // dd($vaksin1);
+        return view('user/account/mypostingan', compact('edit', 'category', 'vaccines'));
     }
 
     //posting blog

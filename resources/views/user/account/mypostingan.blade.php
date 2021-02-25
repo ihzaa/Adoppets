@@ -91,12 +91,12 @@ sub-page
                                     <span class="tag">Offer</span>
                                 </h3>
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
-                                    <img src="assets/img/image-02.jpg" alt="">
+                                    <img src="" alt="">
                                 </a>
                             </div>
                             <!--end image-->
                             <h4 class="location">
-                                <a href="#">Nashville, TN</a>
+                                <a href="#">{{$item->lokasi}}</a>
                             </h4>
                             <div class="price">$125</div>
                             <div class="admin-controls">
@@ -109,25 +109,16 @@ sub-page
                             </div>
                             <!--end admin-controls-->
                             <div class="description">
-                                <p>Proin at tortor eros. Phasellus porta nec elit non lacinia. Nam bibendum erat at leo
-                                    faucibus vehicula. Ut laoreet porttitor risus, eget suscipit tellus tincidunt sit
-                                    amet. </p>
+                                <p>Kondisi Fisik : {{$item->kondisi_fisik}}</p>
                             </div>
                             <!--end description-->
                             <div class="additional-info">
                                 <ul>
+                                    {{-- @foreach ($vaccines as $item_vaksin)
                                     <li>
-                                        <figure>Start Date</figure>
-                                        <aside>25.06.2017 09:00</aside>
+                                        <aside>{{$item_vaksin[$id_vaksin->$id_postingg]}}</aside>
                                     </li>
-                                    <li>
-                                        <figure>Length</figure>
-                                        <aside>2 months</aside>
-                                    </li>
-                                    <li>
-                                        <figure>Bedrooms</figure>
-                                        <aside>3</aside>
-                                    </li>
+                                    @endforeach --}}
                                 </ul>
                             </div>
                             <!--end addition-info-->
