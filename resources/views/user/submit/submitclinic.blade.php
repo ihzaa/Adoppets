@@ -5,6 +5,12 @@
 <!-- summernote -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
+<style>
+.note-modal-backdrop {
+    display: none !important;
+}
+</style>
+
 {{-- for maps --}}
 <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
 <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
@@ -50,10 +56,8 @@
 @section('content')
 <section class="block">
     <div class="container">
-        <form class="form form-submit" action="{{route('post_clinic')}}" method="POST" id="submitclinic"
-            enctype="multipart/form-data">
+        <form class="form form-submit" action="{{route('post_clinic')}}" method="POST" id="submitclinic">
             @csrf
-
             <section>
                 <h2>Konten</h2>
                 <div class="form-group">
@@ -88,7 +92,7 @@
                 <div class="form-group">
                     <label for="email" class="col-form-label">Email</label>
                     <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        id="email" placeholder="contoh : klinikhusada@gmail.com" required value="{{old('email')}}">
+                        id="email" placeholder="contoh : klinikhusada@gmail.com" value="{{old('email')}}">
                 </div>
                 @error('email')
                 <div class="alert alert-danger">{{ $message }}</div>

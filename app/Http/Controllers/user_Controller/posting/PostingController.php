@@ -13,7 +13,6 @@ use App\Vaccine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use League\CommonMark\Block\Element\Document;
 use Illuminate\Support\Facades\File;
 
 class PostingController extends Controller
@@ -41,6 +40,7 @@ class PostingController extends Controller
 
         // validasi posting
         $request->validate([
+            'title' => 'required',
             'jenis_kelamin' => 'required',
             'ras' => 'required',
             'kondisi_fisik' => 'required',
@@ -53,6 +53,7 @@ class PostingController extends Controller
         ]);
 
         $posting = posting::create([
+            'title' => $request->title,
             'jenis_kelamin' => $request->jenis_kelamin,
             'ras' => $request->ras,
             'kondisi_fisik' => $request->kondisi_fisik,
@@ -68,10 +69,9 @@ class PostingController extends Controller
             Vaccine::create([
                 'keterangan' => $v,
                 'tanggal' => Carbon::parse($request->tanggal[$k]),
-                'posting_id' => $posting->id
+                'posting_id' => $posting->id,
             ]);
         }
-
 
         // validasi asset posting
         $this->validate($request, [
@@ -147,17 +147,21 @@ class PostingController extends Controller
             'nama_klinik' => 'required',
             'deskripsi' => 'required',
             'no_telepon' => 'required',
-            'email' => 'required',
-            'lokasi' => 'required',
+            'email' => '',
+            'lokasi' => '',
         ]);
-        $clinic = new Clinic_information();
-        $clinic->nama_klinik = $request->nama_klinik;
-        $clinic->deskripsi = $request->deskripsi;
-        $clinic->no_telepon = $request->no_telepon;
-        $clinic->email = $request->email;
-        $clinic->lokasi = $request->lokasi;
-        $clinic->save();
 
-        return redirect(route('clinic'));
+        $data = new Clinic_information();
+        $data->nama_klinik = $request->nama_klinik;
+        $data->deskripsi = $request->deskripsi;
+        $data->no_telepon = $request->no_telepon;
+        $data->email = $request->email;
+        $data->lokasi = $request->city;
+        $data->user_id = Auth::user()->id;
+        $data->save();
+
+        //dd($data);
+
+        return redirect(route('landingpage'));
     }
 }

@@ -10,8 +10,7 @@
                         <img class="img-circle img-md" src="{{asset('admin/asset/img/profile-photos/1.png')}}"
                             alt="Profile Picture">
                     </div>
-                    <a href="#profile-nav" class="box-block" data-toggle="collapse"
-                        aria-expanded="false">
+                    <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
                         <span class="pull-right dropdown-toggle">
                             <i class="dropdown-caret"></i>
                         </span>
@@ -89,7 +88,7 @@
                 </li> --}}
                 <!--Menu list item-->
                 <li class="active-sub">
-                    <a href="{{route('')}}">
+                    <a href="#">
                         <i class="demo-pli-gear"></i>
                         <span class="menu-title">
                             Widgets
@@ -100,7 +99,7 @@
 
                 <li class="list-divider"></li>
 
-            <!--End widget-->
+                <!--End widget-->
 
         </div>
     </div>
