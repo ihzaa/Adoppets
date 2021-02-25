@@ -20,19 +20,19 @@
                             <nav>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="#">Home</a>
+                                        <a href="{{route('landingpage')}}">Home</a>
                                     </li>
                                     <li>
-                                        <a href="#">Blog</a>
+                                        <a href="{{route('blog')}}">Blog</a>
                                     </li>
                                     <li>
-                                        <a href="#">Info Klinik</a>
+                                        <a href="{{route('clinic')}}">Info Klinik</a>
                                     </li>
                                     <li>
-                                        <a href="#">Kontak</a>
+                                        <a href="{{route('contact')}}">Kontak</a>
                                     </li>
                                     <li>
-                                        <a href="#">Submit Posting</a>
+                                        <a href="{{route('get_submit_postingan')}}">Submit Posting</a>
                                     </li>
                                 </ul>
                             </nav>
