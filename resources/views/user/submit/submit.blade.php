@@ -3,8 +3,8 @@
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1 class="center">
-            Pilih Informasi yang Ingin Anda Publikasi
+        <h1 class="left">
+            Submit Post
         </h1>
     </div>
     <!--end container-->
@@ -21,6 +21,15 @@
 
 @section('hero-form')
 
+@endsection
+
+@section('background')
+<div class="background">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_submit.jpg')}}" alt="">
+    </div>
+    <!--end background-image-->
+</div>
 @endsection
 
 @section('background')
