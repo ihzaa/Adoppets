@@ -16,6 +16,7 @@ class CreateClinicInformationsTable extends Migration
         Schema::create('clinic_informations', function (Blueprint $table) {
             $table->id();
             $table->string('nama_klinik');
+            $table->string('picture');
             $table->longText('deskripsi');
             $table->integer('no_telepon');
             $table->string('email');

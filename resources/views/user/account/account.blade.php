@@ -44,7 +44,14 @@ sub-page
                         <i class="fa fa-user"></i>Profil Saya
                     </a>
                     <a class="nav-link icon" href="{{route('edit_posting')}}">
-                        <i class="fa fa-heart"></i>Postingan Saya
+                        <i class="fa fa-paw"></i>Postingan Saya
+                    </a>
+                    </a>
+                    <a class="nav-link icon" href="{{route('posting_blog')}}">
+                        <i class="fa fa-book"></i>Postingan Blog
+                    </a>
+                    <a class="nav-link icon" href="">
+                        <i class="fa fa-hospital-o"></i>Postingan Clinic
                     </a>
                     <a class="nav-link icon" href="">
                         <i class="fa fa-check"></i>Hewan Teradopsi
@@ -221,7 +228,7 @@ sub-page
 
 
 <script>
-    function readURL(input) {
+function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -241,7 +248,7 @@ $("#imgInp").change(function() {
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -252,56 +259,56 @@ $("#imgInp").change(function() {
 
 @error('name')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('username')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('instagram')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('alamat_asal')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('domisili_sekarang')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('nomor_telpon')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('email')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('no_wa')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
@@ -309,7 +316,7 @@ $("#imgInp").change(function() {
 
 @error('password')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

@@ -56,7 +56,8 @@
 @section('content')
 <section class="block">
     <div class="container">
-        <form class="form form-submit" action="{{route('post_clinic')}}" method="POST" id="submitclinic">
+        <form class="form form-submit" action="{{route('post_clinic')}}" method="POST" id="submitclinic"
+            enctype="multipart/form-data">
             @csrf
             <section>
                 <h2>Konten</h2>
@@ -83,7 +84,7 @@
                 <div class="form-group">
                     <label for="no_telepon" class="col-form-label">Nomer Telepon</label>
                     <input name="no_telepon" type="text" class="form-control @error('no_telepon') is-invalid @enderror"
-                        id="no_telepon" placeholder="contoh : (03321)-245161" required value="{{old('no_telepon')}}">
+                        id="no_telepon" placeholder="contoh : 03321245161" required value="{{old('no_telepon')}}">
                 </div>
                 @error('no_telepon')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -97,6 +98,25 @@
                 @error('email')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+
+                <div class="form-group">
+                    @csrf
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
+                            name="picture" {{request()->is('/postclinic')?"required":""}}>
+                        <label class="custom-file-label" id="labelnya_gambar"
+                            for="imgInp">{{request()->is('/postclinic')?"Image Clinic":"Picture.jpg"}}</label>
+                        <small class="form-text text-muted">- Ukuran max 256KB</small>
+                        <small class="form-text text-muted">- Harus berupa gambar (format:
+                            jpg, jpeg, svg, jfif,
+                            png)</small>
+                    </div>
+                </div>
+                @error('picture')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+                <!--end form-group-->
 
                 <!--end form-group-->
             </section>

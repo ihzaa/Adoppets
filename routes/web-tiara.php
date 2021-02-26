@@ -39,6 +39,7 @@ Route::middleware('auth:user')->group(function () {
     //route untuk di my profile
     // Route::get('/mypostingan', 'user_Controller\account\MypostinganController@index')->name('mypostingan');
     Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
+    Route::get('/postinganBlog', 'user_Controller\account\PostingblogController@index')->name('posting_blog');
     //untuk submit posting, submit blog dan submit informasi klinik di bagian veew submit postingan
     //untuk posting hewan
     Route::get('/submitposting', 'user_Controller\posting\PostingController@index_posting')->name('submit_posting');

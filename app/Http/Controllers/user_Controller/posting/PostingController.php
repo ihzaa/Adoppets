@@ -27,7 +27,7 @@ class PostingController extends Controller
         return response()->json($request);
     }
 
-    //posting hewan peliharaan
+    //tampilan posting hewan peliharaan
     public function index_posting()
     {
         // $data = posting::all();
@@ -35,6 +35,7 @@ class PostingController extends Controller
         return view('user.submit.submitposting', compact('data'));
     }
 
+    // menyimpan hasil posting hewan peliharaan
     public function store_posting(Request $request)
     {
 
@@ -76,41 +77,34 @@ class PostingController extends Controller
         // validasi asset posting
         $this->validate($request, [
             'path' => 'required',
-            'path.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'path.*' => 'mimes:jpeg,png,jpg,mp4,webm,mpg|max:6000',
         ]);
 
-        if ($request->hasfile('path')) {
-            foreach ($request->file('path') as $item) {
-                $extension = $item->getClientOriginalName();
-                $location = 'images/posting';
-                $nameUpload = $posting->id . 'thumbnail.' . $extension;
-                $item->move('assets/' . $location, $nameUpload);
-                $filepath = 'assets/' . $location . '/' . $nameUpload;
-                $data_image[] = $filepath;
+        if ($request->hasFile('path')) {
+            foreach ($request->path as $item) {
+                Asset_posting::create([
+                    $extension = $item->getClientOriginalName(),
+                    $location = 'images/posting',
+                    $nameUpload = $posting->id . 'thumbnail.' . $extension,
+                    $item->move('assets/' . $location, $nameUpload),
+                    $filepath = 'assets/' . $location . '/' . $nameUpload,
+                    $data_image = $filepath,
+                    'path' => $data_image,
+                    'posting_id' => $posting->id,
+                ]);
             }
         }
 
-        $file = new Asset_posting();
-        $file->path = json_encode($data_image);
-        $file->posting_id = $posting->id;
-        $file->save();
-
-        return redirect(route('landingpage'));
+        return redirect(route('landingpage'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Menulis Postingan Hewan!');
     }
 
     // halaman edit posting
     public function edit_posting()
     {
         $edit = posting::where('user_id', Auth::user()->id)->get();
-        // dd($edit);
         $category = Category::pluck('nama', 'id');
         $vaccines = Vaccine::get(['keterangan', 'tanggal']);
-        // foreach ($vaccines as $item) {
-        //     $vaksin[$item->posting_id] = $item->keterangan . " Tanggal : " . $item->tanggal;
-        // }
-
         $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
-        // dd($vaksin1);
         return view('user/account/mypostingan', compact('edit', 'category', 'vaccines'));
     }
 
@@ -127,6 +121,7 @@ class PostingController extends Controller
         $request->validate([
             'title' => 'required',
             'isi' => 'required',
+            'picture' => 'required|image|mimes:jpeg,svg,jfif,png,jpg|max:2560',
         ]);
 
         $data2 = User::where('id', Auth::user()->id)->first();
@@ -134,7 +129,16 @@ class PostingController extends Controller
 
         $data->title = $request->title;
         $data->isi = $request->isi;
+        $data->picture = $request->picture;
         $data->user_id = $data2->id;
+        $data->save();
+
+        $extension = $request->file('picture')->getClientOriginalExtension();
+        $location = 'images/posting';
+        $nameUpload = $data->id . 'thumbnail.' . $extension;
+        $request->file('picture')->move('assets/' . $location, $nameUpload);
+        $filepath = 'assets/' . $location . '/' . $nameUpload;
+        $data->picture = $filepath;
         $data->save();
 
         return redirect(route('blog_detail'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Terimakasih Masukannya!');
@@ -154,12 +158,14 @@ class PostingController extends Controller
             'nama_klinik' => 'required',
             'deskripsi' => 'required',
             'no_telepon' => 'required',
+            'picture' => 'required|image|mimes:jpeg,svg,jfif,png,jpg|max:2560',
             'email' => '',
             'lokasi' => '',
         ]);
 
         $data = new Clinic_information();
         $data->nama_klinik = $request->nama_klinik;
+        $data->picture = $request->picture;
         $data->deskripsi = $request->deskripsi;
         $data->no_telepon = $request->no_telepon;
         $data->email = $request->email;
@@ -167,7 +173,13 @@ class PostingController extends Controller
         $data->user_id = Auth::user()->id;
         $data->save();
 
-        //dd($data);
+        $extension = $request->file('picture')->getClientOriginalExtension();
+        $location = 'images/posting';
+        $nameUpload = $data->id . 'thumbnail.' . $extension;
+        $request->file('picture')->move('assets/' . $location, $nameUpload);
+        $filepath = 'assets/' . $location . '/' . $nameUpload;
+        $data->picture = $filepath;
+        $data->save();
 
         return redirect(route('landingpage'));
     }
