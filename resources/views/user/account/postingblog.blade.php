@@ -46,7 +46,7 @@ sub-page
                     <a class="nav-link icon" href="">
                         <i class="fa fa-paw"></i>Postingan Hewan
                     </a>
-                    <a class="nav-link icon" href="{{route('posting_blog')}}">
+                    <a class="nav-link icon" href="">
                         <i class="fa fa-book"></i>Postingan Blog
                     </a>
                     <a class="nav-link icon" href="">
@@ -86,25 +86,33 @@ sub-page
                 </div>
                 <!--============ Items ==========================================================================-->
                 <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
-
-                    @foreach ($edit as $item)
                     <div class="item">
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="#" class="tag category">{{$category[$item->category_id]}}</a>
-                                    <a href="single-listing-1.html" class="title"></a>
-                                    <span class="tag">Offer</span>
+                                    <a href="single-listing-1.html" class="title">judul</a>
                                 </h3>
-                                <a href="single-listing-1.html" class="image-wrapper background-image">
+                                <!-- <a href="single-listing-1.html" class="image-wrapper background-image">
                                     <img src="" alt="">
-                                </a>
+                                </a> -->
                             </div>
+                            <!-- <h4 class="author">
+                                <a href="#">penulis</a>
+                            </h4> -->
+
                             <!--end image-->
-                            <h4 class="location">
-                                <a href="#">{{$item->lokasi}}</a>
-                            </h4>
-                            <div class="price">$125</div>
+                            <div class="additional-info">
+                                <ul>
+                                    <li>
+                                        <aside class="fa fa-user"> penulis</aside>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="description">
+                                <p>Jika Anda memiliki pertanyaan tentang kami silahkan kunjungi salah satu narahubung
+                                    dibawah ini. Kami
+                                    siap menjawab dan memberikan pelayanan yang baik kepada Anda.</p>
+                            </div>
                             <div class="admin-controls">
                                 <a href="edit-ad.html">
                                     <i class="fa fa-pencil"></i>Edit
@@ -114,24 +122,13 @@ sub-page
                                 </a>
                             </div>
                             <!--end admin-controls-->
-                            <div class="description">
-                                <p>Kondisi Fisik : {{$item->kondisi_fisik}}</p>
-                            </div>
+
                             <!--end description-->
-                            <div class="additional-info">
-                                <ul>
-                                    {{-- @foreach ($vaccines as $item_vaksin)
-                                    <li>
-                                        <aside>{{$item_vaksin[$id_vaksin->$id_postingg]}}</aside>
-                                    </li>
-                                    @endforeach --}}
-                                </ul>
-                            </div>
                             <!--end addition-info-->
                             <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
-                    @endforeach
+
                     <!--end item-->
 
                 </div>

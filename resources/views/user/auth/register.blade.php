@@ -121,11 +121,12 @@ sub-page
                     @enderror
                     <!--end form-group-->
 
-                     <!-- instagram -->
-                     <div class="form-group">
+                    <!-- instagram -->
+                    <div class="form-group">
                         <label for="instagram" class="col-form-label required">Instagram</Address></label>
-                        <input name="instagram" type="text" class="form-control @error('instagram') is-invalid @enderror"
-                            id="instagram" placeholder="Your username at instagram" value="{{old('instagram')}}">
+                        <input name="instagram" type="text"
+                            class="form-control @error('instagram') is-invalid @enderror" id="instagram"
+                            placeholder="Your username at instagram" value="{{old('instagram')}}">
                     </div>
                     @error('instagram')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -136,7 +137,7 @@ sub-page
                     <div class="form-group">
                         @csrf
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="imgInp" value={{old('foto_profil')}}
+                            <input type="file" class="custom-file-input" id="imgInp" value="{{old('foto_profil')}}"
                                 required name="foto_profil" {{request()->is('/postregister')?"required":""}}
                                 name="foto">
                             <label class="custom-file-label" id="labelnya_gambar"
