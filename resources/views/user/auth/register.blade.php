@@ -116,7 +116,7 @@ sub-page
                         <input name="no_wa" type="text" class="form-control @error('no_wa') is-invalid @enderror"
                             id="no_wa" placeholder="Your Whatsapp Number" required required value="{{old('no_wa')}}">
                     </div>
-                    @error('no_wa')
+                    @error('no_w
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <!--end form-group-->

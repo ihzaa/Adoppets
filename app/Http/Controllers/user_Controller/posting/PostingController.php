@@ -27,7 +27,7 @@ class PostingController extends Controller
         return response()->json($request);
     }
 
-    //posting hewan peliharaan
+    //tampilan posting hewan peliharaan
     public function index_posting()
     {
         // $data = posting::all();
@@ -35,6 +35,7 @@ class PostingController extends Controller
         return view('user.submit.submitposting', compact('data'));
     }
 
+    // menyimpan hasil posting hewan peliharaan
     public function store_posting(Request $request)
     {
 
@@ -76,7 +77,7 @@ class PostingController extends Controller
         // validasi asset posting
         $this->validate($request, [
             'path' => 'required',
-            'path.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'path.*' => 'mimes:jpeg,png,jpg,mp4,webm,mpg|max:6000'
         ]);
 
 
@@ -102,15 +103,9 @@ class PostingController extends Controller
     public function edit_posting()
     {
         $edit = posting::where('user_id', Auth::user()->id)->get();
-        // dd($edit);
         $category = Category::pluck('nama', 'id');
         $vaccines = Vaccine::get(['keterangan', 'tanggal']);
-        // foreach ($vaccines as $item) {
-        //     $vaksin[$item->posting_id] = $item->keterangan . " Tanggal : " . $item->tanggal;
-        // }
-
         $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
-        // dd($vaksin1);
         return view('user/account/mypostingan', compact('edit', 'category', 'vaccines'));
     }
 
@@ -166,9 +161,6 @@ class PostingController extends Controller
         $data->lokasi = $request->city;
         $data->user_id = Auth::user()->id;
         $data->save();
-
-        //dd($data);
-
         return redirect(route('landingpage'));
     }
 }

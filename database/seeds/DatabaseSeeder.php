@@ -37,13 +37,12 @@ class DatabaseSeeder extends Seeder
             'no_wa' => '08',
         ]);
         DB::table('categories')->insert([
-            'nama' => "manusia comel"
+            'nama' => "Kucing"
         ]);
 
 
         $records = [
             ['Echo', DB::table('postings')->get('id')]
         ];
-
     }
 }

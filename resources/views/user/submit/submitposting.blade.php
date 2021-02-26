@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-.delete {
-    background-color: #fd1200;
-    border: none;
-    color: white;
-    padding: 5px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+    .delete {
+        background-color: #fd1200;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
 
-.add_form_field {
-    background-color: #1c97f3;
-    border: none;
-    color: white;
-    padding: 8px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 1px solid #186dad;
-}
+    .add_form_field {
+        background-color: #1c97f3;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: 1px solid #186dad;
+    }
 </style>
 @endsection
 
@@ -160,15 +160,24 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
-                <div class=" form-group">
-                    <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
-                    <input name="jenis_kelamin" type="text"
-                        class="form-control @error('jenis_kelamin') is-invalid @enderror" id=" jenis_kelamin"
-                        placeholder="contoh : betina" required value="{{old('jenis_kelamin')}}">
+
+                {{-- jenis kelamin --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ras" class="col-form-label">Jenis Kelamin</label>
+                            <select name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select">
+                                <option selected value="0">Select</option>
+                                <option value="Betina">Betina</option>
+                                <option value="Jantan">Jantan</option>
+                            </select>
+                            <div style="display: none;" class="alert alert-danger" id="message_jk">Silahkan pilih opsi
+                            </div>
+                        </div>
+                        <!--end form-group-->
+                    </div>
                 </div>
-                @error('jenis_kelamin')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+
 
                 <div class="form-group">
                     <label for="umur" class="col-form-label">Umur</label>
@@ -244,7 +253,7 @@
                 <div class="file-upload">
                     <input type="file" name="path[]"
                         class="file-upload-input with-preview @error('path') is-invalid @enderror" multiple
-                        title="Click to add path" maxlength="10" accept="gif|jpg|png">
+                        title="Click to add path" maxlength="10" accept="gif|jpg|png|mp4|webm|mpg">
                     <span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
                 </div>
                 @error('path')
@@ -300,7 +309,7 @@
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 {{-- js datepicker --}}
 <script>
-// add form dynamic
+    // add form dynamic
 $(document).ready(function() {
     var max_fields = 10;
     var wrapper = $(".container1");
@@ -344,15 +353,13 @@ $(document).ready(function() {
 });
 </script>
 
+{{-- selecter jenis_kelamin --}}
 <script>
-// datepicker
-// $(document).ready(function() {
-//     $('.add_info_button').click(function(e) {
-//         $(".datepicker").datepicker({
-//             uiLibrary: 'bootstrap4'
-//         });
-//     })
-// })
+    $("#submitposting").on("submit", function() {
+        if ($("#jenis_kelamin").val() == 0) {
+            event.preventDefault();
+            $("#message_jk").show();
+        }
+    })
 </script>
-{{-- end datepicker --}}
 @endsection
