@@ -16,7 +16,7 @@
 @endsection
 
 @section('brand-logo')
-{{asset('user/assets/img/include_image/logo_adoptpets-inverted.png')}}
+{{asset('user/assets/img/include_image/logo_adoptpets.png')}}
 @endsection
 
 @section('hero-form')
