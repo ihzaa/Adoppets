@@ -39,7 +39,7 @@
 @section('content')
 <section class="block">
     <div class="container">
-        <div class="items grid grid-xl-4-items grid-lg-3-items grid-md-2-items">
+        <div class="items grid grid-xl-3-items grid-lg-3-items grid-md-2-items">
             <a href="{{route('submit_posting')}}" class="item call-to-action">
                 <div class="wrapper">
                     <div class="title">

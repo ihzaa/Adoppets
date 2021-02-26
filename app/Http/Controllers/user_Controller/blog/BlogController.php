@@ -4,8 +4,8 @@ namespace App\Http\Controllers\user_Controller\blog;
 
 use App\Blog;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
@@ -15,6 +15,8 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //list blog pada tampilan umum
     public function index()
     {
         //
@@ -23,15 +25,55 @@ class BlogController extends Controller
         return view('user/blog/blog', compact('list', 'user'));
     }
 
+    //detail blog (read more)
     public function index_detail()
     {
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //submit blog
+    public function index_blog()
+    {
+
+        $blog = Blog::all();
+        return view('user.submit.submitblog', compact('blog'));
+    }
+
+    //create database submit blog
+    public function store_blog(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'isi' => 'required',
+            'picture' => 'required|image|mimes:jpeg,svg,jfif,png,jpg|max:2560',
+        ]);
+
+        $data2 = User::where('id', Auth::user()->id)->first();
+        $data = new Blog();
+
+        $data->title = $request->title;
+        $data->isi = $request->isi;
+        $data->picture = $request->picture;
+        $data->user_id = $data2->id;
+        $data->save();
+
+        $extension = $request->file('picture')->getClientOriginalExtension();
+        $location = 'images/posting';
+        $nameUpload = $data->id . 'thumbnail.' . $extension;
+        $request->file('picture')->move('assets/' . $location, $nameUpload);
+        $filepath = 'assets/' . $location . '/' . $nameUpload;
+        $data->picture = $filepath;
+        $data->save();
+
+        return redirect(route('blog'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Blog Berhasil Ditulis!');
+    }
+
+    //list blog di akun saya
+    public function list_blog()
+    {
+        //
+        $list = Blog::where('user_id', Auth::user()->id)->get();
+        return view('user/account/postingblog', compact('list'));
+    }
 
     public function create()
     {

@@ -1,12 +1,12 @@
 <div class="secondary-navigation">
     <div class="container">
-        <ul class="left">
+        <!-- <ul class="left">
             <li>
                 <span>
                     <i class="fa fa-phone"></i> +1 123 456 789
                 </span>
             </li>
-        </ul>
+        </ul> -->
         <!--end left-->
         <ul class="right">
             @if (Auth::guard('admin')->check())

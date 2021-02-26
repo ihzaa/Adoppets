@@ -37,7 +37,7 @@ sub-page
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h2>Get In Touch</h2>
+                <h2>Hubungi Kami</h2>
                 <p>
                     Jika Anda memiliki pertanyaan tentang kami silahkan kunjungi salah satu narahubung dibawah ini. Kami
                     siap menjawab dan memberikan pelayanan yang baik kepada Anda
@@ -51,7 +51,8 @@ sub-page
                 <br>
                 <figure class="with-icon">
                     <i class="fa fa-phone"></i>
-                    <span><a href="https://api.whatsapp.com/send?phone=+6281330904695" target="_blank">081330904695</a></span>
+                    <span><a href="https://api.whatsapp.com/send?phone=+6281330904695"
+                            target="_blank">081330904695</a></span>
                 </figure>
                 <figure class="with-icon">
                     <i class="fa fa-envelope"></i>
@@ -74,7 +75,8 @@ sub-page
                     <!--end row-->
                     <div class="form-group">
                         <label for="subject" class="col-form-label">Subject</label>
-                        <input name="subject" type="text" class="form-control @error('subject') is-invalid @enderror" id="subject" placeholder="Subject" required value="{{old('subject')}}">
+                        <input name="subject" type="text" class="form-control @error('subject') is-invalid @enderror"
+                            id="subject" placeholder="Subject" required value="{{old('subject')}}">
                     </div>
                     @error('subject')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -82,7 +84,9 @@ sub-page
                     <!--end form-group-->
                     <div class="form-group">
                         <label for="message" class="col-form-label required">Pesan Anda</label>
-                        <textarea name="message" id="message" class="form-control @error('message') is-invalid @enderror" rows="4" placeholder="Your Message" required value="{{old('message')}}"></textarea>
+                        <textarea name="message" id="message"
+                            class="form-control @error('message') is-invalid @enderror" rows="4"
+                            placeholder="Your Message" required value="{{old('message')}}"></textarea>
                     </div>
                     @error('message')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -105,11 +109,11 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
-        icon: "{{Session::get('icon')}}",
-        title: "{{Session::get('title')}}",
-        text: "{{Session::get('text')}}",
-    });
+swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
 </script>
 @endif
 

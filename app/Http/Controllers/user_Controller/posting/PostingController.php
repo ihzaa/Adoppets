@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\user_Controller\posting;
 
 use App\Asset_posting;
-use App\Blog;
 use App\Category;
-use App\Clinic_information;
 use App\Http\Controllers\Controller;
 use App\posting;
 use App\User;
@@ -13,7 +11,6 @@ use App\Vaccine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 
 class PostingController extends Controller
 {
@@ -105,83 +102,12 @@ class PostingController extends Controller
         $category = Category::pluck('nama', 'id');
         $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
 
-
         return view('user/account/mypostingan', compact('edit', 'category'));
     }
 
-    //posting blog
-    public function index_blog()
+    //list posting pada my akun
+    public function list_posting()
     {
-
-        $blog = Blog::all();
-        return view('user.submit.submitblog', compact('blog'));
-    }
-
-    public function store_blog(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'isi' => 'required',
-            'picture' => 'required|image|mimes:jpeg,svg,jfif,png,jpg|max:2560',
-        ]);
-
-        $data2 = User::where('id', Auth::user()->id)->first();
-        $data = new Blog();
-
-        $data->title = $request->title;
-        $data->isi = $request->isi;
-        $data->picture = $request->picture;
-        $data->user_id = $data2->id;
-        $data->save();
-
-        $extension = $request->file('picture')->getClientOriginalExtension();
-        $location = 'images/posting';
-        $nameUpload = $data->id . 'thumbnail.' . $extension;
-        $request->file('picture')->move('assets/' . $location, $nameUpload);
-        $filepath = 'assets/' . $location . '/' . $nameUpload;
-        $data->picture = $filepath;
-        $data->save();
-
-        return redirect(route('blog'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Blog Berhasil Ditulis!');
-    }
-
-    //posting informasi klinik
-    public function index_clinic()
-    {
-        $clinic = Clinic_information::all();
-
-        return view('user.submit.submitclinic', compact('clinic'));
-    }
-
-    public function store_clinic(Request $request)
-    {
-        $request->validate([
-            'nama_klinik' => 'required',
-            'deskripsi' => 'required',
-            'no_telepon' => 'required',
-            'picture' => 'required|image|mimes:jpeg,svg,jfif,png,jpg|max:2560',
-            'email' => '',
-            'lokasi' => '',
-        ]);
-
-        $data = new Clinic_information();
-        $data->nama_klinik = $request->nama_klinik;
-        $data->picture = $request->picture;
-        $data->deskripsi = $request->deskripsi;
-        $data->no_telepon = $request->no_telepon;
-        $data->email = $request->email;
-        $data->lokasi = $request->city;
-        $data->user_id = Auth::user()->id;
-        $data->save();
-
-        $extension = $request->file('picture')->getClientOriginalExtension();
-        $location = 'images/posting';
-        $nameUpload = $data->id . 'thumbnail.' . $extension;
-        $request->file('picture')->move('assets/' . $location, $nameUpload);
-        $filepath = 'assets/' . $location . '/' . $nameUpload;
-        $data->picture = $filepath;
-        $data->save();
-
-        return redirect(route('landingpage'));
+        return view('user/account/mypostingan');
     }
 }
