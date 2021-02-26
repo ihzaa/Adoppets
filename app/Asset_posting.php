@@ -8,7 +8,7 @@ class Asset_posting extends Model
 {
     //
     protected $fillable = [
-        'path'
+        'path', 'posting_id'
     ];
 
     public function posting()

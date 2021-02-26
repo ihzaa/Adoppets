@@ -79,23 +79,23 @@ class PostingController extends Controller
             'path.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($request->hasfile('path')) {
-            foreach ($request->file('path') as $item) {
-                $extension = $item->getClientOriginalName();
-                $location = 'images/posting';
-                $nameUpload = $posting->id . 'thumbnail.' . $extension;
-                $item->move('assets/' . $location, $nameUpload);
-                $filepath = 'assets/' . $location . '/' . $nameUpload;
-                $data_image[] = $filepath;
+
+        if ($request->hasFile('path')) {
+            foreach ($request->path as $item) {
+                Asset_posting::create([
+                    $extension = $item->getClientOriginalName(),
+                    $location = 'images/posting',
+                    $nameUpload = $posting->id . 'thumbnail.' . $extension,
+                    $item->move('assets/' . $location, $nameUpload),
+                    $filepath = 'assets/' . $location . '/' . $nameUpload,
+                    $data_image = $filepath,
+                    'path' => $data_image,
+                    'posting_id' => $posting->id
+                ]);
             }
         }
 
-        $file = new Asset_posting();
-        $file->path = json_encode($data_image);
-        $file->posting_id = $posting->id;
-        $file->save();
-
-        return redirect(route('landingpage'));
+        return redirect(route('landingpage'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Menulis Postingan Hewan!');
     }
 
     // halaman edit posting

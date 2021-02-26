@@ -209,6 +209,17 @@ has-dark-background
 @endsection
 
 @section('js_after')
+
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
 <script>
     $('#btn_like').click(function(){
         let data = {
