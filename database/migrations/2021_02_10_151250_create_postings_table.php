@@ -15,6 +15,7 @@ class CreatePostingsTable extends Migration
     {
         Schema::create('postings', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('jenis_kelamin');
             $table->string('ras');
             $table->longText('kondisi_fisik');

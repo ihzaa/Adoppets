@@ -55,11 +55,11 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{route('contact')}}">Kontak</a>
                                     </li>
-                                    @if (Auth::guard('admin')->check())
+                                    <!-- @if (Auth::guard('admin')->check())
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{route('home_admin')}}">Admin</a>
                                     </li>
-                                    @endif
+                                    @endif -->
                                     <li class="nav-item">
                                         <a href="{{route('get_submit_postingan')}}"
                                             class="btn btn-primary text-caps btn-rounded btn-framed">Submit

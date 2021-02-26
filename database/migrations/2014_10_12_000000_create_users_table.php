@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('instagram')->nullable(true);
             $table->bigInteger('no_wa');
-            $table->string('foto_profil')->nullable();
+            $table->string('foto_profil')->nullable(true);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -88,7 +88,7 @@
                 </li> --}}
                 <!--Menu list item-->
                 <li class="active-sub">
-                    <a>
+                    <a href="#">
                         <i class="demo-pli-gear"></i>
                         <span class="menu-title">
                             Widgets

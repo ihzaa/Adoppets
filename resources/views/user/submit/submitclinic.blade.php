@@ -1,5 +1,24 @@
 @extends('user/master')
 
+@section('include-css')
+
+<!-- summernote -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+<style>
+.note-modal-backdrop {
+    display: none !important;
+}
+</style>
+
+{{-- for maps --}}
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
+
 @section('page-title')
 <div class="page-title">
     <div class="container">
@@ -24,21 +43,21 @@
 @endsection
 
 @section('background')
-<div class="background">
-    <div class="background-image">
-        <img src="{{asset('user/assets/img/include_image/bg_landingpage.jpg')}}" alt="">
-    </div>
-    <!--end background-image-->
-</div>
+@endsection
+
+@section('include-css')
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
 @endsection
 
 @section('content')
 <section class="block">
     <div class="container">
         <form class="form form-submit" action="{{route('post_clinic')}}" method="POST" id="submitclinic">
-
-            <!--end basic information-->
-
+            @csrf
             <section>
                 <h2>Konten</h2>
                 <div class="form-group">
@@ -51,12 +70,11 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
+                {{-- summernote --}}
                 <div class="form-group">
                     <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                    <textarea name="deskripsi" id="deskripsi"
-                        class="form-control @error('deskripsi') is-invalid @enderror" rows="4"
-                        placeholder="contoh : klinik sudah tersertifikasi dan termasuk klinik hewan terbaik di Jawa Timur"
-                        required value="{{old('deskripsi')}}"></textarea>
+                    <textarea id="summernote" name="deskripsi"
+                        class="form-control  background @error('deskripsi') is-invalid @enderror">{{old('deskripsi')}}</textarea>
                 </div>
                 @error('deskripsi')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -74,7 +92,7 @@
                 <div class="form-group">
                     <label for="email" class="col-form-label">Email</label>
                     <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        id="email" placeholder="contoh : klinikhusada@gmail.com" required value="{{old('email')}}">
+                        id="email" placeholder="contoh : klinikhusada@gmail.com" value="{{old('email')}}">
                 </div>
                 @error('email')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -84,39 +102,27 @@
             </section>
 
             <section>
-                <h2>Pilih Gambar</h2>
-                <div class="file-upload-previews"></div>
-                <div class="file-upload">
-                    <input type="file" name="files[]" class="file-upload-input with-preview" multiple
-                        title="Click to add files" maxlength="10" accept="gif|jpg|png">
-                    <span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
-                </div>
-            </section>
-
-            <section>
                 <h2>Lokasi</h2>
                 <!--end row-->
                 <div class="form-group">
                     <label for="input-location" class="col-form-label">Detail Lokasi</label>
-                    <input name="location" type="text" class="form-control" id="input-location"
-                        placeholder="Enter Location" required value="{{old('lokasi')}}">
+                    <input name="city" type="text" class="form-control" id="city" placeholder="Location"
+                        readonly="readonly" value="Jakarta" name="city">
                     <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
                         title="Find My Position"><i class="fa fa-map-marker"></i></span>
                 </div>
-                @error('lokasi')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
                 <!--end form-group-->
                 <label>Map</label>
-                <div class="map height-400px" id="map-submit"></div>
-                <input name="latitude" type="text" class="form-control" id="latitude" hidden>
-                <input name="longitude" type="text" class="form-control" id="longitude" hidden>
+                <div id="map" style="width: 100%; height: 480px"></div>
+                {{-- <div class="map height-400px" id="map-submit"></div> --}}
+                <input name="latitude" type="text" class="form-control" id="latitude" value="-6.200000" hidden>
+                <input name="longitude" type="text" class="form-control" id="longitude" value="106.816666" hidden>
             </section>
-
+            <!--end location-->
 
             <section class="clearfix">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary large icon float-right">Submit</button>
+                    <button type="submit" class="btn btn-primary large icon float-right">Submit</i></button>
                 </div>
             </section>
         </form>
@@ -127,8 +133,40 @@
 <!--end block-->
 @endsection
 
+
 @section('js_after')
+<script src="{{asset('user/assets/js/page/submitpostingan.js')}}"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+{{-- summernote --}}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+$('#summernote').summernote({
+    placeholder: 'Tulis Deskripsi Iklan Disini',
+    tabsize: 4,
+    height: 190,
+    minHeight: null,
+    maxHeight: null,
+    focus: true,
+    toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['fontname', ['fontname']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+    ]
+});
+
+$(document).ready(function() {
+    $('#summernote').summernote();
+});
+</script>
 
 <script>
 function readURL(input) {
@@ -148,38 +186,4 @@ $("#imgInp").change(function() {
 });
 </script>
 
-@error('nama_klinik')
-<script>
-$("#submitclinic").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('deskripsi')
-<script>
-$("#submitclinic").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('no_telepon')
-<script>
-$("#submitclinic").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('email')
-<script>
-$("#submitclinic").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('lokasi')
-<script>
-$("#submitclinic").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
 @endsection

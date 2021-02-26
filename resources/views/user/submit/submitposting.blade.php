@@ -119,7 +119,7 @@
                     <div class="col-md-4">
                         <h2>Jenis Hewan</h2>
                         <div class="form-group">
-                            <label for="submit-category" class="col-form-label">Kategori</label>
+                            <label for="submit-category" class="col-form-label"></label>
                             <select class="change-tab" data-change-tab-target="category-tabs" name="submit_category"
                                 id="submit-category" data-placeholder="Select Category">
                                 <option value="">Pilih Jenis Hewan</option>
@@ -141,6 +141,15 @@
             <!--end category information-->
 
             <section>
+                <h2>Judul Postingan</h2>
+                <div class="form-group">
+                    <input name="title" type="text" class="form-control @error('title') is-invalid @enderror"
+                        id=" title" placeholder="contoh : Kucing Persia" required value="{{old('title')}}">
+                </div>
+                @error('title')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
                 <h2>Details</h2>
                 <div class="form-group">
                     <label for="ras" class="col-form-label">Ras</label>

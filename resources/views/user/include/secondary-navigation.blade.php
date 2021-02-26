@@ -9,7 +9,16 @@
         </ul>
         <!--end left-->
         <ul class="right">
+            @if (Auth::guard('admin')->check())
+            <li>
+                <a class="nav-link" href="{{route('home_admin')}}">
+                    <i class="fa fa-user-plus"></i>Admin
+                </a>
+            </li>
+            @endif
+
             @if (Auth::guard('admin')->check() ||Auth::guard('user')->check())
+
             <li>
                 <a href="{{route('account')}}">
                     <i class="fa fa-heart"></i>Akun Saya
