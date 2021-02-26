@@ -10,7 +10,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1>Pets Clinic</h1>
+        <h1><strong>Pets Clinic</strong></h1>
     </div>
     <!--end container-->
 </div>
@@ -27,7 +27,7 @@ sub-page
 @section('background')
 <div class="background">
     <div class="background-image">
-        <img src="{{asset('user/assets/img/include_image/bg_klinik.jpg')}}" alt="">
+        <img src="{{asset('user/assets/img/include_image/bg_klinik1.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
