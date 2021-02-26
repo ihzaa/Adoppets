@@ -10,7 +10,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1>Cari Informasi Terbaik Tentang Hewan Peliharan Anda</h1>
+        <h1>Blogs</h1>
     </div>
     <!--end container-->
 </div>
@@ -26,12 +26,11 @@ sub-page
 
 @section('background')
 <div class="background">
-    <div class="background-image original-size">
-        <img src="assets/img/footer-background-icons.jpg" alt="">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_blog.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
-<!--end background-->
 @endsection
 
 @section('content')
