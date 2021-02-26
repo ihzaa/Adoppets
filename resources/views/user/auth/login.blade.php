@@ -26,8 +26,8 @@ sub-page
 
 @section('background')
 <div class="background">
-    <div class="background-image original-size">
-        <img src="{{asset('user/assets/img/footer-background-icons.jpg')}}" alt="">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_login.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
@@ -42,20 +42,16 @@ sub-page
                 <form class="form clearfix" method="POST" action="{{route('post_login')}}">
                     @csrf
                     <div class="form-group">
-                        <label for="username"
-                            class="col-form-label required @error('username') is-invalid @enderror">Username</label>
-                        <input name=" username" type="text" class="form-control" id="username"
-                            placeholder="Your Username" required>
+                        <label for="username" class="col-form-label required @error('username') is-invalid @enderror">Username</label>
+                        <input name=" username" type="text" class="form-control" id="username" placeholder="Your Username" required>
                     </div>
                     @error('username')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <!--end form-group-->
                     <div class="form-group">
-                        <label for="password"
-                            class="col-form-label required @error('password') is-invalid @enderror">Password</label>
-                        <input name="password" type="password" class="form-control" id="password"
-                            placeholder="Enter Your Password" required>
+                        <label for="password" class="col-form-label required @error('password') is-invalid @enderror">Password</label>
+                        <input name="password" type="password" class="form-control" id="password" placeholder="Enter Your Password" required>
                     </div>
                     @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -87,11 +83,11 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
-    icon: "{{Session::get('icon')}}",
-    title: "{{Session::get('title')}}",
-    text: "{{Session::get('text')}}",
-});
+    swal({
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
 </script>
 @endif
 

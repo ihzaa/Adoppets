@@ -154,8 +154,7 @@ sub-page
                         <form class="sidebar-form form">
                             <div class="form-group">
                                 <label for="what" class="col-form-label">What?</label>
-                                <input name="keyword" type="text" class="form-control" id="what"
-                                    placeholder="Enter keyword and press enter">
+                                <input name="keyword" type="text" class="form-control" id="what" placeholder="Enter keyword and press enter">
                             </div>
                             <!--end form-group-->
                         </form>
