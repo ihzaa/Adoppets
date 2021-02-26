@@ -83,62 +83,7 @@
         <form class="form" action="{{route('post_posting')}}" method="POST" id="submitposting"
             enctype="multipart/form-data">
             @csrf
-            <section>
-                <h2>Informasi Pemilik</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="name" class="col-form-label required">Your Name</label>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Name">
-                        </div>
-                        <!--end form-group-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="email" class="col-form-label required">Your Email</label>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Email">
-                        </div>
-                        <!--end form-group-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="phone" class="col-form-label required">Your Phone</label>
-                            <input name="phone" type="text" class="form-control" id="phone" placeholder="Phone">
-                        </div>
-                        <!--end form-group-->
-                    </div>
-                    <!--end col-md-4-->
-                </div>
-            </section>
-            <!--end basic information-->
 
-            <section>
-                <div class="row">
-                    <div class="col-md-4">
-                        <h2>Jenis Hewan</h2>
-                        <div class="form-group">
-                            <label for="submit-category" class="col-form-label"></label>
-                            <select class="change-tab" data-change-tab-target="category-tabs" name="submit_category"
-                                id="submit-category" data-placeholder="Select Category">
-                                <option value="">Pilih Jenis Hewan</option>
-                                @foreach ($data as $item)
-                                <option @if ($item->id == old("submit_category"))
-                                    {{ "selected" }}
-                                    @endif value="{{$item->id}}">{{$item->nama}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!--end form-group-->
-                    </div>
-                    <!--end col-md-4-->
-
-                    <!--end col-md-8-->
-                </div>
-                <!--end row-->
-            </section>
-            <!--end category information-->
 
             <section>
                 <h2>Judul Postingan</h2>
@@ -150,15 +95,26 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
+                {{-- jenis ras --}}
                 <h2>Details</h2>
-                <div class="form-group">
-                    <label for="ras" class="col-form-label">Ras</label>
-                    <input name="ras" type="text" class="form-control @error('ras') is-invalid @enderror" id=" ras"
-                        placeholder="contoh : persia" required value="{{old('ras')}}">
+
+                {{-- jenis hewan --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ras" class="col-form-label">Jenis Hewan</label>
+                            <select class="change-tab" data-change-tab-target="category-tabs" name="submit_category"
+                                id="submit-category" data-placeholder="Select Category">
+                                <option value="">Pilih Jenis Hewan</option>
+                                @foreach ($data as $item)
+                                <option @if ($item->id == old("submit_category"))
+                                    {{ "selected" }}
+                                    @endif value="{{$item->id}}">{{$item->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                @error('ras')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
 
 
                 {{-- jenis kelamin --}}
@@ -167,7 +123,7 @@
                         <div class="form-group">
                             <label for="ras" class="col-form-label">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select">
-                                <option selected value="0">Select</option>
+                                <option selected value="0">Pilih Jenis Kelamin</option>
                                 <option value="Betina">Betina</option>
                                 <option value="Jantan">Jantan</option>
                             </select>
@@ -177,6 +133,15 @@
                         <!--end form-group-->
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="ras" class="col-form-label">Ras</label>
+                    <input name="ras" type="text" class="form-control @error('ras') is-invalid @enderror" id=" ras"
+                        placeholder="contoh : persia" required value="{{old('ras')}}">
+                </div>
+                @error('ras')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
 
                 <div class="form-group">

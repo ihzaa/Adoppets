@@ -6,9 +6,9 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-.note-modal-backdrop {
-    display: none !important;
-}
+    .note-modal-backdrop {
+        display: none !important;
+    }
 </style>
 
 {{-- for maps --}}
@@ -71,6 +71,27 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
+                {{-- foto klinik --}}
+
+                <div class="form-group">
+                    <label for="email" class="col-form-label">Foto Klinik</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
+                            name="picture" {{request()->is('/postclinic')?"required":""}}>
+                        <label class="custom-file-label" id="labelnya_gambar"
+                            for="imgInp">{{request()->is('/postclinic')?"Image Clinic":"Picture.jpg"}}</label>
+                        <small class="form-text text-muted">- Ukuran max 256KB</small>
+                        <small class="form-text text-muted">- Harus berupa gambar (format:
+                            jpg, jpeg, svg, jfif,
+                            png)</small>
+                    </div>
+                </div>
+                @error('picture')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+                <br> <br>
+
                 {{-- summernote --}}
                 <div class="form-group">
                     <label for="deskripsi" class="col-form-label">Deskripsi</label>
@@ -99,22 +120,6 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
-                <div class="form-group">
-                    @csrf
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
-                            name="picture" {{request()->is('/postclinic')?"required":""}}>
-                        <label class="custom-file-label" id="labelnya_gambar"
-                            for="imgInp">{{request()->is('/postclinic')?"Image Clinic":"Picture.jpg"}}</label>
-                        <small class="form-text text-muted">- Ukuran max 256KB</small>
-                        <small class="form-text text-muted">- Harus berupa gambar (format:
-                            jpg, jpeg, svg, jfif,
-                            png)</small>
-                    </div>
-                </div>
-                @error('picture')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
 
                 <!--end form-group-->
 
@@ -165,7 +170,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-$('#summernote').summernote({
+    $('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -179,7 +184,7 @@ $('#summernote').summernote({
         ['color', ['color']],
         ['para', ['ul', 'ol', 'paragraph']],
         ['table', ['table']],
-        ['insert', ['link', 'picture', 'video']],
+        ['insert', ['link', 'picture']],
     ]
 });
 
@@ -189,7 +194,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-function readURL(input) {
+    function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
