@@ -5,9 +5,9 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-    .note-modal-backdrop {
-        display: none !important;
-    }
+.note-modal-backdrop {
+    display: none !important;
+}
 </style>
 @endsection
 
@@ -62,26 +62,30 @@
                         <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
                             name="picture" {{request()->is('/postblog')?"required":""}}>
                         <label class="custom-file-label" id="labelnya_gambar"
-                            for="imgInp">{{request()->is('/postblog')?"Image Blog":"Foto Profile.jpg"}}</label>
+                            for="imgInp">{{request()->is('/postblog')?"Image Blog":"Picture.jpg"}}</label>
+                        <small class="form-text text-muted">- Tambahkan Gambar untuk Tampilan Postingan Lebih
+                            Baik</small>
                         <small class="form-text text-muted">- Ukuran max 256KB</small>
                         <small class="form-text text-muted">- Harus berupa gambar (format:
                             jpg, jpeg, svg, jfif,
                             png)</small>
                     </div>
-                    @error('picture')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <!--end form-group-->
+                </div>
+                @error('picture')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <!--end form-group-->
 
-                    {{-- summernote --}}
-                    <div class="form-group">
-                        <label for="isi" class="col-form-label">Isi Blog</label>
-                        <textarea id="summernote" name="isi"
-                            class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
-                    </div>
-                    @error('isi')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+
+                {{-- summernote --}}
+                <div class="form-group">
+                    <label for="isi" class="col-form-label">Isi Blog</label>
+                    <textarea id="summernote" name="isi"
+                        class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
+                </div>
+                @error('isi')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </section>
 
             <section class="clearfix">
@@ -107,7 +111,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    $('#summernote').summernote({
+$('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -131,7 +135,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-    function readURL(input) {
+function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -150,14 +154,14 @@ $("#imgInp").change(function() {
 
 @error('title')
 <script>
-    $("#submitblog").form("show");
+$("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('isi')
 <script>
-    $("#submitblog").form("show");
+$("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

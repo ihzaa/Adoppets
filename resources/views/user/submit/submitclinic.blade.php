@@ -56,7 +56,8 @@
 @section('content')
 <section class="block">
     <div class="container">
-        <form class="form form-submit" action="{{route('post_clinic')}}" method="POST" id="submitclinic">
+        <form class="form form-submit" action="{{route('post_clinic')}}" method="POST" id="submitclinic"
+            enctype="multipart/form-data">
             @csrf
             <section>
                 <h2>Konten</h2>
@@ -69,6 +70,27 @@
                 @error('nama_klinik')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+
+                <div class="form-group">
+                    @csrf
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
+                            name="picture" {{request()->is('/postclinic')?"required":""}}>
+                        <label class="custom-file-label" id="labelnya_gambar"
+                            for="imgInp">{{request()->is('/postclinic')?"Image Clinic":"Picture.jpg"}}</label>
+                        <small class="form-text text-muted">- Tambahkan Gambar untuk Tampilan Postingan Lebih
+                            Baik</small>
+                        <small class="form-text text-muted">- Ukuran max 256KB</small>
+                        <small class="form-text text-muted">- Harus berupa gambar (format:
+                            jpg, jpeg, svg, jfif,
+                            png)</small>
+                    </div>
+                </div>
+                @error('picture')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <!--end form-group-->
+
 
                 {{-- summernote --}}
                 <div class="form-group">
