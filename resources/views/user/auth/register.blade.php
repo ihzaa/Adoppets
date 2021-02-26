@@ -116,7 +116,7 @@ sub-page
                         <input name="no_wa" type="text" class="form-control @error('no_wa') is-invalid @enderror"
                             id="no_wa" placeholder="Your Whatsapp Number" required required value="{{old('no_wa')}}">
                     </div>
-                    @error('no_w
+                    @error('no_wa')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <!--end form-group-->
@@ -137,7 +137,7 @@ sub-page
                     <div class="form-group">
                         @csrf
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="imgInp" value="{{old('foto_profil')}}"
+                            <input type="file" class="custom-file-input" id="imgInp" value={{old('foto_profil')}}
                                 required name="foto_profil" {{request()->is('/postregister')?"required":""}}
                                 name="foto">
                             <label class="custom-file-label" id="labelnya_gambar"
@@ -188,7 +188,7 @@ sub-page
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-function readURL(input) {
+    function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -207,56 +207,56 @@ $("#imgInp").change(function() {
 
 @error('name')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('username')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('instagram')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('alamat_asal')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('domisili_sekarang')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('nomor_telpon')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('email')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('no_wa')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
@@ -264,7 +264,7 @@ $("#register").form("show");
 
 @error('password')
 <script>
-$("#register").form("show");
+    $("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

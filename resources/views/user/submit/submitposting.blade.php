@@ -238,12 +238,15 @@
                     <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
                         title="Find My Position"><i class="fa fa-map-marker"></i></span>
                 </div>
+                <small class="form-text text-muted">Geser Tanda Hijau Untuk Memindah</small>
+
                 <!--end form-group-->
                 <label>Map</label>
                 <div id="map" style="width: 100%; height: 480px"></div>
                 {{-- <div class="map height-400px" id="map-submit"></div> --}}
                 <input name="latitude" type="text" class="form-control" id="latitude" value="-6.200000" hidden>
                 <input name="longitude" type="text" class="form-control" id="longitude" value="106.816666" hidden>
+                <small class="form-text text-muted">Geser Tanda Hijau Untuk Memindah</small>
             </section>
             <!--end location-->
 
@@ -362,4 +365,62 @@ $(document).ready(function() {
         }
     })
 </script>
+
+
+
+@error('title')
+<script>
+    $("#submitposting").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
+
+@error('ras')
+<script>
+    $("#submitposting").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
+
+@error('umur')
+<script>
+    $("#submitposting").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
+
+@error('makanan')
+<script>
+    $("#submitposting").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
+
+@error('warna')
+<script>
+    $("#submitposting").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
+
+@error('kondisi_fisik')
+<script>
+    $("#submitposting").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
+
+@error('path')
+<script>
+    $("#submitposting").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
+
+@error('informasi_lain')
+<script>
+    $("#submitposting").form("show");
+// swal("PESAN", "sub pesan", "error");
+</script>
+@enderror
 @endsection
