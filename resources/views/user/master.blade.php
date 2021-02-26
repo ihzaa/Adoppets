@@ -61,9 +61,9 @@
                                     </li>
                                     @endif -->
                                     <li class="nav-item">
-                                        <a href="{{route('get_submit_postingan')}}"
-                                            class="btn btn-primary text-caps btn-rounded btn-framed">Submit
-                                            Posting</a>
+                                        <a href="{{route('account')}}"
+                                            class="btn btn-primary text-caps btn-rounded btn-framed">Profile
+                                            Saya</a>
                                     </li>
                                 </ul>
                                 <!--Main navigation list-->

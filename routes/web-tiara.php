@@ -52,7 +52,7 @@ Route::middleware('auth:user')->group(function () {
     //untuk posting klinik
     Route::get('/submitclinic', 'user_Controller\clinicinfo\ClinicController@index_clinic')->name('submit_clinic');
     Route::post('/postclinic', 'user_Controller\clinicinfo\ClinicController@store_clinic')->name('post_clinic');
-    Route::get('/postinganClinic', 'user_Controller\clinicinfo\ClinicController@index')->name('posting_clinic');
+    Route::get('/postinganClinic', 'user_Controller\clinicinfo\ClinicController@list_clinic')->name('posting_clinic');
 
     // Kontak
     Route::post('/contact', 'user_Controller\contact\ContactController@store')->name('post_contact');

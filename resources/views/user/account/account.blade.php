@@ -56,6 +56,9 @@ sub-page
                     <a class="nav-link icon" href="">
                         <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
+                    <a class="nav-link icon" href="{{route('logout')}}">
+                        <i class="fa fa-sign-out"></i>Logout
+                    </a>
                 </nav>
             </div>
             <!--end col-md-3-->

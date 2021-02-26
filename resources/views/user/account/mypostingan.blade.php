@@ -55,6 +55,9 @@ sub-page
                     <a class="nav-link icon" href="">
                         <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
+                    <a class="nav-link icon" href="{{route('logout')}}">
+                        <i class="fa fa-sign-out"></i>Logout
+                    </a>
                 </nav>
             </div>
             <!--end col-md-3-->
@@ -87,9 +90,18 @@ sub-page
                 <!--============ Items ==========================================================================-->
                 <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
 
+                    <a href="{{route('submit_posting')}}" class="item call-to-action">
+                        <div class="wrapper">
+                            <div class="title">
+                                <i class="fa fa-plus-square-o"></i>
+                                Submit Hewan Peliharaan
+                            </div>
+                        </div>
+                    </a>
                     @foreach ($edit as $item)
                     <div class="item">
                         <div class="wrapper">
+
                             <div class="image">
                                 <h3>
                                     <a href="#" class="tag category">{{$category[$item->category_id]}}</a>

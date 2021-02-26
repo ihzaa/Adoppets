@@ -59,7 +59,7 @@ sub-page
                     <a href="mailto:adoptpets477@gmail.com" target="_blank">adoptpets477@gmail.com</a>
                 </figure>
                 <figure class="with-icon">
-                    <i class="fa fa-envelope"></i>
+                    <i class="fa fa-instagram"></i>
                     <a href="https://www.instagram.com/adoptpets477/?hl=en" target="_blank">@adoptpets</a>
                 </figure>
             </div>

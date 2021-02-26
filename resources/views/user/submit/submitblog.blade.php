@@ -5,9 +5,9 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-    .note-modal-backdrop {
-        display: none !important;
-    }
+.note-modal-backdrop {
+    display: none !important;
+}
 </style>
 @endsection
 
@@ -122,7 +122,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    $('#summernote').summernote({
+$('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -146,7 +146,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-    function readURL(input) {
+function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -165,14 +165,14 @@ $("#imgInp").change(function() {
 
 @error('title')
 <script>
-    $("#submitblog").form("show");
+$("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('isi')
 <script>
-    $("#submitblog").form("show");
+$("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

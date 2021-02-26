@@ -19,11 +19,11 @@
 
             @if (Auth::guard('admin')->check() ||Auth::guard('user')->check())
 
-            <li>
+            <!-- <li>
                 <a href="{{route('account')}}">
                     <i class="fa fa-heart"></i>Akun Saya
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="{{route('logout')}}">
                     <i class="fa fa-sign-out"></i>Logout
