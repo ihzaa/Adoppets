@@ -43,13 +43,13 @@ sub-page
                     <a class="nav-link active icon" href="{{route('account')}}">
                         <i class="fa fa-user"></i>Profil Saya
                     </a>
-                    <a class="nav-link icon" href="">
+                    <a class="nav-link icon" href="{{route('edit_posting')}}">
                         <i class="fa fa-paw"></i>Postingan Hewan
                     </a>
                     <a class="nav-link icon" href="">
                         <i class="fa fa-book"></i>Postingan Blog
                     </a>
-                    <a class="nav-link icon" href="">
+                    <a class="nav-link icon" href="{{route('posting_clinic')}}">
                         <i class="fa fa-hospital-o"></i>Postingan Clinic
                     </a>
                     <a class="nav-link icon" href="">
@@ -92,9 +92,9 @@ sub-page
                                 <h3>
                                     <a href="single-listing-1.html" class="title">judul</a>
                                 </h3>
-                                <!-- <a href="single-listing-1.html" class="image-wrapper background-image">
+                                <a href="single-listing-1.html" class="image-wrapper background-image">
                                     <img src="" alt="">
-                                </a> -->
+                                </a>
                             </div>
                             <!-- <h4 class="author">
                                 <a href="#">penulis</a>
