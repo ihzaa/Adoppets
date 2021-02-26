@@ -127,6 +127,7 @@ class PostingController extends Controller
         $request->validate([
             'title' => 'required',
             'isi' => 'required',
+            'picture' => 'required|image|mimes:jpeg,svg,jfif,png,jpg|max:2560',
         ]);
 
         $data2 = User::where('id', Auth::user()->id)->first();
@@ -134,7 +135,16 @@ class PostingController extends Controller
 
         $data->title = $request->title;
         $data->isi = $request->isi;
+        $data->picture = $request->picture;
         $data->user_id = $data2->id;
+        $data->save();
+
+        $extension = $request->file('picture')->getClientOriginalExtension();
+        $location = 'images/posting';
+        $nameUpload = $data->id . 'thumbnail.' . $extension;
+        $request->file('picture')->move('assets/' . $location, $nameUpload);
+        $filepath = 'assets/' . $location . '/' . $nameUpload;
+        $data->picture = $filepath;
         $data->save();
 
         return redirect(route('blog_detail'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Terimakasih Masukannya!');
