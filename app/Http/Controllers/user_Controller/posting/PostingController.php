@@ -104,9 +104,9 @@ class PostingController extends Controller
         $edit = posting::where('user_id', Auth::user()->id)->get();
         $category = Category::pluck('nama', 'id');
         $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
-        dd($vaksin1);
 
-        return view('user/account/mypostingan', compact('edit', 'category', 'vaccines'));
+
+        return view('user/account/mypostingan', compact('edit', 'category'));
     }
 
     //posting blog
@@ -142,7 +142,7 @@ class PostingController extends Controller
         $data->picture = $filepath;
         $data->save();
 
-        return redirect(route('blog_detail'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Terimakasih Masukannya!');
+        return redirect(route('blog'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Blog Berhasil Ditulis!');
     }
 
     //posting informasi klinik

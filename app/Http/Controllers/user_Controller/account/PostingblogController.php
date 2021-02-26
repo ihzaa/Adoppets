@@ -4,6 +4,10 @@ namespace App\Http\Controllers\user_Controller\account;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use App\Blog;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class PostingblogController extends Controller
 {
@@ -17,7 +21,8 @@ class PostingblogController extends Controller
     public function index()
     {
         //
-        return view('user/account/postingblog');
+        $list = Blog::where('user_id', Auth::user()->id)->get();
+        return view('user/account/postingblog', compact('list'));
     }
 
     /**

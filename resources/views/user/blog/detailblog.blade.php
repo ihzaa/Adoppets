@@ -42,10 +42,10 @@ sub-page
 
                 <article class="blog-post clearfix">
                     <a href="blog-post.html">
-                        <img src="assets/img/blog-image-01.jpg" alt="">
+                        <img src="" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">10 tips for renovation</a></h2>
+                        <h2><a href="blog-post.html"></a></h2>
                         <div class="tags framed">
                         </div>
                     </div>
@@ -83,6 +83,7 @@ sub-page
                     </div>
                     <!--end blog-post-content-->
                 </article>
+                @endforeach
 
                 <!--end Article-->
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\user_Controller\blog;
 use App\Blog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -16,13 +18,13 @@ class BlogController extends Controller
     public function index()
     {
         //
-        return view('user/blog/blog');
+        $list = Blog::all();
+        $user = User::pluck('name', 'id');
+        return view('user/blog/blog', compact('list', 'user'));
     }
 
     public function index_detail()
     {
-        $blog = new Blog();
-        return view('user/blog/detailblog', compact('blog'));
     }
 
     /**

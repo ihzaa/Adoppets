@@ -86,32 +86,33 @@ sub-page
                 </div>
                 <!--============ Items ==========================================================================-->
                 <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
+
+                    @foreach ($list as $item)
+
+
                     <div class="item">
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="single-listing-1.html" class="title">judul</a>
+                                    <a href="single-listing-1.html" class="title">{{$item->title}}</a>
                                 </h3>
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
-                                    <img src="" alt="">
+                                    <img src="{{asset($item->picture)}}" alt="">
                                 </a>
                             </div>
-                            <!-- <h4 class="author">
-                                <a href="#">penulis</a>
-                            </h4> -->
 
                             <!--end image-->
                             <div class="additional-info">
                                 <ul>
                                     <li>
-                                        <aside class="fa fa-user"> penulis</aside>
+                                        <aside class="fas fa-calendar-alt">{{$item->created_at}}</aside>
                                     </li>
                                 </ul>
                             </div>
                             <div class="description">
-                                <p>Jika Anda memiliki pertanyaan tentang kami silahkan kunjungi salah satu narahubung
-                                    dibawah ini. Kami
-                                    siap menjawab dan memberikan pelayanan yang baik kepada Anda.</p>
+                                <p>@php
+                                    echo($item->isi)
+                                    @endphp</p>
                             </div>
                             <div class="admin-controls">
                                 <a href="edit-ad.html">
@@ -128,7 +129,7 @@ sub-page
                             <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
-
+                    @endforeach
                     <!--end item-->
 
                 </div>

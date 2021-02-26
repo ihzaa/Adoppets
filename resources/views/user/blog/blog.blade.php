@@ -40,73 +40,36 @@ sub-page
         <div class="row">
             <div class="col-md-8">
 
+                @foreach ($list as $item)
                 <article class="blog-post clearfix">
                     <a href="blog-post.html">
-                        <img src="assets/img/blog-image-01.jpg" alt="">
+                        <img src="{{asset($item->picture)}}" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">10 tips untuk Menghilangkan Kutu pada Bulu Anjing</a></h2>
-                        <div class="tags framed">
-                            <a href="#" class="tag">Cat</a>
-                            <a href="#" class="tag">Treat</a>
-                        </div>
+                        <h2><a href="blog-post.html">{{$item->title}}</a></h2>
                     </div>
                     <div class="meta">
                         <figure>
                             <a href="#" class="icon">
                                 <i class="fa fa-user"></i>
-                                John Doe
+                                {{$user[$item->user_id]}}
                             </a>
                         </figure>
                         <figure>
                             <i class="fa fa-calendar-o"></i>
-                            02.05.2017
+                            {{$item->created_at}}
                         </figure>
                     </div>
                     <div class="blog-post-content">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                            amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                            per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                            risus mi euismod elit
+                            @php
+                            echo($item->isi)
+                            @endphp
                         </p>
                         <a href="{{route('blog_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
-
-                <article class="blog-post clearfix">
-                    <a href="blog-post.html">
-                        <img src="assets/img/blog-image-06.jpg" alt="">
-                    </a>
-                    <div class="article-title">
-                        <h2><a href="blog-post.html">Rekomendasi Tempat Aksesori Hewan Peliharan</a></h2>
-                        <div class="tags framed">
-                            <a href="#" class="tag">Pets</a>
-                            <a href="#" class="tag">Accecories</a>
-                        </div>
-                    </div>
-                    <div class="meta">
-                        <figure>
-                            <a href="#" class="icon">
-                                <i class="fa fa-user"></i>
-                                John Doe
-                            </a>
-                        </figure>
-                        <figure>
-                            <i class="fa fa-calendar-o"></i>
-                            02.05.2017
-                        </figure>
-                    </div>
-                    <div class="blog-post-content">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                            amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                            per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                            risus mi euismod elit
-                        </p>
-                        <a href="{{route('blog_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
-                    </div>
-                </article>
+                @endforeach
 
                 <!--end Articles-->
 
@@ -154,7 +117,8 @@ sub-page
                         <form class="sidebar-form form">
                             <div class="form-group">
                                 <label for="what" class="col-form-label">What?</label>
-                                <input name="keyword" type="text" class="form-control" id="what" placeholder="Enter keyword and press enter">
+                                <input name="keyword" type="text" class="form-control" id="what"
+                                    placeholder="Enter keyword and press enter">
                             </div>
                             <!--end form-group-->
                         </form>
@@ -230,4 +194,18 @@ sub-page
     <!--end container-->
 </section>
 <!--end block-->
+@endsection
+
+
+@section('js_after')
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
 @endsection
