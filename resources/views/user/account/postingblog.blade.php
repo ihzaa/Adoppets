@@ -10,7 +10,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1>Postingan Saya</h1>
+        <h1><strong>Postingan Blog</strong></h1>
     </div>
     <!--end container-->
 </div>
@@ -26,12 +26,11 @@ sub-page
 
 @section('background')
 <div class="background">
-    <div class="background-image original-size">
-        <img src="assets/img/footer-background-icons.jpg" alt="">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_akunsaya.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
-<!--end background-->
 @endsection
 
 @section('content')
@@ -66,8 +65,7 @@ sub-page
                 <div class="section-title clearfix">
                     <div class="float-left float-xs-none">
                         <label class="mr-3 align-text-bottom">Urutkan Berdasarkan: </label>
-                        <select name="sorting" id="sorting" class="small width-200px"
-                            data-placeholder="Default Sorting">
+                        <select name="sorting" id="sorting" class="small width-200px" data-placeholder="Default Sorting">
                             <option value="">Default Sorting</option>
                             <option value="1">Newest First</option>
                             <option value="2">Oldest First</option>
@@ -77,12 +75,10 @@ sub-page
 
                     </div>
                     <div class="float-right d-xs-none thumbnail-toggle">
-                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid"
-                            data-parent-class="items">
+                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid" data-parent-class="items">
                             <i class="fa fa-th"></i>
                         </a>
-                        <a href="#" class="change-class active" data-change-from-class="grid"
-                            data-change-to-class="list" data-parent-class="items">
+                        <a href="#" class="change-class active" data-change-from-class="grid" data-change-to-class="list" data-parent-class="items">
                             <i class="fa fa-th-list"></i>
                         </a>
                     </div>

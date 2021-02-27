@@ -10,7 +10,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1>Blogs</h1>
+        <h1><strong>Blogs</strong></h1>
     </div>
     <!--end container-->
 </div>
@@ -116,8 +116,7 @@ sub-page
                         <form class="sidebar-form form">
                             <div class="form-group">
                                 <label for="what" class="col-form-label">What?</label>
-                                <input name="keyword" type="text" class="form-control" id="what"
-                                    placeholder="Enter keyword and press enter">
+                                <input name="keyword" type="text" class="form-control" id="what" placeholder="Enter keyword and press enter">
                             </div>
                             <!--end form-group-->
                         </form>
@@ -201,10 +200,10 @@ sub-page
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     swal({
-    icon: "{{Session::get('icon')}}",
-    title: "{{Session::get('title')}}",
-    text: "{{Session::get('text')}}",
-});
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
 </script>
 @endif
 @endsection
