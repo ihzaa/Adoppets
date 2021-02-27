@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-.delete {
-    background-color: #fd1200;
-    border: none;
-    color: white;
-    padding: 5px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+    .delete {
+        background-color: #fd1200;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
 
-.add_form_field {
-    background-color: #1c97f3;
-    border: none;
-    color: white;
-    padding: 8px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 1px solid #186dad;
-}
+    .add_form_field {
+        background-color: #1c97f3;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: 1px solid #186dad;
+    }
 </style>
 @endsection
 
@@ -84,7 +84,7 @@
             enctype="multipart/form-data">
             @csrf
 
-
+            {{-- section detail informasi hewan --}}
             <section>
                 <div class="row">
                     <div class="col-md-8">
@@ -206,6 +206,7 @@
                 </div>
             </section>
 
+            {{-- section foto hewan hewan --}}
             <section>
                 <h2>Foto Hewan</h2>
                 <div class="file-upload-previews"></div>
@@ -219,9 +220,9 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </section>
-            <!--end gallery-->
 
 
+            {{-- section lokasi --}}
             <section>
                 <h2>Lokasi</h2>
                 <!--end row-->
@@ -265,7 +266,7 @@
                 @error('informasi_lain')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-            </section> -->
+            </section>
 
 
             <section class="clearfix">
@@ -290,7 +291,7 @@
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 {{-- js datepicker --}}
 <script>
-// add form dynamic
+    // add form dynamic
 $(document).ready(function() {
     var max_fields = 10;
     var wrapper = $(".container1");
@@ -336,7 +337,7 @@ $(document).ready(function() {
 
 {{-- selecter jenis_kelamin --}}
 <script>
-$("#submitposting").on("submit", function() {
+    $("#submitposting").on("submit", function() {
     if ($("#jenis_kelamin").val() == 0) {
         event.preventDefault();
         $("#message_jk").show();
@@ -348,56 +349,56 @@ $("#submitposting").on("submit", function() {
 
 @error('title')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('ras')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('umur')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('makanan')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('warna')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('kondisi_fisik')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('path')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('informasi_lain')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
