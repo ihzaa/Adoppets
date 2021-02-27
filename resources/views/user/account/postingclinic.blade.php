@@ -65,7 +65,8 @@ sub-page
                 <div class="section-title clearfix">
                     <div class="float-left float-xs-none">
                         <label class="mr-3 align-text-bottom">Urutkan Berdasarkan: </label>
-                        <select name="sorting" id="sorting" class="small width-200px" data-placeholder="Default Sorting">
+                        <select name="sorting" id="sorting" class="small width-200px"
+                            data-placeholder="Default Sorting">
                             <option value="">Default Sorting</option>
                             <option value="1">Newest First</option>
                             <option value="2">Oldest First</option>
@@ -75,10 +76,12 @@ sub-page
 
                     </div>
                     <div class="float-right d-xs-none thumbnail-toggle">
-                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid" data-parent-class="items">
+                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid"
+                            data-parent-class="items">
                             <i class="fa fa-th"></i>
                         </a>
-                        <a href="#" class="change-class active" data-change-from-class="grid" data-change-to-class="list" data-parent-class="items">
+                        <a href="#" class="change-class active" data-change-from-class="grid"
+                            data-change-to-class="list" data-parent-class="items">
                             <i class="fa fa-th-list"></i>
                         </a>
                     </div>
@@ -89,36 +92,37 @@ sub-page
                         <div class="wrapper">
                             <div class="title">
                                 <i class="fa fa-plus-square-o"></i>
-                                Submit Informasi Klinik
+                                Posting Informasi Klinik
                             </div>
                         </div>
                     </a>
                     <!-- tempat foreach nanti disini -->
+                    @foreach ($list as $item)
                     <div class="item">
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="single-listing-1.html" class="title">judul</a>
+                                    <a href="single-listing-1.html" class="title">{{$item->nama_klinik}}</a>
                                 </h3>
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
-                                    <img src="" alt="">
+                                    <img src="{{asset($item->picture)}}" alt="">
                                 </a>
                             </div>
                             <h4 class="location">
-                                <a href="#"> Nama Lokasi</a>
+                                <a href="#"> {{$item->lokasi}}</a>
                             </h4>
                             <!--end image-->
                             <div class="additional-info">
                                 <ul>
                                     <li>
-                                        <aside class="fa fa-user"> no telp</aside>
+                                        <aside class="fa fa-user"> {{$item->no_telepon}}</aside>
                                     </li>
                                 </ul>
                             </div>
                             <div class="description">
-                                <p>Jika Anda memiliki pertanyaan tentang kami silahkan kunjungi salah satu narahubung
-                                    dibawah ini. Kami
-                                    siap menjawab dan memberikan pelayanan yang baik kepada Anda.</p>
+                                <p>@php
+                                    echo($item->deskripsi)
+                                    @endphp</p>
                             </div>
                             <div class="admin-controls">
                                 <a href="edit-ad.html">
@@ -135,6 +139,7 @@ sub-page
                             <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
+                    @endforeach
 
                     <!--end item-->
 

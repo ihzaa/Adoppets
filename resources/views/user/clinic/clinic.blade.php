@@ -38,96 +38,36 @@ sub-page
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-
+                @foreach ($list as $item)
                 <article class="blog-post clearfix">
-                    <a href="blog-post.html">
-                        <img src="assets/img/blog-image-01.jpg" alt="">
+                    <a href="#">
+                        <img src="{{asset($item->picture)}}" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">PETS CLINIC HUSADA BAKTI</a></h2>
+                        <h2><a href="#">{{$item->nama_klinik}}</a></h2>
                     </div>
                     <div class="meta">
                         <figure>
                             <a href="#" class="icon">
                                 <i class="fa fa-user"></i>
-                                John Doe
+                                {{$user[$item->user_id]}}
                             </a>
                         </figure>
                         <figure>
                             <i class="fa fa-map-marker"></i>
-                            Yogyakarta, Jawa Tengah
+                            {{$item->lokasi}}
                         </figure>
                     </div>
                     <div class="blog-post-content">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                            amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                            per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                            risus mi euismod elit
+                            @php
+                            echo($item->deskripsi)
+                            @endphp
                         </p>
                         <a href="{{route('clinic_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
-
-                <article class="blog-post clearfix">
-                    <a href="blog-post.html">
-                        <img src="assets/img/blog-image-02.jpg" alt="">
-                    </a>
-                    <div class="article-title">
-                        <h2><a href="blog-post.html">PETS CLINIC TRISANI SEHAT</a></h2>
-                    </div>
-                    <div class="meta">
-                        <figure>
-                            <a href="#" class="icon">
-                                <i class="fa fa-user"></i>
-                                John Doe
-                            </a>
-                        </figure>
-                        <figure>
-                            <i class="fa fa-map-marker"></i>
-                            Malang, Jawa Timur
-                        </figure>
-                    </div>
-                    <div class="blog-post-content">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                            amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                            per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                            risus mi euismod elit
-                        </p>
-                        <a href="blog-post.html" class="btn btn-primary btn-framed detail">Read more</a>
-                    </div>
-                </article>
-
-                <article class="blog-post clearfix">
-                    <a href="blog-post.html">
-                        <img src="assets/img/blog-image-06.jpg" alt="">
-                    </a>
-                    <div class="article-title">
-                        <h2><a href="blog-post.html">PETS CLINIC INTERNASIONAL</a></h2>
-                    </div>
-                    <div class="meta">
-                        <figure>
-                            <a href="#" class="icon">
-                                <i class="fa fa-user"></i>
-                                John Doe
-                            </a>
-                        </figure>
-                        <figure>
-                            <i class="fa fa-map-marker"></i>
-                            Sidoarjo, Jawa Timur
-                        </figure>
-                    </div>
-                    <div class="blog-post-content">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                            amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                            per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                            risus mi euismod elit
-                        </p>
-                        <a href="blog-post.html" class="btn btn-primary btn-framed detail">Read more</a>
-                    </div>
-                </article>
+                @endforeach
 
                 <!--end Articles-->
 

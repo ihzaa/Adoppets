@@ -86,6 +86,7 @@
 
             {{-- section detail informasi hewan --}}
             <section>
+                <h2>Deskripsi</h2>
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
@@ -115,7 +116,7 @@
                     </div>
                 </div>
 
-                <h2>Deskripsi</h2>
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">

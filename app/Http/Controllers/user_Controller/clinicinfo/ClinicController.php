@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user_Controller\clinicinfo;
 
 use App\Clinic_information;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,9 @@ class ClinicController extends Controller
     public function index()
     {
         //
-        return view('user/clinic/clinic');
+        $list = Clinic_information::all();
+        $user = User::pluck('name', 'id');
+        return view('user/clinic/clinic', compact('list', 'user'));
     }
 
     //detail postingan klinik (read more)
@@ -66,13 +69,14 @@ class ClinicController extends Controller
         $data->picture = $filepath;
         $data->save();
 
-        return redirect(route('landingpage'));
+        return redirect(route('posting_clinic'));
     }
 
     //list clinic pada akun saya
     public function list_clinic()
     {
-        return view('user/account/postingclinic');
+        $list = Clinic_information::where('user_id', Auth::user()->id)->get();
+        return view('user/account/postingclinic', compact('list'));
     }
 
     public function create()

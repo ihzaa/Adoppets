@@ -50,6 +50,7 @@ sub-page
                     <div class="meta">
                         <figure>
                             <a href="#" class="icon">
+
                                 <i class="fa fa-user"></i>
                                 {{$user[$item->user_id]}}
                             </a>
@@ -65,7 +66,7 @@ sub-page
                             echo($item->isi)
                             @endphp
                         </p>
-                        <a href="{{route('blog_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
+                        <a href="" class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
                 @endforeach
@@ -116,7 +117,8 @@ sub-page
                         <form class="sidebar-form form">
                             <div class="form-group">
                                 <label for="what" class="col-form-label">What?</label>
-                                <input name="keyword" type="text" class="form-control" id="what" placeholder="Enter keyword and press enter">
+                                <input name="keyword" type="text" class="form-control" id="what"
+                                    placeholder="Enter keyword and press enter">
                             </div>
                             <!--end form-group-->
                         </form>
@@ -199,11 +201,11 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
-        icon: "{{Session::get('icon')}}",
-        title: "{{Session::get('title')}}",
-        text: "{{Session::get('text')}}",
-    });
+swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
 </script>
 @endif
 @endsection
