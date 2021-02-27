@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //untuk blog, tampilan awal blog
 //detail blog ketika diklik "read more"
 Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
-Route::get('/detailblog', 'user_Controller\blog\BlogController@index_detail')->name('blog_detail');
+//Route::get('/detailblog', 'user_Controller\blog\BlogController@index_detail')->name('blog_detail');
 
 //kontak
 Route::get('/contact', 'user_Controller\contact\ContactController@index')->name('contact');

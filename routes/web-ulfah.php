@@ -35,8 +35,14 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/editPosting', 'user_Controller\posting\PostingController@edit_posting')->name('edit_posting');
 
 
-    // edit account
+    // ACCOUNT
     Route::post('/posteditaccount', 'user_Controller\account\AccountController@update')->name('post_update_account');
+
+    // BLOG
+    Route::get('/blog/detail/{id}', 'user_Controller\blog\BlogController@detail')->name('detail_blog');
+    Route::get('/blog/update/{id}', 'user_Controller\blog\BlogController@edit')->name('update_blog');
+    Route::post('/blog/update/post/{id}', 'user_Controller\blog\BlogController@update')->name('stote_update_blog');
+    Route::delete('/blog/delete/{id}', 'user_Controller\blog\BlogController@destroy')->name('delete_blog');
 });
 
 Route::middleware('checkfetch')->group(function () {

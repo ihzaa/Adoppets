@@ -65,7 +65,7 @@ sub-page
                             echo($item->isi)
                             @endphp
                         </p>
-                        <a href="{{route('blog_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
+                        <a href="" class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
                 @endforeach
@@ -116,7 +116,8 @@ sub-page
                         <form class="sidebar-form form">
                             <div class="form-group">
                                 <label for="what" class="col-form-label">What?</label>
-                                <input name="keyword" type="text" class="form-control" id="what" placeholder="Enter keyword and press enter">
+                                <input name="keyword" type="text" class="form-control" id="what"
+                                    placeholder="Enter keyword and press enter">
                             </div>
                             <!--end form-group-->
                         </form>

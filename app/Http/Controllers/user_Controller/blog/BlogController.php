@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
 class BlogController extends Controller
 {
@@ -106,7 +108,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Blog::find($id);
+        return view('user/blog/EditBlog', compact('data'));
     }
 
     /**
@@ -118,7 +121,34 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'isi' => 'required',
+            'picture' => 'image|mimes:jpeg,svg,jfif,png,jpg|max:2560',
+        ]);
+
+        $data = Blog::find($id);
+        $data->title = $request->title;
+        $data->isi = $request->isi;
+        if ($request->file('picture') != "") {
+            File::delete($data->picture);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            $location = 'images/posting';
+            $nameUpload = $data->id . 'thumbnail.' . $extension;
+            $request->file('picture')->move('assets/' . $location, $nameUpload);
+            $filepath = 'assets/' . $location . '/' . $nameUpload;
+            $data->picture = $filepath;
+        }
+
+        $data->save();
+        return redirect(route('posting_blog'))->with('icon', 'success')->with('text', 'Blog Berhasil di Edit! :');
+    }
+
+    public function detail($id)
+    {
+        $data = Blog::find($id);
+        $user = User::pluck('name', 'id');
+        return view('user/blog/detailBlog', compact('data', 'user'));
     }
 
     /**
@@ -129,6 +159,9 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Blog::find($id);
+        Blog::destroy($data->id);
+        File::delete($data->picture);
+        return redirect(route('posting_blog'))->with('sukses_delete', 'Data Berhasil Di Delete');
     }
 }
