@@ -63,13 +63,7 @@
 
             <div class="form-group">
                 <label for="title" class="col-form-label">Foto Blog</label>
-                {{--  --}}
-                {{-- <div class="col-md-4">
-                    <img id="blah"
-                        src="{{request()->is('*/postblog*')?asset('images/default/picture.svg'):asset($blog->picture)}}"
-                class="img-fluid" src="" alt="your image" />
-            </div> --}}
-            {{--  --}}
+
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
                     name="picture" {{request()->is('/postblog')?"required":""}}>
