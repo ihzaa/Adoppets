@@ -6,9 +6,9 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-    .note-modal-backdrop {
-        display: none !important;
-    }
+.note-modal-backdrop {
+    display: none !important;
+}
 </style>
 
 {{-- for maps --}}
@@ -61,34 +61,65 @@
             @csrf
             <section>
                 <h2>Konten</h2>
-                <div class="form-group">
-                    <label for="nama_klinik" class="col-form-label">Nama Klinik</label>
-                    <input name="nama_klinik" type="text"
-                        class="form-control @error('nama_klinik') is-invalid @enderror" id="nama_klinik"
-                        placeholder="contoh : Klinik Bakti Husada" required value="{{old('nama_klinik')}}">
-                </div>
-                @error('nama_klinik')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-
-                {{-- foto klinik --}}
-
-                <div class="form-group">
-                    <label for="email" class="col-form-label">Foto Klinik</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
-                            name="picture" {{request()->is('/postclinic')?"required":""}}>
-                        <label class="custom-file-label" id="labelnya_gambar"
-                            for="imgInp">{{request()->is('/postclinic')?"Image Clinic":"Picture.jpg"}}</label>
-                        <small class="form-text text-muted">- Ukuran max 256KB</small>
-                        <small class="form-text text-muted">- Harus berupa gambar (format:
-                            jpg, jpeg, svg, jfif,
-                            png)</small>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="nama_klinik" class="col-form-label">Nama Klinik</label>
+                            <input name="nama_klinik" type="text"
+                                class="form-control @error('nama_klinik') is-invalid @enderror" id="nama_klinik"
+                                placeholder="contoh : Klinik Bakti Husada" required value="{{old('nama_klinik')}}">
+                        </div>
+                        @error('nama_klinik')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <!--end col-md-8-->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="no_telepon" class="col-form-label">Nomer Telepon</label>
+                            <input name="no_telepon" type="text"
+                                class="form-control @error('no_telepon') is-invalid @enderror" id="no_telepon"
+                                placeholder="contoh : 03321245161" required value="{{old('no_telepon')}}">
+                        </div>
+                        @error('no_telepon')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email</label>
+                            <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                id="email" placeholder="contoh : klinikhusada@gmail.com" value="{{old('email')}}">
+                        </div>
+                        @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <!--end form-group-->
                     </div>
                 </div>
-                @error('picture')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+
+
+                {{-- foto klinik --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Foto Klinik</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}"
+                                    required name="picture" {{request()->is('/postclinic')?"required":""}}>
+                                <label class="custom-file-label" id="labelnya_gambar"
+                                    for="imgInp">{{request()->is('/postclinic')?"Image Clinic":"Picture.jpg"}}</label>
+                                <small class="form-text text-muted">- Ukuran max 256KB</small>
+                                <small class="form-text text-muted">- Harus berupa gambar (format:
+                                    jpg, jpeg, svg, jfif,
+                                    png)</small>
+                            </div>
+                        </div>
+                        @error('picture')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
 
                 <br> <br>
 
@@ -101,29 +132,6 @@
                 @error('deskripsi')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-
-                <div class="form-group">
-                    <label for="no_telepon" class="col-form-label">Nomer Telepon</label>
-                    <input name="no_telepon" type="text" class="form-control @error('no_telepon') is-invalid @enderror"
-                        id="no_telepon" placeholder="contoh : 03321245161" required value="{{old('no_telepon')}}">
-                </div>
-                @error('no_telepon')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-
-                <div class="form-group">
-                    <label for="email" class="col-form-label">Email</label>
-                    <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        id="email" placeholder="contoh : klinikhusada@gmail.com" value="{{old('email')}}">
-                </div>
-                @error('email')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-
-
-                <!--end form-group-->
-
-                <!--end form-group-->
             </section>
 
             <section>
@@ -170,7 +178,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    $('#summernote').summernote({
+$('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -194,7 +202,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-    function readURL(input) {
+function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 

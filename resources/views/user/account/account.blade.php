@@ -44,7 +44,7 @@ sub-page
                         <i class="fa fa-user"></i>Profil Saya
                     </a>
                     <a class="nav-link icon" href="{{route('edit_posting')}}">
-                        <i class="fa fa-paw"></i>Postingan Saya
+                        <i class="fa fa-paw"></i>Postingan Hewan
                     </a>
                     </a>
                     <a class="nav-link icon" href="{{route('posting_blog')}}">

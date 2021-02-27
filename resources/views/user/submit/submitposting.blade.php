@@ -115,7 +115,7 @@
                     </div>
                 </div>
 
-                <h2>Detail</h2>
+                <h2>Deskripsi</h2>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -145,8 +145,8 @@
                                 <option value="Betina">Betina</option>
                                 <option value="Jantan">Jantan</option>
                             </select>
-                            <div style="display: none;" class="alert alert-danger" id="message_jk">Silahkan pilih opsi
-                            </div>
+                            <!-- <div style="display: none;" class="alert alert-danger" id="message_jk">Silahkan pilih opsi
+                            </div> -->
                         </div>
                         <!--end form-group-->
                     </div>
@@ -180,17 +180,29 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="kondisi_fisik" class="col-form-label">Kondisi Fisik</label>
-                            <textarea name="kondisi_fisik" id="kondisi_fisik"
-                                class="form-control @error('kondisi_fisik') is-invalid @enderror" rows=" 6"
-                                placeholder="contoh : ada luka dibagian telinga"
-                                required>{{old('kondisi_fisik')}}</textarea>
+                        <div class="row-md-2">
+                            <div class="form-group">
+                                <label for="kondisi_fisik" class="col-form-label">Kondisi Fisik</label>
+                                <textarea name="kondisi_fisik" id="kondisi_fisik"
+                                    class="form-control @error('kondisi_fisik') is-invalid @enderror" rows=" 6"
+                                    placeholder="contoh : ada luka dibagian telinga"
+                                    required>{{old('kondisi_fisik')}}</textarea>
+                            </div>
+                            @error('kondisi_fisik')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <!--end form-group-->
                         </div>
-                        @error('kondisi_fisik')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <!--end form-group-->
+                        <div class="row-md-2">
+                            <div class="form-group">
+                                <label for="informasi_lain" class="col-form-label">informasi_lain</label>
+                                <textarea name="informasi_lain" id="informasi_lain"
+                                    class="form-control @error('informasi_lain') is-invalid @enderror" rows="6"
+                                    placeholder="contoh : kebiasaan kucing suka makan daun">{{old('informasi_lain')}}</textarea>
+                            </div>
+
+                            <!--end form-group-->
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group container1">
@@ -205,6 +217,28 @@
                     <!--end col-md-8-->
                 </div>
             </section>
+            <!-- <section>
+                <label for="informasi_lain" class="col-form-label">Informasi Tambahan (Opsional)</label>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="accordion-heading-1">
+                            <h4 class="panel-title">
+                                <div class="form-group">
+                                    <textarea name="informasi_lain" id="informasi_lain"
+                                        class="form-control @error('informasi_lain') is-invalid @enderror" rows="4"
+                                        placeholder="contoh : kebiasaan kucing suka makan daun">{{old('informasi_lain')}}</textarea>
+                                </div>
+                            </h4>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                @error('informasi_lain')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </section> -->
 
             <section>
                 <h2>Foto Hewan</h2>
@@ -243,29 +277,6 @@
                 <small class="form-text text-muted">Geser Tanda Hijau Untuk Memindah</small>
             </section>
             <!--end location-->
-
-            <section>
-                <h2>Informasi Tambahan (Opsional)</h2>
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="accordion-heading-1">
-                            <h4 class="panel-title">
-                                <div class="form-group">
-                                    <textarea name="informasi_lain" id="informasi_lain"
-                                        class="form-control @error('informasi_lain') is-invalid @enderror" rows="4"
-                                        placeholder="contoh : kebiasaan kucing suka makan daun">{{old('informasi_lain')}}</textarea>
-                                </div>
-                            </h4>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                @error('informasi_lain')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </section> -->
 
 
             <section class="clearfix">

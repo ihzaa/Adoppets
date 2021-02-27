@@ -148,22 +148,22 @@ has-dark-background
                 </div>
                 <!--end item-->
 
-                <a href="{{route('get_submit_postingan')}}" class="item call-to-action">
+                <!-- <a href="{{route('get_submit_postingan')}}" class="item call-to-action">
                     <div class="wrapper">
                         <div class="title">
                             <i class="fa fa-plus-square-o"></i>
                             Submit Your Post
                         </div>
                     </div>
-                </a>
-                <button class="item call-to-action" id="btn_like">
+                </a> -->
+                <!-- <button class="item call-to-action" id="btn_like">
                     <div class="wrapper">
                         <div class="title">
                             <i class="fa fa-plus-square-o"></i>
                             LIKE
                         </div>
                     </div>
-                </button>
+                </button> -->
                 <!--end item-->
 
 
@@ -213,7 +213,7 @@ has-dark-background
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -221,35 +221,35 @@ has-dark-background
 </script>
 @endif
 <script>
-    $('#btn_like').click(function(){
-        let data = {
-            id : 123
-        }
-        fetch("{{route('likePostingan')}}",{
+$('#btn_like').click(function() {
+    let data = {
+        id: 123
+    }
+    fetch("{{route('likePostingan')}}", {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             headers: {
-            'Content-Type': 'application/json',
-            "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
-            // 'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify(data) // body data type must match "Content-Type" header
         })
         .then(response => {
-            if(response.status == 201){
+            if (response.status == 201) {
                 return "EROR"
-            }else{
+            } else {
                 return response.json()
             }
         })
         .then(data => {
-            if(data == "EROR"){
+            if (data == "EROR") {
                 window.location.replace("{{route('get_login')}}");
-            }else{
+            } else {
                 console.log(data);
             }
         })
         .catch(err => console.log(err));
-    })
+})
 </script>
 @endsection

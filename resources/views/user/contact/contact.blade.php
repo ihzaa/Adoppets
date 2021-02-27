@@ -8,7 +8,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1>Contact Us</h1>
+        <!-- <h1>Contact Us</h1> -->
     </div>
     <!--end container-->
 </div>
