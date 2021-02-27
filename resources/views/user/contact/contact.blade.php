@@ -8,7 +8,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <!-- <h1>Contact Us</h1> -->
+        <h1><strong>Contact Us</strong></h1>
     </div>
     <!--end container-->
 </div>
@@ -37,7 +37,8 @@ sub-page
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h2>Hubungi Kami</h2>
+
+                <br>
                 <p>
                     Jika Anda memiliki pertanyaan tentang kami silahkan kunjungi salah satu narahubung dibawah ini. Kami
                     siap menjawab dan memberikan pelayanan yang baik kepada Anda

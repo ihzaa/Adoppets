@@ -84,7 +84,7 @@
             enctype="multipart/form-data">
             @csrf
 
-
+            {{-- section detail informasi hewan --}}
             <section>
                 <div class="row">
                     <div class="col-md-8">
@@ -240,6 +240,7 @@
                 @enderror
             </section> -->
 
+            {{-- section foto hewan hewan --}}
             <section>
                 <h2>Foto Hewan</h2>
                 <div class="file-upload-previews"></div>
@@ -253,9 +254,9 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </section>
-            <!--end gallery-->
 
 
+            {{-- section lokasi --}}
             <section>
                 <h2>Lokasi</h2>
                 <!--end row-->
