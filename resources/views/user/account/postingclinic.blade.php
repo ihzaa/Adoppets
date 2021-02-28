@@ -115,7 +115,7 @@ sub-page
                             <div class="additional-info">
                                 <ul>
                                     <li>
-                                        <aside class="fa fa-user"> {{$item->no_telepon}}</aside>
+                                        <aside class="fa fa-phone"> {{$item->no_telepon}}</aside>
                                     </li>
                                 </ul>
                             </div>
@@ -125,18 +125,24 @@ sub-page
                                     @endphp</p>
                             </div>
                             <div class="admin-controls">
-                                <a href="edit-ad.html">
+                                <a href="{{route('update_clinic', ['id'=>$item->id])}}">
                                     <i class="fa fa-pencil"></i>Edit
                                 </a>
-                                <a href="#" class="ad-remove">
-                                    <i class="fa fa-trash"></i>Remove
-                                </a>
+                                <form action="{{route('delete_clinic',['id'=>$item->id])}}" method="POST"
+                                    class="form-hapus">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick=" return ConfirmDelete() "
+                                        class="btn btn-framed btn-danger small btn-rounded"><i class="fa fa-trash"></i>
+                                        Hapus</button>
+                                </form>
                             </div>
                             <!--end admin-controls-->
 
                             <!--end description-->
                             <!--end addition-info-->
-                            <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
+                            <a href="{{route('detail_clinic', ['id'=>$item->id])}}"
+                                class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
                     @endforeach
@@ -153,4 +159,31 @@ sub-page
     <!--end container-->
 </section>
 <!--end block-->
+@endsection
+
+@section('js_after')
+{{-- sweet alert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
+
+{{-- confirm delete --}}
+<script>
+function ConfirmDelete() {
+    var x = confirm("Are you sure you want to delete?");
+    if (x)
+        return true;
+    else
+        return false;
+}
+</script>
 @endsection

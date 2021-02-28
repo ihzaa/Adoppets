@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ClinicController extends Controller
 {
@@ -28,7 +29,7 @@ class ClinicController extends Controller
     //detail postingan klinik (read more)
     public function index_detail()
     {
-        return view('user/clinic/detailclinic');
+
     }
 
     //submit clinic
@@ -115,6 +116,8 @@ class ClinicController extends Controller
     public function edit($id)
     {
         //
+        $data = Clinic_information::find($id);
+        return view('user/clinic/Editclinic', compact('data'));
     }
 
     /**
@@ -127,6 +130,33 @@ class ClinicController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nama_klinik' => 'required',
+            'deskripsi' => 'required',
+            'no_telepon' => 'required',
+            'picture' => 'image|mimes:jpeg,svg,jfif,png,jpg|max:2560',
+            'email' => '',
+            'lokasi' => '',
+        ]);
+
+        $data = Clinic_information::find($id);
+        $data->nama_klinik = $request->nama_klinik;
+        $data->deskripsi = $request->deskripsi;
+        $data->no_telepon = $request->no_telepon;
+        $data->email = $request->email;
+        $data->lokasi = $request->city;
+        if ($request->file('picture') != "") {
+            File::delete($data->picture);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            $location = 'images/posting';
+            $nameUpload = $data->id . 'thumbnail.' . $extension;
+            $request->file('picture')->move('assets/' . $location, $nameUpload);
+            $filepath = 'assets/' . $location . '/' . $nameUpload;
+            $data->picture = $filepath;
+        }
+
+        $data->save();
+        return redirect(route('posting_clinic'))->with('icon', 'success')->with('text', 'Informasi Berhasil di Edit! :');
     }
 
     /**
@@ -138,5 +168,16 @@ class ClinicController extends Controller
     public function destroy($id)
     {
         //
+        $data = Clinic_information::find($id);
+        Clinic_information::destroy($data->id);
+        File::delete($data->picture);
+        return redirect(route('posting_clinic'))->with('sukses_delete', 'Data Berhasil Di Delete');
+    }
+
+    public function detail($id)
+    {
+        $data = Clinic_information::find($id);
+        $user = User::pluck('name', 'id');
+        return view('user/clinic/detailclinic', compact('data', 'user'));
     }
 }

@@ -49,7 +49,7 @@ sub-page
                     <a class="nav-link icon" href="{{route('posting_blog')}}">
                         <i class="fa fa-book"></i>Postingan Blog
                     </a>
-                    <a class="nav-link icon" href="">
+                    <a class="nav-link icon" href="{{route('posting_clinic')}}">
                         <i class="fa fa-hospital-o"></i>Postingan Clinic
                     </a>
                     <a class="nav-link icon" href="">
@@ -62,7 +62,8 @@ sub-page
             </div>
             <!--end col-md-3-->
             <div class="col-md-9">
-                <form class="form" action="{{route('post_update_account')}}" method="POST" enctype="multipart/form-data" id="register">
+                <form class="form" action="{{route('post_update_account')}}" method="POST" enctype="multipart/form-data"
+                    id="register">
                     @csrf
                     <div class="row">
                         <div class="col-md-8">
@@ -70,7 +71,9 @@ sub-page
                             <section>
                                 <div class="form-group">
                                     <label for="name" class="col-form-label required">{{ __('Name') }}</label>
-                                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Your Name" value="{{ $user->name }}" required>
+                                    <input name="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" id="name"
+                                        placeholder="Your Name" value="{{ $user->name }}" required>
                                 </div>
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -78,7 +81,9 @@ sub-page
                                 <!--end form-group-->
                                 <div class="form-group">
                                     <label for="username" class="col-form-label required">Username</label>
-                                    <input name="username" type="text" class="form-control  @error('username') is-invalid @enderror" id="username" placeholder="Your Name" value="{{ $user->username }}" required>
+                                    <input name="username" type="text"
+                                        class="form-control  @error('username') is-invalid @enderror" id="username"
+                                        placeholder="Your Name" value="{{ $user->username }}" required>
                                 </div>
                                 @error('username')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -86,7 +91,9 @@ sub-page
                                 <!--end row-->
                                 <div class="form-group">
                                     <label for="alamat_asal" class="col-form-label required">Alamat Asal</label>
-                                    <input name="alamat_asal" type="text" class="form-control @error('alamat_asal') is-invalid @enderror" id="alamat_asal" placeholder="Your Location" value="{{ $user->alamat_asal }}" required>
+                                    <input name="alamat_asal" type="text"
+                                        class="form-control @error('alamat_asal') is-invalid @enderror" id="alamat_asal"
+                                        placeholder="Your Location" value="{{ $user->alamat_asal }}" required>
                                 </div>
                                 @error('alamat_asal')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -95,7 +102,10 @@ sub-page
                                 <div class="form-group">
                                     <label for="domisili_sekarang" class="col-form-label required">Alamat
                                         Sekarang</label>
-                                    <input name="domisili_sekarang" type="text" class="form-control @error('domisili_sekarang') is-invalid @enderror" id="domisili_sekarang" placeholder="Your Location" value="{{ $user->domisili_sekarang }}" required>
+                                    <input name="domisili_sekarang" type="text"
+                                        class="form-control @error('domisili_sekarang') is-invalid @enderror"
+                                        id="domisili_sekarang" placeholder="Your Location"
+                                        value="{{ $user->domisili_sekarang }}" required>
                                 </div>
                                 @error('domisili_sekarang')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -113,7 +123,9 @@ sub-page
                                 <h2>Kontak</h2>
                                 <div class="form-group">
                                     <label for="nomor_telpon" class="col-form-label">Telepon</label>
-                                    <input name="nomor_telpon" type="text" class="form-control @error('nomor_telpon') is-invalid @enderror" id="nomor_telpon" placeholder="Your Phone" value="{{ $user->nomor_telpon }}">
+                                    <input name="nomor_telpon" type="text"
+                                        class="form-control @error('nomor_telpon') is-invalid @enderror"
+                                        id="nomor_telpon" placeholder="Your Phone" value="{{ $user->nomor_telpon }}">
                                 </div>
                                 @error('nomor_telpon')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -121,7 +133,9 @@ sub-page
                                 <!--end form-group-->
                                 <div class="form-group">
                                     <label for="no_wa" class="col-form-label">Nomer Whatsapp</label>
-                                    <input name="no_wa" type="text" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa" placeholder="Your Whatsapp Number" value="{{ $user->no_wa }}">
+                                    <input name="no_wa" type="text"
+                                        class="form-control @error('no_wa') is-invalid @enderror" id="no_wa"
+                                        placeholder="Your Whatsapp Number" value="{{ $user->no_wa }}">
                                 </div>
                                 @error('no_wa')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -129,7 +143,9 @@ sub-page
                                 <!--end form-group-->
                                 <div class="form-group">
                                     <label for="email" class="col-form-label">Email</label>
-                                    <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Your Email" value="{{ $user->email }}">
+                                    <input name="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" id="email"
+                                        placeholder="Your Email" value="{{ $user->email }}">
                                 </div>
                                 @error('email')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -140,8 +156,10 @@ sub-page
                             <section>
                                 <h2>Sosial Media</h2>
                                 <div class="form-group">
-                                    <label for="instagram" class="col-form-label @error('instagram') is-invalid @enderror">Instagram</label>
-                                    <input name="instagram" type="text" class="form-control" id="instagram" placeholder="your username at instagram" value="{{ $user->instagram }}">
+                                    <label for="instagram"
+                                        class="col-form-label @error('instagram') is-invalid @enderror">Instagram</label>
+                                    <input name="instagram" type="text" class="form-control" id="instagram"
+                                        placeholder="your username at instagram" value="{{ $user->instagram }}">
                                 </div>
                                 @error('instagram')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -154,7 +172,9 @@ sub-page
                                 <h2>Password</h2>
                                 <div class="form-group">
                                     <label for="password" class="col-form-label">Password</label>
-                                    <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="your New password">
+                                    <input name="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" id="password"
+                                        placeholder="your New password">
                                 </div>
 
                                 <!--end form-group-->
@@ -173,8 +193,11 @@ sub-page
                                 </div>
                                 <div class="single-file-input">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="imgInp" value={{old('foto_profil')}} required name="foto_profil" {{request()->is('/posteditaccount')?"required":""}} name="foto">
-                                        <label class="custom-file-label" id="labelnya_gambar" for="imgInp">{{request()->is('/posteditaccount')?"Image Profile":"Foto Profile.jpg"}}</label>
+                                        <input type="file" class="custom-file-input" id="imgInp"
+                                            value={{old('foto_profil')}} required name="foto_profil"
+                                            {{request()->is('/posteditaccount')?"required":""}} name="foto">
+                                        <label class="custom-file-label" id="labelnya_gambar"
+                                            for="imgInp">{{request()->is('/posteditaccount')?"Image Profile":"Foto Profile.jpg"}}</label>
                                         <br>
                                         <br>
                                         <small class="form-text text-muted">- Ukuran max 256KB</small>
@@ -207,96 +230,96 @@ sub-page
 
 
 <script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-            reader.onload = function(e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            $("#labelnya_gambar").html(input.files[0].name);
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
         }
+        $("#labelnya_gambar").html(input.files[0].name);
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
+}
 
-    $("#imgInp").change(function() {
-        readURL(this);
-    });
+$("#imgInp").change(function() {
+    readURL(this);
+});
 </script>
 
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
-        icon: "{{Session::get('icon')}}",
-        title: "{{Session::get('title')}}",
-        text: "{{Session::get('text')}}",
-    });
+swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
 </script>
 @endif
 
 
 @error('name')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('username')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('instagram')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('alamat_asal')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('domisili_sekarang')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('nomor_telpon')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('email')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('no_wa')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 
 @error('password')
 <script>
-    $("#register").form("show");
-    // swal("PESAN", "sub pesan", "error");
+$("#register").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 @endsection

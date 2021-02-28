@@ -104,7 +104,7 @@ sub-page
                             <div class="image">
                                 <h3>
                                     <a href="#" class="tag category">{{$category[$item->category_id]}}</a>
-                                    <a href="single-listing-1.html" class="title"></a>
+                                    <a href="single-listing-1.html" class="title">{{$item->title}}</a>
                                     <span class="tag">Offer</span>
                                 </h3>
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
@@ -115,7 +115,7 @@ sub-page
                             <h4 class="location">
                                 <a href="#">{{$item->lokasi}}</a>
                             </h4>
-                            <div class="price">$125</div>
+                            <div class="price">{{$item->ras}}</div>
                             <div class="admin-controls">
                                 <a href="edit-ad.html">
                                     <i class="fa fa-pencil"></i>Edit

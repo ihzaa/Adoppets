@@ -168,19 +168,19 @@ sub-page
 
 @if(session('sukses_delete'))
 <script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil',
-        text: 'Selamat Data Berhasil Dihapus',
-        // footer: '<a href>Why do I have this issue?</a>'
-    })
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: 'Selamat Data Berhasil Dihapus',
+    // footer: '<a href>Why do I have this issue?</a>'
+})
 </script>
 @endif
 
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -190,49 +190,48 @@ sub-page
 
 {{-- confirm delete --}}
 <script>
-    function ConfirmDelete() {
-        var x = confirm("Are you sure you want to delete?");
-        if (x)
-            return true;
-        else
-            return false;
-    }
+function ConfirmDelete() {
+    var x = confirm("Are you sure you want to delete?");
+    if (x)
+        return true;
+    else
+        return false;
+}
 </script>
 
 <script>
-    // $(".form-hapus").on("submit", function(event) {
-    //     event.preventDefault();
-    //     window.swal({
-    //         title: 'Yakin Ingin Menghapus?',
-    //         text: "Jika menghapus maka data akan hilang selamanya",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonText: `Hapus!`,
-    //         cancelButtonText: `Batal`,
-    //     }).then((result) => {
-    //         if (result.value) {
-    //             $(this)[0].submit();
-    //         }
-    //     });
-    // });
-    // $(".form-hapus").on("submit", function(event) {
-    //     event.preventDefault();
-    //     swal({
-    //             title: "Are you sure?",
-    //             text: "Once deleted, you will not be able to recover this imaginary file!",
-    //             icon: "warning",
-    //             buttons: true,
-    //             dangerMode: true,
-    //         })
-    //     .then((result)=>{
-    //         if(result.value){
-    //             $(this)[0].submit();
-    //         }
-    //         else{
-    //             swal("Your imaginary file is safe!");
-    //         }
-    //     })
-    // });
-
+// $(".form-hapus").on("submit", function(event) {
+//     event.preventDefault();
+//     window.swal({
+//         title: 'Yakin Ingin Menghapus?',
+//         text: "Jika menghapus maka data akan hilang selamanya",
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonText: `Hapus!`,
+//         cancelButtonText: `Batal`,
+//     }).then((result) => {
+//         if (result.value) {
+//             $(this)[0].submit();
+//         }
+//     });
+// });
+// $(".form-hapus").on("submit", function(event) {
+//     event.preventDefault();
+//     swal({
+//             title: "Are you sure?",
+//             text: "Once deleted, you will not be able to recover this imaginary file!",
+//             icon: "warning",
+//             buttons: true,
+//             dangerMode: true,
+//         })
+//     .then((result)=>{
+//         if(result.value){
+//             $(this)[0].submit();
+//         }
+//         else{
+//             swal("Your imaginary file is safe!");
+//         }
+//     })
+// });
 </script>
 @endsection

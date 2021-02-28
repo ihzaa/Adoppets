@@ -37,78 +37,58 @@ sub-page
 @section('content')
 <section class="block">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-8">
 
                 <article class="blog-post clearfix">
                     <a href="blog-post.html">
-                        <img src="assets/img/blog-image-01.jpg" alt="">
+                        <img src="{{asset($data->picture)}}" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">KLINIK HEWAN HUSADA BAKTI</a></h2>
+                        <h2><a href="blog-post.html">{{$data->nama_klinik}}</a></h2>
                     </div>
                     <div class="meta">
                         <figure>
                             <a href="#" class="icon">
                                 <i class="fa fa-user"></i>
-                                John Doe
+                                {{$user[$data->user_id]}}
                             </a>
                         </figure>
                         <figure>
-                            <i class="fa fa-map-marker"></i>
-                            Yogyakarta, Jawa Tengah
+                            <i href="#" class="fa fa-map-marker"></i>
+                            {{$data->lokasi}}
                         </figure>
                     </div>
                     <div class="blog-post-content">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                            amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                            per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                            risus mi euismod elit
-
-                            vehicula mattis id vel nunc. Quisque vel augue in erat scelerisque egestas at et
-                            leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-                            ac turpis egestas. Ut cursus orci et lacus imperdiet, sed maximus nibh laoreet.
-                            Nam posuere dolor id orci fringilla, imperdiet porttitor justo varius. Proin ac
-                            lorem condimentum, iaculis tortor sed, semper dui. Praesent dignissim posuere
-                            euismod. Donec cursus massa nisi, eget lobortis eros vestibulum vitae. Vivamus a
-                            sapien sem. Praesent in massa dui. Aliquam augue sem, porttitor in orci quis,
-                            tempus bibendum purus. Suspendisse at aliquet ex, id egestas nisi. Donec quis
-                            dictum elit. Nullam sed sodales nisl. Duis eget consectetur ante, eu sodales nisi.
-                        </p>
+                            @php
+                            echo($data->deskripsi)
+                            @endphp</p>
                         <hr>
                         <div class="author">
-                            <div class="author-image">
-                                <div class="background-image">
-                                    <img src="assets/img/author-09.jpg" alt="">
-                                </div>
-                            </div>
                             <!--end author-image-->
-                            <div class="author-description">
-                                <div class="section-title">
-                                    <h3>KLINIK HEWAN BAKTI HUSADA</h3>
-                                    <h4 class="location">
-                                        <a href="#">Malang, Jawa Timur</a>
-                                    </h4>
-                                    <h4 class="no-telp">
-                                        <a href="#">03252-1673331</a>
-                                    </h4>
-                                    <figure>
-                                        <div class="text-align-right social">
-                                            <a href="#">
-                                                <i class="fa fa-facebook-square"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa fa-twitter-square"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa fa-instagram"></i>
-                                            </a>
-                                        </div>
-                                    </figure>
+                            <div class="section">
+                                <div class="email">
+                                    <a href="#"><i class="fa fa-envelope"></i> {{$data->email}}</a>
                                 </div>
-
+                                <div class="no-telp">
+                                    <a href="#"><i class="fa fa-phone"></i> {{$data->no_telepon}}</a>
+                                </div>
+                                <!-- <figure>
+                                    <div class="text-align-right social">
+                                        <a href="#">
+                                            <i class="fa fa-facebook-square"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-twitter-square"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </div>
+                                </figure> -->
                             </div>
+
                             <!--end author-description-->
                         </div>
                         <!--end author-->
@@ -140,86 +120,7 @@ sub-page
             </div>
             <!--end col-md-8-->
 
-            <div class="col-md-4">
-                <!--============ Side Bar ===============================================================-->
-                <aside class="sidebar">
-                    <section>
-                        <h2>Search Blog</h2>
-                        <!--============ Side Bar Search Form ===========================================-->
-                        <form class="sidebar-form form">
-                            <div class="form-group">
-                                <label for="what" class="col-form-label">What?</label>
-                                <input name="keyword" type="text" class="form-control" id="what"
-                                    placeholder="Enter keyword and press enter">
-                            </div>
-                            <!--end form-group-->
-                        </form>
-                        <!--============ End Side Bar Search Form =======================================-->
-                    </section>
-                    <section>
-                        <h2>Popular Posts</h2>
-                        <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-03.jpg">
-                            </a>
-                            <!--end background-image-->
-                            <div class="description">
-                                <h4>
-                                    <a href="blog-post.html">How to build a cool swimming pool</a>
-                                </h4>
-                                <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
-                                </div>
-                                <!--end meta-->
-                            </div>
-                            <!--end description-->
-                        </div>
-                        <!--end sidebar-post-->
 
-                        <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-04.jpg">
-                            </a>
-                            <!--end background-image-->
-                            <div class="description">
-                                <h4>
-                                    <a href="blog-post.html">Concrete decorations can be beautiful</a>
-                                </h4>
-                                <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
-                                </div>
-                                <!--end meta-->
-                            </div>
-                            <!--end description-->
-                        </div>
-                        <!--end sidebar-post-->
-
-                        <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-05.jpg">
-                            </a>
-                            <!--end background-image-->
-                            <div class="description">
-                                <h4>
-                                    <a href="blog-post.html">Let’s take a break</a>
-                                </h4>
-                                <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
-                                </div>
-                                <!--end meta-->
-                            </div>
-                            <!--end description-->
-                        </div>
-                        <!--end sidebar-post-->
-
-                    </section>
-
-                </aside>
-                <!--============ End Side Bar ===========================================================-->
-            </div>
             <!--end col-md-3-->
         </div>
     </div>

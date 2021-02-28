@@ -28,7 +28,7 @@ Route::get('/contact', 'user_Controller\contact\ContactController@index')->name(
 
 //informasi klinik
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
-Route::get('/detailclinic', 'user_Controller\clinicinfo\ClinicController@index_detail')->name('clinic_detail');
+//Route::get('/detailclinic', 'user_Controller\clinicinfo\ClinicController@index_detail')->name('clinic_detail');
 
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
@@ -55,6 +55,11 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/postclinic', 'user_Controller\clinicinfo\ClinicController@store_clinic')->name('post_clinic');
     Route::get('/postinganClinic', 'user_Controller\clinicinfo\ClinicController@list_clinic')->name('posting_clinic');
 
+    // Route::get('/clinic/detail/{id}', 'user_Controller\clinicinfo\ClinicController@detail')->name('detail_clinic');
+    Route::get('/clinic/detail/{id}', 'user_Controller\clinicinfo\ClinicController@detail')->name('detail_clinic');
+    Route::get('/clinic/update/{id}', 'user_Controller\clinicinfo\ClinicController@edit')->name('update_clinic');
+    Route::post('/clinic/update/post/{id}', 'user_Controller\clinicinfo\ClinicController@update')->name('store_update_clinic');
+    Route::delete('/clinic/delete/{id}', 'user_Controller\clinicinfo\ClinicController@destroy')->name('delete_clinic');
     // Kontak
     Route::post('/contact', 'user_Controller\contact\ContactController@store')->name('post_contact');
 });
