@@ -215,13 +215,6 @@
                                             <input name="email" type="email" class="form-control" id="email"
                                                 placeholder="Your Email">
                                         </div>
-                                        <!--end form-group-->
-                                        <div class="form-group">
-                                            <label for="message" class="col-form-label">Message</label>
-                                            <textarea name="message" id="message" class="form-control" rows="4"
-                                                placeholder="Hi there! I am interested in your offer ID 53951. Please give me more details."></textarea>
-                                        </div>
-                                        <!--end form-group-->
                                         <button type="submit" class="btn btn-primary">Send</button>
                                     </form>
                                 </div>
