@@ -138,7 +138,7 @@ sub-page
                                 </ul>
                             </div>
                             <!--end addition-info-->
-                            <a href="{{route('detail_posting_saya')}}" class="detail text-caps underline">Detail</a>
+                            <a href="" class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
                     @endforeach

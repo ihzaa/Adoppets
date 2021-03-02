@@ -44,7 +44,7 @@ Route::middleware('auth:user')->group(function () {
     //untuk posting hewan
     Route::get('/submitposting', 'user_Controller\posting\PostingController@index_posting')->name('submit_posting');
     Route::post('/postposting', 'user_Controller\posting\PostingController@store_posting')->name('post_posting');
-    Route::get('/detailPostingSaya', 'user_Controller\posting\PostingController@detail')->name('detail_posting_saya');
+    // Route::get('/detailPostingSaya', 'user_Controller\posting\PostingController@detail')->name('detail_posting_saya');
 
     //untuk posting blog
     Route::get('/submitblog', 'user_Controller\blog\BlogController@index_blog')->name('submit_blog');
