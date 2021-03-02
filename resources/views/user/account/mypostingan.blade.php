@@ -100,7 +100,6 @@ sub-page
                     @foreach ($edit as $item)
                     <div class="item">
                         <div class="wrapper">
-
                             <div class="image">
                                 <h3>
                                     <a href="#" class="tag category">{{$category[$item->category_id]}}</a>
@@ -108,7 +107,7 @@ sub-page
                                     <span class="tag">Offer</span>
                                 </h3>
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
-                                    <img src="" alt="">
+                                    <img src="{{asset($aset_posting[$item->id])}}" alt="">
                                 </a>
                             </div>
                             <!--end image-->

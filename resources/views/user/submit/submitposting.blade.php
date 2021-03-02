@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-.delete {
-    background-color: #fd1200;
-    border: none;
-    color: white;
-    padding: 5px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+    .delete {
+        background-color: #fd1200;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
 
-.add_form_field {
-    background-color: #1c97f3;
-    border: none;
-    color: white;
-    padding: 8px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 1px solid #186dad;
-}
+    .add_form_field {
+        background-color: #1c97f3;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: 1px solid #186dad;
+    }
 </style>
 @endsection
 
@@ -101,7 +101,7 @@
                     <!--end col-md-8-->
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="ras" class="col-form-label">Jenis Hewan</label>
+                            <label for="ras" class="col-form-label required">Jenis Hewan</label>
                             <select class="change-tab" data-change-tab-target="category-tabs" name="submit_category"
                                 id="submit-category" data-placeholder="Select Category">
                                 <option value="">Pilih Jenis Hewan</option>
@@ -120,7 +120,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="ras" class="col-form-label">Ras</label>
+                            <label for="ras" class="col-form-label required">Ras</label>
                             <input name="ras" type="text" class="form-control @error('ras') is-invalid @enderror"
                                 id=" ras" placeholder="contoh : persia" required value="{{old('ras')}}">
                         </div>
@@ -130,9 +130,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="umur" class="col-form-label">Umur</label>
+                            <label for="umur" class="col-form-label required">Umur</label>
                             <input name="umur" type="text" class="form-control @error('umur') is-invalid @enderror"
-                                id=" umur" placeholder="contoh : 1 Tahun" value="{{old('umur')}}">
+                                id=" umur" placeholder="Masukkan usia dalam bentuk jumlah bulan. contoh : 1"
+                                value="{{old('umur')}}">
                         </div>
                         @error('umur')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -140,7 +141,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="ras" class="col-form-label">Jenis Kelamin</label>
+                            <label for="ras" class="col-form-label required">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select">
                                 <option selected value="0">Pilih Jenis Kelamin</option>
                                 <option value="Betina">Betina</option>
@@ -155,7 +156,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="warna" class="col-form-label">Warna</label>
+                            <label for="warna" class="col-form-label required">Warna</label>
                             <input name="warna" type="text" class="form-control @error('warna') is-invalid @enderror"
                                 id="warna" placeholder="contoh : abu mix putih" required
                                 value="{{old('warna')}}"></input>
@@ -167,7 +168,7 @@
                     <!--end col-md-8-->
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="makanan" class="col-form-label">Makanan</label>
+                            <label for="makanan" class="col-form-label required">Makanan</label>
                             <input name="makanan" type="text"
                                 class="form-control @error('makanan') is-invalid @enderror" id="
                         makanan" placeholder="contoh : Makanan Kering/Basah" required value="{{old('makanan')}}">
@@ -183,7 +184,7 @@
                     <div class="col-md-6">
                         <div class="row-md-2">
                             <div class="form-group">
-                                <label for="kondisi_fisik" class="col-form-label">Kondisi Fisik</label>
+                                <label for="kondisi_fisik" class="col-form-label required">Kondisi Fisik</label>
                                 <textarea name="kondisi_fisik" id="kondisi_fisik"
                                     class="form-control @error('kondisi_fisik') is-invalid @enderror" rows=" 6"
                                     placeholder="contoh : ada luka dibagian telinga"
@@ -218,28 +219,7 @@
                     <!--end col-md-8-->
                 </div>
             </section>
-            <!-- <section>
-                <label for="informasi_lain" class="col-form-label">Informasi Tambahan (Opsional)</label>
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="accordion-heading-1">
-                            <h4 class="panel-title">
-                                <div class="form-group">
-                                    <textarea name="informasi_lain" id="informasi_lain"
-                                        class="form-control @error('informasi_lain') is-invalid @enderror" rows="4"
-                                        placeholder="contoh : kebiasaan kucing suka makan daun">{{old('informasi_lain')}}</textarea>
-                                </div>
-                            </h4>
-                        </div>
 
-                    </div>
-
-                </div>
-
-                @error('informasi_lain')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </section> -->
 
             {{-- section foto hewan hewan --}}
             <section>
@@ -303,7 +283,7 @@
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 {{-- js datepicker --}}
 <script>
-// add form dynamic
+    // add form dynamic
 $(document).ready(function() {
     var max_fields = 10;
     var wrapper = $(".container1");
@@ -349,7 +329,7 @@ $(document).ready(function() {
 
 {{-- selecter jenis_kelamin --}}
 <script>
-$("#submitposting").on("submit", function() {
+    $("#submitposting").on("submit", function() {
     if ($("#jenis_kelamin").val() == 0) {
         event.preventDefault();
         $("#message_jk").show();
@@ -361,56 +341,56 @@ $("#submitposting").on("submit", function() {
 
 @error('title')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('ras')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('umur')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('makanan')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('warna')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('kondisi_fisik')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('path')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('informasi_lain')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

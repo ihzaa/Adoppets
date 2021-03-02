@@ -101,8 +101,10 @@ class PostingController extends Controller
         $edit = posting::where('user_id', Auth::user()->id)->get();
         $category = Category::pluck('nama', 'id');
         $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
+        $aset_posting = Asset_posting::pluck('path', 'posting_id');
+        // dd($aset_posting);
 
-        return view('user/account/mypostingan', compact('edit', 'category'));
+        return view('user/account/mypostingan', compact('edit', 'category', 'aset_posting'));
     }
 
     //list posting pada my akun
