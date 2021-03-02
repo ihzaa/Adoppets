@@ -112,4 +112,6 @@ class PostingController extends Controller
     {
         return view('user/account/mypostingan');
     }
+
+    
 }

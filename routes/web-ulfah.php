@@ -38,11 +38,17 @@ Route::middleware('auth:user')->group(function () {
     // ACCOUNT
     Route::post('/posteditaccount', 'user_Controller\account\AccountController@update')->name('post_update_account');
 
-    // BLOG
+    // Pengelolaan BLOG
     Route::get('/blog/detail/{id}', 'user_Controller\blog\BlogController@detail')->name('detail_blog');
     Route::get('/blog/update/{id}', 'user_Controller\blog\BlogController@edit')->name('update_blog');
     Route::post('/blog/update/post/{id}', 'user_Controller\blog\BlogController@update')->name('stote_update_blog');
     Route::delete('/blog/delete/{id}', 'user_Controller\blog\BlogController@destroy')->name('delete_blog');
+
+    // posting
+    Route::get('/posting/detail/{id}', 'user_Controller\posting\PostingController@detail')->name('detail_posting_hewan');
+    Route::get('/posting/update/{id}', 'user_Controller\posting\PostingController@edit')->name('update_posting_hewan');
+    Route::post('/posting/update/post/{id}', 'user_Controller\posting\PostingController@update')->name('store_update_posting_hewan');
+    Route::delete('/posting/delete/{id}', 'user_Controller\posting\PostingController@delete')->name('delete_posting_hewan');
 });
 
 Route::middleware('checkfetch')->group(function () {
