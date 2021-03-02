@@ -119,4 +119,12 @@ class PostingController extends Controller
     {
         return view('user/account/mypostingan');
     }
+
+    // detail posting hewan pada my account
+
+    public function detail_hewan($id)
+    {
+        $data = posting::find($id);
+        return view('user/posting/detailPostingAccount', compact('data'));
+    }
 }

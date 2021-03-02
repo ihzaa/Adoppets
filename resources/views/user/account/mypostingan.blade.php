@@ -138,7 +138,8 @@ sub-page
                                 </ul>
                             </div>
                             <!--end addition-info-->
-                            <a href="" class="detail text-caps underline">Detail</a>
+                            <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
+                                class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
                     @endforeach

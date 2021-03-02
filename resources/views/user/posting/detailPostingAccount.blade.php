@@ -97,37 +97,37 @@
                                 <tr>
                                     <td>Ras</td>
                                     <td width="10">:</td>
-                                    <td></td>
+                                    <td>{{$data->ras}}</td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Kelamin</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data->jenis_kelamin}}</td>
                                 </tr>
                                 <tr>
                                     <td>Umur</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data->umur}}</td>
                                 </tr>
                                 <tr>
                                     <td>Makanan</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data->makanan}}</td>
                                 </tr>
                                 <tr>
                                     <td>Warna</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data->warna}}</td>
                                 </tr>
                                 <tr>
                                     <td>Kondisi Fisik</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data->kondisi_fisik}}</td>
                                 </tr>
                                 <tr>
                                     <td>Informasi Lain</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data->informasi_lain}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -172,7 +172,7 @@
 <script src="{{asset('user/assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('user/assets/js/custom.js')}}"></script>
 <script>
-var latitude = 51.511971;
+    var latitude = 51.511971;
 var longitude = -0.137597;
 var markerImage = "{{asset('user/assets/img/map-marker.png')}}";
 var mapTheme = "light";
