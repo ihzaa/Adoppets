@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\user_Controller\posting;
 
+use App\Category;
 use App\Http\Controllers\Controller;
+use App\posting;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class LandingpageController extends Controller
 {
@@ -12,10 +16,92 @@ class LandingpageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return view('user/posting/landingpage');
+        $data = array();
+        // dd($request->category);
+        $data['category'] = [
+            "id" => "",
+            "name" => ""
+        ];
+        $data['location'] = '';
+        if ($request->sort != null)
+            $data['sort'] = $request->sort;
+        else
+            $data['sort'] = 'desc';
+        if ($request->category == null && $request->location == null) {
+            // $data['posts'] = posting::paginate(20);
+            $data['posts'] = DB::table('postings')
+                ->select(
+                    'postings.*',
+                    DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
+                    'categories.nama as category',
+                    'users.name as username'
+                )
+                ->join('categories', 'categories.id', '=', 'postings.category_id')
+                ->join('users', 'users.id', '=', 'postings.user_id')
+                ->orderBy('created_at', $data['sort'])
+                ->paginate(20);
+            // $data['posts'] = DB::select('SELECT p.*,c.nama as category, (SELECT ap.path FROM asset_postings AS ap WHERE ap.posting_id = p.id LIMIT 1) as foto FROM `postings` AS p JOIN categories as c ON c.id = p.category_id');
+        } else if ($request->category != null && $request->location == null) {
+            $category = Category::where('nama', "like", $request->category)->first();
+            $data['category'] = [
+                "id" => $category->id,
+                "name" => $category->nama
+            ];
+            $data['posts'] = DB::table('postings')
+                ->select(
+                    'postings.*',
+                    DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
+                    'categories.nama as category',
+                    'users.name as username'
+                )
+                ->join('categories', 'categories.id', '=', 'postings.category_id')
+                ->join('users', 'users.id', '=', 'postings.user_id')
+                ->where('postings.category_id', $category->id)
+                ->orderBy('created_at', $data['sort'])
+                ->paginate(20);
+        } else if ($request->category == null && $request->location != null) {
+            $data['location'] =  $request->location;
+            // $data['posts'] = posting::where('lokasi', 'like', $request->location)->paginate(20);
+            $data['posts'] = DB::table('postings')
+                ->select(
+                    'postings.*',
+                    DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
+                    'categories.nama as category',
+                    'users.name as username'
+                )
+                ->join('categories', 'categories.id', '=', 'postings.category_id')
+                ->join('users', 'users.id', '=', 'postings.user_id')
+                ->where('postings.lokasi', 'like', '%' . $request->location . '%')
+                ->orderBy('created_at', $data['sort'])
+                ->paginate(20);
+        } else {
+            $category = Category::where('nama', "like", $request->category)->first();
+            $data['category'] = [
+                "id" => $category->id,
+                "name" => $category->nama
+            ];
+            $data['location'] =  $request->location;
+            // $data['posts'] = posting::where('category_id', $category->id)->where('lokasi', 'like', $request->location)->paginate(20);
+            $data['posts'] = DB::table('postings')
+                ->select(
+                    'postings.*',
+                    DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
+                    'categories.nama as category',
+                    'users.name as username'
+                )
+                ->join('categories', 'categories.id', '=', 'postings.category_id')
+                ->join('users', 'users.id', '=', 'postings.user_id')
+                ->where('postings.lokasi', 'like', '%' . $request->location . '%')
+                ->where('postings.category_id', $category->id)
+                ->orderBy('created_at', $data['sort'])
+                ->paginate(20);
+        }
+        // $data['posts'] = $this->arrayPaginator($data['posts']);
+        // dd($data);
+        $data['category_list'] = Category::pluck('nama', 'id');
+        return view('user/posting/landingpage', compact("data"));
     }
 
     /**

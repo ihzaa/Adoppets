@@ -31,8 +31,8 @@ has-dark-background
                 <div class="col-md-3 col-sm-3">
                     <div class="form-group">
                         <label for="input-location" class="col-form-label">Dimana?</label>
-                        <input name="location" type="text" class="form-control" id="input-location"
-                            placeholder="Masukkan Lokasi">
+                        <input name="location" type="text" class="form-control" id="search-location"
+                            placeholder="Masukkan Lokasi" value="{{$data['location'] != "" ? $data['location']:''}}">
                         <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
                             title="Find My Position"><i class="fa fa-map-marker"></i></span>
                     </div>
@@ -42,20 +42,21 @@ has-dark-background
                 <div class="col-md-3 col-sm-3">
                     <div class="form-group">
                         <label for="category" class="col-form-label">Kategori?</label>
-                        <select name="category" id="category" data-placeholder="Select Category">
+                        <select name="category" id="search-category" data-placeholder="Select Category">
                             <option value="">Pilih Kategori</option>
-                            <option value="1">Reptil</option>
-                            <option value="2">Mamalia</option>
-                            <option value="3">Aves/burung</option>
-                            <option value="4">Amfibi</option>
-                            <option value="5">Ikan</option>
+                            @foreach ($data['category_list'] as $k => $v)
+                            <option value="{{$v}}" {{strtolower($data['category']['name'])
+                                ==
+                                strtolower($v) ? 'selected' : '' }}>
+                                {{$v}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <!--end form-group-->
                 </div>
                 <!--end col-md-3-->
                 <div class="col-md-3 col-sm-3">
-                    <button type="submit" class="btn btn-primary width-100">Cari</button>
+                    <button id="search-button" class="btn btn-primary width-100">Cari</button>
                 </div>
                 <!--end col-md-3-->
             </div>
@@ -87,12 +88,13 @@ has-dark-background
             <div class="section-title clearfix">
                 <div class="float-left float-xs-none">
                     <label class="mr-3 align-text-bottom">Urutkan Berdasarkan: </label>
-                    <select name="sorting" id="sorting" class="small width-200px" data-placeholder="Default Sorting">
-                        <option value="">Urutan Default</option>
-                        <option value="1">Newest First</option>
-                        <option value="2">Oldest First</option>
-                        <option value="3">Lowest Price First</option>
-                        <option value="4">Highest Price First</option>
+                    <select name="sorting" id="sorting_post" class="small width-200px"
+                        data-placeholder="Default Sorting">
+                        {{-- <option value="">Urutan Default</option> --}}
+                        <option value="desc" {{$data['sort'] == 'desc'? 'selected' :''}}>Newest First</option>
+                        <option value="asc" {{$data['sort'] == 'asc'? 'selected' :''}}>Oldest First</option>
+                        {{-- <option value="3">Lowest Price First</option>
+                        <option value="4">Highest Price First</option> --}}
                     </select>
 
                 </div>
@@ -109,45 +111,51 @@ has-dark-background
             </div>
             <!--============ Items ==========================================================================-->
             <div class="items grid grid-xl-4-items grid-lg-3-items grid-md-2-items">
+                @if (count($data['posts']) == 0)
+                <h2 class="text-center">Maaf tidak ada postingan</h2>
+                @endif
+                @foreach ($data['posts'] as $post)
                 <div class="item">
                     <!-- <div class="ribbon-featured">Featured</div> -->
                     <!--end ribbon-->
                     <div class="wrapper">
                         <div class="image">
                             <h3>
-                                <a href="#" class="tag category">Home & Decor</a>
-                                <a href="single-listing-1.html" class="title">Furniture for sale</a>
-                                <span class="tag">Offer</span>
+                                <a href="#" class="tag category">{{$post->category}}</a>
+                                <a href="single-listing-1.html" class="title">{{$post->title}}</a>
+                                <span class="tag">{{$post->ras}}</span>
                             </h3>
                             <a href="single-listing-1.html" class="image-wrapper background-image">
-                                <img src="assets/img/image-01.jpg" alt="">
+                                <img src="{{asset($post->foto)}}" alt="">
                             </a>
                         </div>
                         <!--end image-->
                         <h4 class="location">
-                            <a href="#">Manhattan, NY</a>
+                            {{$post->lokasi}}
                         </h4>
-                        <div class="price">$80</div>
+                        {{-- <div class="price">$80</div> --}}
                         <div class="meta">
                             <figure>
-                                <i class="fa fa-calendar-o"></i>02.05.2017
+                                <i
+                                    class="fa fa-calendar-o"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.Y')}}
                             </figure>
                             <figure>
-                                <a href="#">
-                                    <i class="fa fa-user"></i>Jane Doe
-                                </a>
+                                {{-- <a href="#"> --}}
+                                <i class="fa fa-user"></i>
+                                {{ucwords(implode(' ', array_slice(explode(' ', $post->username), 0, 2)))}}
+                                {{-- </a> --}}
                             </figure>
                         </div>
                         <!--end meta-->
                         <div class="description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
+                            <p>{{$post->kondisi_fisik}}</p>
                         </div>
                         <!--end description-->
                         <a href="{{route('detail_posting')}}" class="detail text-caps underline">Detail</a>
                     </div>
                 </div>
                 <!--end item-->
-
+                @endforeach
                 <!-- <a href="{{route('get_submit_postingan')}}" class="item call-to-action">
                     <div class="wrapper">
                         <div class="title">
@@ -169,37 +177,7 @@ has-dark-background
 
             </div>
             <!--============ End Items ======================================================================-->
-            <div class="page-pagination">
-                <nav aria-label="Pagination">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">
-                                    <i class="fa fa-chevron-left"></i>
-                                </span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">
-                                    <i class="fa fa-chevron-right"></i>
-                                </span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            {{$data['posts']->links('user.posting.pagination')}}
             <!--end page-pagination-->
         </div>
         <!--end container-->
@@ -213,15 +191,41 @@ has-dark-background
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
 });
 </script>
 @endif
+<script src="{{asset('user\assets\js\url-search-param.js')}}"></script>
 <script>
-$('#btn_like').click(function() {
+    const URL = {
+        current : "{{route('landingpage')}}"
+    }
+    $(document).on('click','#search-button',function(){
+        let searchLocation = $('#search-location').val();
+        let searchCategory = $('#search-category option:selected').text();
+        let tempUrl = URL.current + '/?';
+        if(searchCategory != ""){
+            tempUrl+='category='+searchCategory+'&'
+        }
+        if(searchLocation != ""){
+            tempUrl+='location'+searchLocation+'&'
+        }
+        tempUrl+='sort'+'desc'
+        window.location.href = tempUrl
+    })
+
+    $(document).on('change','#sorting_post',function(){
+        var searchParams = new URLSearchParams(window.location.search);
+        searchParams.set('sort',$('#sorting_post').val())
+        var newParams = searchParams.toString()
+        window.location.href = URL.current+'/?'+newParams
+
+    })
+
+    $('#btn_like').click(function() {
     let data = {
         id: 123
     }
