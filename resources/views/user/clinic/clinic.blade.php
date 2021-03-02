@@ -64,7 +64,7 @@ sub-page
                             echo($item->deskripsi)
                             @endphp
                         </p>
-                        <a href="{{route('clinic_detail')}}" class="btn btn-primary btn-framed detail">Read more</a>
+                        <a href="" class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
                 @endforeach

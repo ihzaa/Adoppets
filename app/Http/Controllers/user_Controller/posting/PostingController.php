@@ -107,6 +107,13 @@ class PostingController extends Controller
         return view('user/account/mypostingan', compact('edit', 'category', 'aset_posting'));
     }
 
+    public function detail()
+    {
+        // $data = posting::find($id);
+        // $user = User::pluck('name', 'id');
+        return view('user/posting/detailPosting');
+    }
+
     //list posting pada my akun
     public function list_posting()
     {
