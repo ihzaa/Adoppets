@@ -45,7 +45,7 @@ Route::middleware('auth:user')->group(function () {
     Route::delete('/blog/delete/{id}', 'user_Controller\blog\BlogController@destroy')->name('delete_blog');
 
     // posting
-    Route::get('/posting/detail/{id}', 'user_Controller\posting\PostingController@detail')->name('detail_posting_hewan');
+    Route::get('/posting/detail/{id}', 'user_Controller\posting\PostingController@detail_hewan')->name('detail_posting_hewan');
     Route::get('/posting/update/{id}', 'user_Controller\posting\PostingController@edit')->name('update_posting_hewan');
     Route::post('/posting/update/post/{id}', 'user_Controller\posting\PostingController@update')->name('store_update_posting_hewan');
     Route::delete('/posting/delete/{id}', 'user_Controller\posting\PostingController@delete')->name('delete_posting_hewan');
