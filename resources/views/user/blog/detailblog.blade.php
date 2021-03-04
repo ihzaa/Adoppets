@@ -38,7 +38,7 @@ sub-page
 <section class="block">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <article class="blog-post clearfix">
 
                     <a href="blog-post.html">
