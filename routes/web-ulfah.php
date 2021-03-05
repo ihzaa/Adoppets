@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 // halaman register
 Route::get('/detailPosting', 'user_Controller\posting\LandingpageController@index_detail')->name('detail_posting');
 Route::get('/logout', 'auth\allAuthController@logout')->name('logout');
-
 
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
@@ -32,8 +31,7 @@ Route::middleware('auth:user')->group(function () {
     // HALAMAN YG HARUS LOGIN USER
     // posting hewan
     Route::get('/submit', 'user_Controller\posting\PostingController@index')->name('get_submit_postingan');
-    Route::get('/editPosting', 'user_Controller\posting\PostingController@edit_posting')->name('edit_posting');
-
+    Route::get('/PostinganHewan', 'user_Controller\posting\PostingController@edit_posting')->name('edit_posting');
 
     // ACCOUNT
     Route::post('/posteditaccount', 'user_Controller\account\AccountController@update')->name('post_update_account');

@@ -42,19 +42,19 @@ sub-page
                     <a class="nav-link active icon" href="">
                         <i class="fa fa-user"></i>Profil Saya
                     </a>
-                    <a class="nav-link icon" href="">
-                        <i class="fa fa-heart"></i>Postingan Saya
+                    <a class="nav-link icon" href="{{route('edit_posting')}}">
+                        <i class="fa fa-paw"></i>Postingan Hewan
                     </a>
-                    <a class="nav-link icon" href="">
-                        <i class="fa fa-star"></i>Bookmarks
+                    <a class="nav-link icon" href="{{route('posting_blog')}}">
+                        <i class="fa fa-book"></i>Postingan Blog
                     </a>
-                    <a class="nav-link icon" href="">
-                        <i class="fa fa-recycle"></i>Ubah Password
+                    <a class="nav-link icon" href="{{route('posting_clinic')}}">
+                        <i class="fa fa-hospital-o"></i>Postingan Clinic
                     </a>
                     <a class="nav-link icon" href="">
                         <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
-                    <a class="nav-link icon" href="">
+                    <a class="nav-link icon" href="{{route('logout')}}">
                         <i class="fa fa-sign-out"></i>Logout
                     </a>
                 </nav>
@@ -83,14 +83,7 @@ sub-page
                 </div>
                 <!--============ Items ==========================================================================-->
                 <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
-                    <a href="{{route('submit_blog')}}" class="item call-to-action">
-                        <div class="wrapper">
-                            <div class="title">
-                                <i class="fa fa-plus-square-o"></i>
-                                Posting Informasi Blog
-                            </div>
-                        </div>
-                    </a>
+
                     <div class="item">
                         <div class="wrapper">
                             <div class="image">
@@ -117,10 +110,10 @@ sub-page
                                 <a href="">
                                     <i class="fa fa-pencil"></i>Edit
                                 </a>
-                                {{-- <a href="#" class="ad-remove"> --}}
+
                                 <form action="" method="" class="form-hapus">
                                 </form>
-                                {{-- </a> --}}
+
                             </div>
                             <!--end admin-controls-->
 
