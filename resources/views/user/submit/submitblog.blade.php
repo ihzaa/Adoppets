@@ -64,14 +64,6 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <img id="blah"
-                        src="{{request()->is('*submitblog*')?asset('images/default/picture.svg'):asset($blog->picture)}}"
-                        class="img-fluid" src="" alt="image advertisement" />
-                </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="title" class="col-form-label">Foto Blog</label>
@@ -94,17 +86,25 @@
                     @enderror
                 </div>
             </div>
-            <!--end form-group-->
 
-            {{-- summernote --}}
-            <div class="form-group">
-                <label for="isi" class="col-form-label">Isi Blog</label>
-                <textarea id="summernote" name="isi"
-                    class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="isi" class="col-form-label">Isi Blog</label>
+                        <textarea id="summernote" name="isi"
+                            class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
+                    </div>
+                    @error('isi')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <img id="blah"
+                        src="{{request()->is('*submitblog*')?asset('images/default/picture.svg'):asset($blog->picture)}}"
+                        class="img-fluid" src="" alt="image advertisement" />
+                </div>
             </div>
-            @error('isi')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+            <!--end form-group-->
         </section>
 
         <section class="clearfix">
