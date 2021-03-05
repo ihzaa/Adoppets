@@ -158,18 +158,6 @@
                         </div>
                     </section>
                     <!--end Details and Locations-->
-                    <!--Features-->
-                    <section>
-                        <h2>Features</h2>
-                        <ul class="features-checkboxes columns-3">
-                            <li>Quality Wood</li>
-                            <li>Brushed Alluminium Handles</li>
-                            <li>Foam mattress</li>
-                            <li>Detachable chaise section</li>
-                            <li>3 fold pull out mechanism</li>
-                        </ul>
-                    </section>
-                    <!--end Features-->
                     <!--Author-->
                     <section>
                         <h2>Author</h2>
@@ -185,10 +173,7 @@
                                         <!--end author-image-->
                                         <div class="author-description">
                                             <h3>Jane Doe</h3>
-                                            <div class="rating" data-rating="4"></div>
-                                            <a href="seller-detail-1.html" class="text-uppercase">Show My Listings
-                                                <span class="appendix">(12)</span>
-                                            </a>
+
                                         </div>
                                         <!--end author-description-->
                                     </div>
@@ -231,16 +216,14 @@
                 <div class="col-md-3">
                     <aside class="sidebar">
                         <section>
-                            <h2>Similar Ads</h2>
+                            <h2>Similar Post</h2>
                             <div class="items compact">
                                 <div class="item">
-                                    <div class="ribbon-featured">Featured</div>
-                                    <!--end ribbon-->
                                     <div class="wrapper">
                                         <div class="image">
                                             <h3>
-                                                <a href="#" class="tag category">Home & Decor</a>
-                                                <a href="single-listing-1.html" class="title">Furniture for sale</a>
+                                                <a href="#" class="tag category">Kusing</a>
+                                                <a href="single-listing-1.html" class="title">Kucing Persia Lucu</a>
                                                 <span class="tag">Offer</span>
                                             </h3>
                                             <a href="single-listing-1.html" class="image-wrapper background-image">
@@ -249,9 +232,9 @@
                                         </div>
                                         <!--end image-->
                                         <h4 class="location">
-                                            <a href="#">Manhattan, NY</a>
+                                            <a href="#">Malang Kabupaten</a>
                                         </h4>
-                                        <div class="price">$80</div>
+                                        <div class="price">persia</div>
                                         <div class="meta">
                                             <figure>
                                                 <i class="fa fa-calendar-o"></i>02.05.2017
@@ -265,71 +248,6 @@
                                         <!--end meta-->
                                     </div>
                                     <!--end wrapper-->
-                                </div>
-                                <!--end item-->
-
-                                <div class="item">
-                                    <div class="wrapper">
-                                        <div class="image">
-                                            <h3>
-                                                <a href="#" class="tag category">Education</a>
-                                                <a href="single-listing-1.html" class="title">Creative Course</a>
-                                                <span class="tag">Offer</span>
-                                            </h3>
-                                            <a href="single-listing-1.html" class="image-wrapper background-image">
-                                                <img src="{{asset('user/assets/img/image-02.jpg')}}" alt="">
-                                            </a>
-                                        </div>
-                                        <!--end image-->
-                                        <h4 class="location">
-                                            <a href="#">Nashville, TN</a>
-                                        </h4>
-                                        <div class="price">$125</div>
-                                        <div class="meta">
-                                            <figure>
-                                                <i class="fa fa-calendar-o"></i>28.04.2017
-                                            </figure>
-                                            <figure>
-                                                <a href="#">
-                                                    <i class="fa fa-user"></i>Peter Browner
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <!--end meta-->
-                                    </div>
-                                    <!--end wrapper-->
-                                </div>
-                                <!--end item-->
-
-                                <div class="item">
-                                    <div class="wrapper">
-                                        <div class="image">
-                                            <h3>
-                                                <a href="#" class="tag category">Adventure</a>
-                                                <a href="single-listing-1.html" class="title">Into The Wild</a>
-                                                <span class="tag">Ad</span>
-                                            </h3>
-                                            <a href="single-listing-1.html" class="image-wrapper background-image">
-                                                <img src="{{asset('user/assets/img/image-03.jpg')}}" alt="">
-                                            </a>
-                                        </div>
-                                        <!--end image-->
-                                        <h4 class="location">
-                                            <a href="#">Seattle, WA</a>
-                                        </h4>
-                                        <div class="price">$1,560</div>
-                                        <div class="meta">
-                                            <figure>
-                                                <i class="fa fa-calendar-o"></i>21.04.2017
-                                            </figure>
-                                            <figure>
-                                                <a href="#">
-                                                    <i class="fa fa-user"></i>Peak Agency
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <!--end meta-->
-                                    </div>
                                 </div>
                                 <!--end item-->
                             </div>
