@@ -65,7 +65,7 @@ class ClinicController extends Controller
         $data->save();
 
         $extension = $request->file('picture')->getClientOriginalExtension();
-        $location = 'images/posting';
+        $location = 'images/clinic';
         $nameUpload = $data->id . 'thumbnail.' . $extension;
         $request->file('picture')->move('assets/' . $location, $nameUpload);
         $filepath = 'assets/' . $location . '/' . $nameUpload;

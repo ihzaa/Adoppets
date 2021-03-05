@@ -61,7 +61,7 @@ sub-page
                     <div class="blog-post-content">
                         <p>
                             @php
-                            echo(Str::limit($item->deskripsi, 250))
+                            echo(Str::limit($item->deskripsi, 550))
                             @endphp
                         </p>
                         <a href="{{route('readmore_clinic', ['id'=>$item->id])}}"

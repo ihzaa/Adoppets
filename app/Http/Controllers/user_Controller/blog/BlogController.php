@@ -61,7 +61,7 @@ class BlogController extends Controller
         $data->save();
 
         $extension = $request->file('picture')->getClientOriginalExtension();
-        $location = 'images/posting';
+        $location = 'images/blog';
         $nameUpload = $data->id . 'thumbnail.' . $extension;
         $request->file('picture')->move('assets/' . $location, $nameUpload);
         $filepath = 'assets/' . $location . '/' . $nameUpload;
