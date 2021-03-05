@@ -26,8 +26,8 @@ sub-page
 
 @section('background')
 <div class="background">
-    <div class="background-image original-size">
-        <img src="{{asset('assets/img/footer-background-icons.jpg')}}" alt="">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_blog.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
