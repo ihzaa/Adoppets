@@ -6,9 +6,9 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-.note-modal-backdrop {
-    display: none !important;
-}
+    .note-modal-backdrop {
+        display: none !important;
+    }
 </style>
 
 {{-- for maps --}}
@@ -84,6 +84,7 @@
                         @error('no_telepon')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
@@ -102,13 +103,18 @@
                 {{-- foto klinik --}}
                 <div class="row">
                     <div class="col-md-4">
+                        <img id="blah"
+                            src="{{request()->is('*submitclinic*')?asset('images/default/picture.svg'):asset($clinic->picture)}}"
+                            class="img-fluid" src="" alt="image advertisement" />
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label for="email" class="col-form-label">Foto Klinik</label>
+                            <label for="picture" class="col-form-label">Foto Klinik</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}"
-                                    required name="picture" {{request()->is('/postclinic')?"required":""}}>
+                                    required name="picture" {{request()->is('*/clinic*')?"required":""}}>
                                 <label class="custom-file-label" id="labelnya_gambar"
-                                    for="imgInp">{{request()->is('/postclinic')?"Image Clinic":"Picture.jpg"}}</label>
+                                    for="imgInp">{{request()->is('*/clinic*')?"Image Clinic":"Picture.jpg"}}</label>
                                 <small class="form-text text-muted">- Ukuran max 256KB</small>
                                 <small class="form-text text-muted">- Harus berupa gambar (format:
                                     jpg, jpeg, svg, jfif,
@@ -120,7 +126,6 @@
                         @enderror
                     </div>
                 </div>
-
                 <br> <br>
 
                 {{-- summernote --}}
@@ -178,7 +183,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-$('#summernote').summernote({
+    $('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -202,7 +207,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-function readURL(input) {
+    function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 

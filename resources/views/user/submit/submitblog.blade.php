@@ -68,6 +68,11 @@
 
             <div class="row">
                 <div class="col-md-4">
+                    <img id="blah"
+                        src="{{request()->is('*submitblog*')?asset('images/default/picture.svg'):asset($blog->picture)}}"
+                        class="img-fluid" src="" alt="image advertisement" />
+                </div>
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="title" class="col-form-label">Foto Blog</label>
                         <div class="custom-file">
@@ -87,12 +92,6 @@
                     @error('picture')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                </div>
-
-                <div class="col-md-4">
-                    <img id="blah"
-                        src="{{request()->is('*/submitblog*')?asset('images/default/picture.svg'):asset($blog->picture)}}"
-                        class="img-fluid" src="" alt="image advertisement" />
                 </div>
             </div>
             <!--end form-group-->
