@@ -128,7 +128,6 @@ class PostingController extends Controller
     {
         $data = posting::find($id);
         $asset_posting = Asset_posting::find($id);
-        dd($asset_posting->path);
         return view('user/posting/detailPostingAccount', compact('data', 'asset_posting'));
     }
 }
