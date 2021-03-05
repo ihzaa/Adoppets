@@ -69,7 +69,7 @@ sub-page
                         <div class="author">
                             <div class="author-image">
                                 <div class="background-image">
-                                    <img src="{{asset($user_foto[$data->id])}}" alt="">
+                                    <img src="{{asset($user_foto[$data->user_id])}}" alt="">
                                 </div>
                             </div>
                             <!--end author-image-->
@@ -77,11 +77,12 @@ sub-page
                                 <div class="section-title">
                                     <h2>{{$user[$data->user_id]}}</h2>
                                     <h4 class="location">
-                                        <a href="#">Alamat Asal : {{$deskripsi['alamat_asal'][$data->id]}}</a>
+                                        <a href="#">Alamat Asal : {{$deskripsi['alamat_asal'][$data->user_id]}}</a>
 
                                     </h4>
                                     <h4 class="location">
-                                        <a href="#">Alamat Sekarang : {{$deskripsi['domisili_sekarang'][$data->id]}}</a>
+                                        <a href="#">Alamat Sekarang :
+                                            {{$deskripsi['domisili_sekarang'][$data->user_id]}}</a>
                                     </h4>
                                 </div>
 
