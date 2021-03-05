@@ -11,6 +11,7 @@ use App\Vaccine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostingController extends Controller
 {
@@ -101,6 +102,7 @@ class PostingController extends Controller
         $edit = posting::where('user_id', Auth::user()->id)->get();
         $category = Category::pluck('nama', 'id');
         $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
+        $data_image = Asset_posting::all();
         $aset_posting = Asset_posting::pluck('path', 'posting_id');
         // dd($aset_posting);
 
@@ -125,6 +127,8 @@ class PostingController extends Controller
     public function detail_hewan($id)
     {
         $data = posting::find($id);
-        return view('user/posting/detailPostingAccount', compact('data'));
+        $asset_posting = Asset_posting::find($id);
+        dd($asset_posting->path);
+        return view('user/posting/detailPostingAccount', compact('data', 'asset_posting'));
     }
 }

@@ -61,31 +61,13 @@
                         <!--end section-title-->
                         <div class="gallery-carousel owl-carousel">
                             <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="" data-hash="1">
-                            <img src="{{asset('user/assets/img/image-01.jpg')}}" alt="" data-hash="2">
-                            <img src="{{asset('user/assets/img/image-21.jpg')}}" alt="" data-hash="3">
-                            <img src="{{asset('user/assets/img/image-22.jpg')}}" alt="" data-hash="4">
-                            <img src="{{asset('user/assets/img/image-23.jpg')}}" alt="" data-hash="5">
-                            <img src="{{asset('user/assets/img/image-14.jpg')}}" alt="" data-hash="6">
                         </div>
                         <div class="gallery-carousel-thumbs owl-carousel">
+                            @foreach ($asset_posting as $item)
                             <a href="#1" class="owl-thumb active-thumb background-image">
-                                <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="">
+                                <img src="{{asset($item->path)}}" alt="">
                             </a>
-                            <a href="#2" class="owl-thumb background-image">
-                                <img src="{{asset('user/assets/img/image-01.jpg')}}" alt="">
-                            </a>
-                            <a href="#3" class="owl-thumb background-image">
-                                <img src="{{asset('user/assets/img/image-21.jpg')}}" alt="">
-                            </a>
-                            <a href="#4" class="owl-thumb background-image">
-                                <img src="{{asset('user/assets/img/image-22.jpg')}}" alt="">
-                            </a>
-                            <a href="#5" class="owl-thumb background-image">
-                                <img src="{{asset('user/assets/img/image-23.jpg')}}" alt="">
-                            </a>
-                            <a href="#6" class="owl-thumb background-image">
-                                <img src="{{asset('user/assets/img/image-14.jpg')}}" alt="">
-                            </a>
+                            @endforeach
                         </div>
                     </section>
                     <!--end Gallery Carousel-->

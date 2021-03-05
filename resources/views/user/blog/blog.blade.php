@@ -1,11 +1,8 @@
 @extends('user/master')
 
-
 @section('nama-page')
 sub-page
 @endsection
-
-
 
 @section('page-title')
 <div class="page-title">
@@ -38,7 +35,6 @@ sub-page
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-
                 @foreach ($list as $item)
                 <article class="blog-post clearfix">
                     <a href="blog-post.html">
@@ -50,7 +46,6 @@ sub-page
                     <div class="meta">
                         <figure>
                             <a href="#" class="icon">
-
                                 <i class="fa fa-user"></i>
                                 {{$user[$item->user_id]}}
                             </a>
@@ -182,9 +177,7 @@ sub-page
                             <!--end description-->
                         </div>
                         <!--end sidebar-post-->
-
                     </section>
-
                 </aside>
                 <!--============ End Side Bar ===========================================================-->
             </div>
@@ -196,16 +189,18 @@ sub-page
 <!--end block-->
 @endsection
 
-
 @section('js_after')
+
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
 });
 </script>
 @endif
+
+
 @endsection
