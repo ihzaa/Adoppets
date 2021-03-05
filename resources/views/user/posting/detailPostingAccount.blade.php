@@ -65,7 +65,7 @@
                         <div class="gallery-carousel-thumbs owl-carousel">
                             @foreach ($asset_posting as $item)
                             <a href="#1" class="owl-thumb active-thumb background-image">
-                                <img src="{{asset($item->path)}}" alt="">
+                                <img src="" alt="">
                             </a>
                             @endforeach
                         </div>
