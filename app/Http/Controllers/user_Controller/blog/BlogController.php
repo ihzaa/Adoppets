@@ -38,7 +38,7 @@ class BlogController extends Controller
     public function index_blog()
     {
 
-        $blog = Blog::all();
+        $blog = Blog::all()->first();
         return view('user.submit.submitblog', compact('blog'));
     }
 

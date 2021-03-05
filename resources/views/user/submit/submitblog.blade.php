@@ -5,9 +5,9 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-.note-modal-backdrop {
-    display: none !important;
-}
+    .note-modal-backdrop {
+        display: none !important;
+    }
 </style>
 @endsection
 
@@ -70,12 +70,12 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="title" class="col-form-label">Foto Blog</label>
-
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
-                                name="picture" {{request()->is('/postblog')?"required":""}}>
+                                name="picture" {{request()->is('*/submitblog*')?"required":""}}>
                             <label class="custom-file-label" id="labelnya_gambar"
-                                for="imgInp">{{request()->is('/postblog')?"Image Blog":"Picture.jpg"}}</label>
+                                for="imgInp">{{request()->is('*/submitblog*')?"Image Blog":"Picture.jpg"}}</label>
+
                             <small class="form-text text-muted">- Tambahkan Gambar untuk Tampilan Postingan Lebih
                                 Baik</small>
                             <small class="form-text text-muted">- Ukuran max 256KB</small>
@@ -88,8 +88,13 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
 
+                <div class="col-md-4">
+                    <img id="blah"
+                        src="{{request()->is('*/submitblog*')?asset('images/default/picture.svg'):asset($blog->picture)}}"
+                        class="img-fluid" src="" alt="image advertisement" />
+                </div>
+            </div>
             <!--end form-group-->
 
             {{-- summernote --}}
@@ -126,7 +131,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-$('#summernote').summernote({
+    $('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -150,33 +155,33 @@ $(document).ready(function() {
 </script>
 
 <script>
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-        reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
+            reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            $("#labelnya_gambar").html(input.files[0].name);
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
-        $("#labelnya_gambar").html(input.files[0].name);
-        reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
-}
 
-$("#imgInp").change(function() {
-    readURL(this);
-});
+    $("#imgInp").change(function() {
+        readURL(this);
+    });
 </script>
 
 @error('title')
 <script>
-$("#submitblog").form("show");
+    $("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('isi')
 <script>
-$("#submitblog").form("show");
+    $("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
