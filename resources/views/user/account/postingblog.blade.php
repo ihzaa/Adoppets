@@ -120,8 +120,8 @@ sub-page
                                 </ul>
                             </div>
                             <div class="description">
-                                <p>@php
-                                    echo($item->isi)
+                                <p> @php
+                                    echo(Str::limit($item->isi, 200))
                                     @endphp</p>
                             </div>
                             <div class="admin-controls">

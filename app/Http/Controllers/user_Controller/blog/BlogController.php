@@ -8,7 +8,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
 class BlogController extends Controller
 {
@@ -28,8 +27,11 @@ class BlogController extends Controller
     }
 
     //detail blog (read more)
-    public function index_detail()
+    public function readMore($id)
     {
+        $data = Blog::find($id);
+        $user = User::pluck('name', 'id');
+        return view('user/blog/readMore', compact('data', 'user'));
     }
 
     //submit blog
@@ -59,7 +61,7 @@ class BlogController extends Controller
         $data->save();
 
         $extension = $request->file('picture')->getClientOriginalExtension();
-        $location = 'images/posting';
+        $location = 'images/blog';
         $nameUpload = $data->id . 'thumbnail.' . $extension;
         $request->file('picture')->move('assets/' . $location, $nameUpload);
         $filepath = 'assets/' . $location . '/' . $nameUpload;

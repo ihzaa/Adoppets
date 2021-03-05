@@ -61,10 +61,11 @@ sub-page
                     <div class="blog-post-content">
                         <p>
                             @php
-                            echo($item->deskripsi)
+                            echo(Str::limit($item->deskripsi, 550))
                             @endphp
                         </p>
-                        <a href="" class="btn btn-primary btn-framed detail">Read more</a>
+                        <a href="{{route('readmore_clinic', ['id'=>$item->id])}}"
+                            class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
                 @endforeach
