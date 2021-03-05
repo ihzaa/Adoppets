@@ -65,7 +65,8 @@ sub-page
                 <div class="section-title clearfix">
                     <div class="float-left float-xs-none">
                         <label class="mr-3 align-text-bottom">Sort by: </label>
-                        <select name="sorting" id="sorting" class="small width-200px" data-placeholder="Default Sorting">
+                        <select name="sorting" id="sorting" class="small width-200px"
+                            data-placeholder="Default Sorting">
                             <option value="">Default Sorting</option>
                             <option value="1">Newest First</option>
                             <option value="2">Oldest First</option>
@@ -73,10 +74,12 @@ sub-page
 
                     </div>
                     <div class="float-right d-xs-none thumbnail-toggle">
-                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid" data-parent-class="items">
+                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid"
+                            data-parent-class="items">
                             <i class="fa fa-th"></i>
                         </a>
-                        <a href="#" class="change-class active" data-change-from-class="grid" data-change-to-class="list" data-parent-class="items">
+                        <a href="#" class="change-class active" data-change-from-class="grid"
+                            data-change-to-class="list" data-parent-class="items">
                             <i class="fa fa-th-list"></i>
                         </a>
                     </div>
