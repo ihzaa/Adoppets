@@ -84,11 +84,7 @@ sub-page
                                         <a href="#">Alamat Sekarang : {{$deskripsi['domisili_sekarang'][$data->id]}}</a>
                                     </h4>
                                 </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu,
-                                    sit amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per
-                                    conubia nostra, per inceptos himenaeos.
-                                </p>
+
                             </div>
                             <!--end author-description-->
                         </div>
