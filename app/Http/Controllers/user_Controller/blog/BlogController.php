@@ -31,7 +31,11 @@ class BlogController extends Controller
     {
         $data = Blog::find($id);
         $user = User::pluck('name', 'id');
-        return view('user/blog/readMore', compact('data', 'user'));
+        $user_foto = User::pluck('foto_profil', 'id');
+        $deskripsi = array();
+        $deskripsi['alamat_asal'] = User::pluck('alamat_asal', 'id');
+        $deskripsi['domisili_sekarang'] = User::pluck('domisili_sekarang', 'id');
+        return view('user/blog/readMore', compact('data', 'user', 'user_foto', 'deskripsi'));
     }
 
     //submit blog
