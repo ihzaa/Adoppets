@@ -34,7 +34,7 @@ class BlogController extends Controller
         $user_foto = User::pluck('foto_profil', 'id');
         $deskripsi = array();
         $deskripsi['alamat_asal'] = User::pluck('alamat_asal', 'id');
-        $deskripsi['domisili_sekarang'] = User::pluck('domisili_sekarang', 'id');
+        $deskripsi['email'] = User::pluck('email', 'id');
         return view('user/blog/readMore', compact('data', 'user', 'user_foto', 'deskripsi'));
     }
 

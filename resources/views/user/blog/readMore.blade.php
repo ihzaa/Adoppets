@@ -76,14 +76,15 @@ sub-page
                             <div class="author-description">
                                 <div class="section-title">
                                     <h2>{{$user[$data->user_id]}}</h2>
-                                    <h4 class="location">
-                                        <a href="#">Alamat Asal : {{$deskripsi['alamat_asal'][$data->user_id]}}</a>
+                                    <h4 class="email">
+                                        <a href="#"><i class="fa fa-envelope"></i>
+                                            {{$deskripsi['email'][$data->user_id]}}</a>
+                                    </h4>
+                                    <!-- <h4 class="location">
+                                        <a href="#">{{$deskripsi['alamat_asal'][$data->user_id]}}</a>
 
-                                    </h4>
-                                    <h4 class="location">
-                                        <a href="#">Alamat Sekarang :
-                                            {{$deskripsi['domisili_sekarang'][$data->user_id]}}</a>
-                                    </h4>
+                                    </h4> -->
+
                                 </div>
 
                             </div>
