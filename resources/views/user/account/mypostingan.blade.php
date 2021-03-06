@@ -102,8 +102,9 @@ sub-page
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="#" class="tag category">{{$category[$item->category_id]}}</a>
-                                    <a href="single-listing-1.html" class="title">{{$item->title}}</a>
+                                    <a class="tag category">{{$category[$item->category_id]}}</a>
+                                    <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
+                                        class="title">{{$item->title}}</a>
                                     <span class="tag">Offer</span>
                                 </h3>
                                 <a href="single-listing-1.html" class="image-wrapper background-image">

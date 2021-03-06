@@ -5,9 +5,13 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-    .note-modal-backdrop {
-        display: none !important;
-    }
+.note-modal-backdrop {
+    display: none !important;
+}
+
+#blah {
+    width: 300.5px;
+}
 </style>
 @endsection
 
@@ -130,7 +134,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    $('#summernote').summernote({
+$('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -154,33 +158,33 @@ $(document).ready(function() {
 </script>
 
 <script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-            reader.onload = function(e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            $("#labelnya_gambar").html(input.files[0].name);
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
         }
+        $("#labelnya_gambar").html(input.files[0].name);
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
+}
 
-    $("#imgInp").change(function() {
-        readURL(this);
-    });
+$("#imgInp").change(function() {
+    readURL(this);
+});
 </script>
 
 @error('title')
 <script>
-    $("#submitblog").form("show");
+$("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('isi')
 <script>
-    $("#submitblog").form("show");
+$("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

@@ -40,6 +40,8 @@ Route::middleware('auth:user')->group(function () {
 
     //route untuk di my profile
     Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
+    Route::get('/alreadyadopt/detail/{id}', 'user_Controller\account\AlreadyadoptController@detail')->name('detail_alreadyadopt');
+    Route::get('/infouser', 'user_Controller\account\AlreadyadoptController@info')->name('info_user');
 
     //untuk posting hewan
     Route::get('/submitposting', 'user_Controller\posting\PostingController@index_posting')->name('submit_posting');

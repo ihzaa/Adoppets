@@ -65,7 +65,8 @@ sub-page
                 <div class="section-title clearfix">
                     <div class="float-left float-xs-none">
                         <label class="mr-3 align-text-bottom">Urutkan Berdasarkan: </label>
-                        <select name="sorting" id="sorting" class="small width-200px" data-placeholder="Default Sorting">
+                        <select name="sorting" id="sorting" class="small width-200px"
+                            data-placeholder="Default Sorting">
                             <option value="">Default Sorting</option>
                             <option value="1">Newest First</option>
                             <option value="2">Oldest First</option>
@@ -75,10 +76,12 @@ sub-page
 
                     </div>
                     <div class="float-right d-xs-none thumbnail-toggle">
-                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid" data-parent-class="items">
+                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid"
+                            data-parent-class="items">
                             <i class="fa fa-th"></i>
                         </a>
-                        <a href="#" class="change-class active" data-change-from-class="grid" data-change-to-class="list" data-parent-class="items">
+                        <a href="#" class="change-class active" data-change-from-class="grid"
+                            data-change-to-class="list" data-parent-class="items">
                             <i class="fa fa-th-list"></i>
                         </a>
                     </div>
@@ -101,9 +104,10 @@ sub-page
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="single-listing-1.html" class="title">{{$item->title}}</a>
+                                    <a href="{{route('detail_blog', ['id'=>$item->id])}}"
+                                        class="title">{{$item->title}}</a>
                                 </h3>
-                                <a href="single-listing-1.html" class="image-wrapper background-image">
+                                <a class="image-wrapper background-image">
                                     <img src="{{asset($item->picture)}}" alt="">
                                 </a>
                             </div>
@@ -126,10 +130,12 @@ sub-page
                                     <i class="fa fa-pencil"></i>Edit
                                 </a>
                                 {{-- <a href="#" class="ad-remove"> --}}
-                                <form action="{{route('delete_blog',['id'=>$item->id])}}" method="POST" class="form-hapus">
+                                <form action="{{route('delete_blog',['id'=>$item->id])}}" method="POST"
+                                    class="form-hapus">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick=" return ConfirmDelete() " class="btn btn-framed btn-danger small btn-rounded"><i class="fa fa-trash"></i>
+                                    <button type="submit" onclick=" return ConfirmDelete() "
+                                        class="btn btn-framed btn-danger small btn-rounded"><i class="fa fa-trash"></i>
                                         Hapus</button>
                                 </form>
                                 {{-- </a> --}}
@@ -138,7 +144,8 @@ sub-page
 
                             <!--end description-->
                             <!--end addition-info-->
-                            <a href="{{route('detail_blog', ['id'=>$item->id])}}" class="detail text-caps underline">Detail</a>
+                            <a href="{{route('detail_blog', ['id'=>$item->id])}}"
+                                class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
                     @endforeach
@@ -162,70 +169,70 @@ sub-page
 
 @if(session('sukses_delete'))
 <script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil',
-        text: 'Selamat Data Berhasil Dihapus',
-        // footer: '<a href>Why do I have this issue?</a>'
-    })
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: 'Selamat Data Berhasil Dihapus',
+    // footer: '<a href>Why do I have this issue?</a>'
+})
 </script>
 @endif
 
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
-        icon: "{{Session::get('icon')}}",
-        title: "{{Session::get('title')}}",
-        text: "{{Session::get('text')}}",
-    });
+swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
 </script>
 @endif
 
 {{-- confirm delete --}}
 <script>
-    function ConfirmDelete() {
-        var x = confirm("Are you sure you want to delete?");
-        if (x)
-            return true;
-        else
-            return false;
-    }
+function ConfirmDelete() {
+    var x = confirm("Are you sure you want to delete?");
+    if (x)
+        return true;
+    else
+        return false;
+}
 </script>
 
 <script>
-    // $(".form-hapus").on("submit", function(event) {
-    //     event.preventDefault();
-    //     window.swal({
-    //         title: 'Yakin Ingin Menghapus?',
-    //         text: "Jika menghapus maka data akan hilang selamanya",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonText: `Hapus!`,
-    //         cancelButtonText: `Batal`,
-    //     }).then((result) => {
-    //         if (result.value) {
-    //             $(this)[0].submit();
-    //         }
-    //     });
-    // });
-    // $(".form-hapus").on("submit", function(event) {
-    //     event.preventDefault();
-    //     swal({
-    //             title: "Are you sure?",
-    //             text: "Once deleted, you will not be able to recover this imaginary file!",
-    //             icon: "warning",
-    //             buttons: true,
-    //             dangerMode: true,
-    //         })
-    //     .then((result)=>{
-    //         if(result.value){
-    //             $(this)[0].submit();
-    //         }
-    //         else{
-    //             swal("Your imaginary file is safe!");
-    //         }
-    //     })
-    // });
+// $(".form-hapus").on("submit", function(event) {
+//     event.preventDefault();
+//     window.swal({
+//         title: 'Yakin Ingin Menghapus?',
+//         text: "Jika menghapus maka data akan hilang selamanya",
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonText: `Hapus!`,
+//         cancelButtonText: `Batal`,
+//     }).then((result) => {
+//         if (result.value) {
+//             $(this)[0].submit();
+//         }
+//     });
+// });
+// $(".form-hapus").on("submit", function(event) {
+//     event.preventDefault();
+//     swal({
+//             title: "Are you sure?",
+//             text: "Once deleted, you will not be able to recover this imaginary file!",
+//             icon: "warning",
+//             buttons: true,
+//             dangerMode: true,
+//         })
+//     .then((result)=>{
+//         if(result.value){
+//             $(this)[0].submit();
+//         }
+//         else{
+//             swal("Your imaginary file is safe!");
+//         }
+//     })
+// });
 </script>
 @endsection

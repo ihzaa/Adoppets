@@ -37,15 +37,15 @@ sub-page
             <div class="col-md-8">
                 @foreach ($list as $item)
                 <article class="blog-post clearfix">
-                    <a href="blog-post.html">
+                    <a href="{{route('readmore_blog', ['id'=>$item->id])}}">
                         <img src="{{asset($item->picture)}}" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">{{$item->title}}</a></h2>
+                        <h2><a href="{{route('readmore_blog', ['id'=>$item->id])}}">{{$item->title}}</a></h2>
                     </div>
                     <div class="meta">
                         <figure>
-                            <a href="#" class="icon">
+                            <a class="icon">
                                 <i class="fa fa-user"></i>
                                 {{$user[$item->user_id]}}
                             </a>
@@ -58,7 +58,7 @@ sub-page
                     <div class="blog-post-content">
                         <p>
                             @php
-                            echo(Str::limit($item->isi, 250))
+                            echo(Str::limit($item->isi, 300))
                             @endphp
 
                         </p>
@@ -196,7 +196,7 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",

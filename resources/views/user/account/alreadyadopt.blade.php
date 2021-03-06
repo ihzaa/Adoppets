@@ -65,7 +65,8 @@ sub-page
                 <div class="section-title clearfix">
                     <div class="float-left float-xs-none">
                         <label class="mr-3 align-text-bottom">Sort by: </label>
-                        <select name="sorting" id="sorting" class="small width-200px" data-placeholder="Default Sorting">
+                        <select name="sorting" id="sorting" class="small width-200px"
+                            data-placeholder="Default Sorting">
                             <option value="">Default Sorting</option>
                             <option value="1">Newest First</option>
                             <option value="2">Oldest First</option>
@@ -73,27 +74,34 @@ sub-page
 
                     </div>
                     <div class="float-right d-xs-none thumbnail-toggle">
-                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid" data-parent-class="items">
+                        <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid"
+                            data-parent-class="items">
                             <i class="fa fa-th"></i>
                         </a>
-                        <a href="#" class="change-class active" data-change-from-class="grid" data-change-to-class="list" data-parent-class="items">
+                        <a href="#" class="change-class active" data-change-from-class="grid"
+                            data-change-to-class="list" data-parent-class="items">
                             <i class="fa fa-th-list"></i>
                         </a>
                     </div>
                 </div>
                 <!--============ Items ==========================================================================-->
                 <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
-
+                    @foreach ($edit as $item)
                     <div class="item">
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="single-listing-1.html" class="title"></a>
+                                    <a href="#" class="tag category">{{$category[$item->category_id]}}</a>
+                                    <a href="single-listing-1.html" class="title">{{$item->title}}</a>
                                 </h3>
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
-                                    <img src="" alt="">
+                                    <img src="{{asset($aset_posting[$item->id])}}" alt="">
                                 </a>
                             </div>
+                            <h4 class="location">
+                                <a href="#">{{$item->lokasi}}</a>
+                            </h4>
+                            <div class="price">{{$item->ras}}</div>
 
                             <!--end image-->
                             <div class="additional-info">
@@ -104,9 +112,9 @@ sub-page
                                 </ul>
                             </div>
                             <div class="description">
-                                <p> </p>
+                                <p>{{$item->kondisi_fisik}}</p>
                             </div>
-                            <div class="admin-controls">
+                            <!-- <div class="admin-controls">
                                 <a href="">
                                     <i class="fa fa-pencil"></i>Edit
                                 </a>
@@ -114,16 +122,17 @@ sub-page
                                 <form action="" method="" class="form-hapus">
                                 </form>
 
-                            </div>
+                            </div> -->
                             <!--end admin-controls-->
 
                             <!--end description-->
                             <!--end addition-info-->
-                            <a href="" class="detail text-caps underline">Detail</a>
+                            <a href="{{route('detail_alreadyadopt', ['id'=>$item->id])}}"
+                                class="detail text-caps underline">Detail</a>
                         </div>
                     </div>
                     <!--end item-->
-
+                    @endforeach
                 </div>
                 <!--end items-->
             </div>

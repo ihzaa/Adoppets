@@ -41,16 +41,16 @@ sub-page
             <div class="col-md-8">
 
                 <article class="blog-post clearfix">
-                    <a href="blog-post.html">
+                    <a>
                         <img src="{{asset($data->picture)}}" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="blog-post.html">{{$data->nama_klinik}}</a></h2>
+                        <h2><a>{{$data->nama_klinik}}</a></h2>
 
                     </div>
                     <div class="meta">
                         <figure>
-                            <a href="#" class="icon">
+                            <a class="icon">
                                 <i class="fa fa-user"></i>
                                 {{$user[$data->user_id]}}
                             </a>
