@@ -24,7 +24,32 @@ Route::get('/logout', 'auth\allAuthController@logout')->name('logout');
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
     Route::get('/home_admin', 'admin\AdminController@index')->name('home_admin');
-    Route::get('/list_blog', 'admin\AdminController@list')->name('list_blog');
+    // Route::get('/list_blog', 'admin\AdminController@list')->name('list_blog');
+
+    // dashboard admin
+    Route::get('/dashboardAdmin', 'admin\AdminController@dashboard')->name('dashboard_admin');
+
+    // REPORT
+
+    // Report Hewan
+    Route::get('/report/hewan/list', 'admin\AdminController@report_Hewan')->name('report_hewan_list');
+    Route::get('/report/hewan/detail/{id}', 'admin\AdminController@report_hewan_detail')->name('report_hewan_detail');
+    Route::delete('/report/hewan/delete/{id}', 'admin\AdminController@report_hewan_delete')->name('report_hewan_delete');
+
+    // Report Blog
+    Route::get('/report/blog/list', 'admin\AdminController@report_blog')->name('report_blog_list');
+    Route::get('/report/blog/detail/{id}', 'admin\AdminController@report_blog_detail')->name('report_blog_detail');
+    Route::delete('/report/blog/delete/{id}', 'admin\AdminController@report_blog_delete')->name('report_blog_delete');
+
+    // Report Klinik
+    Route::get('/report/klinik/list', 'admin\AdminController@report_klinik')->name('report_klinik_list');
+    Route::get('/report/klinik/detail/{id}', 'admin\AdminController@report_klinik_detail')->name('report_klinik_detail');
+    Route::delete('/report/klinik/delete/{id}', 'admin\AdminController@report_klinik_delete')->name('report_klinik_delete');
+
+
+    // contact
+    Route::get('/contact/list', 'admin\AdminController@contact_list')->name('contact_list');
+    Route::get('/contact/detail/{id}', 'admin\AdminController@contact_detail')->name('contact_detail');
 });
 
 Route::middleware('auth:user')->group(function () {

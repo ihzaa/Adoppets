@@ -78,23 +78,35 @@
                 <!--Category name-->
                 <li class="list-header">Navigation</li>
 
-                <!--Menu list item-->
-                {{-- <li class="active-sub">
-                    <a href="#">
+                <!--Dashboard Menu list item-->
+                <li class="active-sub">
+                    <a href="{{route('dashboard_admin')}}">
                         <i class="demo-pli-home"></i>
                         <span class="menu-title">Dashboard</span>
-                        <i class="arrow"></i>
                     </a>
-                </li> --}}
+                </li>
+                {{-- akhir menu dashboard --}}
+
+
                 <!--Menu list item-->
-                <li class="active-sub">
+                <li class="sub">
                     <a href="#">
                         <i class="demo-pli-gear"></i>
                         <span class="menu-title">
-                            Widgets
-                            <span class="pull-right badge badge-warning">24</span>
+                            Report
+                            <span class="pull-right badge badge-warning"></span>
+                            <i class="arrow"></i>
                         </span>
                     </a>
+
+                    {{-- submenu --}}
+                    <!--Submenu-->
+                    <ul class="collapse in">
+                        <li class="active-link"><a href="{{route('report_hewan_list')}}">Posting Hewan</a></li>
+                        <li><a href="{{route('report_blog_list')}}">Blog</a></li>
+                        <li><a href="{{route('report_klinik_list')}}">Informasi Klinik</a></li>
+                    </ul>
+                    {{-- akhir submenu --}}
                 </li>
 
                 <li class="list-divider"></li>
