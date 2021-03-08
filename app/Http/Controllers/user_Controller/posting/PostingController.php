@@ -107,8 +107,8 @@ class PostingController extends Controller
         $category = Category::pluck('nama', 'id');
         // $vaksin1 = Vaccine::where('posting_id',$edit->)->pluck('keterangan', 'posting_id');
         $data_image = Asset_posting::all();
-        $aset_posting = Asset_posting::pluck('path', 'posting_id');
-        // dd($edit);
+        $aset_posting = DB::select('SELECT p.id, (SELECT aset.path FROM asset_postings AS aset WHERE aset.posting_id = p.id LIMIT 1) as path FROM postings as p');
+
 
         return view('user/account/mypostingan', compact('edit', 'category', 'aset_posting'));
     }
@@ -131,7 +131,7 @@ class PostingController extends Controller
     public function detail_hewan($id)
     {
         $data = posting::find($id);
-        $asset_posting = Asset_posting::find($id);
-        return view('user/posting/detailPostingAccount', compact('data', 'asset_posting'));
+        $asset_posting_detail = DB::select('SELECT asset_postings.path, asset_postings.posting_id FROM asset_postings INNER JOIN postings ON postings.id = asset_postings.posting_id');
+        return view('user/posting/detailPostingAccount', compact('data', 'asset_posting_detail'));
     }
 }

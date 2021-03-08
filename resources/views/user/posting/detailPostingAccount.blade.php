@@ -63,9 +63,9 @@
                             <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="" data-hash="1">
                         </div>
                         <div class="gallery-carousel-thumbs owl-carousel">
-                            @foreach ($asset_posting as $item)
+                            @foreach ($asset_posting_detail as $item)
                             <a href="#1" class="owl-thumb active-thumb background-image">
-                                <img src="" alt="">
+                                <img src="{{asset($item->path)}}" alt="">
                             </a>
                             @endforeach
                         </div>

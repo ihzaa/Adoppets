@@ -107,14 +107,15 @@ sub-page
                                         class="title">{{$item->title}}</a>
                                     <span class="tag">Offer</span>
                                 </h3>
+                                @foreach ($aset_posting as $aset)
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
-                                    <img src="{{asset($aset_posting[$item->id])}}" alt="">
+                                    <img src="{{asset($aset->path)}}" alt="">
                                 </a>
+                                @endforeach
                             </div>
                             <!--end image-->
                             <h4 class="location">
-                                <a href="#">{{$item->lokasi}}-{{$item->vaksin_keterangan}}-{{$item->vaksin_tanggal}}</a>
-
+                                <a href="#">{{$item->lokasi}}</a>
                             </h4>
                             <div class="price">{{$item->ras}}</div>
                             <div class="admin-controls">
@@ -129,17 +130,20 @@ sub-page
                             <div class="description">
                                 <p>Kondisi Fisik : {{$item->kondisi_fisik}}</p>
                             </div>
-                            <!--end description-->
+                            {{-- informasi vaksin --}}
                             <div class="additional-info">
                                 <ul>
-                                    {{-- @foreach ($vaccines as $item_vaksin)
                                     <li>
-                                        <aside>{{$item_vaksin[$id_vaksin->$id_postingg]}}</aside>
+                                        <figure>Keterangan :</figure>
+                                        <aside>{{$item->vaksin_keterangan}}</aside>
                                     </li>
-                                    @endforeach --}}
+                                    <li>
+                                        <figure>Tanggal :</figure>
+                                        <aside>{{$item->vaksin_tanggal}}</aside>
+                                    </li>
                                 </ul>
                             </div>
-                            <!--end addition-info-->
+                            {{-- akhir informasi vaksin --}}
                             <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
                                 class="detail text-caps underline">Detail</a>
                         </div>

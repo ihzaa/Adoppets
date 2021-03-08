@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // halaman register
-Route::get('/detailPosting', 'user_Controller\posting\LandingpageController@index_detail')->name('detail_posting');
+// Route::get('/detailPosting', 'user_Controller\posting\LandingpageController@index_detail')->name('detail_posting');
 Route::get('/logout', 'auth\allAuthController@logout')->name('logout');
 
 Route::middleware('auth:admin')->group(function () {
