@@ -74,7 +74,6 @@ class PostingController extends Controller
             }
         }
 
-
         // validasi asset posting
         $this->validate($request, [
             'path' => 'required',
@@ -134,4 +133,5 @@ class PostingController extends Controller
         $asset_posting = Asset_posting::find($id);
         return view('user/posting/detailPostingAccount', compact('data', 'asset_posting'));
     }
+
 }

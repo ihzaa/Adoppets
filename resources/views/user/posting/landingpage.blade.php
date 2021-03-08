@@ -151,7 +151,8 @@ has-dark-background
                             <p>{{$post->kondisi_fisik}}</p>
                         </div>
                         <!--end description-->
-                        <a href="{{route('detail_posting')}}" class="detail text-caps underline">Detail</a>
+                        <a href="{{route('detail_posting', ['id'=>$post->id])}}"
+                            class="detail text-caps underline">Detail</a>
                     </div>
                 </div>
                 <!--end item-->
@@ -191,7 +192,7 @@ has-dark-background
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -200,32 +201,32 @@ has-dark-background
 @endif
 <script src="{{asset('user\assets\js\url-search-param.js')}}"></script>
 <script>
-    const URL = {
-        current : "{{route('landingpage')}}"
+const URL = {
+    current: "{{route('landingpage')}}"
+}
+$(document).on('click', '#search-button', function() {
+    let searchLocation = $('#search-location').val();
+    let searchCategory = $('#search-category option:selected').text();
+    let tempUrl = URL.current + '/?';
+    if (searchCategory != "") {
+        tempUrl += 'category=' + searchCategory + '&'
     }
-    $(document).on('click','#search-button',function(){
-        let searchLocation = $('#search-location').val();
-        let searchCategory = $('#search-category option:selected').text();
-        let tempUrl = URL.current + '/?';
-        if(searchCategory != ""){
-            tempUrl+='category='+searchCategory+'&'
-        }
-        if(searchLocation != ""){
-            tempUrl+='location'+searchLocation+'&'
-        }
-        tempUrl+='sort'+'desc'
-        window.location.href = tempUrl
-    })
+    if (searchLocation != "") {
+        tempUrl += 'location' + searchLocation + '&'
+    }
+    tempUrl += 'sort' + 'desc'
+    window.location.href = tempUrl
+})
 
-    $(document).on('change','#sorting_post',function(){
-        var searchParams = new URLSearchParams(window.location.search);
-        searchParams.set('sort',$('#sorting_post').val())
-        var newParams = searchParams.toString()
-        window.location.href = URL.current+'/?'+newParams
+$(document).on('change', '#sorting_post', function() {
+    var searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('sort', $('#sorting_post').val())
+    var newParams = searchParams.toString()
+    window.location.href = URL.current + '/?' + newParams
 
-    })
+})
 
-    $('#btn_like').click(function() {
+$('#btn_like').click(function() {
     let data = {
         id: 123
     }

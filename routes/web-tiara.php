@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-//untuk blog, tampilan awal blog
+Route::get('/home', 'user_Controller\posting\LandingpageController@index')->name('home');
+Route::get('/home/detailPosting/{id}', 'user_Controller\posting\LandingpageController@detailPosting')->name('detail_posting');
 
 //blog
 Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');

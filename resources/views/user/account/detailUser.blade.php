@@ -36,8 +36,8 @@ sub-page
 @section('content')
 <section class="block">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-body">
                         <h3><i class="fa fa-user"></i> Daftar Pengadopsi</h3>

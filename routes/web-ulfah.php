@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // halaman register
-Route::get('/detailPosting', 'user_Controller\posting\LandingpageController@index_detail')->name('detail_posting');
+// Route::get('/detailPosting', 'user_Controller\posting\LandingpageController@index_detail')->name('detail_posting');
 Route::get('/logout', 'auth\allAuthController@logout')->name('logout');
 
 Route::middleware('auth:admin')->group(function () {
@@ -45,7 +45,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/report/klinik/list', 'admin\AdminController@report_klinik')->name('report_klinik_list');
     Route::get('/report/klinik/detail/{id}', 'admin\AdminController@report_klinik_detail')->name('report_klinik_detail');
     Route::delete('/report/klinik/delete/{id}', 'admin\AdminController@report_klinik_delete')->name('report_klinik_delete');
-
 
     // contact
     Route::get('/contact/list', 'admin\AdminController@contact_list')->name('contact_list');
