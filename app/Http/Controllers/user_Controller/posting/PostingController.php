@@ -11,6 +11,7 @@ use App\Vaccine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostingController extends Controller
 {
@@ -35,7 +36,7 @@ class PostingController extends Controller
     // menyimpan hasil posting hewan peliharaan
     public function store_posting(Request $request)
     {
-
+        // dd();
         // validasi posting
         $request->validate([
             'title' => 'required',
@@ -63,13 +64,16 @@ class PostingController extends Controller
             'user_id' => Auth::user()->id,
             'category_id' => $request->submit_category,
         ]);
-        foreach ($request->informasi_vaksin as $k => $v) {
-            Vaccine::create([
-                'keterangan' => $v,
-                'tanggal' => Carbon::parse($request->tanggal[$k]),
-                'posting_id' => $posting->id,
-            ]);
+        if ($request->informasi_vaksin != null) {
+            foreach ($request->informasi_vaksin as $k => $v) {
+                Vaccine::create([
+                    'keterangan' => $v,
+                    'tanggal' => Carbon::parse($request->tanggal[$k]),
+                    'posting_id' => $posting->id,
+                ]);
+            }
         }
+
 
         // validasi asset posting
         $this->validate($request, [
@@ -98,12 +102,13 @@ class PostingController extends Controller
     // halaman edit posting
     public function edit_posting()
     {
-        $edit = posting::where('user_id', Auth::user()->id)->get();
+        // $edit = posting::where('user_id', Auth::user()->id)->get();
+        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_tanggal FROM postings as p');
         $category = Category::pluck('nama', 'id');
-        $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
+        // $vaksin1 = Vaccine::where('posting_id',$edit->)->pluck('keterangan', 'posting_id');
         $data_image = Asset_posting::all();
         $aset_posting = Asset_posting::pluck('path', 'posting_id');
-        // dd($aset_posting);
+        // dd($edit);
 
         return view('user/account/mypostingan', compact('edit', 'category', 'aset_posting'));
     }
