@@ -5,9 +5,9 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-    .note-modal-backdrop {
-        display: none !important;
-    }
+.note-modal-backdrop {
+    display: none !important;
+}
 </style>
 @endsection
 
@@ -47,49 +47,60 @@
             <!--end basic information-->
             <section>
                 <h2>Konten</h2>
-                <div class="form-group">
-                    <label for="title" class="col-form-label">Judul</label>
-                    <input name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                        placeholder="contoh : Cara Merawat Kucing Tipe Persia" required value="{{$data->title}}">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">Judul</label>
+                            <input name="title" type="text" class="form-control @error('title') is-invalid @enderror"
+                                id="title" placeholder="contoh : Cara Merawat Kucing Tipe Persia" required
+                                value="{{$data->title}}">
+                        </div>
+                        @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">Foto Blog</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="imgInp" value="{{$data->picture}}"
+                                    name="picture" {{request()->is('*/blog/update/*')?"required":""}}>
+                                <label class="custom-file-label" id="labelnya_gambar"
+                                    for="imgInp">{{request()->is('/postblog')?"Image Blog":"Picture.jpg"}}</label>
+                                <small class="form-text text-muted">- Tambahkan Gambar untuk Tampilan Postingan Lebih
+                                    Baik</small>
+                                <small class="form-text text-muted">- Ukuran max 256KB</small>
+                                <small class="form-text text-muted">- Harus berupa gambar (format:
+                                    jpg, jpeg, svg, jfif,
+                                    png)</small>
+                            </div>
+                        </div>
+                        @error('picture')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
-                @error('title')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
 
-                <div class="form-group">
+                <!--end form-group-->
+
+                {{-- summernote --}}
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="isi" class="col-form-label">Isi Blog</label>
+                            <textarea id="summernote" name="isi"
+                                class="form-control  background @error('isi') is-invalid @enderror">{{$data->isi}}</textarea>
+                        </div>
+                        @error('isi')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="col-md-4">
                         <img id="blah"
                             src="{{request()->is('*/postblog*')?asset('images/default/picture.svg'):asset($data->picture)}}"
                             class="img-fluid" src="" alt="your image" />
                     </div>
-                    <label for="title" class="col-form-label">Foto Blog</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imgInp" value="{{$data->picture}}"
-                            name="picture" {{request()->is('*/blog/update/*')?"required":""}}>
-                        <label class="custom-file-label" id="labelnya_gambar"
-                            for="imgInp">{{request()->is('/postblog')?"Image Blog":"Picture.jpg"}}</label>
-                        <small class="form-text text-muted">- Tambahkan Gambar untuk Tampilan Postingan Lebih
-                            Baik</small>
-                        <small class="form-text text-muted">- Ukuran max 256KB</small>
-                        <small class="form-text text-muted">- Harus berupa gambar (format:
-                            jpg, jpeg, svg, jfif,
-                            png)</small>
-                    </div>
                 </div>
-                @error('picture')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <!--end form-group-->
-
-                {{-- summernote --}}
-                <div class="form-group">
-                    <label for="isi" class="col-form-label">Isi Blog</label>
-                    <textarea id="summernote" name="isi"
-                        class="form-control  background @error('isi') is-invalid @enderror">{{$data->isi}}</textarea>
-                </div>
-                @error('isi')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
             </section>
 
             <section class="clearfix">
@@ -115,7 +126,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    $('#summernote').summernote({
+$('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -139,7 +150,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-    function readURL(input) {
+function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -158,14 +169,14 @@ $("#imgInp").change(function() {
 
 @error('title')
 <script>
-    $("#submitblog").form("show");
+$("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('isi')
 <script>
-    $("#submitblog").form("show");
+$("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

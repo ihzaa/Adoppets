@@ -27,7 +27,7 @@
 <div class="page-title">
     <div class="container">
         <h1 class="center">
-            Informasi Klinik Hewan yang Akan Anda Publikasikan
+            Informasi Klinik Hewan
         </h1>
     </div>
     <!--end container-->

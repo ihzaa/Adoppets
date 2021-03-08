@@ -54,7 +54,8 @@ sub-page
                                     <td>27 Februari 2020</td>
                                     <td>Orang Suka Hewan</td>
                                     <td>
-                                        <a href="" class="detail text-caps underline">Detail</a>
+                                        <a href="" class="btn btn-framed btn-danger small btn-rounded">Detail</a> <a
+                                            href="" class="btn btn-framed btn-danger small btn-rounded">Accept</a>
                                     </td>
                                 </tr>
                             </tbody>
