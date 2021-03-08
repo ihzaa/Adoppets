@@ -113,7 +113,8 @@ sub-page
                             </div>
                             <!--end image-->
                             <h4 class="location">
-                                <a href="#">{{$item->lokasi}}</a>
+                                <a href="#">{{$item->lokasi}}-{{$item->vaksin_keterangan}}-{{$item->vaksin_tanggal}}</a>
+
                             </h4>
                             <div class="price">{{$item->ras}}</div>
                             <div class="admin-controls">
