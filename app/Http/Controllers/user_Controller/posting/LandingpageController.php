@@ -173,10 +173,11 @@ class LandingpageController extends Controller
         //
     }
 
-    // DETAIL
+    // DETAIL postingan pada Landingpage
     public function detailPosting($id)
     {
         $data = posting::find($id);
+        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p');
         $asset_posting = Asset_posting::find($id);
         $user = User::pluck('name', 'id');
         $user_foto = User::pluck('foto_profil', 'id');
@@ -187,6 +188,9 @@ class LandingpageController extends Controller
         $deskripsi['no_wa'] = User::pluck('no_wa', 'id');
         $deskripsi['domisili_sekarang'] = User::pluck('domisili_sekarang', 'id');
         $deskripsi['instagram'] = User::pluck('instagram', 'id');
-        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi'));
+
+        //$category = Category::pluck('nama', 'id');
+
+        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit'));
     }
 }

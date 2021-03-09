@@ -9,11 +9,11 @@
 <div class="page-title">
     <div class="container clearfix">
         <div class="float-left float-xs-none">
-            <h1>Hewan Siap Adopsi
+            <h1>{{$data->title}}
                 <span class="tag">Offer</span>
             </h1>
             <h4 class="location">
-                <a href="#">Manhattan, NY</a>
+                <a href="#">{{$data->lokasi}}</a>
             </h4>
         </div>
         <div class="float-right float-xs-none price">
@@ -118,18 +118,23 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <h2>Informasi vaksin</h2>
+
                                 <table class="table table-bordered">
+
                                     <thead>
                                         <tr>
                                             <th>Tanggal Vaksin</th>
                                             <th>Jenis Vaksin</th>
                                         </tr>
                                     </thead>
+                                    @foreach($edit as $dit)
                                     <tbody>
-                                        <td>Jenis Vaksin</td>
-                                        <td></td>
+                                        <td>{{$dit->tanggal}}</td>
+                                        <td>{{$dit->keterangan}}</td>
                                     </tbody>
+                                    @endforeach
                                 </table>
+
                             </div>
                             <div class="col-md-8">
                                 <h2>Location</h2>
