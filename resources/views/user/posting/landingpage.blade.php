@@ -1,5 +1,12 @@
 @extends('user/master')
 
+@section('include-css')
+<style>
+    .love {
+        margin-right: 15px
+    }
+</style>
+@endsection
 @section('nama-page', 'home-page')
 @section('page-title')
 <div class="page-title">
@@ -153,6 +160,7 @@ has-dark-background
                         <!--end description-->
                         <a href="{{route('detail_posting', ['id'=>$post->id])}}"
                             class="detail text-caps underline">Detail</a>
+                        {{-- <p class="text-right love">Love</p> --}}
                     </div>
                 </div>
                 <!--end item-->
@@ -192,7 +200,7 @@ has-dark-background
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -201,7 +209,7 @@ swal({
 @endif
 <script src="{{asset('user\assets\js\url-search-param.js')}}"></script>
 <script>
-const URL = {
+    const URL = {
     current: "{{route('landingpage')}}"
 }
 $(document).on('click', '#search-button', function() {

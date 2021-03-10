@@ -2,6 +2,7 @@
 
 @section('include-css')
 <link rel="stylesheet" href="{{asset('user/assets/css/owl.carousel.min.css')}}" type="text/css">
+<link rel="stylesheet" href="{{asset('user/assets/fonts/font-awesome.css')}}" type="text/css">
 @endsection
 
 @section('nama-page', 'sub-page')
@@ -143,6 +144,14 @@
                         </div>
                     </section>
                     <!--end Details and Locations-->
+                    {{-- like and report --}}
+                    <section>
+                        <div class="row justify-content-end">
+                            <button><i class="fas fa-heart"></i></button>
+                            <a href=""><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </section>
+                    {{-- akhir like and report --}}
                     <!--Author-->
                     <section>
                         <h2>Author</h2>
@@ -247,7 +256,7 @@
 <script src="{{asset('user/assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('user/assets/js/custom.js')}}"></script>
 <script>
-var latitude = 51.511971;
+    var latitude = 51.511971;
 var longitude = -0.137597;
 var markerImage = "{{asset('user/assets/img/map-marker.png')}}";
 var mapTheme = "light";

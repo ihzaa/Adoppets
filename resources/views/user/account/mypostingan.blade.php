@@ -107,11 +107,12 @@ sub-page
                                         class="title">{{$item->title}}</a>
                                     <span class="tag">Offer</span>
                                 </h3>
-                                @foreach ($aset_posting as $aset)
+
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
-                                    <img src="{{asset($aset->path)}}" alt="">
+                                    {{-- <p>{{$aset_posting[$item->posting_id]->id}}</p> --}}
+                                    {{-- <img src="{{asset($aset_posting[$item->posting_id]->path)}}" alt=""> --}}
                                 </a>
-                                @endforeach
+
                             </div>
                             <!--end image-->
                             <h4 class="location">
