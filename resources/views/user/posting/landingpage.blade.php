@@ -198,7 +198,7 @@ has-dark-background
 });
 </script>
 @endif
-<script src="{{asset('user\assets\js\url-search-param.js')}}"></script>
+{{-- <script src="{{asset('user\assets\js\url-search-param.js')}}"></script> --}}
 <script>
     const URL = {
         current : "{{route('landingpage')}}"
