@@ -3,6 +3,12 @@
 @section('include-css')
 <link rel="stylesheet" href="{{asset('user/assets/css/owl.carousel.min.css')}}" type="text/css">
 <link rel="stylesheet" href="{{asset('user/assets/fonts/font-awesome.css')}}" type="text/css">
+
+<style>
+    .tombol {
+        margin-left: 8px;
+    }
+</style>
 @endsection
 
 @section('nama-page', 'sub-page')
@@ -70,6 +76,13 @@
                         </div>
                     </section>
                     <!--end Gallery Carousel-->
+                    <section>
+                        <div class="row justify-content-end">
+                            <button class="tombol btn-framed btn-primary btn-rounded">Report</button>
+                            <button class="tombol btn-framed btn-primary btn-rounded">Like</button>
+                            <button class="tombol btn-framed btn-primary btn-rounded">Adopt</button>
+                        </div>
+                    </section>
                     <!--Description-->
                     <section>
                         <h2>Description</h2>

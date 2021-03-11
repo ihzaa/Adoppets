@@ -21,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/detailPosting', 'user_Controller\posting\LandingpageController@index_detail')->name('detail_posting');
 Route::get('/logout', 'auth\allAuthController@logout')->name('logout');
 
+// EMAIL
+Route::get('/verifikasi/registrasi', 'user_Controller\email\EmailController@verifikasi_email')->name('verifikasi email');
+Route::get('/verifikasi/HewanDiadopsi/Diterima', 'user_Controller\email\EmailController@diterima')->name('hewan_diterima');
+Route::get('/verifikasi/HewanDiadopsi/Ditolak', 'user_Controller\email\EmailController@ditolak')->name('hewan_ditolak');
+Route::get('/verifikasi/PemberitahuanPemilikHewan', 'user_Controller\email\EmailController@pemberitahuan')->name('pemberitahuan');
+
+
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
     Route::get('/home_admin', 'admin\AdminController@index')->name('home_admin');
