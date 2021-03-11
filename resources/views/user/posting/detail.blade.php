@@ -57,15 +57,21 @@
                 <div class="col-md-9">
                     <!--Gallery Carousel-->
                     <section>
-                        <h2>Gallery</h2>
+                        <!-- <h2>Gallery</h2> -->
                         <!--end section-title-->
                         <div class="gallery-carousel owl-carousel">
                             <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="" data-hash="1">
+                            <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="" data-hash="2">
+
                         </div>
                         <div class="gallery-carousel-thumbs owl-carousel">
                             <a href="#1" class="owl-thumb active-thumb background-image">
                                 <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="">
                             </a>
+                            <a href="#2" class="owl-thumb background-image">
+                                <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="">
+                            </a>
+
                         </div>
                     </section>
                     <!--end Gallery Carousel-->
@@ -145,7 +151,10 @@
                     <!--end Details and Locations-->
                     <!--Author-->
                     <section>
-                        <h2>Author</h2>
+                        <h2>Author <a href='#'>
+                                <li class='fa fa-exclamation-circle'></li>
+                            </a>
+                        </h2>
                         <div class="box">
                             <div class="row">
                                 <div class="col-md-5">

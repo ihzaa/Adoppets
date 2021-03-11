@@ -153,6 +153,10 @@ has-dark-background
                         <!--end description-->
                         <a href="{{route('detail_posting', ['id'=>$post->id])}}"
                             class="detail text-caps underline">Detail</a>
+                        <a>
+                            <li class='fa fa-user'></li>
+                        </a>
+
                     </div>
                 </div>
                 <!--end item-->
