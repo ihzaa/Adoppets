@@ -1,5 +1,12 @@
 @extends('user/master')
 
+@section('include-css')
+<style>
+.love {
+    margin-right: 15px
+}
+</style>
+@endsection
 @section('nama-page', 'home-page')
 @section('page-title')
 <div class="page-title">
@@ -153,10 +160,7 @@ has-dark-background
                         <!--end description-->
                         <a href="{{route('detail_posting', ['id'=>$post->id])}}"
                             class="detail text-caps underline">Detail</a>
-                        <a>
-                            <li class='fa fa-user'></li>
-                        </a>
-
+                        {{-- <p class="text-right love">Love</p> --}}
                     </div>
                 </div>
                 <!--end item-->
