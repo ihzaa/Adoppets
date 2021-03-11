@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body {
-            margin-top: 20px;
-        }
+    body {
+        margin-top: 20px;
+    }
     </style>
 </head>
 
@@ -115,16 +115,18 @@
                                                                             <tr>
                                                                                 <td class="header-row-td" width="508"
                                                                                     style="font-size: 28px; margin: 0px; font-family: Arial, sans-serif; font-weight: normal; line-height: 19px; color: red; padding-bottom: 10px; padding-top: 15px;"
-                                                                                    valign="top" align="left">Hi, Susan
-                                                                                    Calvin</td>
+                                                                                    valign="top" align="left">Hi, Nama
+                                                                                    Lengkap</td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
                                                                     <div
                                                                         style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px;">
-                                                                        Phasellus dictum sapien a neque luctus cursus.
-                                                                        Pellentesque sem dolor, fringilla et pharetra
-                                                                        vitae.
+                                                                        Permintaan Anda untuk mengadopsi hewan (nama
+                                                                        hewan) pada kategori (nama kategori) telah
+                                                                        disetujui oleh pemiliki hewan. silahkan
+                                                                        menghubungi pemilik hewan untuk aktifitas
+                                                                        selanjutnya.
                                                                     </div>
                                                                 </td>
                                                             </tr>

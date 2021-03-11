@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body {
-            margin-top: 20px;
-        }
+    body {
+        margin-top: 20px;
+    }
     </style>
 </head>
 
@@ -56,8 +56,9 @@
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
                                                         Terdapat <strong
-                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">jumlah
-                                                            free rep</strong> remaining.
+                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">(jumlah
+                                                            peminat)</strong> peminat yang sedah menunggu untuk
+                                                        disetujui.
                                                     </td>
                                                 </tr>
                                                 <tr
@@ -65,8 +66,9 @@
                                                     <td class="content-block"
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
-                                                        Add your credit card now to upgrade your account to a premium
-                                                        plan to ensure you don't miss out on any reports.
+                                                        Silahkan melihat daftar peminat yang ingin mengadopsi hewan Anda
+                                                        pada website Kami atau melalui tombol di bawah ini.
+                                                        Terima Kasih.
                                                     </td>
                                                 </tr>
                                                 <tr
@@ -75,8 +77,8 @@
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
                                                         <a href="#" class="btn-primary"
-                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #f1556c; margin: 0; border-color: #f1556c; border-style: solid; border-width: 8px 16px;">Upgrade
-                                                            my account</a>
+                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #f1556c; margin: 0; border-color: #f1556c; border-style: solid; border-width: 8px 16px;">Lihat
+                                                            Peminat</a>
                                                     </td>
                                                 </tr>
                                                 <tr
@@ -84,7 +86,7 @@
                                                     <td class="content-block"
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
-                                                        Thanks for choosing <b>Minton</b> Admin.
+                                                        Terima Kasih sudah meimilih <b>Adopt Pets.
                                                     </td>
                                                 </tr>
                                             </tbody>
