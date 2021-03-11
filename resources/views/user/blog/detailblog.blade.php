@@ -38,10 +38,10 @@ sub-page
 <section class="block">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <article class="blog-post clearfix">
 
-                    <a href="blog-post.html">
+                    <a>
                         <img src="{{asset($data->picture)}}" alt="">
                     </a>
                     <div class="article-title">
@@ -53,7 +53,7 @@ sub-page
 
                         <br>
                         <figure>
-                            <a href="#" class="icon">
+                            <a class="icon">
                                 <i class="fa fa-user"></i>
                                 {{$user[$data->user_id]}}
                             </a>

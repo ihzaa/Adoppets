@@ -11,6 +11,7 @@ use App\Vaccine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostingController extends Controller
 {
@@ -35,7 +36,7 @@ class PostingController extends Controller
     // menyimpan hasil posting hewan peliharaan
     public function store_posting(Request $request)
     {
-
+        // dd();
         // validasi posting
         $request->validate([
             'title' => 'required',
@@ -63,12 +64,14 @@ class PostingController extends Controller
             'user_id' => Auth::user()->id,
             'category_id' => $request->submit_category,
         ]);
-        foreach ($request->informasi_vaksin as $k => $v) {
-            Vaccine::create([
-                'keterangan' => $v,
-                'tanggal' => Carbon::parse($request->tanggal[$k]),
-                'posting_id' => $posting->id,
-            ]);
+        if ($request->informasi_vaksin != null) {
+            foreach ($request->informasi_vaksin as $k => $v) {
+                Vaccine::create([
+                    'keterangan' => $v,
+                    'tanggal' => Carbon::parse($request->tanggal[$k]),
+                    'posting_id' => $posting->id,
+                ]);
+            }
         }
 
         // validasi asset posting
@@ -98,12 +101,14 @@ class PostingController extends Controller
     // halaman edit posting
     public function edit_posting()
     {
-        $edit = posting::where('user_id', Auth::user()->id)->get();
+        // $edit = posting::where('user_id', Auth::user()->id)->get();
+        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_tanggal FROM postings as p');
         $category = Category::pluck('nama', 'id');
-        $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
-        $aset_posting = Asset_posting::pluck('path', 'posting_id');
-        // dd($aset_posting);
-
+        // $vaksin1 = Vaccine::where('posting_id',$edit->)->pluck('keterangan', 'posting_id');
+        $data_image = Asset_posting::all();
+        $aset_posting = DB::select('SELECT p.id, (SELECT aset.path FROM asset_postings AS aset WHERE aset.posting_id = p.id LIMIT 1) as path FROM postings as p');
+        // dd($edit);
+        //$aset_posting = DB::table('postings')->select('postings.*', DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'));
         return view('user/account/mypostingan', compact('edit', 'category', 'aset_posting'));
     }
 
@@ -125,6 +130,7 @@ class PostingController extends Controller
     public function detail_hewan($id)
     {
         $data = posting::find($id);
-        return view('user/posting/detailPostingAccount', compact('data'));
+        $asset_posting_detail = DB::select('SELECT asset_postings.path, asset_postings.posting_id FROM asset_postings INNER JOIN postings ON postings.id = asset_postings.posting_id');
+        return view('user/posting/detailPostingAccount', compact('data', 'asset_posting_detail'));
     }
 }

@@ -8,6 +8,10 @@
 .note-modal-backdrop {
     display: none !important;
 }
+
+#blah {
+    width: 300.5px;
+}
 </style>
 @endsection
 
@@ -52,45 +56,59 @@
         <!--end basic information-->
         <section>
             <h2>Konten</h2>
-            <div class="form-group">
-                <label for="title" class="col-form-label">Judul</label>
-                <input name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                    placeholder="contoh : Cara Merawat Kucing Tipe Persia" required value="{{old('title')}}">
-            </div>
-            @error('title')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Judul</label>
+                        <input name="title" type="text" class="form-control @error('title') is-invalid @enderror"
+                            id="title" placeholder="contoh : Cara Merawat Kucing Tipe Persia" required
+                            value="{{old('title')}}">
+                    </div>
+                    @error('title')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Foto Blog</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
+                                name="picture" {{request()->is('*/submitblog*')?"required":""}}>
+                            <label class="custom-file-label" id="labelnya_gambar"
+                                for="imgInp">{{request()->is('*/submitblog*')?"Image Blog":"Picture.jpg"}}</label>
 
-            <div class="form-group">
-                <label for="title" class="col-form-label">Foto Blog</label>
+                            <small class="form-text text-muted">- Tambahkan Gambar untuk Tampilan Postingan Lebih
+                                Baik</small>
+                            <small class="form-text text-muted">- Ukuran max 256KB</small>
+                            <small class="form-text text-muted">- Harus berupa gambar (format:
+                                jpg, jpeg, svg, jfif,
+                                png)</small>
+                        </div>
+                    </div>
+                    @error('picture')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
 
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}" required
-                    name="picture" {{request()->is('/postblog')?"required":""}}>
-                <label class="custom-file-label" id="labelnya_gambar"
-                    for="imgInp">{{request()->is('/postblog')?"Image Blog":"Picture.jpg"}}</label>
-                <small class="form-text text-muted">- Tambahkan Gambar untuk Tampilan Postingan Lebih
-                    Baik</small>
-                <small class="form-text text-muted">- Ukuran max 256KB</small>
-                <small class="form-text text-muted">- Harus berupa gambar (format:
-                    jpg, jpeg, svg, jfif,
-                    png)</small>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="isi" class="col-form-label">Isi Blog</label>
+                        <textarea id="summernote" name="isi"
+                            class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
+                    </div>
+                    @error('isi')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <img id="blah"
+                        src="{{request()->is('*submitblog*')?asset('images/default/picture.svg'):asset($blog->picture)}}"
+                        class="img-fluid" src="" alt="image advertisement" />
+                </div>
             </div>
-            </div>
-            @error('picture')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
             <!--end form-group-->
-
-            {{-- summernote --}}
-            <div class="form-group">
-                <label for="isi" class="col-form-label">Isi Blog</label>
-                <textarea id="summernote" name="isi"
-                    class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
-            </div>
-            @error('isi')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
         </section>
 
         <section class="clearfix">

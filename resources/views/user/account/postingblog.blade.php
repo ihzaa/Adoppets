@@ -51,7 +51,7 @@ sub-page
                     <a class="nav-link icon" href="{{route('posting_clinic')}}">
                         <i class="fa fa-hospital-o"></i>Postingan Clinic
                     </a>
-                    <a class="nav-link icon" href="">
+                    <a class="nav-link icon" href="{{route('alreadyadopt')}}">
                         <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
                     <a class="nav-link icon" href="{{route('logout')}}">
@@ -104,9 +104,10 @@ sub-page
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="single-listing-1.html" class="title">{{$item->title}}</a>
+                                    <a href="{{route('detail_blog', ['id'=>$item->id])}}"
+                                        class="title">{{$item->title}}</a>
                                 </h3>
-                                <a href="single-listing-1.html" class="image-wrapper background-image">
+                                <a class="image-wrapper background-image">
                                     <img src="{{asset($item->picture)}}" alt="">
                                 </a>
                             </div>
@@ -120,8 +121,8 @@ sub-page
                                 </ul>
                             </div>
                             <div class="description">
-                                <p>@php
-                                    echo($item->isi)
+                                <p> @php
+                                    echo(Str::limit($item->isi, 200))
                                     @endphp</p>
                             </div>
                             <div class="admin-controls">

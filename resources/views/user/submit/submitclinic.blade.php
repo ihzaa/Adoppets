@@ -9,6 +9,10 @@
 .note-modal-backdrop {
     display: none !important;
 }
+
+#blah {
+    width: 210.5px;
+}
 </style>
 
 {{-- for maps --}}
@@ -23,7 +27,7 @@
 <div class="page-title">
     <div class="container">
         <h1 class="center">
-            Informasi Klinik Hewan yang Akan Anda Publikasikan
+            Informasi Klinik Hewan
         </h1>
     </div>
     <!--end container-->
@@ -84,6 +88,7 @@
                         @error('no_telepon')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
@@ -98,40 +103,56 @@
                     </div>
                 </div>
 
-
                 {{-- foto klinik --}}
-                <div class="row">
-                    <div class="col-md-4">
+                <div class="row justify-content-end">
+                    <div class="col-md-8">
                         <div class="form-group">
-                            <label for="email" class="col-form-label">Foto Klinik</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}"
-                                    required name="picture" {{request()->is('/postclinic')?"required":""}}>
-                                <label class="custom-file-label" id="labelnya_gambar"
-                                    for="imgInp">{{request()->is('/postclinic')?"Image Clinic":"Picture.jpg"}}</label>
-                                <small class="form-text text-muted">- Ukuran max 256KB</small>
-                                <small class="form-text text-muted">- Harus berupa gambar (format:
-                                    jpg, jpeg, svg, jfif,
-                                    png)</small>
-                            </div>
+                            <label for="deskripsi" class="col-form-label">Deskripsi</label>
+                            <textarea id="summernote" name="deskripsi"
+                                class="form-control  background @error('deskripsi') is-invalid @enderror">{{old('deskripsi')}}</textarea>
                         </div>
-                        @error('picture')
+                        @error('deskripsi')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-md-4 float-none">
+                        <div class="row-md">
+                            <div class="form-group">
+                                <label for="picture" class="col-form-label">Foto Klinik</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}"
+                                        required name="picture" {{request()->is('*/clinic*')?"required":""}}>
+                                    <label class="custom-file-label" id="labelnya_gambar"
+                                        for="imgInp">{{request()->is('*/clinic*')?"Image Clinic":"Picture.jpg"}}</label>
+                                    <small class="form-text text-muted">- Ukuran max 256KB</small>
+                                    <small class="form-text text-muted">- Harus berupa gambar (format:
+                                        jpg, jpeg, svg, jfif,
+                                        png)</small>
+                                </div>
+                            </div>
+                            @error('picture')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <br>
+
+                        <div class="row-md">
+                            {{-- request foto --}}
+
+                            <img id="blah"
+                                src="{{request()->is('*submitclinic*')?asset('images/default/picture.svg'):asset($clinic->picture)}}"
+                                class="img-fluid" src="" alt="image advertisement" />
+                            {{-- akhir request foto --}}
+                        </div>
+                    </div>
                 </div>
+                {{-- akhir foto klinik --}}
+                <div class="row justify-content-end">
+                    {{-- deskripsi --}}
+                    {{-- akhir deskripsi --}}
 
-                <br> <br>
-
+                </div>
                 {{-- summernote --}}
-                <div class="form-group">
-                    <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                    <textarea id="summernote" name="deskripsi"
-                        class="form-control  background @error('deskripsi') is-invalid @enderror">{{old('deskripsi')}}</textarea>
-                </div>
-                @error('deskripsi')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
             </section>
 
             <section>

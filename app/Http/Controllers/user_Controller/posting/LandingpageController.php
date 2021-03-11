@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\user_Controller\posting;
 
+use App\Asset_posting;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\posting;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
 class LandingpageController extends Controller
@@ -22,13 +23,15 @@ class LandingpageController extends Controller
         // dd($request->category);
         $data['category'] = [
             "id" => "",
-            "name" => ""
+            "name" => "",
         ];
         $data['location'] = '';
-        if ($request->sort != null)
+        if ($request->sort != null) {
             $data['sort'] = $request->sort;
-        else
+        } else {
             $data['sort'] = 'desc';
+        }
+
         if ($request->category == null && $request->location == null) {
             // $data['posts'] = posting::paginate(20);
             $data['posts'] = DB::table('postings')
@@ -47,7 +50,7 @@ class LandingpageController extends Controller
             $category = Category::where('nama', "like", $request->category)->first();
             $data['category'] = [
                 "id" => $category->id,
-                "name" => $category->nama
+                "name" => $category->nama,
             ];
             $data['posts'] = DB::table('postings')
                 ->select(
@@ -62,7 +65,7 @@ class LandingpageController extends Controller
                 ->orderBy('created_at', $data['sort'])
                 ->paginate(20);
         } else if ($request->category == null && $request->location != null) {
-            $data['location'] =  $request->location;
+            $data['location'] = $request->location;
             // $data['posts'] = posting::where('lokasi', 'like', $request->location)->paginate(20);
             $data['posts'] = DB::table('postings')
                 ->select(
@@ -80,9 +83,9 @@ class LandingpageController extends Controller
             $category = Category::where('nama', "like", $request->category)->first();
             $data['category'] = [
                 "id" => $category->id,
-                "name" => $category->nama
+                "name" => $category->nama,
             ];
-            $data['location'] =  $request->location;
+            $data['location'] = $request->location;
             // $data['posts'] = posting::where('category_id', $category->id)->where('lokasi', 'like', $request->location)->paginate(20);
             $data['posts'] = DB::table('postings')
                 ->select(
@@ -170,10 +173,24 @@ class LandingpageController extends Controller
         //
     }
 
-
-    // DETAIL
-    public function index_detail()
+    // DETAIL postingan pada Landingpage
+    public function detailPosting($id)
     {
-        return view('user/posting/detail');
+        $data = posting::find($id);
+        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p');
+        $asset_posting = Asset_posting::find($id);
+        $user = User::pluck('name', 'id');
+        $user_foto = User::pluck('foto_profil', 'id');
+        $deskripsi = array();
+        $deskripsi['alamat_asal'] = User::pluck('alamat_asal', 'id');
+        $deskripsi['email'] = User::pluck('email', 'id');
+        $deskripsi['nomor_telpon'] = User::pluck('nomor_telpon', 'id');
+        $deskripsi['no_wa'] = User::pluck('no_wa', 'id');
+        $deskripsi['domisili_sekarang'] = User::pluck('domisili_sekarang', 'id');
+        $deskripsi['instagram'] = User::pluck('instagram', 'id');
+
+        //$category = Category::pluck('nama', 'id');
+
+        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit'));
     }
 }

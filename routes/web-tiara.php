@@ -17,18 +17,19 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-//untuk blog, tampilan awal blog
+Route::get('/home', 'user_Controller\posting\LandingpageController@index')->name('home');
+Route::get('/home/detailPosting/{id}', 'user_Controller\posting\LandingpageController@detailPosting')->name('detail_posting');
 
 //blog
 Route::get('/blog', 'user_Controller\blog\BlogController@index')->name('blog');
-//Route::get('/detailblog', 'user_Controller\blog\BlogController@index_detail')->name('blog_detail');
+Route::get('/blog/readMore/{id}', 'user_Controller\blog\BlogController@readMore')->name('readmore_blog');
 
 //kontak
 Route::get('/contact', 'user_Controller\contact\ContactController@index')->name('contact');
 
 //informasi klinik
 Route::get('/clinic', 'user_Controller\clinicinfo\ClinicController@index')->name('clinic');
-//Route::get('/detailclinic', 'user_Controller\clinicinfo\ClinicController@index_detail')->name('clinic_detail');
+Route::get('/clinic/readMore/{id}', 'user_Controller\clinicinfo\ClinicController@readMore')->name('readmore_clinic');
 
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
@@ -40,6 +41,8 @@ Route::middleware('auth:user')->group(function () {
 
     //route untuk di my profile
     Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
+    Route::get('/alreadyadopt/detail/{id}', 'user_Controller\account\AlreadyadoptController@detail')->name('detail_alreadyadopt');
+    Route::get('/infouser', 'user_Controller\account\AlreadyadoptController@info')->name('info_user');
 
     //untuk posting hewan
     Route::get('/submitposting', 'user_Controller\posting\PostingController@index_posting')->name('submit_posting');

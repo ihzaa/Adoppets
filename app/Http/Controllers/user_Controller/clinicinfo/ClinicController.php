@@ -27,9 +27,11 @@ class ClinicController extends Controller
     }
 
     //detail postingan klinik (read more)
-    public function index_detail()
+    public function readMore($id)
     {
-
+        $data = Clinic_information::find($id);
+        $user = User::pluck('name', 'id');
+        return view('user/clinic/readMore', compact('data', 'user'));
     }
 
     //submit clinic
@@ -63,7 +65,7 @@ class ClinicController extends Controller
         $data->save();
 
         $extension = $request->file('picture')->getClientOriginalExtension();
-        $location = 'images/posting';
+        $location = 'images/clinic';
         $nameUpload = $data->id . 'thumbnail.' . $extension;
         $request->file('picture')->move('assets/' . $location, $nameUpload);
         $filepath = 'assets/' . $location . '/' . $nameUpload;

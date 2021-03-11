@@ -1,13 +1,16 @@
 @extends('user/master')
 
+
 @section('nama-page')
 sub-page
 @endsection
 
+
+
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1><strong>Blogs</strong></h1>
+        <h1>Information Detail Blog</h1>
     </div>
     <!--end container-->
 </div>
@@ -28,6 +31,7 @@ sub-page
     </div>
     <!--end background-image-->
 </div>
+<!--end background-->
 @endsection
 
 @section('content')
@@ -35,73 +39,80 @@ sub-page
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                @foreach ($list as $item)
+
                 <article class="blog-post clearfix">
-                    <a href="{{route('readmore_blog', ['id'=>$item->id])}}">
-                        <img src="{{asset($item->picture)}}" alt="">
+                    <a>
+                        <img src="{{asset($data->picture)}}" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="{{route('readmore_blog', ['id'=>$item->id])}}">{{$item->title}}</a></h2>
+                        <h2><a>{{$data->title}}</a></h2>
+
                     </div>
                     <div class="meta">
                         <figure>
-                            <a class="icon">
+                            <a href="#" class="icon">
                                 <i class="fa fa-user"></i>
-                                {{$user[$item->user_id]}}
+                                {{$user[$data->user_id]}}
                             </a>
                         </figure>
                         <figure>
                             <i class="fa fa-calendar-o"></i>
-                            {{$item->created_at}}
+                            {{$data->created_at}}
                         </figure>
                     </div>
                     <div class="blog-post-content">
-                        <p>
-                            @php
-                            echo(Str::limit($item->isi, 300))
+                        <p>@php
+                            echo $data->isi
                             @endphp
-
                         </p>
-                        <a href="{{route('readmore_blog', ['id'=>$item->id])}}"
-                            class="btn btn-primary btn-framed detail">Read more</a>
+                        <hr>
+                        <div class="author">
+                            <div class="author-image">
+                                <div class="background-image">
+                                    <img src="{{asset($user_foto[$data->user_id])}}" alt="">
+                                </div>
+                            </div>
+                            <!--end author-image-->
+                            <div class="author-description">
+                                <div class="section-title">
+                                    <h2>{{$user[$data->user_id]}}</h2>
+                                    <h4 class="email">
+                                        <a href="#"><i class="fa fa-envelope"></i>
+                                            {{$deskripsi['email'][$data->user_id]}}</a>
+                                    </h4>
+                                    <!-- <h4 class="location">
+                                        <a href="#">{{$deskripsi['alamat_asal'][$data->user_id]}}</a>
+
+                                    </h4> -->
+
+                                </div>
+
+                            </div>
+                            <!--end author-description-->
+                        </div>
+                        <!--end author-->
                     </div>
+                    <!--end blog-post-content-->
                 </article>
-                @endforeach
 
-                <!--end Articles-->
+                <!--end Article-->
 
-                <div class="page-pagination">
-                    <nav aria-label="Pagination">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <!--end page-pagination-->
+                <section>
+                    <div class="blog-posts-navigation clearfix">
+                        <a href="#" class="prev">
+                            <i class="fa fa-chevron-left"></i>
+                            <figure>Previous Post</figure>
+                        </a>
+                        <!--end prev-->
+                        <a href="#" class="next">
+                            <i class="fa fa-chevron-right"></i>
+                            <figure>Next Post</figure>
+                        </a>
+                    </div>
+                    <!--end blog-posts-navigation-->
+                </section>
+
+                <hr>
             </div>
             <!--end col-md-8-->
 
@@ -179,7 +190,9 @@ sub-page
                             <!--end description-->
                         </div>
                         <!--end sidebar-post-->
+
                     </section>
+
                 </aside>
                 <!--============ End Side Bar ===========================================================-->
             </div>
@@ -189,19 +202,4 @@ sub-page
     <!--end container-->
 </section>
 <!--end block-->
-@endsection
-
-@section('js_after')
-
-@if(Session::get('icon'))
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-swal({
-    icon: "{{Session::get('icon')}}",
-    title: "{{Session::get('title')}}",
-    text: "{{Session::get('text')}}",
-});
-</script>
-@endif
-
 @endsection

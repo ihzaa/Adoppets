@@ -40,11 +40,11 @@ sub-page
             <div class="col-md-8">
                 @foreach ($list as $item)
                 <article class="blog-post clearfix">
-                    <a href="#">
+                    <a href="{{route('readmore_clinic', ['id'=>$item->id])}}">
                         <img src="{{asset($item->picture)}}" alt="">
                     </a>
                     <div class="article-title">
-                        <h2><a href="#">{{$item->nama_klinik}}</a></h2>
+                        <h2><a href="{{route('readmore_clinic', ['id'=>$item->id])}}">{{$item->nama_klinik}}</a></h2>
                     </div>
                     <div class="meta">
                         <figure>
@@ -61,10 +61,11 @@ sub-page
                     <div class="blog-post-content">
                         <p>
                             @php
-                            echo($item->deskripsi)
+                            echo(Str::limit($item->deskripsi, 550))
                             @endphp
                         </p>
-                        <a href="" class="btn btn-primary btn-framed detail">Read more</a>
+                        <a href="{{route('readmore_clinic', ['id'=>$item->id])}}"
+                            class="btn btn-primary btn-framed detail">Read more</a>
                     </div>
                 </article>
                 @endforeach

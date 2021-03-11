@@ -51,7 +51,7 @@ sub-page
                     <a class="nav-link icon" href="{{route('posting_clinic')}}">
                         <i class="fa fa-hospital-o"></i>Postingan Clinic
                     </a>
-                    <a class="nav-link icon" href="">
+                    <a class="nav-link icon" href="{{route('alreadyadopt')}}">
                         <i class="fa fa-check"></i>Hewan Teradopsi
                     </a>
                     <a class="nav-link icon" href="{{route('logout')}}">
@@ -102,13 +102,17 @@ sub-page
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="#" class="tag category">{{$category[$item->category_id]}}</a>
-                                    <a href="single-listing-1.html" class="title">{{$item->title}}</a>
+                                    <a class="tag category">{{$category[$item->category_id]}}</a>
+                                    <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
+                                        class="title">{{$item->title}}</a>
                                     <span class="tag">Offer</span>
                                 </h3>
+
                                 <a href="single-listing-1.html" class="image-wrapper background-image">
-                                    <img src="{{asset($aset_posting[$item->id])}}" alt="">
+                                    {{-- <p>{{$aset_posting[$item->posting_id]->id}}</p> --}}
+                                    {{-- <img src="{{asset($aset_posting[$item->posting_id]->path)}}" alt=""> --}}
                                 </a>
+
                             </div>
                             <!--end image-->
                             <h4 class="location">
@@ -127,17 +131,20 @@ sub-page
                             <div class="description">
                                 <p>Kondisi Fisik : {{$item->kondisi_fisik}}</p>
                             </div>
-                            <!--end description-->
+                            {{-- informasi vaksin --}}
                             <div class="additional-info">
                                 <ul>
-                                    {{-- @foreach ($vaccines as $item_vaksin)
                                     <li>
-                                        <aside>{{$item_vaksin[$id_vaksin->$id_postingg]}}</aside>
+                                        <figure>Keterangan :</figure>
+                                        <aside>{{$item->vaksin_keterangan}}</aside>
                                     </li>
-                                    @endforeach --}}
+                                    <li>
+                                        <figure>Tanggal :</figure>
+                                        <aside>{{$item->vaksin_tanggal}}</aside>
+                                    </li>
                                 </ul>
                             </div>
-                            <!--end addition-info-->
+                            {{-- akhir informasi vaksin --}}
                             <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
                                 class="detail text-caps underline">Detail</a>
                         </div>
