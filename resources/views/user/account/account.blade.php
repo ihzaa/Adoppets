@@ -52,8 +52,8 @@ sub-page
                     <a class="nav-link icon" href="{{route('posting_clinic')}}">
                         <i class="fa fa-hospital-o"></i>Postingan Clinic
                     </a>
-                    <a class="nav-link icon" href="">
-                        <i class="fa fa-check"></i>Hewan Teradopsi
+                    <a class="nav-link icon" href="{{route('alreadyadopt')}}">
+                        <i class="fa fa-check"></i>Menunggu Disetujui
                     </a>
                     <a class="nav-link icon" href="{{route('logout')}}">
                         <i class="fa fa-sign-out"></i>Logout

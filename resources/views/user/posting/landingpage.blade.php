@@ -2,9 +2,9 @@
 
 @section('include-css')
 <style>
-    .love {
-        margin-right: 15px
-    }
+.love {
+    margin-right: 15px
+}
 </style>
 @endsection
 @section('nama-page', 'home-page')
@@ -200,7 +200,7 @@ has-dark-background
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -209,7 +209,7 @@ has-dark-background
 @endif
 {{-- <script src="{{asset('user\assets\js\url-search-param.js')}}"></script> --}}
 <script>
-    const URL = {
+const URL = {
     current: "{{route('landingpage')}}"
 }
 $(document).on('click', '#search-button', function() {
