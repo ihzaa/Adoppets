@@ -149,8 +149,11 @@
                                     <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <td align="center" style="border-radius: 3px;" bgcolor="#f73911"><a
-                                                        href="#" target="_blank"
+                                                <td align="center" style="border-radius: 3px;" bgcolor="#f73911">
+                                                    @php
+                                                    $token = $user->verifyUser->token
+                                                    @endphp
+                                                    <a href="{{route('verify.user',['token'=>$token])}}" target="_blank"
                                                         style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #f73911; display: inline-block;">Confirm
                                                         Account</a></td>
                                             </tr>
@@ -176,7 +179,7 @@
                 </table>
             </td>
         </tr>
-        <tr>
+        {{-- <tr>
             <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
@@ -190,8 +193,8 @@
                     </tr>
                 </table>
             </td>
-        </tr>
-        <tr>
+        </tr> --}}
+        {{-- <tr>
             <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
@@ -204,7 +207,7 @@
                     </tr>
                 </table>
             </td>
-        </tr>
+        </tr> --}}
     </table>
 
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'>

@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'token' => sha1(time())
         ]);
         Mail::to($data->email)->send(new VerifyMail($data));
-        return redirect(route('get_login'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Registrasi berhasil!');
+        return redirect(route('get_login'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Registrasi berhasil. Silahkan Verifikasi Email kamu!');
     }
     /**
      * Display the specified resource.
