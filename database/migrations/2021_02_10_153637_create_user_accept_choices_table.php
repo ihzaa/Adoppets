@@ -17,10 +17,10 @@ class CreateUserAcceptChoicesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('posting_id');
-            $table->boolean('status');
-            $table->string('pertanyaan_1');
-            $table->string('pertanyaan_2');
-            $table->longText('pertanyaan_3');
+            $table->boolean('status')->default(false);
+            $table->string('pertanyaan_1')->nullable();
+            $table->string('pertanyaan_2')->nullable();
+            $table->longText('pertanyaan_3')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('Users')->onDelete('cascade');

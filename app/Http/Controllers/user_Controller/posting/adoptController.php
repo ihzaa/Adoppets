@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Http\Controllers\user_Controller\posting;
+
+use App\Http\Controllers\Controller;
+use App\Mail\AdoptOwner;
+use App\Mail\AdoptRequest;
+use App\posting;
+use App\User;
+use App\User_accept_choice;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+
+class adoptController extends Controller
+{
+    public function adopt(Request $request)
+    {
+        $user = Auth::guard('user')->user();
+
+        User_accept_choice::create([
+            'user_id' => $user->id,
+            'posting_id' => $request->id
+        ]);
+
+        $posting = posting::find($request->id);
+        $sendMail = array();
+        $sendMail['owner'] = User::find($posting->user_id);
+        $sendMail['requestList'] = DB::select('SELECT u.name, u.username, uac.created_at FROM user_accept_choices as uac JOIN users as u ON uac.user_id = u.id');
+        $sendMail['posting'] = $posting;
+        Mail::to($sendMail['owner']->email)->send(new AdoptOwner($sendMail));
+        Session::flash('icon', 'success');
+        Session::flash('title', 'Berhasil');
+        Session::flash('text', 'Permintaan Adopsi Berhasil.');
+
+        return response()->json([
+            'message' => 'Success Adopt'
+        ]);
+    }
+
+    public function unadopt(Request $request)
+    {
+        User_accept_choice::find($request->id)->delete();
+        Session::flash('icon', 'success');
+        Session::flash('title', 'Berhasil');
+        Session::flash('text', 'Berhasil Batal Adopsi.');
+
+        return response()->json([
+            'message' => 'Success Unadopt'
+        ]);
+    }
+}

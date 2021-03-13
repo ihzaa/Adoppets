@@ -82,13 +82,37 @@
                         </div>
                     </section>
                     <!--end Gallery Carousel-->
+                    @if (Auth::guard('user')->check())
+                    @if (Auth::guard('user')->user()->id != $data->user_id)
                     <section>
                         <div class="row justify-content-end">
                             <button class="tombol btn-framed btn-primary btn-rounded">Report</button>
                             <button class="tombol btn-framed btn-primary btn-rounded">Like</button>
-                            <button class="tombol btn-framed btn-primary btn-rounded">Adopt</button>
+                            @if ($isAdopt=='' )
+                            <button class="tombol btn-framed btn-primary btn-rounded" id="btn_adopt">Adopt</button>
+                            @else
+                            <button class="tombol btn-framed btn-danger btn-rounded" id="btn_unadopt"
+                                data-id="{{$isAdopt->id}}">Unadopt</button>
+                            @endif
+
                         </div>
                     </section>
+                    @endif
+                    @else
+                    <section>
+                        <div class="row justify-content-end">
+                            <button class="tombol btn-framed btn-primary btn-rounded">Report</button>
+                            <button class="tombol btn-framed btn-primary btn-rounded">Like</button>
+                            @if ($isAdopt=='' )
+                            <button class="tombol btn-framed btn-primary btn-rounded" id="btn_adopt">Adopt</button>
+                            @else
+                            <button class="tombol btn-framed btn-danger btn-rounded" id="btn_unadopt"
+                                data-id="{{$isAdopt->id}}">Unadopt</button>
+                            @endif
+                        </div>
+                    </section>
+                    @endif
+
                     <!--Description-->
                     <section>
                         <h2>Description</h2>
@@ -285,4 +309,86 @@ var mapTheme = "light";
 var mapElement = "map-small";
 simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 </script>
+
+<script>
+    const post_id = "{{$data->id}}"
+    $("#btn_adopt").on("click",function(){
+        let data = {
+            id : post_id
+        }
+        $("#main_loading").show();
+        fetch("{{route('adopt')}}", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        })
+        .then(response => {
+            if (response.status == 201) {
+                return "EROR"
+            } else {
+                return response.json()
+            }
+        })
+        .then(data => {
+            if (data == "EROR") {
+                window.location.replace("{{route('get_login')}}");
+            } else {
+                location.reload();
+            }
+        })
+        .catch(err => console.log(err))
+        .finally(()=>{
+        $("#main_loading").hide();
+        });
+    })
+    $("#btn_unadopt").on("click",function(){
+        let data = {
+            id : $(this).data('id')
+        }
+        $("#main_loading").show();
+        fetch("{{route('unadopt')}}", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        })
+        .then(response => {
+            if (response.status == 201) {
+                return "EROR"
+            } else {
+                return response.json()
+            }
+        })
+        .then(data => {
+            if (data == "EROR") {
+                window.location.replace("{{route('get_login')}}");
+            } else {
+                location.reload();
+            }
+        })
+        .catch(err => console.log(err))
+        .finally(()=>{
+        $("#main_loading").hide();
+        });
+    })
+</script>
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    swal({
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
+</script>
+@endif
 @endsection

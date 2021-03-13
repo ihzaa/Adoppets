@@ -103,7 +103,25 @@
         <!--end footer-->
     </div>
     <!--end page-->
-
+    <div id="main_loading" style="
+            display:none;
+            background: #504b4b;
+            color: black;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 5000;
+            top: 0;
+            left: 0;
+            float: left;
+            text-align: center;
+            padding-top: 25%;
+            opacity: .80;
+            ">
+        <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+        <br />
+        Loading...
+    </div>
     <script src="{{asset('user/assets/js/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('user/assets/js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('user/assets/bootstrap/js/bootstrap.min.js')}}"></script>

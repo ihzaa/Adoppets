@@ -20,3 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'user_Controller\posting\LandingpageController@index')->name('landingpage');
 Route::get('/user/verify/{token}', 'user_Controller\auth\verifyAccountController@verifyUser')->name('verify.user');
+
+Route::middleware('checkfetch')->group(function () {
+    Route::post('/adopt', 'user_Controller\posting\adoptController@adopt')->name('adopt');
+    Route::post('/unadopt', 'user_Controller\posting\adoptController@unadopt')->name('unadopt');
+
+});

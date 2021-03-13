@@ -7,7 +7,10 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\posting;
 use App\User;
+use App\User_accept_chioce;
+use App\User_accept_choice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class LandingpageController extends Controller
@@ -188,9 +191,12 @@ class LandingpageController extends Controller
         $deskripsi['no_wa'] = User::pluck('no_wa', 'id');
         $deskripsi['domisili_sekarang'] = User::pluck('domisili_sekarang', 'id');
         $deskripsi['instagram'] = User::pluck('instagram', 'id');
+        $isAdopt = '';
+        if (Auth::guard('user')->check())
+            $isAdopt = User_accept_choice::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->first();
 
         //$category = Category::pluck('nama', 'id');
 
-        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit'));
+        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt'));
     }
 }

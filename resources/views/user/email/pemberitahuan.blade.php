@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    body {
-        margin-top: 20px;
-    }
+        body {
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -38,8 +38,8 @@
                                         align="center" bgcolor="#71b6f9" valign="top">
                                         <a href="{{route('landingpage')}}" style="font-size:32px;color:#fff;"> Adopt
                                             Pets</a> <br>
-                                        <span style="margin-top: 10px;display: block;">Pemberitahuan Peminat Hewan Yang
-                                            Anda Posting.</span>
+                                        <span style="margin-top: 10px;display: block;">Pemberitahuan Peminat Hewan
+                                            {{$data['posting']->title}}</span>
                                     </td>
                                 </tr>
                                 <tr
@@ -56,27 +56,22 @@
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
                                                         Terdapat <strong
-                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">(jumlah
-                                                            peminat)</strong> peminat yang sedah menunggu untuk
+                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">{{count($data['requestList'])}}</strong>
+                                                        peminat yang sedah menunggu untuk
                                                         disetujui.
                                                     </td>
                                                 </tr>
+                                                @foreach ($data['requestList'] as $user)
                                                 <tr
                                                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <td class="content-block"
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
-                                                        1. Nama Pengadopsi Pertama
+                                                        {{$loop->iteration}}. {{$user->name}}
                                                     </td>
                                                 </tr>
-                                                <tr
-                                                    style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                                    <td class="content-block"
-                                                        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                                        valign="top">
-                                                        2. Nama Pengadopsi Kedua
-                                                    </td>
-                                                </tr>
+                                                @endforeach
+
                                                 <tr
                                                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <td class="content-block"
