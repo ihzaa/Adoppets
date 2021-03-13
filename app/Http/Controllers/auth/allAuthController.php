@@ -34,6 +34,9 @@ class allAuthController extends Controller
         }
         $user = User::where('username', $request->username)->first();
         if ($user != []) {
+            if (!$user->verified) {
+                return back()->with('icon', 'error')->with('title', 'Maaf')->with('text', 'Email belum diverifikasi!');
+            }
             if (Hash::check($request->password, $user->password)) {
                 $remember = $request->has('remember') ? true : false;
                 Auth::guard('user')->loginUsingId($user->id, $remember);

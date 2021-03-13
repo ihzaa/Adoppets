@@ -21,6 +21,11 @@ class User extends Authenticatable
         'instagram' => 'a',
     ];
 
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
+    }
+
     public function posting()
     {
         return $this->hasMany('App\posting', 'user_id', 'id');

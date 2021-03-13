@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'user_Controller\posting\LandingpageController@index')->name('landingpage');
-
+Route::get('/user/verify/{token}', 'user_Controller\auth\verifyAccountController@verifyUser')->name('verify.user');

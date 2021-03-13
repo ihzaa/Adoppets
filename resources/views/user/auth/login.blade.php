@@ -39,19 +39,33 @@ sub-page
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
+                @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+                @endif
+                @if (session('warning'))
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+                @endif
                 <form class="form clearfix" method="POST" action="{{route('post_login')}}">
                     @csrf
                     <div class="form-group">
-                        <label for="username" class="col-form-label required @error('username') is-invalid @enderror">Username</label>
-                        <input name=" username" type="text" class="form-control" id="username" placeholder="Your Username" required>
+                        <label for="username"
+                            class="col-form-label required @error('username') is-invalid @enderror">Username</label>
+                        <input name=" username" type="text" class="form-control" id="username"
+                            placeholder="Your Username" required>
                     </div>
                     @error('username')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <!--end form-group-->
                     <div class="form-group">
-                        <label for="password" class="col-form-label required @error('password') is-invalid @enderror">Password</label>
-                        <input name="password" type="password" class="form-control" id="password" placeholder="Enter Your Password" required>
+                        <label for="password"
+                            class="col-form-label required @error('password') is-invalid @enderror">Password</label>
+                        <input name="password" type="password" class="form-control" id="password"
+                            placeholder="Enter Your Password" required>
                     </div>
                     @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>

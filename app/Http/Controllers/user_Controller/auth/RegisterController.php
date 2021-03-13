@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\user_Controller\auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\File;
 use App\User;
+use App\VerifyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -74,7 +77,11 @@ class RegisterController extends Controller
         $filepath = 'assets/' . $location . '/' . $nameUpload;
         $data->foto_profil = $filepath;
         $data->save();
-
+        $verifyUser = VerifyUser::create([
+            'user_id' => $data->id,
+            'token' => sha1(time())
+        ]);
+        Mail::to($data->email)->send(new VerifyMail($data));
         return redirect(route('get_login'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Registrasi berhasil!');
     }
     /**
