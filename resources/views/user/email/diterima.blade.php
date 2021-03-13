@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    body {
-        margin-top: 20px;
-    }
+        body {
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -27,26 +27,6 @@
                                         style="table-layout: auto; padding-right: 24px; padding-left: 24px; width: 580px; background-color: transparent;"
                                         bgcolor="transparent" width="580" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
-                                            <tr height="50px"
-                                                style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; height: 50px; background-color: transparent;">
-                                                <td class="table-row-td"
-                                                    style="height: 50px; padding-right: 16px; font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; vertical-align: middle;"
-                                                    valign="middle" align="left">
-                                                    <a href="#"
-                                                        style="color: #ffffff; text-decoration: none; padding: 0px; font-size: 18px; line-height: 20px; height: 50px; background-color: transparent;">
-                                                        Bootdey Newsletter
-                                                    </a>
-                                                </td>
-
-                                                <td class="table-row-td"
-                                                    style="height: 50px; font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; text-align: right; vertical-align: middle;"
-                                                    align="right" valign="middle">
-                                                    <a href="#"
-                                                        style="color: #fff; text-decoration: none; background-color: transparent;">
-                                                        View inside browser
-                                                    </a>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
 
@@ -80,7 +60,7 @@
                                                                     valign="top" align="left">
                                                                     <div
                                                                         style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; text-align: center;">
-                                                                        <img src="http://placehold.it/530x270"
+                                                                        <img src="{{asset($data['posting']->path)}}"
                                                                             style="border: 0px none #444444; vertical-align: middle; display: block; padding-bottom: 9px;"
                                                                             hspace="0" vspace="0" border="0">
                                                                     </div>
@@ -115,15 +95,16 @@
                                                                             <tr>
                                                                                 <td class="header-row-td" width="508"
                                                                                     style="font-size: 28px; margin: 0px; font-family: Arial, sans-serif; font-weight: normal; line-height: 19px; color: red; padding-bottom: 10px; padding-top: 15px;"
-                                                                                    valign="top" align="left">Hi, Nama
-                                                                                    Lengkap</td>
+                                                                                    valign="top" align="left">Hi,
+                                                                                    {{$data['receiver']->name}}</td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
                                                                     <div
                                                                         style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px;">
-                                                                        Permintaan Anda untuk mengadopsi hewan (nama
-                                                                        hewan) pada kategori (nama kategori) telah
+                                                                        Permintaan Anda untuk mengadopsi hewan
+                                                                        {{$data['posting']->title}} pada kategori
+                                                                        {{$data['posting']->categry}} telah
                                                                         disetujui oleh pemiliki hewan. silahkan
                                                                         menghubungi pemilik hewan untuk aktifitas
                                                                         selanjutnya.
@@ -171,15 +152,6 @@
                                                     <table class="table-col" align="left" width="532" cellspacing="0"
                                                         cellpadding="0" border="0" style="table-layout: fixed;">
                                                         <tbody>
-                                                            <tr>
-                                                                <td class="table-col-td" width="532" align="center"
-                                                                    style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; text-align: center;"
-                                                                    valign="top">
-                                                                    <span
-                                                                        style="font-family: Arial, sans-serif; line-height: 19px; color: white; font-size: 13px;">click
-                                                                        here to unsubscribe</span>
-                                                                </td>
-                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </td>

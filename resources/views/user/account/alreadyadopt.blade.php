@@ -144,3 +144,17 @@ sub-page
 </section>
 <!--end block-->
 @endsection
+
+@section('js_after')
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    swal({
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
+</script>
+@endif
+
+@endsection

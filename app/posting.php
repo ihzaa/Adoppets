@@ -24,6 +24,11 @@ class posting extends Model
         return $this->belongsToMany('App\User', 'user_like_postings', 'user_id', 'posting_id');
     }
 
+    public function user_accept_choice()
+    {
+        return $this->hasMany('App\User_accept_choice');
+    }
+
     public function adopted_history_animal()
     {
         return $this->hasMany('App\Adoppted_history_animal', 'posting_id', 'id');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user_Controller\posting;
 use App\Http\Controllers\Controller;
 use App\Mail\AdoptOwner;
 use App\Mail\AdoptRequest;
+use App\Mail\AdoptRequestAccept;
 use App\posting;
 use App\User;
 use App\User_accept_choice;
@@ -50,5 +51,25 @@ class adoptController extends Controller
         return response()->json([
             'message' => 'Success Unadopt'
         ]);
+    }
+
+    public function userAcceptAdoption(Request $request)
+    {
+        $list =  User_accept_choice::find($request->id);
+        if (isset($list)) {
+            $list->status = 1;
+            $list->save();
+            $data['receiver'] = User::find($list->user_id);
+            $data['posting'] = DB::select('SELECT p.*, c.nama as categry, (SELECT ap.path FROM asset_postings as ap WHERE ap.posting_id = p.id LIMIT 1) as path FROM postings as p JOIN categories as c on p.category_id = c.id WHERE p.id = ' . $list->posting_id)[0];
+            // return response()->json($data);
+            Mail::to($data['receiver']->email)->send(new AdoptRequestAccept($data));
+            Session::flash('icon', 'success');
+            Session::flash('title', 'Berhasil');
+            Session::flash('text', 'Berhasil diberikan izin adopsi, yang bersangkutan akan menerima email notifikasi!');
+            return response()->json([
+                'status' => 'ok',
+                'next' => route('alreadyadopt')
+            ]);
+        }
     }
 }

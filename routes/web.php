@@ -24,5 +24,8 @@ Route::get('/user/verify/{token}', 'user_Controller\auth\verifyAccountController
 Route::middleware('checkfetch')->group(function () {
     Route::post('/adopt', 'user_Controller\posting\adoptController@adopt')->name('adopt');
     Route::post('/unadopt', 'user_Controller\posting\adoptController@unadopt')->name('unadopt');
+});
 
+Route::middleware('auth:user')->group(function () {
+    Route::post('/accept/adopt', 'user_Controller\posting\adoptController@userAcceptAdoption')->name('accept.adoption');
 });

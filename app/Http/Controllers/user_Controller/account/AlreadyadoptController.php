@@ -9,6 +9,7 @@ use App\posting;
 use App\Vaccine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AlreadyadoptController extends Controller
 {
@@ -39,8 +40,17 @@ class AlreadyadoptController extends Controller
 
     public function detail($id)
     {
-        $data = posting::find($id);
-        //$asset_posting = Asset_posting::find($id);
+        $data['posting'] = posting::find($id);
+        $user = Auth::guard('user')->user();
+        if (!$data['posting'] || $user->id != $data['posting']->user_id) {
+            return redirect(route('landingpage'));
+        }
+        $data['requestList'] = DB::select('SELECT uac.created_at, u.name FROM `user_accept_choices` as uac JOIN users as u on uac.`user_id` = u.id WHERE uac.posting_id = 1');
+        $data['requestList'] = DB::table('user_accept_choices')
+            ->join('users', 'user_accept_choices.user_id', '=', 'users.id')
+            ->where('user_accept_choices.posting_id', '=', $id)
+            ->select('user_accept_choices.created_at', 'users.name', 'user_accept_choices.pertanyaan_1 as p1', 'user_accept_choices.pertanyaan_2 as p2', 'user_accept_choices.pertanyaan_3 as p3', 'user_accept_choices.id')
+            ->get();
         return view('user/account/detailUser', compact('data'));
     }
 
