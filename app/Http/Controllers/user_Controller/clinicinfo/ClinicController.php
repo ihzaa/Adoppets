@@ -83,7 +83,7 @@ class ClinicController extends Controller
             $sort = $request->sort;
         }
         $data['sort'] = $sort;
-        $list = Clinic_information::where('user_id', Auth::user()->id)->orderBy('created_at', $sort)->get();
+        $list = Clinic_information::where('user_id', Auth::user()->id)->orderBy('created_at', $sort)->paginate(10);
         return view('user/account/postingclinic', compact('list', 'data'));
     }
 

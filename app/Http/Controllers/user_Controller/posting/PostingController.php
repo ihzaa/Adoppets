@@ -107,14 +107,24 @@ class PostingController extends Controller
         }
         $data['sort'] = $sort;
         // $edit = posting::where('user_id', Auth::user()->id)->get();
-        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_tanggal FROM postings as p ORDER BY p.created_at ' . $sort);
+        // $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_tanggal FROM postings as p ORDER BY p.created_at ' . $sort);
+        $edit = DB::table('postings')
+            ->select(
+                'postings.*',
+                DB::raw('(SELECT vaccines.tanggal FROM vaccines where vaccines.posting_id = postings.id LIMIT 1 ) as vaksin_tanggal'),
+                DB::raw('(SELECT vaccines.keterangan FROM vaccines where vaccines.posting_id = postings.id LIMIT 1) as vaksin_keterangan'),
+                DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto')
+            )
+            ->orderBy('postings.created_at', $sort)
+            ->paginate(10);
+        // dd($edit);
         $category = Category::pluck('nama', 'id');
         // $vaksin1 = Vaccine::where('posting_id',$edit->)->pluck('keterangan', 'posting_id');
-        $data_image = Asset_posting::all();
-        $aset_posting = DB::select('SELECT p.id, (SELECT aset.path FROM asset_postings AS aset WHERE aset.posting_id = p.id LIMIT 1) as path FROM postings as p');
+        // $data_image = Asset_posting::all();
+        // $aset_posting = DB::select('SELECT p.id, (SELECT aset.path FROM asset_postings AS aset WHERE aset.posting_id = p.id LIMIT 1) as path FROM postings as p');
         // dd($edit);
         //$aset_posting = DB::table('postings')->select('postings.*', DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'));
-        return view('user/account/mypostingan', compact('edit', 'category', 'aset_posting', 'data'));
+        return view('user/account/mypostingan', compact('edit', 'category', 'data'));
     }
 
     public function detail()

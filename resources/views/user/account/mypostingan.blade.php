@@ -88,12 +88,13 @@ sub-page
                                     <a class="tag category">{{$category[$item->category_id]}}</a>
                                     <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
                                         class="title">{{$item->title}}</a>
-                                    <span class="tag">Offer</span>
+                                    {{-- <span class="tag">Offer</span> --}}
                                 </h3>
 
-                                <a href="single-listing-1.html" class="image-wrapper background-image">
+                                <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
+                                    class="image-wrapper background-image">
                                     {{-- <p>{{$aset_posting[$item->posting_id]->id}}</p> --}}
-                                    {{-- <img src="{{asset($aset_posting[$item->posting_id]->path)}}" alt=""> --}}
+                                    <img src="{{asset($item->foto)}}" alt="">
                                 </a>
 
                             </div>
@@ -134,7 +135,7 @@ sub-page
                     </div>
                     @endforeach
                     <!--end item-->
-
+                    {{$edit->links('user.posting.pagination')}}
                 </div>
                 <!--end items-->
             </div>

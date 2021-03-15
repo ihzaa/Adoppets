@@ -134,7 +134,7 @@ sub-page
                     </div>
                     @endforeach
                     <!--end item-->
-
+                    {{$list->links('user.posting.pagination')}}
                 </div>
                 <!--end items-->
             </div>
