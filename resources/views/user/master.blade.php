@@ -43,16 +43,19 @@
                             <div class="collapse navbar-collapse" id="navbar">
                                 <!--Main navigation list-->
                                 <ul class="navbar-nav">
-                                    <li class="nav-item active ">
-                                        <a class="nav-link" href="{{route('landingpage')}}">Home</a>
+                                    <li class="nav-item @if(Route::currentRouteName() == 'landingpage')
+                                    active
+                                    @endif">
+                                        <a class="nav-link" href="{{route('landingpage')}}">Home
+                                        </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item @if(Route::currentRouteName() == 'blog') active @endif">
                                         <a class="nav-link" href="{{route('blog')}}">Blog</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item @if(Route::currentRouteName() == 'clinic') active @endif">
                                         <a class="nav-link" href="{{route('clinic')}}">Informasi Klinik</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item @if(Route::currentRouteName() == 'contact') active @endif">
                                         <a class="nav-link" href="{{route('contact')}}">Kontak</a>
                                     </li>
                                     <!-- @if (Auth::guard('admin')->check())
@@ -60,7 +63,8 @@
                                         <a class="nav-link" href="{{route('home_admin')}}">Admin</a>
                                     </li>
                                     @endif -->
-                                    <li class="nav-item">
+                                    <li
+                                        class="nav-item @if(Route::currentRouteName() == 'account') active @endif">
                                         <a href="{{route('account')}}"
                                             class="btn btn-primary text-caps btn-rounded btn-framed">Profile
                                             Saya</a>

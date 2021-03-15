@@ -231,7 +231,6 @@ $(document).on('change', '#sorting_post', function() {
     searchParams.set('sort', $('#sorting_post').val())
     var newParams = searchParams.toString()
     window.location.href = URL.current + '/?' + newParams
-
 })
 
 $('#btn_like').click(function() {

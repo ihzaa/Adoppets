@@ -45,9 +45,9 @@ class AccountController extends Controller
             'foto_profil' => 'image|mimes:jpeg,svg,jfif,png,jpg|max:256',
         ]);
 
-        $this->validate($request, [
-            'password' => 'confirmed',
-        ]);
+        // $this->validate($request, [
+        //     'password' => 'confirmed',
+        // ]);
         $data = User::where('id', Auth::user()->id)->first();
         $data->name = $request->name;
         $data->username = $request->username;
@@ -59,9 +59,9 @@ class AccountController extends Controller
         $data->no_wa = $request->no_wa;
         // $data->foto_profil = $request->foto_profil;
 
-        if (!empty($request->password)) {
-            $data->password = Hash::make($request->password);
-        }
+        // if (!empty($request->password)) {
+        //     $data->password = Hash::make($request->password);
+        // }
 
         if ($request->file('foto_profil') != "") {
             File::delete($data->foto_profil);
@@ -132,5 +132,25 @@ class AccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changePassword(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'old' => 'required|min:6',
+            'new' => 'required|min:6'
+        ]);
+
+        $user = Auth::guard('user')->user();
+
+        if (Hash::check($request->old, $user->password)) {
+            User::find($user->id)->update([
+                'password' => Hash::make($request->new)
+            ]);
+            return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Merubah Password!');
+        } else {
+            return back()->with('icon', 'error')->with('title', 'Maaf')->with('text', 'Password Lama Anda Salah!');
+        }
     }
 }
