@@ -43,19 +43,19 @@
                             <div class="collapse navbar-collapse" id="navbar">
                                 <!--Main navigation list-->
                                 <ul class="navbar-nav">
-                                    <li class="nav-item @if(Route::currentRouteName() == 'landingpage')
+                                    <li class="nav-item @if(strpos(Route::currentRouteName(), 'landingpage') !== false )
                                     active
                                     @endif">
                                         <a class="nav-link" href="{{route('landingpage')}}">Home
                                         </a>
                                     </li>
-                                    <li class="nav-item @if(Route::currentRouteName() == 'blog') active @endif">
+                                    <li class="nav-item @if(strpos(Route::currentRouteName(), 'blog') !== false ) active @endif">
                                         <a class="nav-link" href="{{route('blog')}}">Blog</a>
                                     </li>
-                                    <li class="nav-item @if(Route::currentRouteName() == 'clinic') active @endif">
+                                    <li class="nav-item @if(strpos(Route::currentRouteName(), 'clinic') !== false ) active @endif">
                                         <a class="nav-link" href="{{route('clinic')}}">Informasi Klinik</a>
                                     </li>
-                                    <li class="nav-item @if(Route::currentRouteName() == 'contact') active @endif">
+                                    <li class="nav-item @if(strpos(Route::currentRouteName(), 'contact') !== false ) active @endif">
                                         <a class="nav-link" href="{{route('contact')}}">Kontak</a>
                                     </li>
                                     <!-- @if (Auth::guard('admin')->check())
@@ -64,7 +64,7 @@
                                     </li>
                                     @endif -->
                                     <li
-                                        class="nav-item @if(Route::currentRouteName() == 'account') active @endif">
+                                        class="nav-item @if(strpos(Route::currentRouteName(), 'account') !== false ) active @endif">
                                         <a href="{{route('account')}}"
                                             class="btn btn-primary text-caps btn-rounded btn-framed">Profile
                                             Saya</a>

@@ -21,7 +21,7 @@ class ClinicController extends Controller
     public function index()
     {
         //
-        $list = Clinic_information::all();
+        $list = Clinic_information::orderBy('created_at', 'DESC')->paginate(10);
         $user = User::pluck('name', 'id');
         return view('user/clinic/clinic', compact('list', 'user'));
     }
