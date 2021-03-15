@@ -82,11 +82,15 @@ class BlogController extends Controller
     }
 
     //list blog di akun saya
-    public function list_blog()
+    public function list_blog(Request $request)
     {
-        //
-        $list = Blog::where('user_id', Auth::user()->id)->get();
-        return view('user/account/postingblog', compact('list'));
+        $sort = "DESC";
+        if ($request->sort != null) {
+            $sort = $request->sort;
+        }
+        $data['sort'] = $sort;
+        $list = Blog::where('user_id', Auth::user()->id)->orderBy('created_at', $sort)->get();
+        return view('user/account/postingblog', compact('list', 'data'));
     }
 
     public function create()

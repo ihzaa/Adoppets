@@ -40,7 +40,6 @@ sub-page
             <div class="col-md-3">
                 <nav class="nav flex-column side-nav">
                     @include('user.account.sidebar')
-
                 </nav>
             </div>
             <!--end col-md-3-->
