@@ -119,4 +119,9 @@ class AlreadyadoptController extends Controller
     {
         //
     }
+
+    public function detail_pengadopsi()
+    {
+        return view('user/account/detailpengadopsi');
+    }
 }

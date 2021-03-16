@@ -43,6 +43,7 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/alreadyadopt', 'user_Controller\account\AlreadyadoptController@index')->name('alreadyadopt');
     Route::get('/alreadyadopt/detail/{id}', 'user_Controller\account\AlreadyadoptController@detail')->name('detail_alreadyadopt');
     Route::get('/infouser', 'user_Controller\account\AlreadyadoptController@info')->name('info_user');
+    Route::get('/detailpengadopsi', 'user_Controller\account\AlreadyadoptController@detail_pengadopsi')->name('detailpengadopsi');
 
     //untuk posting hewan
     Route::get('/submitposting', 'user_Controller\posting\PostingController@index_posting')->name('submit_posting');

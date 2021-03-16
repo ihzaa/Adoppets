@@ -76,7 +76,49 @@ sub-page
                 <!--end page-pagination-->
             </div>
             <!--end col-md-8-->
+            <div class="col-md-4">
+                <!--============ Side Bar ===============================================================-->
+                <aside class="sidebar">
+                    <section>
+                        <h2>Search Klinik</h2>
+                        <!--============ Side Bar Search Form ===========================================-->
+                        <form class="sidebar-form form">
+                            <div class="form-group">
+                                <label for="what" class="col-form-label">klinik yang Anda cari?</label>
+                                <input name="keyword" type="text" class="form-control" id="what"
+                                    placeholder="Enter keyword and press enter">
+                            </div>
+                            <!--end form-group-->
+                        </form>
+                        <!--============ End Side Bar Search Form =======================================-->
+                    </section>
+                    <section>
+                        <h2>Others Clinics</h2>
+                        <div class="sidebar-post">
+                            <a href="blog-post.html" class="background-image">
+                                <img src="assets/img/blog-image-03.jpg">
+                            </a>
+                            <!--end background-image-->
+                            <div class="description">
+                                <h4>
+                                    <a href="blog-post.html">How to build a cool swimming pool</a>
+                                </h4>
+                                <div class="meta">
+                                    <a href="#">John Doe</a>
+                                    <figure>02.05.2017</figure>
+                                </div>
+                                <!--end meta-->
+                            </div>
+                            <!--end description-->
+                        </div>
+                        <!--end sidebar-post-->
 
+                        <!--end sidebar-post-->
+
+                    </section>
+                </aside>
+                <!--============ End Side Bar ===========================================================-->
+            </div>
         </div>
         <!--end col-md-3-->
     </div>

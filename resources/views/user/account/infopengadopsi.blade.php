@@ -103,20 +103,13 @@ sub-page
                         </table>
                     </div>
                 </div>
-<<<<<<< HEAD
                 <section class="clearfix">
                     <div class="form-group">
                         <button type="submit" class="btn btn-info large icon float-right">Back</i></button>
                     </div>
                 </section>
-=======
->>>>>>> 65633974d43132067344fcf20d3d409d80971584
             </div>
         </div>
     </div>
 </section>
-<<<<<<< HEAD
-=======
-
->>>>>>> 65633974d43132067344fcf20d3d409d80971584
 @endsection
