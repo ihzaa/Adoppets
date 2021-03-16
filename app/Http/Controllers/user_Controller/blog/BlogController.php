@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
@@ -18,12 +19,16 @@ class BlogController extends Controller
      */
 
     //list blog pada tampilan umum
-    public function index()
+    public function index(Request $request)
     {
         //
-        $list = Blog::all();
+        $request->search == null ?
+            $list = Blog::orderBy('created_at', 'DESC')->paginate(10)
+            :
+            $list = Blog::orderBy('created_at', 'DESC')->where('title', 'like', "%$request->search%")->paginate(10);
+        $data['popular'] = DB::select('SELECT b.*, (SELECT COUNT(*) FROM user_like_blogs as ulb where ulb.blog_id = b.id) as likes FROM blogs as b ORDER BY likes ASC LIMIT 3');
         $user = User::pluck('name', 'id');
-        return view('user/blog/blog', compact('list', 'user'));
+        return view('user/blog/blog', compact('list', 'user', 'data'));
     }
 
     //detail blog (read more)
@@ -35,7 +40,8 @@ class BlogController extends Controller
         $deskripsi = array();
         $deskripsi['alamat_asal'] = User::pluck('alamat_asal', 'id');
         $deskripsi['email'] = User::pluck('email', 'id');
-        return view('user/blog/readMore', compact('data', 'user', 'user_foto', 'deskripsi'));
+        $data['popular'] = DB::select('SELECT b.*, (SELECT COUNT(*) FROM user_like_blogs as ulb where ulb.blog_id = b.id) as likes FROM blogs as b ORDER BY likes ASC LIMIT 3');
+        return view('user/blog/readMore', compact('data', 'user', 'user_foto', 'deskripsi', 'data'));
     }
 
     //submit blog
@@ -76,11 +82,15 @@ class BlogController extends Controller
     }
 
     //list blog di akun saya
-    public function list_blog()
+    public function list_blog(Request $request)
     {
-        //
-        $list = Blog::where('user_id', Auth::user()->id)->get();
-        return view('user/account/postingblog', compact('list'));
+        $sort = "DESC";
+        if ($request->sort != null) {
+            $sort = $request->sort;
+        }
+        $data['sort'] = $sort;
+        $list = Blog::where('user_id', Auth::user()->id)->orderBy('created_at', $sort)->paginate(10);
+        return view('user/account/postingblog', compact('list', 'data'));
     }
 
     public function create()

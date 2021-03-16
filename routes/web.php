@@ -29,3 +29,7 @@ Route::middleware('checkfetch')->group(function () {
 Route::middleware('auth:user')->group(function () {
     Route::post('/accept/adopt', 'user_Controller\posting\adoptController@userAcceptAdoption')->name('accept.adoption');
 });
+
+// Route::middleware('auth:admin')->group(function () {
+    Route::post('user/change/password', 'user_Controller\account\AccountController@changePassword')->name('change.password');
+// });

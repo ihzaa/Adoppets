@@ -39,24 +39,8 @@ sub-page
         <div class="row">
             <div class="col-md-3">
                 <nav class="nav flex-column side-nav">
-                    <a class="nav-link active icon" href="{{route('account')}}">
-                        <i class="fa fa-user"></i>Profil Saya
-                    </a>
-                    <a class="nav-link icon" href="{{route('edit_posting')}}">
-                        <i class="fa fa-paw"></i>Postingan Hewan
-                    </a>
-                    <a class="nav-link icon" href="{{route('posting_blog')}}">
-                        <i class="fa fa-book"></i>Postingan Blog
-                    </a>
-                    <a class="nav-link icon" href="">
-                        <i class="fa fa-hospital-o"></i>Postingan Clinic
-                    </a>
-                    <a class="nav-link icon" href="{{route('alreadyadopt')}}">
-                        <i class="fa fa-check"></i>Menunggu Disetujui
-                    </a>
-                    <a class="nav-link icon" href="{{route('logout')}}">
-                        <i class="fa fa-sign-out"></i>Logout
-                    </a>
+                    @include('user.account.sidebar')
+
                 </nav>
             </div>
             <!--end col-md-3-->
@@ -65,13 +49,13 @@ sub-page
                 <div class="section-title clearfix">
                     <div class="float-left float-xs-none">
                         <label class="mr-3 align-text-bottom">Urutkan Berdasarkan: </label>
-                        <select name="sorting" id="sorting" class="small width-200px"
+                        <select name="sorting" id="sorting_post" class="small width-200px"
                             data-placeholder="Default Sorting">
-                            <option value="">Default Sorting</option>
-                            <option value="1">Newest First</option>
-                            <option value="2">Oldest First</option>
-                            <option value="3">Lowest Price First</option>
-                            <option value="4">Highest Price First</option>
+                            {{-- <option value="">Urutan Default</option> --}}
+                            <option value="desc" {{$data['sort'] == 'desc'? 'selected' :''}}>Newest First</option>
+                            <option value="asc" {{$data['sort'] == 'asc'? 'selected' :''}}>Oldest First</option>
+                            {{-- <option value="3">Lowest Price First</option>
+                        <option value="4">Highest Price First</option> --}}
                         </select>
 
                     </div>
@@ -149,7 +133,7 @@ sub-page
                     @endforeach
 
                     <!--end item-->
-
+                    {{$list->links('user.posting.pagination')}}
                 </div>
                 <!--end items-->
             </div>
@@ -169,7 +153,7 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -179,12 +163,22 @@ swal({
 
 {{-- confirm delete --}}
 <script>
-function ConfirmDelete() {
+    function ConfirmDelete() {
     var x = confirm("Are you sure you want to delete?");
     if (x)
         return true;
     else
         return false;
 }
+
+    const URL = {
+                    current: "{{route('posting_clinic')}}"
+                }
+    $(document).on('change', '#sorting_post', function() {
+        var searchParams = new URLSearchParams(window.location.search);
+        searchParams.set('sort', $('#sorting_post').val())
+        var newParams = searchParams.toString()
+        window.location.href = URL.current + '/?' + newParams
+    });
 </script>
 @endsection

@@ -39,24 +39,7 @@ sub-page
         <div class="row">
             <div class="col-md-3">
                 <nav class="nav flex-column side-nav">
-                    <a class="nav-link active icon" href="{{route('account')}}">
-                        <i class="fa fa-user"></i>Profil Saya
-                    </a>
-                    <a class="nav-link icon" href="">
-                        <i class="fa fa-paw"></i>Postingan Hewan
-                    </a>
-                    <a class="nav-link icon" href="{{route('posting_blog')}}">
-                        <i class="fa fa-book"></i>Postingan Blog
-                    </a>
-                    <a class="nav-link icon" href="{{route('posting_clinic')}}">
-                        <i class="fa fa-hospital-o"></i>Postingan Clinic
-                    </a>
-                    <a class="nav-link icon" href="{{route('alreadyadopt')}}">
-                        <i class="fa fa-check"></i>Menunggu Disetujui
-                    </a>
-                    <a class="nav-link icon" href="{{route('logout')}}">
-                        <i class="fa fa-sign-out"></i>Logout
-                    </a>
+                    @include('user.account.sidebar')
                 </nav>
             </div>
             <!--end col-md-3-->
@@ -65,13 +48,13 @@ sub-page
                 <div class="section-title clearfix">
                     <div class="float-left float-xs-none">
                         <label class="mr-3 align-text-bottom">Urutkan Berdasarkan: </label>
-                        <select name="sorting" id="sorting" class="small width-200px"
+                        <select name="sorting" id="sorting_post" class="small width-200px"
                             data-placeholder="Default Sorting">
-                            <option value="">Default Sorting</option>
-                            <option value="1">Newest First</option>
-                            <option value="2">Oldest First</option>
-                            <option value="3">Lowest Price First</option>
-                            <option value="4">Highest Price First</option>
+                            {{-- <option value="">Urutan Default</option> --}}
+                            <option value="desc" {{$data['sort'] == 'desc'? 'selected' :''}}>Newest First</option>
+                            <option value="asc" {{$data['sort'] == 'asc'? 'selected' :''}}>Oldest First</option>
+                            {{-- <option value="3">Lowest Price First</option>
+                        <option value="4">Highest Price First</option> --}}
                         </select>
 
                     </div>
@@ -105,12 +88,13 @@ sub-page
                                     <a class="tag category">{{$category[$item->category_id]}}</a>
                                     <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
                                         class="title">{{$item->title}}</a>
-                                    <span class="tag">Offer</span>
+                                    {{-- <span class="tag">Offer</span> --}}
                                 </h3>
 
-                                <a href="single-listing-1.html" class="image-wrapper background-image">
+                                <a href="{{route('detail_posting_hewan', ['id'=>$item->id])}}"
+                                    class="image-wrapper background-image">
                                     {{-- <p>{{$aset_posting[$item->posting_id]->id}}</p> --}}
-                                    {{-- <img src="{{asset($aset_posting[$item->posting_id]->path)}}" alt=""> --}}
+                                    <img src="{{asset($item->foto)}}" alt="">
                                 </a>
 
                             </div>
@@ -151,7 +135,7 @@ sub-page
                     </div>
                     @endforeach
                     <!--end item-->
-
+                    {{$edit->links('user.posting.pagination')}}
                 </div>
                 <!--end items-->
             </div>
@@ -162,4 +146,18 @@ sub-page
     <!--end container-->
 </section>
 <!--end block-->
+@endsection
+
+@section('js_after')
+<script>
+    const URL = {
+        current: "{{route('edit_posting')}}"
+    }
+    $(document).on('change', '#sorting_post', function() {
+        var searchParams = new URLSearchParams(window.location.search);
+        searchParams.set('sort', $('#sorting_post').val())
+        var newParams = searchParams.toString()
+        window.location.href = URL.current + '/?' + newParams
+    });
+</script>
 @endsection

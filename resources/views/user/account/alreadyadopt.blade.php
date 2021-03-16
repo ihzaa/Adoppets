@@ -39,24 +39,7 @@ sub-page
         <div class="row">
             <div class="col-md-3">
                 <nav class="nav flex-column side-nav">
-                    <a class="nav-link active icon" href="">
-                        <i class="fa fa-user"></i>Profil Saya
-                    </a>
-                    <a class="nav-link icon" href="{{route('edit_posting')}}">
-                        <i class="fa fa-paw"></i>Postingan Hewan
-                    </a>
-                    <a class="nav-link icon" href="{{route('posting_blog')}}">
-                        <i class="fa fa-book"></i>Postingan Blog
-                    </a>
-                    <a class="nav-link icon" href="{{route('posting_clinic')}}">
-                        <i class="fa fa-hospital-o"></i>Postingan Clinic
-                    </a>
-                    <a class="nav-link icon" href="{{route('alreadyadopt')}}">
-                        <i class="fa fa-check"></i>Menunggu Disetujui
-                    </a>
-                    <a class="nav-link icon" href="{{route('logout')}}">
-                        <i class="fa fa-sign-out"></i>Logout
-                    </a>
+                    @include('user.account.sidebar')
                 </nav>
             </div>
             <!--end col-md-3-->

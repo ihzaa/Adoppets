@@ -21,7 +21,7 @@ class ClinicController extends Controller
     public function index()
     {
         //
-        $list = Clinic_information::all();
+        $list = Clinic_information::orderBy('created_at', 'DESC')->paginate(10);
         $user = User::pluck('name', 'id');
         return view('user/clinic/clinic', compact('list', 'user'));
     }
@@ -76,10 +76,15 @@ class ClinicController extends Controller
     }
 
     //list clinic pada akun saya
-    public function list_clinic()
+    public function list_clinic(Request $request)
     {
-        $list = Clinic_information::where('user_id', Auth::user()->id)->get();
-        return view('user/account/postingclinic', compact('list'));
+        $sort = "DESC";
+        if ($request->sort != null) {
+            $sort = $request->sort;
+        }
+        $data['sort'] = $sort;
+        $list = Clinic_information::where('user_id', Auth::user()->id)->orderBy('created_at', $sort)->paginate(10);
+        return view('user/account/postingclinic', compact('list', 'data'));
     }
 
     public function create()

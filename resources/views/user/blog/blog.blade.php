@@ -35,6 +35,9 @@ sub-page
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                @if (count($list) == 0)
+                <h1 class="text-center">Belum ada blog.</h1>
+                @endif
                 @foreach ($list as $item)
                 <article class="blog-post clearfix">
                     <a href="{{route('readmore_blog', ['id'=>$item->id])}}">
@@ -70,37 +73,7 @@ sub-page
 
                 <!--end Articles-->
 
-                <div class="page-pagination">
-                    <nav aria-label="Pagination">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                {{$list->links('user.posting.pagination')}}
                 <!--end page-pagination-->
             </div>
             <!--end col-md-8-->
@@ -111,10 +84,10 @@ sub-page
                     <section>
                         <h2>Search Blog</h2>
                         <!--============ Side Bar Search Form ===========================================-->
-                        <form class="sidebar-form form">
+                        <form class="sidebar-form form" id="search_form">
                             <div class="form-group">
                                 <label for="what" class="col-form-label">What?</label>
-                                <input name="keyword" type="text" class="form-control" id="what"
+                                <input type="text" class="form-control" id="what"
                                     placeholder="Enter keyword and press enter">
                             </div>
                             <!--end form-group-->
@@ -123,62 +96,30 @@ sub-page
                     </section>
                     <section>
                         <h2>Popular Posts</h2>
+                        @if (count($data['popular']) == 0)
+                        <h2 class="text-center">Tidak ada blog</h2>
+                        @endif
+                        @foreach ($data['popular'] as $item)
                         <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-03.jpg">
+                            <a href="{{route('detail_blog',['id'=>$item->id])}}" class="background-image">
+                                <img src="{{asset($item->picture)}}">
                             </a>
                             <!--end background-image-->
                             <div class="description">
                                 <h4>
-                                    <a href="blog-post.html">How to build a cool swimming pool</a>
+                                    <a href="{{route('detail_blog',['id'=>$item->id])}}">{{$item->title}}</a>
                                 </h4>
                                 <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
+                                    <a href="#">{{$user[$item->user_id]}}</a>
+                                    <figure>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</figure>
                                 </div>
                                 <!--end meta-->
                             </div>
                             <!--end description-->
                         </div>
+                        @endforeach
                         <!--end sidebar-post-->
 
-                        <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-04.jpg">
-                            </a>
-                            <!--end background-image-->
-                            <div class="description">
-                                <h4>
-                                    <a href="blog-post.html">Concrete decorations can be beautiful</a>
-                                </h4>
-                                <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
-                                </div>
-                                <!--end meta-->
-                            </div>
-                            <!--end description-->
-                        </div>
-                        <!--end sidebar-post-->
-
-                        <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-05.jpg">
-                            </a>
-                            <!--end background-image-->
-                            <div class="description">
-                                <h4>
-                                    <a href="blog-post.html">Let’s take a break</a>
-                                </h4>
-                                <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
-                                </div>
-                                <!--end meta-->
-                            </div>
-                            <!--end description-->
-                        </div>
-                        <!--end sidebar-post-->
                     </section>
                 </aside>
                 <!--============ End Side Bar ===========================================================-->
@@ -192,11 +133,10 @@ sub-page
 @endsection
 
 @section('js_after')
-
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -204,4 +144,16 @@ swal({
 </script>
 @endif
 
+<script>
+    const URL = {
+        current : "{{route('blog')}}"
+    }
+    $("#search_form").on('submit',function(){
+        var searchParams = new URLSearchParams(window.location.search);
+        searchParams.set('search', $('#what').val())
+        var newParams = searchParams.toString()
+        window.location.href = URL.current + '/?' + newParams
+        event.preventDefault()
+    })
+</script>
 @endsection
