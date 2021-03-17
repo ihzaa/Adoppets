@@ -9,6 +9,7 @@ use App\posting;
 use App\User;
 use App\User_accept_chioce;
 use App\User_accept_choice;
+use App\User_like_posting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -181,6 +182,8 @@ class LandingpageController extends Controller
     {
         $data = posting::find($id);
         $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p');
+        $like['counter'] = User_like_posting::where('posting_id', $id)->count();
+
         $asset_posting = Asset_posting::find($id);
         $user = User::pluck('name', 'id');
         $user_foto = User::pluck('foto_profil', 'id');
@@ -192,11 +195,12 @@ class LandingpageController extends Controller
         $deskripsi['domisili_sekarang'] = User::pluck('domisili_sekarang', 'id');
         $deskripsi['instagram'] = User::pluck('instagram', 'id');
         $isAdopt = '';
-        if (Auth::guard('user')->check())
+        if (Auth::guard('user')->check()) {
+            $like['isLike'] = User_like_posting::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->count();
             $isAdopt = User_accept_choice::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->first();
-
+        }
         //$category = Category::pluck('nama', 'id');
 
-        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt'));
+        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt', 'like'));
     }
 }

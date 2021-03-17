@@ -2,9 +2,9 @@
 
 @section('include-css')
 <style>
-.love {
-    margin-right: 15px
-}
+    .love {
+        margin-right: 15px
+    }
 </style>
 @endsection
 @section('nama-page', 'home-page')
@@ -129,10 +129,12 @@ has-dark-background
                         <div class="image">
                             <h3>
                                 <a href="#" class="tag category">{{$post->category}}</a>
-                                <a href="single-listing-1.html" class="title">{{$post->title}}</a>
+                                <a href="{{route('detail_posting', ['id'=>$post->id])}}"
+                                    class="title">{{$post->title}}</a>
                                 <span class="tag">{{$post->ras}}</span>
                             </h3>
-                            <a href="single-listing-1.html" class="image-wrapper background-image">
+                            <a href="{{route('detail_posting', ['id'=>$post->id])}}"
+                                class="image-wrapper background-image">
                                 <img src="{{asset($post->foto)}}" alt="">
                             </a>
                         </div>
@@ -200,7 +202,7 @@ has-dark-background
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -209,7 +211,7 @@ swal({
 @endif
 {{-- <script src="{{asset('user\assets\js\url-search-param.js')}}"></script> --}}
 <script>
-const URL = {
+    const URL = {
     current: "{{route('landingpage')}}"
 }
 $(document).on('click', '#search-button', function() {

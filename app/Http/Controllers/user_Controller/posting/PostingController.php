@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\posting;
 use App\User;
+use App\User_like_posting;
 use App\Vaccine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -147,5 +148,25 @@ class PostingController extends Controller
         $data = posting::find($id);
         $asset_posting_detail = DB::select('SELECT asset_postings.path, asset_postings.posting_id FROM asset_postings INNER JOIN postings ON postings.id = asset_postings.posting_id');
         return view('user/posting/detailPostingAccount', compact('data', 'asset_posting_detail'));
+    }
+
+    public function likePosting(Request $request)
+    {
+        $user = Auth::guard('user')->user();
+        User_like_posting::create([
+            'user_id' => $user->id,
+            'posting_id' => $request->id
+        ]);
+        return response()->json([
+            'like' => User_like_posting::where('posting_id', $request->id)->count()
+        ]);
+    }
+    public function dislikePosting(Request $request)
+    {
+        $user = Auth::guard('user')->user();
+        User_like_posting::where('user_id', $user->id)->where('posting_id', $request->id)->delete();
+        return response()->json([
+            'like' => User_like_posting::where('posting_id', $request->id)->count()
+        ]);
     }
 }

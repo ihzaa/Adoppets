@@ -3,7 +3,11 @@
 @section('include-css')
 <link rel="stylesheet" href="{{asset('user/assets/css/owl.carousel.min.css')}}" type="text/css">
 <link rel="stylesheet" href="{{asset('user/assets/fonts/font-awesome.css')}}" type="text/css">
-
+{{-- <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script> --}}
 <style>
     .tombol {
         margin-left: 8px;
@@ -26,7 +30,7 @@
         <div class="float-right float-xs-none price">
             <div class="number">Like</div>
             <div class="id opacity-50">
-                <strong>56789</strong>
+                <strong id="likeCounter">{{$like['counter']}}</strong>
             </div>
         </div>
     </div>
@@ -86,12 +90,18 @@
                     @if (Auth::guard('user')->user()->id != $data->user_id)
                     <section>
                         <div class="row justify-content-end">
-                            <button class="tombol btn-framed btn-primary btn-rounded">Report</button>
-                            <button class="tombol btn-framed btn-primary btn-rounded">Like</button>
-                            @if ($isAdopt=='' )
-                            <button class="tombol btn-framed btn-primary btn-rounded" id="btn_adopt">Adopt</button>
+                            <button class="tombol btn btn-framed btn-primary btn-rounded">Report</button>
+                            @if ($like['isLike'] == 0)
+                            <button class="tombol btn btn-framed btn-info btn-rounded btn_like"
+                                data-id="{{$data->id}}">Like</button>
                             @else
-                            <button class="tombol btn-framed btn-danger btn-rounded" id="btn_unadopt"
+                            <button class="tombol btn btn-framed btn-primary btn-rounded btn_dislike"
+                                data-id="{{$data->id}}">Dislike</button>
+                            @endif
+                            @if ($isAdopt=='' )
+                            <button class="tombol btn btn-framed btn-info btn-rounded" id="btn_adopt">Adopt</button>
+                            @else
+                            <button class="tombol btn btn-framed btn-danger btn-rounded" id="btn_unadopt"
                                 data-id="{{$isAdopt->id}}">Unadopt</button>
                             @endif
 
@@ -102,9 +112,10 @@
                     <section>
                         <div class="row justify-content-end">
                             <button class="tombol btn-framed btn-primary btn-rounded">Report</button>
-                            <button class="tombol btn-framed btn-primary btn-rounded">Like</button>
+                            <button class="tombol btn-framed btn-info btn-rounded btn_like"
+                                data-id="{{$data->id}}">Like</button>
                             @if ($isAdopt=='' )
-                            <button class="tombol btn-framed btn-primary btn-rounded" id="btn_adopt">Adopt</button>
+                            <button class="tombol btn-framed btn-info btn-rounded" id="btn_adopt">Adopt</button>
                             @else
                             <button class="tombol btn-framed btn-danger btn-rounded" id="btn_unadopt"
                                 data-id="{{$isAdopt->id}}">Unadopt</button>
@@ -182,7 +193,12 @@
                             </div>
                             <div class="col-md-8">
                                 <h2>Location</h2>
-                                <div class="map height-300px" id="map-small"></div>
+                                {{-- <div class="map height-300px" id="map-small"></div> --}}
+                                {{-- <div id="map" style="width: 100%; height: 480px"></div> --}}
+                                {{-- <input name="latitude" type="text" class="form-control" id="latitude" value="{{$edit->}}"
+                                hidden>
+                                <input name="longitude" type="text" class="form-control" id="longitude"
+                                    value="106.816666" hidden> --}}
                             </div>
                         </div>
                     </section>
@@ -377,9 +393,85 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
         })
         .catch(err => console.log(err))
         .finally(()=>{
-        $("#main_loading").hide();
+            $("#main_loading").hide();
         });
     })
+
+    $(document).on('click','.btn_like',function(){
+        let data = {
+            id : $(this).data('id')
+        }
+        // $("#main_loading").show();
+        $(this).html(`Loading...`);
+        $(this).removeClass('btn_like');
+        fetch("{{route('likePosting')}}", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        })
+        .then(response => {
+            if (response.status == 201) {
+                return "EROR"
+            } else {
+                return response.json()
+            }
+        })
+        .then(data => {
+            if (data == "EROR") {
+                window.location.replace("{{route('get_login')}}");
+            } else {
+                $(this).removeClass('btn-info');
+                $(this).addClass('btn_dislike btn-primary')
+                $(this).html(`Dislike`);
+                $("#likeCounter").html(data.like)
+            }
+        })
+        .catch(err => console.log(err))
+
+    });
+
+    $(document).on('click','.btn_dislike',function(){
+        let data = {
+            id : $(this).data('id')
+        }
+        // $("#main_loading").show();
+        $(this).html(`Loading...`);
+        $(this).removeClass('btn_dislike');
+        fetch("{{route('dislikePosting')}}", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        })
+        .then(response => {
+            if (response.status == 201) {
+                return "EROR"
+            } else {
+                return response.json()
+            }
+        })
+        .then(data => {
+            if (data == "EROR") {
+                window.location.replace("{{route('get_login')}}");
+            } else {
+                $(this).removeClass('btn-primary');
+                $(this).addClass('btn_like btn-info')
+                $(this).html(`Like`);
+                $("#likeCounter").html(data.like)
+            }
+        })
+        .catch(err => console.log(err))
+
+    });
 </script>
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -391,4 +483,219 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
     });
 </script>
 @endif
+{{-- <script>
+    const elLat = document.getElementById("latitude");
+const elLng = document.getElementById("longitude");
+
+navigator.geolocation.getCurrentPosition(
+    (pos) => {
+        localLoc = pos.coords;
+        objCoords = {
+            lat: localLoc.latitude,
+            lng: localLoc.longitude,
+        };
+        fetch(
+            `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${localLoc.latitude}%2C${localLoc.longitude}&lang=en-US&apikey=IRYdcn93t9FECP0VLR1v8UrMcEO5042jdifi7QNoWKU`
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                document.getElementById("city").value =
+                    data.items[0].address.city;
+            })
+            .catch((err) => console.log(err));
+        function addDraggableMarker(map, behavior) {
+            var marker = new H.map.Marker(objCoords, {
+                volatility: true,
+            });
+            marker.draggable = true;
+            map.addObject(marker);
+            map.addEventListener(
+                "dragstart",
+                function (ev) {
+                    var target = ev.target,
+                        pointer = ev.currentPointer;
+                    if (target instanceof H.map.Marker) {
+                        var targetPosition = map.geoToScreen(
+                            target.getGeometry()
+                        );
+                        target["offset"] = new H.math.Point(
+                            pointer.viewportX - targetPosition.x,
+                            pointer.viewportY - targetPosition.y
+                        );
+                        behavior.disable();
+                    }
+                },
+                false
+            );
+            map.addEventListener(
+                "dragend",
+                function (ev) {
+                    var target = ev.target;
+                    if (target instanceof H.map.Marker) {
+                        behavior.enable();
+                    }
+                },
+                false
+            );
+            map.addEventListener(
+                "drag",
+                function (ev) {
+                    var target = ev.target,
+                        pointer = ev.currentPointer;
+                    if (target instanceof H.map.Marker) {
+                        target.setGeometry(
+                            map.screenToGeo(
+                                pointer.viewportX - target["offset"].x,
+                                pointer.viewportY - target["offset"].y
+                            )
+                        );
+                    }
+                },
+                false
+            );
+        }
+        var platform = new H.service.Platform({
+            apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
+        });
+        var defaultLayers = platform.createDefaultLayers();
+        var map = new H.Map(
+            document.getElementById("map"),
+            defaultLayers.vector.normal.map,
+            {
+                center: objCoords,
+                zoom: 12,
+                pixelRatio: window.devicePixelRatio || 1,
+            }
+        );
+        window.addEventListener("resize", () => map.getViewPort().resize());
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+        var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
+        addDraggableMarker(map, behavior);
+        const elLat = document.getElementById("latitude");
+        const elLng = document.getElementById("longitude");
+        map.addEventListener("dragend", function (ev) {
+            let target = ev.target;
+            if (target instanceof H.map.Marker) {
+                behavior.enable();
+                let res = map.screenToGeo(
+                    ev.currentPointer.viewportX,
+                    ev.currentPointer.viewportY
+                );
+                elLat.value = res.lat;
+                elLng.value = res.lng;
+
+                fetch(
+                    `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${res.lat}%2C${res.lng}&lang=en-US&apikey=IRYdcn93t9FECP0VLR1v8UrMcEO5042jdifi7QNoWKU`
+                )
+                    .then((res) => res.json())
+                    .then((data) => {
+                        document.getElementById("city").value =
+                            data.items[0].address.city;
+                    })
+                    .catch((err) => console.log(err));
+            }
+        });
+    },
+    () => {
+        objCoords = {
+            lat: "-6.200000",
+            lng: "106.816666",
+        };
+        // elLat.value = objCoords.lat;
+        // elLng.value = objCoords.lng;
+        function addDraggableMarker(map, behavior) {
+            var marker = new H.map.Marker(objCoords, {
+                volatility: true,
+            });
+            marker.draggable = true;
+            map.addObject(marker);
+            map.addEventListener(
+                "dragstart",
+                function (ev) {
+                    var target = ev.target,
+                        pointer = ev.currentPointer;
+                    if (target instanceof H.map.Marker) {
+                        var targetPosition = map.geoToScreen(
+                            target.getGeometry()
+                        );
+                        target["offset"] = new H.math.Point(
+                            pointer.viewportX - targetPosition.x,
+                            pointer.viewportY - targetPosition.y
+                        );
+                        behavior.disable();
+                    }
+                },
+                false
+            );
+            map.addEventListener(
+                "dragend",
+                function (ev) {
+                    var target = ev.target;
+                    if (target instanceof H.map.Marker) {
+                        behavior.enable();
+                    }
+                },
+                false
+            );
+            map.addEventListener(
+                "drag",
+                function (ev) {
+                    var target = ev.target,
+                        pointer = ev.currentPointer;
+                    if (target instanceof H.map.Marker) {
+                        target.setGeometry(
+                            map.screenToGeo(
+                                pointer.viewportX - target["offset"].x,
+                                pointer.viewportY - target["offset"].y
+                            )
+                        );
+                    }
+                },
+                false
+            );
+        }
+        var platform = new H.service.Platform({
+            apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
+        });
+        var defaultLayers = platform.createDefaultLayers();
+        var map = new H.Map(
+            document.getElementById("map"),
+            defaultLayers.vector.normal.map,
+            {
+                center: objCoords,
+                zoom: 12,
+                pixelRatio: window.devicePixelRatio || 1,
+            }
+        );
+        window.addEventListener("resize", () => map.getViewPort().resize());
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+        var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
+        addDraggableMarker(map, behavior);
+
+        map.addEventListener("dragend", function (ev) {
+            let target = ev.target;
+            if (target instanceof H.map.Marker) {
+                behavior.enable();
+                let res = map.screenToGeo(
+                    ev.currentPointer.viewportX,
+                    ev.currentPointer.viewportY
+                );
+                elLat.value = res.lat;
+                elLng.value = res.lng;
+
+                fetch(
+                    `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${res.lat}%2C${res.lng}&lang=en-US&apikey=IRYdcn93t9FECP0VLR1v8UrMcEO5042jdifi7QNoWKU`
+                )
+                    .then((res) => res.json())
+                    .then((data) => {
+                        document.getElementById("city").value =
+                            data.items[0].address.city;
+                    })
+                    .catch((err) => console.log(err));
+            }
+        });
+    }
+);
+
+</script> --}}
 @endsection

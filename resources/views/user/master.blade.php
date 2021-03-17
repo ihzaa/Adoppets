@@ -49,13 +49,16 @@
                                         <a class="nav-link" href="{{route('landingpage')}}">Home
                                         </a>
                                     </li>
-                                    <li class="nav-item @if(strpos(Route::currentRouteName(), 'blog') !== false ) active @endif">
+                                    <li
+                                        class="nav-item @if(strpos(Route::currentRouteName(), 'blog') !== false ) active @endif">
                                         <a class="nav-link" href="{{route('blog')}}">Blog</a>
                                     </li>
-                                    <li class="nav-item @if(strpos(Route::currentRouteName(), 'clinic') !== false ) active @endif">
+                                    <li
+                                        class="nav-item @if(strpos(Route::currentRouteName(), 'clinic') !== false ) active @endif">
                                         <a class="nav-link" href="{{route('clinic')}}">Informasi Klinik</a>
                                     </li>
-                                    <li class="nav-item @if(strpos(Route::currentRouteName(), 'contact') !== false ) active @endif">
+                                    <li
+                                        class="nav-item @if(strpos(Route::currentRouteName(), 'contact') !== false ) active @endif">
                                         <a class="nav-link" href="{{route('contact')}}">Kontak</a>
                                     </li>
                                     <!-- @if (Auth::guard('admin')->check())
@@ -129,15 +132,15 @@
     <script src="{{asset('user/assets/js/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('user/assets/js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('user/assets/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript"
-        src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
+    {{-- <script type="text/javascript"
+        src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script> --}}
     <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>-->
     @yield('js_mid')
     <script src="{{asset('user/assets/js/selectize.min.js')}}"></script>
     <script src="{{asset('user/assets/js/masonry.pkgd.min.js')}}"></script>
     <script src="{{asset('user/assets/js/icheck.min.js')}}"></script>
     <script src="{{asset('user/assets/js/jquery.validate.min.js')}}"></script>
-    <script src="{{asset('user/assets/js/custom.js')}}"></script>
+    {{-- <script src="{{asset('user/assets/js/custom.js')}}"></script> --}}
     @yield('js_after')
 
 </body>
