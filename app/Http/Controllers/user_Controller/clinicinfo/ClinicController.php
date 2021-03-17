@@ -18,10 +18,13 @@ class ClinicController extends Controller
      */
 
     //list klinik pada tampilan umum
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $list = Clinic_information::orderBy('created_at', 'DESC')->paginate(10);
+        $request->search == null ?
+            $list = Clinic_information::orderBy('created_at', 'DESC')->paginate(10)
+            :
+            $list = Clinic_information::where('lokasi', 'like', '%' . $request->search . '%')->orderBy('created_at', 'DESC')->paginate(10);
+
         $user = User::pluck('name', 'id');
         return view('user/clinic/clinic', compact('list', 'user'));
     }

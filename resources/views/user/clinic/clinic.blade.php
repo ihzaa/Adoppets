@@ -82,9 +82,9 @@ sub-page
                     <section>
                         <h2>Search Klinik</h2>
                         <!--============ Side Bar Search Form ===========================================-->
-                        <form class="sidebar-form form">
+                        <form class="sidebar-form form" id="search_form">
                             <div class="form-group">
-                                <label for="what" class="col-form-label">klinik yang Anda cari?</label>
+                                <label for="what" class="col-form-label">Lokasi klinik yang Anda cari?</label>
                                 <input name="keyword" type="text" class="form-control" id="what"
                                     placeholder="Enter keyword and press enter">
                             </div>
@@ -125,4 +125,19 @@ sub-page
     <!--end container-->
 </section>
 <!--end block-->
+@endsection
+
+@section('js_after')
+<script>
+    const URL = {
+        current : "{{route('clinic')}}"
+    }
+    $("#search_form").on('submit',function(){
+        var searchParams = new URLSearchParams(window.location.search);
+        searchParams.set('search', $('#what').val())
+        var newParams = searchParams.toString()
+        window.location.href = URL.current + '/?' + newParams
+        event.preventDefault()
+    })
+</script>
 @endsection
