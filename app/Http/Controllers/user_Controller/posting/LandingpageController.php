@@ -181,10 +181,10 @@ class LandingpageController extends Controller
     public function detailPosting($id)
     {
         $data = posting::find($id);
-        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p');
+        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p WHERE p.id = ' . $id);
         $like['counter'] = User_like_posting::where('posting_id', $id)->count();
-
-        $asset_posting = Asset_posting::find($id);
+        $asset_posting = Asset_posting::where('posting_id', $id)->get();
+        // dd($asset_posting);
         $user = User::pluck('name', 'id');
         $user_foto = User::pluck('foto_profil', 'id');
         $deskripsi = array();

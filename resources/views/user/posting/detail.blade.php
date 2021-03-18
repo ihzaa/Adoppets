@@ -71,17 +71,22 @@
                         <!-- <h2>Gallery</h2> -->
                         <!--end section-title-->
                         <div class="gallery-carousel owl-carousel">
-                            <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="" data-hash="1">
-                            <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="" data-hash="2">
+                            @foreach ($asset_posting as $item)
+                            <img src="{{asset($item->path)}}" alt="" data-hash="{{$loop->iteration}}">
+                            @endforeach
+                            {{-- <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="" data-hash="2"> --}}
 
                         </div>
                         <div class="gallery-carousel-thumbs owl-carousel">
-                            <a href="#1" class="owl-thumb active-thumb background-image">
-                                <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="">
+                            @foreach ($asset_posting as $item)
+                            <a href="#{{$loop->iteration}}" class="owl-thumb active-thumb background-image">
+                                <img src="{{asset($item->path)}}" alt="">
                             </a>
-                            <a href="#2" class="owl-thumb background-image">
+                            @endforeach
+
+                            {{-- <a href="#2" class="owl-thumb background-image">
                                 <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="">
-                            </a>
+                            </a> --}}
 
                         </div>
                     </section>
@@ -111,11 +116,11 @@
                     @else
                     <section>
                         <div class="row justify-content-end">
-                            <button class="tombol btn-framed btn-primary btn-rounded">Report</button>
-                            <button class="tombol btn-framed btn-info btn-rounded btn_like"
+                            <button class="tombol btn btn-framed btn-primary btn-rounded">Report</button>
+                            <button class="tombol btn btn-framed btn-info btn-rounded btn_like"
                                 data-id="{{$data->id}}">Like</button>
                             @if ($isAdopt=='' )
-                            <button class="tombol btn-framed btn-info btn-rounded" id="btn_adopt">Adopt</button>
+                            <button class="tombol btn btn-framed btn-info btn-rounded" id="btn_adopt">Adopt</button>
                             @else
                             <button class="tombol btn-framed btn-danger btn-rounded" id="btn_unadopt"
                                 data-id="{{$isAdopt->id}}">Unadopt</button>
