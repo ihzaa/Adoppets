@@ -278,30 +278,35 @@
                         <section>
                             <h2>Popular Post</h2>
                             <div class="items compact">
+                                @foreach ($popular as $item)
                                 <div class="item">
                                     <div class="wrapper">
                                         <div class="image">
                                             <h3>
-                                                <a href="#" class="tag category">Kusing</a>
-                                                <a href="single-listing-1.html" class="title">Kucing Persia Lucu</a>
-                                                <span class="tag">Offer</span>
+                                                <a href="{{route('detail_posting',['id'=>$item->id])}}"
+                                                    class="tag category">{{$item->nama}}</a>
+                                                <a href="{{route('detail_posting',['id'=>$item->id])}}"
+                                                    class="title">{{$item->title}}</a>
+                                                {{-- <span class="tag">Offer</span> --}}
                                             </h3>
-                                            <a href="single-listing-1.html" class="image-wrapper background-image">
-                                                <img src="{{asset('user/assets/img/image-01.jpg')}}" alt="">
+                                            <a href="{{route('detail_posting',['id'=>$item->id])}}"
+                                                class="image-wrapper background-image">
+                                                <img src="{{asset($item->foto)}}" alt="">
                                             </a>
                                         </div>
                                         <!--end image-->
                                         <h4 class="location">
-                                            <a href="#">Malang Kabupaten</a>
+                                            <a href="#">{{$item->lokasi}}</a>
                                         </h4>
-                                        <div class="price">persia</div>
+                                        <div class="price">{{$item->ras}}</div>
                                         <div class="meta">
                                             <figure>
-                                                <i class="fa fa-calendar-o"></i>02.05.2017
+                                                <i
+                                                    class="fa fa-calendar-o"></i>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}
                                             </figure>
                                             <figure>
                                                 <a href="#">
-                                                    <i class="fa fa-user"></i>Jane Doe
+                                                    <i class="fa fa-user"></i>{{$user[$item->user_id]}}
                                                 </a>
                                             </figure>
                                         </div>
@@ -310,6 +315,7 @@
                                     <!--end wrapper-->
                                 </div>
                                 <!--end item-->
+                                @endforeach
                             </div>
 
                         </section>
