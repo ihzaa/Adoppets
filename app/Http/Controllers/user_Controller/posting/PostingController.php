@@ -180,4 +180,9 @@ class PostingController extends Controller
         ]);
         return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Melakukan Report Posting!');
     }
+
+    public function detail_pengadopsi($id)
+    {
+        return view('user/account/infopengadopsi');
+    }
 }

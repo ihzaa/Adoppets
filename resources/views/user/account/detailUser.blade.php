@@ -55,6 +55,8 @@ sub-page
                                     <td>{{\Carbon\Carbon::parse($item->created_at)->format('d/m/Y h:i')}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>
+                                        <a href="{{route('detail_pengadopsi', ['id'=>$item->id])}}"
+                                            class="btn btn-framed btn-danger small btn-rounded">Detail</a>
                                         <button class="btn btn-framed btn-danger small btn-rounded btn_detail"
                                             data-1="{{$item->p1}}" data-2="{{$item->p2}}"
                                             data-3="{{$item->p3}}">Detail</button>
