@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    body {
-        margin-top: 20px;
-    }
+        body {
+            margin-top: 20px;
+        }
     </style>
 </head>
 
