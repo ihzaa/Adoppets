@@ -47,7 +47,7 @@
 <div class="page-title">
     <div class="container">
         <h1 class="center">
-            Submit Hewan Peliharaan Anda untuk Diadopsi
+            Edit Postingan
         </h1>
     </div>
     <!--end container-->
@@ -80,8 +80,8 @@
 @section('content')
 <section class="block">
     <div class="container">
-        <form class="form" action="{{route('post_posting')}}" method="POST" id="submitposting"
-            enctype="multipart/form-data">
+        <form class="form" action="{{route('store_update_posting_hewan', ['id'=> $data->id])}}" method="POST"
+            id="submitposting" enctype="multipart/form-data">
             @csrf
 
             {{-- section detail informasi hewan --}}
@@ -92,7 +92,7 @@
                         <div class="form-group">
                             <label for="title" class="col-form-label required">Judul</label>
                             <input name="title" type="text" class="form-control @error('title') is-invalid @enderror"
-                                id=" title" placeholder="contoh : Kucing Persia" required value="{{old('title')}}">
+                                id=" title" placeholder="contoh : Kucing Persia" required value="{{$data->title}}">
                         </div>
                         @error('title')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -101,15 +101,11 @@
                     <!--end col-md-8-->
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="ras" class="col-form-label required">Jenis Hewan</label>
+                            <label for="category" class="col-form-label required">Jenis Hewan</label>
                             <select class="change-tab" data-change-tab-target="category-tabs" name="submit_category"
                                 id="submit-category" data-placeholder="Select Category">
-                                <option value="">Pilih Jenis Hewan</option>
-                                @foreach ($data as $item)
-                                <option @if ($item->id == old("submit_category"))
-                                    {{ "selected" }}
-                                    @endif value="{{$item->id}}">{{$item->nama}}</option>
-                                @endforeach
+                                <option value=""></option>
+
                             </select>
                         </div>
                         <!--end form-group-->
@@ -122,7 +118,7 @@
                         <div class="form-group">
                             <label for="ras" class="col-form-label required">Ras</label>
                             <input name="ras" type="text" class="form-control @error('ras') is-invalid @enderror"
-                                id=" ras" placeholder="contoh : persia" required value="{{old('ras')}}">
+                                id=" ras" placeholder="contoh : persia" required value="{{$data->ras}}">
                         </div>
                         @error('ras')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -133,7 +129,7 @@
                             <label for="umur" class="col-form-label required">Umur</label>
                             <input name="umur" type="text" class="form-control @error('umur') is-invalid @enderror"
                                 id=" umur" placeholder="Masukkan usia dalam bentuk jumlah bulan. contoh : 1"
-                                value="{{old('umur')}}">
+                                value="{{$data->umur}}">
                         </div>
                         @error('umur')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -143,7 +139,7 @@
                         <div class="form-group">
                             <label for="ras" class="col-form-label required">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select">
-                                <option selected value="0">Pilih Jenis Kelamin</option>
+                                <option selected value="0">{{$data->jenis_kelamin}}</option>
                                 <option value="Betina">Betina</option>
                                 <option value="Jantan">Jantan</option>
                             </select>
@@ -159,7 +155,7 @@
                             <label for="warna" class="col-form-label required">Warna</label>
                             <input name="warna" type="text" class="form-control @error('warna') is-invalid @enderror"
                                 id="warna" placeholder="contoh : abu mix putih" required
-                                value="{{old('warna')}}"></input>
+                                value="{{$data->warna}}"></input>
                         </div>
                         @error('warna')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -171,7 +167,7 @@
                             <label for="makanan" class="col-form-label required">Makanan</label>
                             <input name="makanan" type="text"
                                 class="form-control @error('makanan') is-invalid @enderror" id="
-                        makanan" placeholder="contoh : Makanan Kering/Basah" required value="{{old('makanan')}}">
+                        makanan" placeholder="contoh : Makanan Kering/Basah" required value="{{$data->makanan}}">
                         </div>
                         @error('makanan')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -188,7 +184,7 @@
                                 <textarea name="kondisi_fisik" id="kondisi_fisik"
                                     class="form-control @error('kondisi_fisik') is-invalid @enderror" rows=" 6"
                                     placeholder="contoh : ada luka dibagian telinga"
-                                    required>{{old('kondisi_fisik')}}</textarea>
+                                    required>{{$data->kondisi_fisik}}</textarea>
                             </div>
                             @error('kondisi_fisik')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -197,10 +193,10 @@
                         </div>
                         <div class="row-md-2">
                             <div class="form-group">
-                                <label for="informasi_lain" class="col-form-label">informasi lain</label>
+                                <label for="informasi_lain" class="col-form-label">informasi_lain</label>
                                 <textarea name="informasi_lain" id="informasi_lain"
                                     class="form-control @error('informasi_lain') is-invalid @enderror" rows="6"
-                                    placeholder="contoh : kebiasaan kucing suka makan daun">{{old('informasi_lain')}}</textarea>
+                                    placeholder="contoh : kebiasaan kucing suka makan daun">{{$data->informasi_lain}}</textarea>
                             </div>
 
                             <!--end form-group-->

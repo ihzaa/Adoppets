@@ -104,12 +104,17 @@ sub-page
                             </h4>
                             <div class="price">{{$item->ras}}</div>
                             <div class="admin-controls">
-                                <a href="edit-ad.html">
+                                <a href="{{route('update_posting_hewan', ['id'=>$item->id])}}">
                                     <i class="fa fa-pencil"></i>Edit
                                 </a>
-                                <a href="#" class="ad-remove">
-                                    <i class="fa fa-trash"></i>Remove
-                                </a>
+                                <form action="{{route('delete_posting_hewan',['id'=>$item->id])}}" method="POST"
+                                    class="form-hapus">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick=" return ConfirmDelete() "
+                                        class="btn btn-framed btn-danger small btn-rounded"><i class="fa fa-trash"></i>
+                                        Hapus</button>
+                                </form>
                             </div>
                             <!--end admin-controls-->
                             <div class="description">
@@ -150,14 +155,14 @@ sub-page
 
 @section('js_after')
 <script>
-    const URL = {
-        current: "{{route('edit_posting')}}"
-    }
-    $(document).on('change', '#sorting_post', function() {
-        var searchParams = new URLSearchParams(window.location.search);
-        searchParams.set('sort', $('#sorting_post').val())
-        var newParams = searchParams.toString()
-        window.location.href = URL.current + '/?' + newParams
-    });
+const URL = {
+    current: "{{route('edit_posting')}}"
+}
+$(document).on('change', '#sorting_post', function() {
+    var searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('sort', $('#sorting_post').val())
+    var newParams = searchParams.toString()
+    window.location.href = URL.current + '/?' + newParams
+});
 </script>
 @endsection

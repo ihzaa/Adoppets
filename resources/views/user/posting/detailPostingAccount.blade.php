@@ -60,11 +60,13 @@
                         <h2>Gallery</h2>
                         <!--end section-title-->
                         <div class="gallery-carousel owl-carousel">
-                            <img src="{{asset('user/assets/img/image-20.jpg')}}" alt="" data-hash="1">
+                            @foreach ($asset_posting as $item)
+                            <img src="{{asset($item->path)}}" alt="" data-hash="{{$loop->iteration}}">
+                            @endforeach
                         </div>
                         <div class="gallery-carousel-thumbs owl-carousel">
-                            @foreach ($asset_posting_detail as $item)
-                            <a href="#1" class="owl-thumb active-thumb background-image">
+                            @foreach ($asset_posting as $item)
+                            <a href="#{{$loop->iteration}}" class="owl-thumb active-thumb background-image">
                                 <img src="{{asset($item->path)}}" alt="">
                             </a>
                             @endforeach
@@ -127,10 +129,12 @@
                                             <th>Jenis Vaksin</th>
                                         </tr>
                                     </thead>
+                                    @foreach($edit as $dit)
                                     <tbody>
-                                        <td>Jenis Vaksin</td>
-                                        <td></td>
+                                        <td>{{$dit->tanggal}}</td>
+                                        <td>{{$dit->keterangan}}</td>
                                     </tbody>
+                                    @endforeach
                                 </table>
                             </div>
                             <div class="col-md-8">
@@ -154,7 +158,7 @@
 <script src="{{asset('user/assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('user/assets/js/custom.js')}}"></script>
 <script>
-    var latitude = 51.511971;
+var latitude = 51.511971;
 var longitude = -0.137597;
 var markerImage = "{{asset('user/assets/img/map-marker.png')}}";
 var mapTheme = "light";
