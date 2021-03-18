@@ -103,7 +103,7 @@ sub-page
 
                 <!--end Article-->
 
-                <section>
+                {{-- <section>
                     <div class="blog-posts-navigation clearfix">
                         <a href="#" class="prev">
                             <i class="fa fa-chevron-left"></i>
@@ -116,7 +116,7 @@ sub-page
                         </a>
                     </div>
                     <!--end blog-posts-navigation-->
-                </section>
+                </section> --}}
 
                 <hr>
 
@@ -140,63 +140,28 @@ sub-page
                         <!--============ End Side Bar Search Form =======================================-->
                     </section>
                     <section>
-                        <h2>Popular Posts</h2>
+                        <h2>Latest Clinics</h2>
+                        @foreach ($latest as $item)
                         <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-03.jpg">
+                            <a href="{{route('readmore_clinic', ['id'=>$item->id])}}" class="background-image">
+                                <img src="{{asset($item->picture)}}">
                             </a>
                             <!--end background-image-->
                             <div class="description">
                                 <h4>
-                                    <a href="blog-post.html">How to build a cool swimming pool</a>
+                                    <a href="{{route('readmore_clinic', ['id'=>$item->id])}}">{{$item->nama_klinik}}</a>
                                 </h4>
                                 <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
+                                    <a
+                                        href="{{route('readmore_clinic', ['id'=>$item->id])}}">{{$user[$item->user_id]}}</a>
+                                    <figure>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</figure>
                                 </div>
                                 <!--end meta-->
                             </div>
                             <!--end description-->
                         </div>
                         <!--end sidebar-post-->
-
-                        <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-04.jpg">
-                            </a>
-                            <!--end background-image-->
-                            <div class="description">
-                                <h4>
-                                    <a href="blog-post.html">Concrete decorations can be beautiful</a>
-                                </h4>
-                                <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
-                                </div>
-                                <!--end meta-->
-                            </div>
-                            <!--end description-->
-                        </div>
-                        <!--end sidebar-post-->
-
-                        <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-05.jpg">
-                            </a>
-                            <!--end background-image-->
-                            <div class="description">
-                                <h4>
-                                    <a href="blog-post.html">Let’s take a break</a>
-                                </h4>
-                                <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
-                                </div>
-                                <!--end meta-->
-                            </div>
-                            <!--end description-->
-                        </div>
-                        <!--end sidebar-post-->
+                        @endforeach
 
                     </section>
 

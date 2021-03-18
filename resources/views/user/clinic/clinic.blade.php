@@ -93,27 +93,28 @@ sub-page
                         <!--============ End Side Bar Search Form =======================================-->
                     </section>
                     <section>
-                        <h2>Others Clinics</h2>
+                        <h2>Latest Clinics</h2>
+                        @foreach ($latest as $item)
                         <div class="sidebar-post">
-                            <a href="blog-post.html" class="background-image">
-                                <img src="assets/img/blog-image-03.jpg">
+                            <a href="{{route('readmore_clinic', ['id'=>$item->id])}}" class="background-image">
+                                <img src="{{asset($item->picture)}}">
                             </a>
                             <!--end background-image-->
                             <div class="description">
                                 <h4>
-                                    <a href="blog-post.html">How to build a cool swimming pool</a>
+                                    <a href="{{route('readmore_clinic', ['id'=>$item->id])}}">{{$item->nama_klinik}}</a>
                                 </h4>
                                 <div class="meta">
-                                    <a href="#">John Doe</a>
-                                    <figure>02.05.2017</figure>
+                                    <a
+                                        href="{{route('readmore_clinic', ['id'=>$item->id])}}">{{$user[$item->user_id]}}</a>
+                                    <figure>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</figure>
                                 </div>
                                 <!--end meta-->
                             </div>
                             <!--end description-->
                         </div>
                         <!--end sidebar-post-->
-
-                        <!--end sidebar-post-->
+                        @endforeach
 
                     </section>
                 </aside>
