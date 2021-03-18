@@ -22,7 +22,8 @@ class AlreadyadoptController extends Controller
     public function index()
     {
         //
-        $edit = posting::where('user_id', Auth::user()->id)->get();
+        $edit = DB::select('select p.*, (SELECT COUNT(*) FROM user_accept_choices as uac WHERE uac.posting_id = p.id AND uac.status = 1 ) as isAdopted  from `postings` as p where p.`user_id` = ' . Auth::guard('user')->user()->id);
+        // dd($edit);
         $category = Category::pluck('nama', 'id');
         $vaksin1 = Vaccine::pluck('keterangan', 'posting_id');
         $data_image = Asset_posting::all();

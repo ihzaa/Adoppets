@@ -70,14 +70,22 @@ sub-page
                 <!--============ Items ==========================================================================-->
                 <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
                     @foreach ($edit as $item)
+                    @php
+                    if($item->isAdopted)
+                    continue;
+                    @endphp
                     <div class="item">
+
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
-                                    <a href="#" class="tag category">{{$category[$item->category_id]}}</a>
-                                    <a href="single-listing-1.html" class="title">{{$item->title}}</a>
+                                    <a href="{{route('detail_alreadyadopt', ['id'=>$item->id])}}"
+                                        class="tag category">{{$category[$item->category_id]}}</a>
+                                    <a href="{{route('detail_alreadyadopt', ['id'=>$item->id])}}"
+                                        class="title">{{$item->title}}</a>
                                 </h3>
-                                <a href="single-listing-1.html" class="image-wrapper background-image">
+                                <a href="{{route('detail_alreadyadopt', ['id'=>$item->id])}}"
+                                    class="image-wrapper background-image">
                                     <img src="{{asset($aset_posting[$item->id])}}" alt="">
                                 </a>
                             </div>
