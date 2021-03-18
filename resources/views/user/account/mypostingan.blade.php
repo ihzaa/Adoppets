@@ -82,6 +82,9 @@ sub-page
                     </a>
                     @foreach ($edit as $item)
                     <div class="item">
+                        @if ($item->adopted == 1)
+                        <div class="ribbon-featured">Teradopsi</div>
+                        @endif
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
@@ -125,11 +128,12 @@ sub-page
                                 <ul>
                                     <li>
                                         <figure>Keterangan :</figure>
-                                        <aside>{{$item->vaksin_keterangan}}</aside>
+                                        <aside>{{$item->vaksin_keterangan == null ? '-':$item->vaksin_keterangan}}
+                                        </aside>
                                     </li>
                                     <li>
                                         <figure>Tanggal :</figure>
-                                        <aside>{{$item->vaksin_tanggal}}</aside>
+                                        <aside>{{$item->vaksin_tanggal == null ? '-' : $item->vaksin_tanggal}}</aside>
                                     </li>
                                 </ul>
                             </div>
@@ -155,7 +159,7 @@ sub-page
 
 @section('js_after')
 <script>
-const URL = {
+    const URL = {
     current: "{{route('edit_posting')}}"
 }
 $(document).on('change', '#sorting_post', function() {

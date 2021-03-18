@@ -116,7 +116,8 @@ class PostingController extends Controller
                 'postings.*',
                 DB::raw('(SELECT vaccines.tanggal FROM vaccines where vaccines.posting_id = postings.id LIMIT 1 ) as vaksin_tanggal'),
                 DB::raw('(SELECT vaccines.keterangan FROM vaccines where vaccines.posting_id = postings.id LIMIT 1) as vaksin_keterangan'),
-                DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto')
+                DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
+                DB::raw('(SELECT count(*) from user_accept_choices where user_accept_choices.posting_id = postings.id and status = "1") as adopted')
             )
             ->orderBy('postings.created_at', $sort)
             ->paginate(10);
