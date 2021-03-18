@@ -6,6 +6,7 @@ use App\Asset_posting;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\posting;
+use App\Report_posting;
 use App\User;
 use App\User_like_posting;
 use App\Vaccine;
@@ -168,5 +169,15 @@ class PostingController extends Controller
         return response()->json([
             'like' => User_like_posting::where('posting_id', $request->id)->count()
         ]);
+    }
+
+    public function reportPosting($id, Request $request)
+    {
+        Report_posting::create([
+            'posting_id' => $id,
+            'jawaban_report' => $request->excuse,
+            'user_id' => Auth::guard('user')->user()->id
+        ]);
+        return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Melakukan Report Posting!');
     }
 }

@@ -123,7 +123,9 @@ has-dark-background
                 @endif
                 @foreach ($data['posts'] as $post)
                 <div class="item">
-                    <!-- <div class="ribbon-featured">Featured</div> -->
+                    @if ($post->adopted == 1)
+                    <div class="ribbon-featured">Teradopsi</div>
+                    @endif
                     <!--end ribbon-->
                     <div class="wrapper">
                         <div class="image">

@@ -91,11 +91,14 @@
                         </div>
                     </section>
                     <!--end Gallery Carousel-->
+                    @if ($adopted == 0)
                     @if (Auth::guard('user')->check())
                     @if (Auth::guard('user')->user()->id != $data->user_id)
                     <section>
                         <div class="row justify-content-end">
-                            <button class="tombol btn btn-framed btn-primary btn-rounded">Report</button>
+                            <button class="tombol btn @if ($reported!=1) btn-framed @endif  btn-primary btn-rounded"
+                                id="btn_report" data-id="{{$data->id}}" @if ($reported==1) disabled
+                                @endif>Report</button>
                             @if ($like['isLike'] == 0)
                             <button class="tombol btn btn-framed btn-info btn-rounded btn_like"
                                 data-id="{{$data->id}}">Like</button>
@@ -116,7 +119,8 @@
                     @else
                     <section>
                         <div class="row justify-content-end">
-                            <button class="tombol btn btn-framed btn-primary btn-rounded">Report</button>
+                            <button class="tombol btn btn-framed btn-primary btn-rounded" id="btn_report"
+                                data-id="{{$data->id}}">Report</button>
                             <button class="tombol btn btn-framed btn-info btn-rounded btn_like"
                                 data-id="{{$data->id}}">Like</button>
                             @if ($isAdopt=='' )
@@ -128,6 +132,12 @@
                         </div>
                     </section>
                     @endif
+
+                    {{-- main if --}}
+                    @else
+                    <h3 class="text-center text-danger">Sudah Teradopsi</h3>
+                    @endif
+
 
                     <!--Description-->
                     <section>
@@ -317,19 +327,45 @@
     </section>
     <!--end block-->
 </section>
+<div id="modal_report" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Report Posting</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('posting.report',$data->id)}}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Alasan Report</label>
+                        <textarea name="excuse" rows="5" class="form-control" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info btn-sm">Kirim</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js_after')
 <script src="{{asset('user/assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('user/assets/js/custom.js')}}"></script>
-<script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- <script>
     var latitude = 51.511971;
 var longitude = -0.137597;
 var markerImage = "{{asset('user/assets/img/map-marker.png')}}";
 var mapTheme = "light";
 var mapElement = "map-small";
 simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
-</script>
+</script> --}}
 
 <script>
     const post_id = "{{$data->id}}"
@@ -477,9 +513,46 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
         .catch(err => console.log(err))
 
     });
+
+    $("#btn_report").click(function(){
+        $("#modal_report").modal('show');
+
+    //     return;
+    //     let data = {
+    //         id : $(this).data('id')
+    //     }
+    //     $("#main_loading").show();
+    //     fetch("", {
+    //         method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+    //             // 'Content-Type': 'application/x-www-form-urlencoded',
+    //         },
+    //         body: JSON.stringify(data) // body data type must match "Content-Type" header
+    //     })
+    //     .then(response => {
+    //         if (response.status == 201) {
+    //             return "EROR"
+    //         } else {
+    //             return response.json()
+    //         }
+    //     })
+    //     .then(data => {
+    //         if (data == "EROR") {
+    //             window.location.replace("{{route('get_login')}}");
+    //         } else {
+    //             location.reload();
+    //         }
+    //     })
+    //     .catch(err => console.log(err))
+    //     .finally(()=>{
+    //         $("#main_loading").hide();
+    //     });
+    });
 </script>
 @if(Session::get('icon'))
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     swal({
         icon: "{{Session::get('icon')}}",

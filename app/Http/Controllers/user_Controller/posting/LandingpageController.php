@@ -6,6 +6,7 @@ use App\Asset_posting;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\posting;
+use App\Report_posting;
 use App\User;
 use App\User_accept_chioce;
 use App\User_accept_choice;
@@ -43,7 +44,8 @@ class LandingpageController extends Controller
                     'postings.*',
                     DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
                     'categories.nama as category',
-                    'users.name as username'
+                    'users.name as username',
+                    DB::raw('(SELECT count(*) from user_accept_choices where user_accept_choices.posting_id = postings.id and status = "1") as adopted')
                 )
                 ->join('categories', 'categories.id', '=', 'postings.category_id')
                 ->join('users', 'users.id', '=', 'postings.user_id')
@@ -61,7 +63,8 @@ class LandingpageController extends Controller
                     'postings.*',
                     DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
                     'categories.nama as category',
-                    'users.name as username'
+                    'users.name as username',
+                    DB::raw('(SELECT count(*) from user_accept_choices where user_accept_choices.posting_id = postings.id and status = "1") as adopted')
                 )
                 ->join('categories', 'categories.id', '=', 'postings.category_id')
                 ->join('users', 'users.id', '=', 'postings.user_id')
@@ -76,7 +79,8 @@ class LandingpageController extends Controller
                     'postings.*',
                     DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
                     'categories.nama as category',
-                    'users.name as username'
+                    'users.name as username',
+                    DB::raw('(SELECT count(*) from user_accept_choices where user_accept_choices.posting_id = postings.id and status = "1") as adopted')
                 )
                 ->join('categories', 'categories.id', '=', 'postings.category_id')
                 ->join('users', 'users.id', '=', 'postings.user_id')
@@ -96,7 +100,8 @@ class LandingpageController extends Controller
                     'postings.*',
                     DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
                     'categories.nama as category',
-                    'users.name as username'
+                    'users.name as username',
+                    DB::raw('(SELECT count(*) from user_accept_choices where user_accept_choices.posting_id = postings.id and status = "1") as adopted')
                 )
                 ->join('categories', 'categories.id', '=', 'postings.category_id')
                 ->join('users', 'users.id', '=', 'postings.user_id')
@@ -108,6 +113,7 @@ class LandingpageController extends Controller
         // $data['posts'] = $this->arrayPaginator($data['posts']);
         // dd($data);
         $data['category_list'] = Category::pluck('nama', 'id');
+        // dd($data);
         return view('user/posting/landingpage', compact("data"));
     }
 
@@ -181,7 +187,11 @@ class LandingpageController extends Controller
     public function detailPosting($id)
     {
         $data = posting::find($id);
+
         $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p WHERE p.id = ' . $id);
+        if (count($edit) == 0) {
+            return redirect(route('landingpage'));
+        }
         $like['counter'] = User_like_posting::where('posting_id', $id)->count();
         $asset_posting = Asset_posting::where('posting_id', $id)->get();
         // dd($asset_posting);
@@ -194,13 +204,17 @@ class LandingpageController extends Controller
         $deskripsi['no_wa'] = User::pluck('no_wa', 'id');
         $deskripsi['domisili_sekarang'] = User::pluck('domisili_sekarang', 'id');
         $deskripsi['instagram'] = User::pluck('instagram', 'id');
+
+        $adopted = User_accept_choice::where('posting_id', $id)->where('status', '1')->count();
+
         $isAdopt = '';
         if (Auth::guard('user')->check()) {
+            $reported = Report_posting::where('user_id', Auth::guard('user')->user()->id)->where('posting_id', $id)->count();
             $like['isLike'] = User_like_posting::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->count();
             $isAdopt = User_accept_choice::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->first();
         }
         //$category = Category::pluck('nama', 'id');
 
-        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt', 'like'));
+        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt', 'like', 'adopted', 'reported'));
     }
 }

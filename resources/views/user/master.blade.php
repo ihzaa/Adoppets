@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="{{asset('user/assets/css/selectize.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('user/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('user/assets/css/user.css')}}">
+    <style>
+        .note-modal-backdrop {
+            display: none !important;
+        }
+
+        .modal-backdrop {
+            display: none !important;
+        }
+    </style>
     @yield('include-css')
 
     <title>Adopt Pets</title>
@@ -132,15 +141,15 @@
     <script src="{{asset('user/assets/js/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('user/assets/js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('user/assets/bootstrap/js/bootstrap.min.js')}}"></script>
-    {{-- <script type="text/javascript"
-        src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script> --}}
+    <script type="text/javascript"
+        src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
     <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>-->
     @yield('js_mid')
     <script src="{{asset('user/assets/js/selectize.min.js')}}"></script>
     <script src="{{asset('user/assets/js/masonry.pkgd.min.js')}}"></script>
     <script src="{{asset('user/assets/js/icheck.min.js')}}"></script>
     <script src="{{asset('user/assets/js/jquery.validate.min.js')}}"></script>
-    {{-- <script src="{{asset('user/assets/js/custom.js')}}"></script> --}}
+    <script src="{{asset('user/assets/js/custom.js')}}"></script>
     @yield('js_after')
 
 </body>
