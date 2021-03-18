@@ -22,7 +22,6 @@ Route::get('/', 'user_Controller\posting\LandingpageController@index')->name('la
 Route::get('/user/verify/{token}', 'user_Controller\auth\verifyAccountController@verifyUser')->name('verify.user');
 
 Route::middleware('checkfetch')->group(function () {
-    Route::post('/adopt', 'user_Controller\posting\adoptController@adopt')->name('adopt');
     Route::post('/unadopt', 'user_Controller\posting\adoptController@unadopt')->name('unadopt');
     Route::post('/like/posting', 'user_Controller\posting\PostingController@likePosting')->name('likePosting');
     Route::post('/dislike/posting', 'user_Controller\posting\PostingController@dislikePosting')->name('dislikePosting');
@@ -31,6 +30,7 @@ Route::middleware('checkfetch')->group(function () {
 Route::middleware('auth:user')->group(function () {
     Route::post('/accept/adopt', 'user_Controller\posting\adoptController@userAcceptAdoption')->name('accept.adoption');
     Route::post('user/change/password', 'user_Controller\account\AccountController@changePassword')->name('change.password');
+    Route::post('/adopt/{id}', 'user_Controller\posting\adoptController@adopt')->name('adopt');
     Route::post('/report/posting/{id}', 'user_Controller\posting\PostingController@reportPosting')->name('posting.report');
 });
 

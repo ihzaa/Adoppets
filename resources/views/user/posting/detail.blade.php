@@ -322,6 +322,39 @@
     </section>
     <!--end block-->
 </section>
+<div id="modal_adopt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Adopsi Hewan</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('adopt',['id'=>$data->id])}}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Apakah anda ganteng?</label>
+                        <input type="text" name="satu" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Setampan Apa Anda?</label>
+                        <input type="text" name="dua" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Yakin dengan ketampanan anda?</label>
+                        <input type="text" name="tiga" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">Adopsi!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div id="modal_report" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -365,38 +398,40 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 <script>
     const post_id = "{{$data->id}}"
     $("#btn_adopt").on("click",function(){
-        let data = {
-            id : post_id
-        }
-        $("#main_loading").show();
-        fetch("{{route('adopt')}}", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        })
-        .then(response => {
-            if (response.status == 201) {
-                return "EROR"
-            } else {
-                return response.json()
-            }
-        })
-        .then(data => {
-            if (data == "EROR") {
-                window.location.replace("{{route('get_login')}}");
-            } else {
-                location.reload();
-            }
-        })
-        .catch(err => console.log(err))
-        .finally(()=>{
-        $("#main_loading").hide();
-        });
+        $("#modal_adopt").modal('show');
+
+        // let data = {
+        //     id : post_id
+        // }
+        // $("#main_loading").show();
+        // fetch("", {
+        //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+        //         // 'Content-Type': 'application/x-www-form-urlencoded',
+        //     },
+        //     body: JSON.stringify(data) // body data type must match "Content-Type" header
+        // })
+        // .then(response => {
+        //     if (response.status == 201) {
+        //         return "EROR"
+        //     } else {
+        //         return response.json()
+        //     }
+        // })
+        // .then(data => {
+        //     if (data == "EROR") {
+        //         window.location.replace("{{route('get_login')}}");
+        //     } else {
+        //         location.reload();
+        //     }
+        // })
+        // .catch(err => console.log(err))
+        // .finally(()=>{
+        // $("#main_loading").hide();
+        // });
     })
     $("#btn_unadopt").on("click",function(){
         let data = {

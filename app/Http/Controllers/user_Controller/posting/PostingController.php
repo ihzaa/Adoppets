@@ -223,7 +223,7 @@ class PostingController extends Controller
             }
         }
         $posting->save();
-        return redirect(route('edit_posting'))->with('icon', 'success')->with('text', 'Informasi Berhasil di Edit! :');
+        return redirect(route('edit_posting'))->with('icon', 'success')->with('text', 'Informasi Berhasil di Edit!');
     }
 
     public function delete($id)

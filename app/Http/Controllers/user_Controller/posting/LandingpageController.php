@@ -208,6 +208,7 @@ class LandingpageController extends Controller
         $adopted = User_accept_choice::where('posting_id', $id)->where('status', '1')->count();
 
         $isAdopt = '';
+        $reported = '';
         if (Auth::guard('user')->check()) {
             $reported = Report_posting::where('user_id', Auth::guard('user')->user()->id)->where('posting_id', $id)->count();
             $like['isLike'] = User_like_posting::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->count();
