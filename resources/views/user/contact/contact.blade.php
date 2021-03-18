@@ -37,7 +37,6 @@ sub-page
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-
                 <br>
                 <p>
                     Jika Anda memiliki pertanyaan tentang kami silahkan kunjungi salah satu narahubung dibawah ini. Kami
@@ -67,13 +66,8 @@ sub-page
             <!--end col-md-4-->
             <div class="col-md-8">
                 <h2>Contact Form</h2>
-                <form class="form email" action="{{route('post_contact')}}" method="POST" id="contact">
+                <form class="form form-submit" action="{{route('post_contact')}}" method="POST" id="contact">
                     @csrf
-                    <div class="row">
-
-                        <!--end col-md-6-->
-                    </div>
-                    <!--end row-->
                     <div class="form-group">
                         <label for="subject" class="col-form-label">Subject</label>
                         <input name="subject" type="text" class="form-control @error('subject') is-invalid @enderror"

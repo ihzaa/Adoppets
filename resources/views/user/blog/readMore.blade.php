@@ -46,7 +46,10 @@ sub-page
                     </a>
                     <div class="article-title">
                         <h2><a>{{$data->title}}</a></h2>
-
+                        <div class="row justify-content-end">
+                            <button class="tombol btn btn-framed btn-primary btn-rounded" id="btn_report"
+                                data-id="">Report</button>
+                        </div>
                     </div>
                     <div class="meta">
                         <figure>
@@ -96,7 +99,6 @@ sub-page
                 </article>
 
                 <!--end Article-->
-
                 {{-- <section>
                     <div class="blog-posts-navigation clearfix">
                         <a href="#" class="prev">
@@ -172,15 +174,15 @@ sub-page
 
 @section('js_after')
 <script>
-    const URL = {
-        current : "{{route('blog')}}"
-    }
-    $("#search_form").on('submit',function(){
-        var searchParams = new URLSearchParams(window.location.search);
-        searchParams.set('search', $('#what').val())
-        var newParams = searchParams.toString()
-        window.location.href = URL.current + '/?' + newParams
-        event.preventDefault()
-    })
+const URL = {
+    current: "{{route('blog')}}"
+}
+$("#search_form").on('submit', function() {
+    var searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('search', $('#what').val())
+    var newParams = searchParams.toString()
+    window.location.href = URL.current + '/?' + newParams
+    event.preventDefault()
+})
 </script>
 @endsection

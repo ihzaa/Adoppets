@@ -46,7 +46,10 @@ sub-page
                     </a>
                     <div class="article-title">
                         <h2><a>{{$data->nama_klinik}}</a></h2>
-
+                        <div class="row justify-content-end">
+                            <button class="tombol btn btn-framed btn-primary btn-rounded" id="btn_report"
+                                data-id="">Report</button>
+                        </div>
                     </div>
                     <div class="meta">
                         <figure>
@@ -95,6 +98,8 @@ sub-page
                     </div>
                     <!--end blog-post-content-->
                 </article>
+
+
 
                 <!--end Article-->
 
