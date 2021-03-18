@@ -28,6 +28,6 @@ class VerifyMail extends Mailable
      */
     public function build()
     {
-        return $this->view('user.email.verifikasi_email')->from('tokomentarimalang@gmail.com', env('APP_NAME') . ' Email Verification')->subject('Verify Registration ' . env('APP_NAME'));
+        return $this->view('user.email.verifikasi_email')->from('adoptpets477@gmail.com', env('APP_NAME') . ' Email Verification')->subject('Verify Registration ' . env('APP_NAME'));
     }
 }

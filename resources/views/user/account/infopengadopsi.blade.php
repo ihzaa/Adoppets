@@ -41,7 +41,6 @@ sub-page
                 <div class="card">
                     <div class="card-body">
                         <h3><i class="fa fa-user"></i> Profile Pengguna</h3>
-
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -80,6 +79,18 @@ sub-page
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12 mt-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3><i class="fa fa-user"></i> Alasan Mengadopsi</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid qui reprehenderit ad
+                            tenetur cupiditate, ipsa dolore voluptate modi debitis numquam porro eum doloribus. Quaerat,
+                            non?</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-12 mt-2">
                 <div class="card">
                     <div class="card-body">

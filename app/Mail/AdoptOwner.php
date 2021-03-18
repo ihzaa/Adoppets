@@ -29,6 +29,6 @@ class AdoptOwner extends Mailable
      */
     public function build()
     {
-        return $this->view('user.email.pemberitahuan')->from('tokomentarimalang@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - New Adopt Request Notification');
+        return $this->view('user.email.pemberitahuan')->from('adoptpets477@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - New Adopt Request Notification');
     }
 }

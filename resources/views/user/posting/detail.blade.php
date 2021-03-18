@@ -218,19 +218,9 @@
                         </div>
                     </section>
                     <!--end Details and Locations-->
-                    {{-- like and report --}}
-                    <section>
-                        <div class="row justify-content-end">
-                            <button><i class="fas fa-heart"></i></button>
-                            <a href=""><i class="fas fa-share-alt"></i></a>
-                        </div>
-                    </section>
-                    {{-- akhir like and report --}}
                     <!--Author-->
                     <section>
-                        <h2>Author <a href='#'>
-                                <li class='fa fa-exclamation-circle'></li>
-                            </a>
+                        <h2>Author
                         </h2>
                         <div class="box">
                             <div class="row">
@@ -249,14 +239,19 @@
                                                         {{$deskripsi['domisili_sekarang'][$data->user_id]}}</a></h5>
                                                 <hr>
                                                 <h4 class="phone">
-                                                    <a href="#"><i class="fa fa-phone"></i>
+                                                    <a
+                                                        href="sms:+62{{$deskripsi['nomor_telpon'][$data->user_id]}}&body=Hallo..."><i
+                                                            class="fa fa-phone"></i>
                                                         {{$deskripsi['nomor_telpon'][$data->user_id]}}</a>
                                                 </h4>
                                                 <h4 class="phone">
-                                                    <a href="#"><i class="fa fa-whatsapp "></i>
+                                                    <a
+                                                        href="https://api.whatsapp.com/send?phone=+62{{$deskripsi['no_wa'][$data->user_id]}}"><i
+                                                            class="fa fa-whatsapp "></i>
                                                         {{$deskripsi['no_wa'][$data->user_id]}}</a>
                                                 </h4 class="email">
-                                                <h4><a href="#"><i class="fa fa-envelope"></i>
+                                                <h4><a href="mailto:{{$deskripsi['email'][$data->user_id]}}"><i
+                                                            class="fa fa-envelope"></i>
                                                         {{$deskripsi['email'][$data->user_id]}}</a></h4>
 
                                             </div>
@@ -281,7 +276,7 @@
                 <div class="col-md-3">
                     <aside class="sidebar">
                         <section>
-                            <h2>Similar Post</h2>
+                            <h2>Popular Post</h2>
                             <div class="items compact">
                                 <div class="item">
                                     <div class="wrapper">

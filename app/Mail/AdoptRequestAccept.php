@@ -28,6 +28,6 @@ class AdoptRequestAccept extends Mailable
      */
     public function build()
     {
-        return $this->view('user.email.diterima')->from('tokomentarimalang@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - Adopt Request Accepted Notification');
+        return $this->view('user.email.diterima')->from('adoptpets477@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - Adopt Request Accepted Notification');
     }
 }

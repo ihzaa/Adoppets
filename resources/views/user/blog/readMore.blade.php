@@ -133,7 +133,7 @@ sub-page
                         <!--============ End Side Bar Search Form =======================================-->
                     </section>
                     <section>
-                        <h2>Popular Posts</h2>
+                        <h2>Postingan Terbaru</h2>
                         @if (count($data['popular']) == 0)
                         <h2 class="text-center">Tidak ada blog</h2>
                         @endif
