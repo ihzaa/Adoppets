@@ -101,13 +101,13 @@ sub-page
                         @endif
                         @foreach ($data['popular'] as $item)
                         <div class="sidebar-post">
-                            <a href="{{route('detail_blog',['id'=>$item->id])}}" class="background-image">
+                            <a href="{{route('readmore_blog',['id'=>$item->id])}}" class="background-image">
                                 <img src="{{asset($item->picture)}}">
                             </a>
                             <!--end background-image-->
                             <div class="description">
                                 <h4>
-                                    <a href="{{route('detail_blog',['id'=>$item->id])}}">{{$item->title}}</a>
+                                    <a href="{{route('readmore_blog',['id'=>$item->id])}}">{{$item->title}}</a>
                                 </h4>
                                 <div class="meta">
                                     <a href="#">{{$user[$item->user_id]}}</a>
@@ -136,7 +136,7 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -145,15 +145,15 @@ sub-page
 @endif
 
 <script>
-    const URL = {
-        current : "{{route('blog')}}"
-    }
-    $("#search_form").on('submit',function(){
-        var searchParams = new URLSearchParams(window.location.search);
-        searchParams.set('search', $('#what').val())
-        var newParams = searchParams.toString()
-        window.location.href = URL.current + '/?' + newParams
-        event.preventDefault()
-    })
+const URL = {
+    current: "{{route('blog')}}"
+}
+$("#search_form").on('submit', function() {
+    var searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('search', $('#what').val())
+    var newParams = searchParams.toString()
+    window.location.href = URL.current + '/?' + newParams
+    event.preventDefault()
+})
 </script>
 @endsection

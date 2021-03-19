@@ -142,13 +142,13 @@ sub-page
                         @endif
                         @foreach ($data['popular'] as $item)
                         <div class="sidebar-post">
-                            <a href="{{route('detail_blog',['id'=>$item->id])}}" class="background-image">
+                            <a href="{{route('readmore_blog',['id'=>$item->id])}}" class="background-image">
                                 <img src="{{asset($item->picture)}}">
                             </a>
                             <!--end background-image-->
                             <div class="description">
                                 <h4>
-                                    <a href="{{route('detail_blog',['id'=>$item->id])}}">{{$item->title}}</a>
+                                    <a href="{{route('readmore_blog',['id'=>$item->id])}}">{{$item->title}}</a>
                                 </h4>
                                 <div class="meta">
                                     <a href="#">{{$user[$item->user_id]}}</a>
@@ -200,7 +200,7 @@ sub-page
 
 @section('js_after')
 <script>
-    const URL = {
+const URL = {
     current: "{{route('blog')}}"
 }
 $("#search_form").on('submit', function() {
