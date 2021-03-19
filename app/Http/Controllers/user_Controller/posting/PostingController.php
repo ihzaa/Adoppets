@@ -150,11 +150,12 @@ class PostingController extends Controller
     {
         $data = posting::find($id);
         $asset_posting = Asset_posting::where('posting_id', $id)->get();
+        $like['counter'] = User_like_posting::where('posting_id', $id)->count();
         $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p WHERE p.id = ' . $id);
         if (count($edit) == 0) {
             return redirect(route('landingpage'));
         }
-        return view('user/posting/detailPostingAccount', compact('data', 'asset_posting', 'edit'));
+        return view('user/posting/detailPostingAccount', compact('data', 'asset_posting', 'edit', 'like'));
     }
 
     //redirect ke edit

@@ -23,9 +23,9 @@ class BlogController extends Controller
     {
         //
         $request->search == null ?
-            $list = Blog::orderBy('created_at', 'DESC')->paginate(10)
-            :
-            $list = Blog::orderBy('created_at', 'DESC')->where('title', 'like', "%$request->search%")->paginate(10);
+        $list = Blog::orderBy('created_at', 'DESC')->paginate(10)
+        :
+        $list = Blog::orderBy('created_at', 'DESC')->where('title', 'like', "%$request->search%")->paginate(10);
         $data['popular'] = DB::select('SELECT b.*, (SELECT COUNT(*) FROM user_like_blogs as ulb where ulb.blog_id = b.id) as likes FROM blogs as b ORDER BY likes ASC LIMIT 3');
         $user = User::pluck('name', 'id');
         return view('user/blog/blog', compact('list', 'user', 'data'));

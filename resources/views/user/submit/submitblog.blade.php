@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-group">
-                        <label for="title" class="col-form-label">Judul</label>
+                        <label for="title" class="col-form-label required">Judul</label>
                         <input name="title" type="text" class="form-control @error('title') is-invalid @enderror"
                             id="title" placeholder="contoh : Cara Merawat Kucing Tipe Persia" required
                             value="{{old('title')}}">
@@ -73,7 +73,7 @@
             <div class="row justify-content-end">
                 <div class="col-md-8">
                     <div class="form-group">
-                        <label for="isi" class="col-form-label">Isi Blog</label>
+                        <label for="isi" class="col-form-label required">Isi Blog</label>
                         <textarea id="summernote" name="isi"
                             class="form-control  background @error('isi') is-invalid @enderror">{{old('isi')}}</textarea>
                     </div>
@@ -84,7 +84,7 @@
                 <div class="col-md-4 float-none">
                     <div class="row-md">
                         <div class="form-group">
-                            <label for="title" class="col-form-label">Foto Blog</label>
+                            <label for="title" class="col-form-label required">Foto Blog</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}"
                                     required name="picture" {{request()->is('*/submitblog*')?"required":""}}>
