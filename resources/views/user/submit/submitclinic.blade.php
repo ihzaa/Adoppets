@@ -39,7 +39,7 @@
 @endsection
 
 @section('brand-logo')
-{{asset('user/assets/img/include_image/logo_adoptpets-inverted.png')}}
+{{asset('user/assets/img/include_image/logo_adoptpets.png')}}
 @endsection
 
 @section('hero-form')
@@ -47,6 +47,12 @@
 @endsection
 
 @section('background')
+<div class="background">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_akunsaya.jpg')}}" alt="">
+    </div>
+    <!--end background-image-->
+</div>
 @endsection
 
 @section('include-css')
