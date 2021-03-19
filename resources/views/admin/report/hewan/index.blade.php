@@ -94,7 +94,7 @@ List Report Postingan Hewan
                     <td>Tiger Nixon</td>
                     <td>System Architect</td>
                     <td><button class="btn btn-danger btn-rounded">Hapus</button>
-                        <button class="btn btn-warning btn-rounded">Detail</button>
+                        <a href="{{route('report_hewan_detail')}}" class="btn btn-warning btn-rounded">Detail</a>
                     </td>
 
                     </tr>
