@@ -98,7 +98,7 @@ sub-page
 
                 <!--end Article-->
 
-                <section>
+                {{-- <section>
                     <div class="blog-posts-navigation clearfix">
                         <a href="#" class="prev">
                             <i class="fa fa-chevron-left"></i>
@@ -113,7 +113,7 @@ sub-page
                         </a>
                     </div>
                     <!--end blog-posts-navigation-->
-                </section>
+                </section> --}}
 
                 <hr>
 

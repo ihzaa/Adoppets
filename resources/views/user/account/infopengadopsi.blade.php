@@ -46,32 +46,32 @@ sub-page
                                 <tr>
                                     <td>Nama</td>
                                     <td width="10">:</td>
-                                    <td></td>
+                                    <td>{{$data['user']->name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Alamat Sekarang</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data['user']->alamat_asal}}</td>
                                 </tr>
                                 <tr>
                                     <td>Alamat Domisili</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data['user']->domisili_sekarang}}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data['user']->email}}</td>
                                 </tr>
                                 <tr>
                                     <td>No Telepon</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data['user']->nomor_telpon}}</td>
                                 </tr>
                                 <tr>
                                     <td>No Whatsapp</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{$data['user']->no_wa}}</td>
                                 </tr>
 
                             </tbody>
@@ -87,15 +87,15 @@ sub-page
                     </div>
                     <div class="card-body">
                         <p>pernahkah anda memelihara hewan?</p>
-                        <p></p>
+                        <p>{{$data['adoptInfo']->pertanyaan_1}}</p>
                     </div>
                     <div class="card-body">
                         <p>jika pernah hewan apakah itu?</p>
-                        <p></p>
+                        <p>{{$data['adoptInfo']->pertanyaan_2}}</p>
                     </div>
                     <div class="card-body">
                         <p>Deskripsikan alasan ingin mnegadopsi hewan ini</p>
-                        <p></p>
+                        <p>{{$data['adoptInfo']->pertanyaan_3}}</p>
                     </div>
                 </div>
             </div>
@@ -114,18 +114,21 @@ sub-page
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($data['history'] as $item)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</td>
+                                    <td>{{$item->hewan}}</td>
+                                    <td>{{$item->status == 0 ? 'Menunggu' : 'Diadopsi'}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <section class="clearfix">
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info large icon float-right">Back</i></button>
+                        <a href="{{route('detail_alreadyadopt',['id'=>$data['posting_id']])}}"
+                            class="btn btn-info large icon float-right">Back</i></a>
                     </div>
                 </section>
             </div>

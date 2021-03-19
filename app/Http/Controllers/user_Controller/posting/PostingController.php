@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\posting;
 use App\Report_posting;
 use App\User;
+use App\User_accept_choice;
 use App\User_like_posting;
 use App\Vaccine;
 use Carbon\Carbon;
@@ -266,8 +267,21 @@ class PostingController extends Controller
         return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Melakukan Report Posting!');
     }
 
-    public function detail_pengadopsi($id)
+    public function detail_pengadopsi($posting, $id)
     {
-        return view('user/account/infopengadopsi');
+        $data = array();
+        $data['posting_id'] = $posting;
+        $data['adoptInfo'] = User_accept_choice::find($id);
+        $data['user'] = User::find($data['adoptInfo']->user_id);
+        $data['history'] = User_accept_choice::where('user_id', $data['adoptInfo']->user_id)->get();
+        $data['history'] = DB::table('user_accept_choices')
+            ->select(
+                'user_accept_choices.*',
+                DB::raw('(SELECT categories.nama FROM postings JOIN categories on categories.id = postings.category_id where postings.id = user_accept_choices.posting_id) as hewan')
+            )
+            ->where('user_id', $data['adoptInfo']->user_id)->get();
+
+        // dd($data);
+        return view('user/account/infopengadopsi', compact('data'));
     }
 }
