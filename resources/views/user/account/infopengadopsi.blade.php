@@ -86,15 +86,15 @@ sub-page
                         <h3><i class="fa fa-user"></i> Alasan Mengadopsi</h3>
                     </div>
                     <div class="card-body">
-                        <h3>pernahkah anda memelihara hewan?</h3>
+                        <p>pernahkah anda memelihara hewan?</p>
                         <p></p>
                     </div>
                     <div class="card-body">
-                        <h3></i>jika pernah hewan apakah itu?</h3>
+                        <p>jika pernah hewan apakah itu?</p>
                         <p></p>
                     </div>
                     <div class="card-body">
-                        <h3>Deskripsikan alasan ingin mnegadopsi hewan ini</h3>
+                        <p>Deskripsikan alasan ingin mnegadopsi hewan ini</p>
                         <p></p>
                     </div>
                 </div>
