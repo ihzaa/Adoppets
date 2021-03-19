@@ -32,6 +32,7 @@ Route::middleware('auth:user')->group(function () {
     Route::post('user/change/password', 'user_Controller\account\AccountController@changePassword')->name('change.password');
     Route::post('/adopt/{id}', 'user_Controller\posting\adoptController@adopt')->name('adopt');
     Route::post('/report/posting/{id}', 'user_Controller\posting\PostingController@reportPosting')->name('posting.report');
+    Route::post('/report/blog/{id}', 'user_Controller\blog\BlogController@reportBlog')->name('blog.report');
 });
 
 // Route::middleware('auth:admin')->group(function () {
