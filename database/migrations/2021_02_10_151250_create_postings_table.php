@@ -23,6 +23,8 @@ class CreatePostingsTable extends Migration
             $table->string('makanan');
             $table->longText('warna');
             $table->string('lokasi');
+            $table->string('longitude')->nullable(true);
+            $table->string('latitude')->nullable(true);
             $table->longText('informasi_lain')->nullable(true);
             $table->timestamps();
 

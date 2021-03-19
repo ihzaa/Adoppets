@@ -178,6 +178,6 @@ class BlogController extends Controller
         $data = Blog::find($id);
         Blog::destroy($data->id);
         File::delete($data->picture);
-        return redirect(route('posting_blog'))->with('sukses_delete', 'Data Berhasil Di Delete');
+        return redirect(route('posting_blog'))->with('icon_delete', 'success')->with('text', 'Posting Blog Berhasil di Hapus!');
     }
 }

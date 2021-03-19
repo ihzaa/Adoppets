@@ -81,7 +81,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="no_telepon" class="col-form-label">Nomer Telepon</label>
-                            <input name="no_telepon" type="number"
+                            <input name="no_telepon" type="text"
                                 class="form-control @error('no_telepon') is-invalid @enderror" id="no_telepon"
                                 placeholder="contoh : 03321245161" required value="{{old('no_telepon')}}">
                         </div>

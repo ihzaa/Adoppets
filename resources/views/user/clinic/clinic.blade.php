@@ -129,6 +129,10 @@ sub-page
 @endsection
 
 @section('js_after')
+
+{{-- sweet alert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
     const URL = {
         current : "{{route('clinic')}}"
@@ -141,4 +145,17 @@ sub-page
         event.preventDefault()
     })
 </script>
+
+{{-- sweet alert create clinic --}}
+
+@if(Session::get('icon_create_clinic'))
+<script>
+    swal({
+    icon: 'success',
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
+
 @endsection

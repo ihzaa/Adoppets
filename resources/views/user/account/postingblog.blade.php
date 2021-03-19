@@ -151,19 +151,17 @@ sub-page
 {{-- sweet alert --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-@if(session('sukses_delete'))
+@if(Session::get('icon_delete'))
 <script>
-    Swal.fire({
+    swal({
     icon: 'success',
-    title: 'Berhasil',
-    text: 'Selamat Data Berhasil Dihapus',
-    // footer: '<a href>Why do I have this issue?</a>'
-})
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
 </script>
 @endif
 
 @if(Session::get('icon'))
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     swal({
     icon: "{{Session::get('icon')}}",

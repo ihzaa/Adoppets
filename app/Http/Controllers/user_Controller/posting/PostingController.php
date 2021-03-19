@@ -111,7 +111,7 @@ class PostingController extends Controller
         $data['sort'] = $sort;
         // $edit = posting::where('user_id', Auth::user()->id)->get();
         // $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as vaksin_tanggal FROM postings as p ORDER BY p.created_at ' . $sort);
-        $edit = DB::table('postings')
+        $edit = DB::table('postings')->where('user_id', Auth::user()->id)
             ->select(
                 'postings.*',
                 DB::raw('(SELECT vaccines.tanggal FROM vaccines where vaccines.posting_id = postings.id LIMIT 1 ) as vaksin_tanggal'),
@@ -232,7 +232,7 @@ class PostingController extends Controller
         $data = posting::find($id);
         posting::destroy($data->id);
         File::delete($data->picture);
-        return redirect(route('edit_posting'))->with('sukses_delete', 'Data Berhasil Di Delete');
+        return redirect(route('edit_posting'))->with('icon_delete', 'success')->with('text', 'Posting Hewan Berhasil di Hapus!');
     }
 
     public function likePosting(Request $request)

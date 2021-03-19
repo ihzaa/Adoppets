@@ -150,16 +150,29 @@ sub-page
 {{-- sweet alert --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-@if(Session::get('icon'))
+@if(Session::get('icon_edit'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     swal({
-    icon: "{{Session::get('icon')}}",
+    icon: "success",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
 });
 </script>
 @endif
+
+{{-- sweet alert delete --}}
+@if(Session::get('icon_delete'))
+<script>
+    swal({
+    icon: 'success',
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
+
+{{-- akhir sweetalert delete --}}
 
 {{-- confirm delete --}}
 <script>

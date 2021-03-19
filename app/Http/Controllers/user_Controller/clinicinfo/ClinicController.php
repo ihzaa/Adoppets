@@ -78,7 +78,7 @@ class ClinicController extends Controller
         $data->picture = $filepath;
         $data->save();
 
-        return redirect(route('posting_clinic'));
+        return redirect(route('clinic'))->with('icon_create_clinic', 'success')->with('text', 'Posting Klinik Berhasil di Buat!');;
     }
 
     //list clinic pada akun saya
@@ -169,7 +169,7 @@ class ClinicController extends Controller
         }
 
         $data->save();
-        return redirect(route('posting_clinic'))->with('icon', 'success')->with('text', 'Informasi Berhasil di Edit! :');
+        return redirect(route('posting_clinic'))->with('icon_edit', 'success')->with('text', 'Informasi Berhasil di Edit! :');
     }
 
     /**
@@ -184,7 +184,7 @@ class ClinicController extends Controller
         $data = Clinic_information::find($id);
         Clinic_information::destroy($data->id);
         File::delete($data->picture);
-        return redirect(route('posting_clinic'))->with('sukses_delete', 'Data Berhasil Di Delete');
+        return redirect(route('posting_clinic'))->with('icon_delete', 'success')->with('text', 'Posting Klinik Berhasil di Hapus :');
     }
 
     public function detail($id)

@@ -158,6 +158,11 @@ sub-page
 @endsection
 
 @section('js_after')
+
+{{-- sweet alert library --}}
+{{-- sweet alert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
     const URL = {
     current: "{{route('edit_posting')}}"
@@ -169,4 +174,27 @@ $(document).on('change', '#sorting_post', function() {
     window.location.href = URL.current + '/?' + newParams
 });
 </script>
+
+{{-- promp yakin menghapus --}}
+<script>
+    function ConfirmDelete() {
+    var x = confirm("Are you sure you want to delete?");
+    if (x)
+        return true;
+    else
+        return false;
+}
+</script>
+
+
+@if(Session::get('icon_delete'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    swal({
+    icon: 'success',
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
 @endsection
