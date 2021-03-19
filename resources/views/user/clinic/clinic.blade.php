@@ -65,7 +65,7 @@ sub-page
                             @endphp
                         </p>
                         <a href="{{route('readmore_clinic', ['id'=>$item->id])}}"
-                            class="btn btn-primary btn-framed detail">Read more</a>
+                            class="btn btn-primary btn-framed detail">Baca Selengkapnya</a>
                     </div>
                 </article>
                 @endforeach
@@ -80,7 +80,7 @@ sub-page
                 <!--============ Side Bar ===============================================================-->
                 <aside class="sidebar">
                     <section>
-                        <h2>Search Klinik</h2>
+                        <h2>Cari Klinik</h2>
                         <!--============ Side Bar Search Form ===========================================-->
                         <form class="sidebar-form form" id="search_form">
                             <div class="form-group">
@@ -93,7 +93,7 @@ sub-page
                         <!--============ End Side Bar Search Form =======================================-->
                     </section>
                     <section>
-                        <h2>Latest Clinics</h2>
+                        <h2>Postingan Klinik Terbaru</h2>
                         @foreach ($latest as $item)
                         <div class="sidebar-post">
                             <a href="{{route('readmore_clinic', ['id'=>$item->id])}}" class="background-image">

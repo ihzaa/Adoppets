@@ -48,7 +48,7 @@ sub-page
                         <h2><a>{{$data->title}}</a></h2>
                         <div class="row justify-content-end">
                             <button class="tombol btn btn-framed btn-primary btn-rounded" id="btn_report"
-                                data-id="">Report</button>
+                                data-id="">Laporkan</button>
                         </div>
                     </div>
                     <div class="meta">
@@ -122,13 +122,13 @@ sub-page
                 <!--============ Side Bar ===============================================================-->
                 <aside class="sidebar">
                     <section>
-                        <h2>Search Blog</h2>
+                        <h2>Cari Blog</h2>
                         <!--============ Side Bar Search Form ===========================================-->
                         <form class="sidebar-form form" id="search_form">
                             <div class="form-group">
-                                <label for="what" class="col-form-label">What?</label>
+                                <label for="what" class="col-form-label">Masukkan Judul Blog</label>
                                 <input type="text" class="form-control" id="what"
-                                    placeholder="Enter keyword and press enter">
+                                    placeholder="Masukkan Judul Blog yang ingin anda cari disini">
                             </div>
                             <!--end form-group-->
                         </form>
@@ -174,7 +174,7 @@ sub-page
 
 @section('js_after')
 <script>
-const URL = {
+    const URL = {
     current: "{{route('blog')}}"
 }
 $("#search_form").on('submit', function() {
