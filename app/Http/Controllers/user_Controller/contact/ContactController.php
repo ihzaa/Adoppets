@@ -45,8 +45,7 @@ class ContactController extends Controller
             'subject' => 'required',
             'message' => 'required',
         ]);
-
-        // dd(Auth::user());
+        dd(Auth::user());
         $data2 = User::where('id', Auth::user()->id)->first();
         $data = new Kontak();
 
@@ -54,7 +53,6 @@ class ContactController extends Controller
         $data->message = $request->message;
         $data->user_id = $data2->id;
         $data->save();
-
         return redirect(route('contact'))->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Terimakasih Masukannya!');
     }
 

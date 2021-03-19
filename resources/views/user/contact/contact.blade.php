@@ -67,12 +67,9 @@ sub-page
             <!--end col-md-4-->
             <div class="col-md-8">
                 <h2>Contact Form</h2>
-                <form class="form email" action="{{route('post_contact')}}" method="POST" id="contact">
+                <form class="form email" action="{{route('post_contact')}}" method="POST" id="contact"
+                    enctype="multipart/form-data">
                     @csrf
-                    <div class="row">
-
-                        <!--end col-md-6-->
-                    </div>
                     <!--end row-->
                     <div class="form-group">
                         <label for="subject" class="col-form-label">Subject</label>
@@ -110,7 +107,7 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
