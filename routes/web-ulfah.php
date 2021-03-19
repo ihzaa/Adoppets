@@ -80,7 +80,7 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/posting/update/post/{id}', 'user_Controller\posting\PostingController@update')->name('store_update_posting_hewan');
     Route::delete('/posting/delete/{id}', 'user_Controller\posting\PostingController@delete')->name('delete_posting_hewan');
     // detail list menunggu diadopsi
-    Route::get('/posting/detail_pengadopsi/{id}', 'user_Controller\posting\PostingController@detail_pengadopsi')->name('detail_pengadopsi');
+    Route::get('/posting/{posting}/detail_pengadopsi/{id}', 'user_Controller\posting\PostingController@detail_pengadopsi')->name('detail_pengadopsi');
 });
 
 Route::middleware('checkfetch')->group(function () {
