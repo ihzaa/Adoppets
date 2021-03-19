@@ -242,13 +242,12 @@ function readURL(input) {
         readURL(this);
     });
 </script>
+
 @error('nama_klinik')
 <script>
 $("#register").form("show");
-// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
-
 
 @error('no_telepon')
 <script>
@@ -277,7 +276,7 @@ $("#register").form("show");
 @error('location')
 <script>
 $("#register").form("show");
-// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
+
 @endsection
