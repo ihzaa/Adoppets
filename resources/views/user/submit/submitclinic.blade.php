@@ -127,9 +127,9 @@
                                 <label for="picture" class="col-form-label required">Foto Klinik</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}"
-                                        required name="picture" {{request()->is('*/clinic*')?"required":""}}>
+                                        required name="picture" {{request()->is('*/submitclinic*')?"required":""}}>
                                     <label class="custom-file-label" id="labelnya_gambar"
-                                        for="imgInp">{{request()->is('*/clinic*')?"Image Clinic":"Picture.jpg"}}</label>
+                                        for="imgInp">{{request()->is('*/submitclinic*')?"Image Clinic":"Picture.jpg"}}</label>
                                     <small class="form-text text-muted">- Ukuran max 256KB</small>
                                     <small class="form-text text-muted">- Harus berupa gambar (format:
                                         jpg, jpeg, svg, jfif,
@@ -141,10 +141,8 @@
                             @enderror
                         </div>
                         <br>
-
                         <div class="row-md">
                             {{-- request foto --}}
-
                             <img id="blah"
                                 src="{{request()->is('*submitclinic*')?asset('images/default/noimage.png'):asset($clinic->picture)}}"
                                 class="img-fluid" src="" alt="image advertisement" />
@@ -153,12 +151,7 @@
                     </div>
                 </div>
                 {{-- akhir foto klinik --}}
-                <div class="row justify-content-end">
-                    {{-- deskripsi --}}
-                    {{-- akhir deskripsi --}}
 
-                </div>
-                {{-- summernote --}}
             </section>
 
             <section>

@@ -24,6 +24,10 @@ class AdminController extends Controller
         return view('admin/report/hewan/index');
     }
 
+    public function report_hewan_detail()
+    {
+        return view('admin/report/hewan/detail');
+    }
 
     // POSTING BLOG
     public function report_blog()
