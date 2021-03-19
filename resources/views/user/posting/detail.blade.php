@@ -9,9 +9,9 @@
 <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
 <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script> --}}
 <style>
-.tombol {
-    margin-left: 8px;
-}
+    .tombol {
+        margin-left: 8px;
+    }
 </style>
 @endsection
 
@@ -91,7 +91,17 @@
                         </div>
                     </section>
                     <!-- lihat orang yang neken adopsi -->
-                    <h3 class="text-left text-muted">dinda dan 33 lainnya berminat dengan hewan ini</h3>
+
+                    @if (count($latestAdopt) != 0)
+                    @if(count($latestAdopt) == 1)
+                    <h3 class="text-left text-muted">{{strtok($user[$latestAdopt[0]->user_id], " ")}} berminat dengan
+                        hewan ini</h3>
+                    @else
+                    <h3 class="text-left text-muted">{{strtok($user[$latestAdopt[0]->user_id], " ")}} dan
+                        {{count($latestAdopt)-1}} lainnya
+                        berminat dengan hewan ini</h3>
+                    @endif
+                    @endif
                     <!--end Gallery Carousel-->
                     @if ($adopted == 0)
                     @if (Auth::guard('user')->check())
@@ -339,7 +349,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('adopt',['id'=>$data->id])}}" method="POST">
+            <form action="{{route('adopt',['id'=>$data->id])}}" method="POST" id="form_adopsi">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -403,7 +413,7 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 </script> --}}
 
 <script>
-const post_id = "{{$data->id}}"
+    const post_id = "{{$data->id}}"
 $("#btn_adopt").on("click", function() {
     $("#modal_adopt").modal('show');
 
@@ -588,10 +598,14 @@ $("#btn_report").click(function() {
     //         $("#main_loading").hide();
     //     });
 });
+
+$("#form_adopsi").submit(function(){
+    $("#main_loading").show();
+})
 </script>
 @if(Session::get('icon'))
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
