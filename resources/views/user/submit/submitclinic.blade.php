@@ -39,7 +39,7 @@
 @endsection
 
 @section('brand-logo')
-{{asset('user/assets/img/include_image/logo_adoptpets-inverted.png')}}
+{{asset('user/assets/img/include_image/logo_adoptpets.png')}}
 @endsection
 
 @section('hero-form')
@@ -47,6 +47,12 @@
 @endsection
 
 @section('background')
+<div class="background">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_akunsaya.jpg')}}" alt="">
+    </div>
+    <!--end background-image-->
+</div>
 @endsection
 
 @section('include-css')
@@ -230,14 +236,11 @@ function readURL(input) {
         reader.onload = function(e) {
             $('#blah').attr('src', e.target.result);
         }
-        $("#labelnya_gambar").html(input.files[0].name);
-        reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
-}
 
-$("#imgInp").change(function() {
-    readURL(this);
-});
+    $("#imgInp").change(function() {
+        readURL(this);
+    });
 </script>
 @error('nama_klinik')
 <script>
@@ -250,28 +253,24 @@ $("#register").form("show");
 @error('no_telepon')
 <script>
 $("#register").form("show");
-// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('email')
 <script>
 $("#register").form("show");
-// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('deskripsi')
 <script>
 $("#register").form("show");
-// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('picture')
 <script>
 $("#register").form("show");
-// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
