@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user_Controller\blog;
 
 use App\Blog;
 use App\Http\Controllers\Controller;
+use App\Report_blog;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,7 @@ class BlogController extends Controller
         $deskripsi['alamat_asal'] = User::pluck('alamat_asal', 'id');
         $deskripsi['email'] = User::pluck('email', 'id');
         $data['popular'] = DB::select('SELECT b.*, (SELECT COUNT(*) FROM user_like_blogs as ulb where ulb.blog_id = b.id) as likes FROM blogs as b ORDER BY likes ASC LIMIT 3');
+        $data['repoted'] = Report_blog::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->count();
         return view('user/blog/readMore', compact('data', 'user', 'user_foto', 'deskripsi', 'data'));
     }
 
@@ -179,5 +181,15 @@ class BlogController extends Controller
         Blog::destroy($data->id);
         File::delete($data->picture);
         return redirect(route('posting_blog'))->with('icon_delete', 'success')->with('text', 'Posting Blog Berhasil di Hapus!');
+    }
+
+    public function reportBlog($id, Request $request)
+    {
+        Report_blog::create([
+            'posting_id' => $id,
+            'jawaban_report' => $request->excuse,
+            'user_id' => Auth::guard('user')->user()->id,
+        ]);
+        return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Melakukan Report Blog!');
     }
 }
