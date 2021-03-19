@@ -113,22 +113,28 @@
                                                                         {{-- list --}}
                                                                         <ul class="list-group list-group-horizontal">
                                                                             <li class="list-group-item">Nama :
+                                                                                {{$data['sender_fix']->name}}
 
                                                                             </li>
                                                                         </ul>
                                                                         <ul class="list-group list-group-horizontal-sm">
-                                                                            <li class="list-group-item">Nomor Telfon :
+                                                                            <li class="list-group-item">Nomor Telfon
+                                                                                : {{$data['sender_fix']->nomor_telpon}}
                                                                             </li>
                                                                         </ul>
                                                                         <ul class="list-group list-group-horizontal-md">
                                                                             <li class="list-group-item">Nomor Whatsapp :
+                                                                                {{$data['sender_fix']->name}}
                                                                             </li>
                                                                         </ul>
                                                                         <ul class="list-group list-group-horizontal-lg">
-                                                                            <li class="list-group-item">Email : </li>
+                                                                            <li class="list-group-item">Email :
+                                                                                {{$data['sender_fix']->email}}</li>
                                                                         </ul>
                                                                         <ul class="list-group list-group-horizontal-lg">
-                                                                            <li class="list-group-item">Alamat :</li>
+                                                                            <li class="list-group-item">Alamat :
+                                                                                {{$data['sender_fix']->domisili_sekarang}}
+                                                                            </li>
                                                                         </ul>
                                                                         {{-- akhir list --}}
                                                                     </div>

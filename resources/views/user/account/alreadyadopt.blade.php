@@ -69,13 +69,17 @@ sub-page
                 </div>
                 <!--============ Items ==========================================================================-->
                 <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
+                    @php
+                    $itemCounter = 0;
+                    @endphp
                     @foreach ($edit as $item)
                     @php
-                    if($item->isAdopted)
+                    if($item->isAdopted){
+                    $itemCounter++;
                     continue;
+                    }
                     @endphp
                     <div class="item">
-
                         <div class="wrapper">
                             <div class="image">
                                 <h3>
@@ -124,6 +128,9 @@ sub-page
                     </div>
                     <!--end item-->
                     @endforeach
+                    @if ($itemCounter == count($edit))
+                    <h2 class="text-center">Tidak Ada Permintaan Adopsi.</h2>
+                    @endif
                 </div>
                 <!--end items-->
             </div>
