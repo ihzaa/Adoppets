@@ -9,9 +9,9 @@
 <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
 <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script> --}}
 <style>
-    .tombol {
-        margin-left: 8px;
-    }
+.tombol {
+    margin-left: 8px;
+}
 </style>
 @endsection
 
@@ -90,6 +90,8 @@
 
                         </div>
                     </section>
+                    <!-- lihat orang yang neken adopsi -->
+                    <h3 class="text-left text-muted">dinda dan 33 lainnya berminat dengan hewan ini</h3>
                     <!--end Gallery Carousel-->
                     @if ($adopted == 0)
                     @if (Auth::guard('user')->check())
@@ -137,7 +139,6 @@
                     @else
                     <h3 class="text-center text-danger">Sudah Teradopsi</h3>
                     @endif
-
 
                     <!--Description-->
                     <section>
@@ -402,49 +403,49 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 </script> --}}
 
 <script>
-    const post_id = "{{$data->id}}"
-    $("#btn_adopt").on("click",function(){
-        $("#modal_adopt").modal('show');
+const post_id = "{{$data->id}}"
+$("#btn_adopt").on("click", function() {
+    $("#modal_adopt").modal('show');
 
-        // let data = {
-        //     id : post_id
-        // }
-        // $("#main_loading").show();
-        // fetch("", {
-        //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
-        //         // 'Content-Type': 'application/x-www-form-urlencoded',
-        //     },
-        //     body: JSON.stringify(data) // body data type must match "Content-Type" header
-        // })
-        // .then(response => {
-        //     if (response.status == 201) {
-        //         return "EROR"
-        //     } else {
-        //         return response.json()
-        //     }
-        // })
-        // .then(data => {
-        //     if (data == "EROR") {
-        //         window.location.replace("{{route('get_login')}}");
-        //     } else {
-        //         location.reload();
-        //     }
-        // })
-        // .catch(err => console.log(err))
-        // .finally(()=>{
-        // $("#main_loading").hide();
-        // });
-    })
-    $("#btn_unadopt").on("click",function(){
-        let data = {
-            id : $(this).data('id')
-        }
-        $("#main_loading").show();
-        fetch("{{route('unadopt')}}", {
+    // let data = {
+    //     id : post_id
+    // }
+    // $("#main_loading").show();
+    // fetch("", {
+    //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+    //         // 'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    //     body: JSON.stringify(data) // body data type must match "Content-Type" header
+    // })
+    // .then(response => {
+    //     if (response.status == 201) {
+    //         return "EROR"
+    //     } else {
+    //         return response.json()
+    //     }
+    // })
+    // .then(data => {
+    //     if (data == "EROR") {
+    //         window.location.replace("{{route('get_login')}}");
+    //     } else {
+    //         location.reload();
+    //     }
+    // })
+    // .catch(err => console.log(err))
+    // .finally(()=>{
+    // $("#main_loading").hide();
+    // });
+})
+$("#btn_unadopt").on("click", function() {
+    let data = {
+        id: $(this).data('id')
+    }
+    $("#main_loading").show();
+    fetch("{{route('unadopt')}}", {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             headers: {
@@ -469,19 +470,19 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
             }
         })
         .catch(err => console.log(err))
-        .finally(()=>{
+        .finally(() => {
             $("#main_loading").hide();
         });
-    })
+})
 
-    $(document).on('click','.btn_like',function(){
-        let data = {
-            id : $(this).data('id')
-        }
-        // $("#main_loading").show();
-        $(this).html(`Loading...`);
-        $(this).removeClass('btn_like');
-        fetch("{{route('likePosting')}}", {
+$(document).on('click', '.btn_like', function() {
+    let data = {
+        id: $(this).data('id')
+    }
+    // $("#main_loading").show();
+    $(this).html(`Loading...`);
+    $(this).removeClass('btn_like');
+    fetch("{{route('likePosting')}}", {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             headers: {
@@ -510,16 +511,16 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
         })
         .catch(err => console.log(err))
 
-    });
+});
 
-    $(document).on('click','.btn_dislike',function(){
-        let data = {
-            id : $(this).data('id')
-        }
-        // $("#main_loading").show();
-        $(this).html(`Loading...`);
-        $(this).removeClass('btn_dislike');
-        fetch("{{route('dislikePosting')}}", {
+$(document).on('click', '.btn_dislike', function() {
+    let data = {
+        id: $(this).data('id')
+    }
+    // $("#main_loading").show();
+    $(this).html(`Loading...`);
+    $(this).removeClass('btn_dislike');
+    fetch("{{route('dislikePosting')}}", {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             headers: {
@@ -548,10 +549,10 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
         })
         .catch(err => console.log(err))
 
-    });
+});
 
-    $("#btn_report").click(function(){
-        $("#modal_report").modal('show');
+$("#btn_report").click(function() {
+    $("#modal_report").modal('show');
 
     //     return;
     //     let data = {
@@ -586,15 +587,15 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
     //     .finally(()=>{
     //         $("#main_loading").hide();
     //     });
-    });
+});
 </script>
 @if(Session::get('icon'))
 <script>
-    swal({
-        icon: "{{Session::get('icon')}}",
-        title: "{{Session::get('title')}}",
-        text: "{{Session::get('text')}}",
-    });
+swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
 </script>
 @endif
 {{-- <script>

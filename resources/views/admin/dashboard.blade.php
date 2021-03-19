@@ -7,17 +7,17 @@ Dashboard
 {{-- my css --}}
 @section('custom-style')
 <style>
-    //Large devices (desktops, 992px and up)
-    /* @media (min-width: 992px) {
+//Large devices (desktops, 992px and up)
+/* @media (min-width: 992px) {
         .card-informasi {
             margin-top: 150px
         }
     } */
 
-    .panel {
-        width: 90px;
-        height: 200px;
-    }
+.panel {
+    width: 90px;
+    height: 200px;
+}
 </style>
 
 
