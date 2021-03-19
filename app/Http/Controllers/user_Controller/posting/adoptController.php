@@ -17,13 +17,16 @@ use Illuminate\Support\Facades\Session;
 
 class adoptController extends Controller
 {
-    public function adopt(Request $request)
+    public function adopt($id, Request $request)
     {
         $user = Auth::guard('user')->user();
 
         User_accept_choice::create([
             'user_id' => $user->id,
-            'posting_id' => $request->id
+            'posting_id' => $id,
+            'pertanyaan_1' => $request->satu,
+            'pertanyaan_2' => $request->dua,
+            'pertanyaan_3' => $request->tiga
         ]);
 
         $posting = posting::find($request->id);
@@ -36,9 +39,10 @@ class adoptController extends Controller
         Session::flash('title', 'Berhasil');
         Session::flash('text', 'Permintaan Adopsi Berhasil.');
 
-        return response()->json([
-            'message' => 'Success Adopt'
-        ]);
+        // return response()->json([
+        //     'message' => 'Success Adopt'
+        // ]);
+        return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Adopsi Berhasil!');
     }
 
     public function unadopt(Request $request)

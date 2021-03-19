@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class PostingController extends Controller
 {
@@ -115,7 +116,8 @@ class PostingController extends Controller
                 'postings.*',
                 DB::raw('(SELECT vaccines.tanggal FROM vaccines where vaccines.posting_id = postings.id LIMIT 1 ) as vaksin_tanggal'),
                 DB::raw('(SELECT vaccines.keterangan FROM vaccines where vaccines.posting_id = postings.id LIMIT 1) as vaksin_keterangan'),
-                DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto')
+                DB::raw('(SELECT asset_postings.path FROM asset_postings WHERE asset_postings.posting_id = postings.id LIMIT 1) as foto'),
+                DB::raw('(SELECT count(*) from user_accept_choices where user_accept_choices.posting_id = postings.id and status = "1") as adopted')
             )
             ->orderBy('postings.created_at', $sort)
             ->paginate(10);
@@ -147,8 +149,90 @@ class PostingController extends Controller
     public function detail_hewan($id)
     {
         $data = posting::find($id);
-        $asset_posting_detail = DB::select('SELECT asset_postings.path, asset_postings.posting_id FROM asset_postings INNER JOIN postings ON postings.id = asset_postings.posting_id');
-        return view('user/posting/detailPostingAccount', compact('data', 'asset_posting_detail'));
+        $asset_posting = Asset_posting::where('posting_id', $id)->get();
+        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p WHERE p.id = ' . $id);
+        if (count($edit) == 0) {
+            return redirect(route('landingpage'));
+        }
+        return view('user/posting/detailPostingAccount', compact('data', 'asset_posting', 'edit'));
+    }
+
+    //redirect ke edit
+    public function edit($id)
+    {
+        $data = posting::find($id);
+        return view('user/posting/editpostaccount', compact('data'));
+    }
+
+    //update postingan hewan di account
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'jenis_kelamin' => 'required',
+            'ras' => 'required',
+            'kondisi_fisik' => 'required',
+            'umur' => 'required|integer',
+            'makanan' => 'required',
+            'warna' => 'required',
+            'lokasi' => '',
+            'informasi_lain' => '',
+
+        ]);
+
+        $posting = posting::create([
+            'title' => $request->title,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'ras' => $request->ras,
+            'kondisi_fisik' => $request->kondisi_fisik,
+            'umur' => $request->umur,
+            'makanan' => $request->makanan,
+            'warna' => $request->warna,
+            'lokasi' => $request->city,
+            'informasi_lain' => $request->informasi_lain,
+            'user_id' => Auth::user()->id,
+            'category_id' => $request->submit_category,
+        ]);
+        if ($request->informasi_vaksin != null) {
+            foreach ($request->informasi_vaksin as $k => $v) {
+                Vaccine::create([
+                    'keterangan' => $v,
+                    'tanggal' => Carbon::parse($request->tanggal[$k]),
+                    'posting_id' => $posting->id,
+                ]);
+            }
+        }
+
+        // validasi asset posting
+        $this->validate($request, [
+            'path' => 'required',
+            'path.*' => 'mimes:jpeg,png,jpg,mp4,webm,mpg|max:6000',
+        ]);
+
+        if ($request->hasFile('path')) {
+            foreach ($request->path as $item) {
+                Asset_posting::create([
+                    $extension = $item->getClientOriginalName(),
+                    $location = 'images/posting',
+                    $nameUpload = $posting->id . 'thumbnail.' . $extension,
+                    $item->move('assets/' . $location, $nameUpload),
+                    $filepath = 'assets/' . $location . '/' . $nameUpload,
+                    $data_image = $filepath,
+                    'path' => $data_image,
+                    'posting_id' => $posting->id,
+                ]);
+            }
+        }
+        $posting->save();
+        return redirect(route('edit_posting'))->with('icon', 'success')->with('text', 'Informasi Berhasil di Edit!');
+    }
+
+    public function delete($id)
+    {
+        $data = posting::find($id);
+        posting::destroy($data->id);
+        File::delete($data->picture);
+        return redirect(route('edit_posting'))->with('sukses_delete', 'Data Berhasil Di Delete');
     }
 
     public function likePosting(Request $request)
@@ -156,10 +240,10 @@ class PostingController extends Controller
         $user = Auth::guard('user')->user();
         User_like_posting::create([
             'user_id' => $user->id,
-            'posting_id' => $request->id
+            'posting_id' => $request->id,
         ]);
         return response()->json([
-            'like' => User_like_posting::where('posting_id', $request->id)->count()
+            'like' => User_like_posting::where('posting_id', $request->id)->count(),
         ]);
     }
     public function dislikePosting(Request $request)
@@ -167,7 +251,7 @@ class PostingController extends Controller
         $user = Auth::guard('user')->user();
         User_like_posting::where('user_id', $user->id)->where('posting_id', $request->id)->delete();
         return response()->json([
-            'like' => User_like_posting::where('posting_id', $request->id)->count()
+            'like' => User_like_posting::where('posting_id', $request->id)->count(),
         ]);
     }
 
@@ -176,7 +260,7 @@ class PostingController extends Controller
         Report_posting::create([
             'posting_id' => $id,
             'jawaban_report' => $request->excuse,
-            'user_id' => Auth::guard('user')->user()->id
+            'user_id' => Auth::guard('user')->user()->id,
         ]);
         return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Melakukan Report Posting!');
     }

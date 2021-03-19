@@ -208,13 +208,15 @@ class LandingpageController extends Controller
         $adopted = User_accept_choice::where('posting_id', $id)->where('status', '1')->count();
 
         $isAdopt = '';
+        $reported = '';
         if (Auth::guard('user')->check()) {
             $reported = Report_posting::where('user_id', Auth::guard('user')->user()->id)->where('posting_id', $id)->count();
             $like['isLike'] = User_like_posting::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->count();
             $isAdopt = User_accept_choice::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->first();
         }
         //$category = Category::pluck('nama', 'id');
+        $popular = DB::select('SELECT p.*, (SELECT COUNT(*) FROM user_like_postings as ulp WHERE ulp.posting_id = p.id) as likeCounter, (SELECT ap.path FROM asset_postings as ap WHERE ap.posting_id = p.id LIMIT 1) as foto, c.nama FROM postings as p JOIN categories as c on c.id = p.category_id LIMIT 3');
 
-        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt', 'like', 'adopted', 'reported'));
+        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt', 'like', 'adopted', 'reported', 'popular'));
     }
 }

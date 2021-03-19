@@ -26,7 +26,9 @@ class ClinicController extends Controller
             $list = Clinic_information::where('lokasi', 'like', '%' . $request->search . '%')->orderBy('created_at', 'DESC')->paginate(10);
 
         $user = User::pluck('name', 'id');
-        return view('user/clinic/clinic', compact('list', 'user'));
+        $latest = Clinic_information::orderBy('created_at', 'DESC')->limit(3)->get();
+        // dd($latest);
+        return view('user/clinic/clinic', compact('list', 'user', 'latest'));
     }
 
     //detail postingan klinik (read more)
@@ -34,7 +36,8 @@ class ClinicController extends Controller
     {
         $data = Clinic_information::find($id);
         $user = User::pluck('name', 'id');
-        return view('user/clinic/readMore', compact('data', 'user'));
+        $latest = Clinic_information::orderBy('created_at', 'DESC')->limit(3)->get();
+        return view('user/clinic/readMore', compact('data', 'user', 'latest'));
     }
 
     //submit clinic

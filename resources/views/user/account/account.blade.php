@@ -157,8 +157,6 @@ sub-page
 
                                     </section>
 
-
-
                                     {{-- <section class="clearfix">
                                     <button type="submit" class="btn btn-primary float-right">Save Changes</button>
                                 </section> --}}
@@ -204,37 +202,34 @@ sub-page
                 <form action="{{route('change.password')}}" method="POST" id="form_change_password">
                     @csrf
                     <section>
-                        <h2>Rubah Password</h2>
-                        <div class="form-group">
-                            <label for="password" class="col-form-label">Password Lama</label>
-                            <input name="old" type="password" class="form-control @error('old') is-invalid @enderror"
-                                id="oldpassword" placeholder="Password Lama" required>
-                            @error('old')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h2>Ubah Password</h2>
+                                <div class="form-group">
+                                    <label for="password" class="col-form-label">Password Lama</label>
+                                    <input name="old" type="password"
+                                        class="form-control @error('old') is-invalid @enderror" id="oldpassword"
+                                        placeholder="Password Lama" required>
+                                    @error('old')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-form-label">Password Baru</label>
+                                    <input name="new" type="password"
+                                        class="form-control @error('new') is-invalid @enderror" id="newpassword"
+                                        placeholder="Password Baru" required>
+                                    @error('new')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="confpassword" class="col-form-label">Konfirmasi Password </label>
+                                    <input type="password" class="form-control" id="confpassword"
+                                        placeholder="Konfirmasi Password Baru" required>
+                                </div>
+                            </div>
                         </div>
-
-                        <!--end form-group-->
-                    </section>
-                    <section>
-                        <div class="form-group">
-                            <label for="password" class="col-form-label">Password Baru</label>
-                            <input name="new" type="password" class="form-control @error('new') is-invalid @enderror"
-                                id="newpassword" placeholder="Password Baru" required>
-                            @error('new')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!--end form-group-->
-                    </section>
-                    <section>
-                        <div class="form-group">
-                            <label for="confpassword" class="col-form-label">Konfirmasi Password </label>
-                            <input type="password" class="form-control" id="confpassword"
-                                placeholder="Konfirmasi Password Baru" required>
-                        </div>
-
                         <!--end form-group-->
                     </section>
                     <section class="clearfix">
@@ -256,7 +251,7 @@ sub-page
 
 
 <script>
-    function readURL(input) {
+function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -272,11 +267,11 @@ $("#imgInp").change(function() {
     readURL(this);
 });
 
-$("#form_change_password").on("submit",function(){
+$("#form_change_password").on("submit", function() {
     let newPass = $("#newpassword").val();
     let confPass = $("#confpassword").val();
 
-    if(newPass != confPass){
+    if (newPass != confPass) {
         event.preventDefault();
         swal({
             icon: "error",
@@ -292,7 +287,7 @@ $("#form_change_password").on("submit",function(){
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -303,56 +298,56 @@ $("#form_change_password").on("submit",function(){
 
 @error('name')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('username')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('instagram')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('alamat_asal')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('domisili_sekarang')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('nomor_telpon')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('email')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('no_wa')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
@@ -360,7 +355,7 @@ $("#form_change_password").on("submit",function(){
 
 @error('password')
 <script>
-    $("#register").form("show");
+$("#register").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

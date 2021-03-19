@@ -278,30 +278,35 @@
                         <section>
                             <h2>Popular Post</h2>
                             <div class="items compact">
+                                @foreach ($popular as $item)
                                 <div class="item">
                                     <div class="wrapper">
                                         <div class="image">
                                             <h3>
-                                                <a href="#" class="tag category">Kusing</a>
-                                                <a href="single-listing-1.html" class="title">Kucing Persia Lucu</a>
-                                                <span class="tag">Offer</span>
+                                                <a href="{{route('detail_posting',['id'=>$item->id])}}"
+                                                    class="tag category">{{$item->nama}}</a>
+                                                <a href="{{route('detail_posting',['id'=>$item->id])}}"
+                                                    class="title">{{$item->title}}</a>
+                                                {{-- <span class="tag">Offer</span> --}}
                                             </h3>
-                                            <a href="single-listing-1.html" class="image-wrapper background-image">
-                                                <img src="{{asset('user/assets/img/image-01.jpg')}}" alt="">
+                                            <a href="{{route('detail_posting',['id'=>$item->id])}}"
+                                                class="image-wrapper background-image">
+                                                <img src="{{asset($item->foto)}}" alt="">
                                             </a>
                                         </div>
                                         <!--end image-->
                                         <h4 class="location">
-                                            <a href="#">Malang Kabupaten</a>
+                                            <a href="#">{{$item->lokasi}}</a>
                                         </h4>
-                                        <div class="price">persia</div>
+                                        <div class="price">{{$item->ras}}</div>
                                         <div class="meta">
                                             <figure>
-                                                <i class="fa fa-calendar-o"></i>02.05.2017
+                                                <i
+                                                    class="fa fa-calendar-o"></i>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}
                                             </figure>
                                             <figure>
                                                 <a href="#">
-                                                    <i class="fa fa-user"></i>Jane Doe
+                                                    <i class="fa fa-user"></i>{{$user[$item->user_id]}}
                                                 </a>
                                             </figure>
                                         </div>
@@ -310,6 +315,7 @@
                                     <!--end wrapper-->
                                 </div>
                                 <!--end item-->
+                                @endforeach
                             </div>
 
                         </section>
@@ -322,6 +328,39 @@
     </section>
     <!--end block-->
 </section>
+<div id="modal_adopt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Adopsi Hewan</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('adopt',['id'=>$data->id])}}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Apakah anda ganteng?</label>
+                        <input type="text" name="satu" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Setampan Apa Anda?</label>
+                        <input type="text" name="dua" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Yakin dengan ketampanan anda?</label>
+                        <input type="text" name="tiga" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">Adopsi!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div id="modal_report" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -365,38 +404,40 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 <script>
     const post_id = "{{$data->id}}"
     $("#btn_adopt").on("click",function(){
-        let data = {
-            id : post_id
-        }
-        $("#main_loading").show();
-        fetch("{{route('adopt')}}", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        })
-        .then(response => {
-            if (response.status == 201) {
-                return "EROR"
-            } else {
-                return response.json()
-            }
-        })
-        .then(data => {
-            if (data == "EROR") {
-                window.location.replace("{{route('get_login')}}");
-            } else {
-                location.reload();
-            }
-        })
-        .catch(err => console.log(err))
-        .finally(()=>{
-        $("#main_loading").hide();
-        });
+        $("#modal_adopt").modal('show');
+
+        // let data = {
+        //     id : post_id
+        // }
+        // $("#main_loading").show();
+        // fetch("", {
+        //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+        //         // 'Content-Type': 'application/x-www-form-urlencoded',
+        //     },
+        //     body: JSON.stringify(data) // body data type must match "Content-Type" header
+        // })
+        // .then(response => {
+        //     if (response.status == 201) {
+        //         return "EROR"
+        //     } else {
+        //         return response.json()
+        //     }
+        // })
+        // .then(data => {
+        //     if (data == "EROR") {
+        //         window.location.replace("{{route('get_login')}}");
+        //     } else {
+        //         location.reload();
+        //     }
+        // })
+        // .catch(err => console.log(err))
+        // .finally(()=>{
+        // $("#main_loading").hide();
+        // });
     })
     $("#btn_unadopt").on("click",function(){
         let data = {
