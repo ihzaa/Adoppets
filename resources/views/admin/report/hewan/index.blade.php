@@ -93,8 +93,8 @@ List Report Postingan Hewan
                 <tbody>
                     <td>Tiger Nixon</td>
                     <td>System Architect</td>
-                    <td><button class="btn btn-danger btn-rounded">Danger</button>
-                        <button class="btn btn-warning btn-rounded">Warning</button>
+                    <td><button class="btn btn-danger btn-rounded">Hapus</button>
+                        <button class="btn btn-warning btn-rounded">Detail</button>
                     </td>
 
                     </tr>
