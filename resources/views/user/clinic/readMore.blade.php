@@ -47,8 +47,10 @@ sub-page
                     <div class="article-title">
                         <h2><a>{{$data->nama_klinik}}</a></h2>
                         <div class="row justify-content-end">
-                            <button class="tombol btn btn-framed btn-primary btn-rounded" id="btn_report"
-                                data-id="">Report</button>
+                            <button class="tombol btn @if ($reported == 0)
+                            btn-framed
+                            @endif  btn-primary btn-rounded" id="btn_report" data-id="" @if ($reported==1) disabled
+                                @endif>Report</button>
                         </div>
                     </div>
                     <div class="meta">
@@ -174,4 +176,47 @@ sub-page
     <!--end container-->
 </section>
 <!--end block-->
+<div id="modal_report" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Laporkan Clinic</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('clinic.report',$data->id)}}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Alasan Melaporkan</label>
+                        <textarea name="excuse" rows="5" class="form-control" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info btn-sm">Kirim</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('js_after')
+<script>
+    $("#btn_report").click(function() {
+        $("#modal_report").modal('show');
+    });
+</script>
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
 @endsection

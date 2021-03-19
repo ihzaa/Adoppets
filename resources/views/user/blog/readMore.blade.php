@@ -213,7 +213,17 @@ $("#search_form").on('submit', function() {
 
 $("#btn_report").click(function() {
     $("#modal_report").modal('show');
-
 });
 </script>
+
+@if(Session::get('icon'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user_Controller\clinicinfo;
 
 use App\Clinic_information;
 use App\Http\Controllers\Controller;
+use App\Report_clinic;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,9 @@ class ClinicController extends Controller
         $data = Clinic_information::find($id);
         $user = User::pluck('name', 'id');
         $latest = Clinic_information::orderBy('created_at', 'DESC')->limit(3)->get();
-        return view('user/clinic/readMore', compact('data', 'user', 'latest'));
+        if (Auth::guard('user')->check())
+            $reported = Report_clinic::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->count();
+        return view('user/clinic/readMore', compact('data', 'user', 'latest', 'reported'));
     }
 
     //submit clinic
@@ -192,5 +195,15 @@ class ClinicController extends Controller
         $data = Clinic_information::find($id);
         $user = User::pluck('name', 'id');
         return view('user/clinic/detailclinic', compact('data', 'user'));
+    }
+
+    public function reportClinic($id, Request $request)
+    {
+        Report_clinic::create([
+            'posting_id' => $id,
+            'jawaban_report' => $request->excuse,
+            'user_id' => Auth::guard('user')->user()->id,
+        ]);
+        return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Melakukan Report Clinic!');
     }
 }
