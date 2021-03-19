@@ -109,7 +109,16 @@
                     {{-- akhir submenu --}}
                 </li>
 
-                <li class="list-divider"></li>
+                <!--Contact-->
+                <li class="">
+                    <a href="#">
+                        <i class="demo-pli-home"></i>
+                        <span class="menu-title">Contact</span>
+                    </a>
+                </li>
+                {{-- akhir Contact --}}
+
+                {{-- <li class="list-divider">Contact</li> --}}
 
                 <!--End widget-->
 

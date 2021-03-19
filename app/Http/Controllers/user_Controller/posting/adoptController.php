@@ -64,7 +64,10 @@ class adoptController extends Controller
             $list->status = 1;
             $list->save();
             $data['receiver'] = User::find($list->user_id);
+            $data['sender'] = posting::find($list->posting_id);
+            $data['sender_fix'] = User::find($data['sender']);
             $data['posting'] = DB::select('SELECT p.*, c.nama as categry, (SELECT ap.path FROM asset_postings as ap WHERE ap.posting_id = p.id LIMIT 1) as path FROM postings as p JOIN categories as c on p.category_id = c.id WHERE p.id = ' . $list->posting_id)[0];
+
             // return response()->json($data);
             Mail::to($data['receiver']->email)->send(new AdoptRequestAccept($data));
             Session::flash('icon', 'success');
