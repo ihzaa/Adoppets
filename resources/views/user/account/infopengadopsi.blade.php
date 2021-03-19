@@ -84,9 +84,18 @@ sub-page
                 <div class="card">
                     <div class="card-body">
                         <h3><i class="fa fa-user"></i> Alasan Mengadopsi</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid qui reprehenderit ad
-                            tenetur cupiditate, ipsa dolore voluptate modi debitis numquam porro eum doloribus. Quaerat,
-                            non?</p>
+                    </div>
+                    <div class="card-body">
+                        <h3>pernahkah anda memelihara hewan?</h3>
+                        <p></p>
+                    </div>
+                    <div class="card-body">
+                        <h3></i>jika pernah hewan apakah itu?</h3>
+                        <p></p>
+                    </div>
+                    <div class="card-body">
+                        <h3>Deskripsikan alasan ingin mnegadopsi hewan ini</h3>
+                        <p></p>
                     </div>
                 </div>
             </div>
