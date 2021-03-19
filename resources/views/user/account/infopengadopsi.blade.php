@@ -110,15 +110,21 @@ sub-page
                                     <!-- <th>Gambar</th> -->
                                     <th>Tanggal</th>
                                     <th>Hewan</th>
-                                    <th>Status</th>
+                                    {{-- <th>Status</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
+                                @if (count($data['history']) == 0)
+                                <tr>
+                                    <td colspan="2" class="text-center"><strong>User Belum Memiliki Riwayat
+                                            Adopsi.</strong></td>
+                                </tr>
+                                @endif
                                 @foreach ($data['history'] as $item)
                                 <tr>
                                     <td>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</td>
                                     <td>{{$item->hewan}}</td>
-                                    <td>{{$item->status == 0 ? 'Menunggu' : 'Diadopsi'}}</td>
+                                    {{-- <td>{{$item->status == 0 ? 'Menunggu' : 'Diadopsi'}}</td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>

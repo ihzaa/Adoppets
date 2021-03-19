@@ -279,7 +279,8 @@ class PostingController extends Controller
                 'user_accept_choices.*',
                 DB::raw('(SELECT categories.nama FROM postings JOIN categories on categories.id = postings.category_id where postings.id = user_accept_choices.posting_id) as hewan')
             )
-            ->where('user_id', $data['adoptInfo']->user_id)->get();
+            ->where('user_id', $data['adoptInfo']->user_id)
+            ->where('user_accept_choices.status', '=', '1')->get();
 
         // dd($data);
         return view('user/account/infopengadopsi', compact('data'));
