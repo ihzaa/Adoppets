@@ -85,8 +85,7 @@
                                 <ul class="list-unstyled">
                                     <li class="dropdown-header"><i class="demo-pli-mail icon-lg icon-fw"></i>
                                         Mailbox</li>
-                                    <li><a href="#"><span
-                                                class="pull-right label label-danger">Hot</span>Indox</a></li>
+                                    <li><a href="#"><span class="pull-right label label-danger">Hot</span>Indox</a></li>
                                     <li><a href="#">Read Message</a></li>
                                     <li><a href="#">Compose</a></li>
                                     <li><a href="#">Template</a></li>
@@ -152,22 +151,28 @@
                                     Gallery</p>
                                 <div class="row img-gallery">
                                     <div class="col-xs-4">
-                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-1.jpg')}}" alt="thumbs">
+                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-1.jpg')}}"
+                                            alt="thumbs">
                                     </div>
                                     <div class="col-xs-4">
-                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-3.jpg')}}" alt="thumbs">
+                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-3.jpg')}}"
+                                            alt="thumbs">
                                     </div>
                                     <div class="col-xs-4">
-                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-2.jpg')}}" alt="thumbs">
+                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-2.jpg')}}"
+                                            alt="thumbs">
                                     </div>
                                     <div class="col-xs-4">
-                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-4.jpg')}}" alt="thumbs">
+                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-4.jpg')}}"
+                                            alt="thumbs">
                                     </div>
                                     <div class="col-xs-4">
-                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-6.jpg')}}" alt="thumbs">
+                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-6.jpg')}}"
+                                            alt="thumbs">
                                     </div>
                                     <div class="col-xs-4">
-                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-5.jpg')}}" alt="thumbs">
+                                        <img class="img-responsive" src="{{asset('admin/asset/img/thumbs/img-5.jpg')}}"
+                                            alt="thumbs">
                                     </div>
                                 </div>
                                 <a href="#" class="btn btn-block btn-primary">Browse Gallery</a>
@@ -203,8 +208,7 @@
                                             <div class="media-body">
                                                 <p class="text-nowrap text-main text-semibold">HDD is full</p>
                                                 <div class="progress progress-sm mar-no">
-                                                    <div style="width: 95%;"
-                                                        class="progress-bar progress-bar-danger">
+                                                    <div style="width: 95%;" class="progress-bar progress-bar-danger">
                                                         <span class="sr-only">95% Complete</span>
                                                     </div>
                                                 </div>

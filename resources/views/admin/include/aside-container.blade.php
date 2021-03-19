@@ -42,8 +42,8 @@
                         <div class="list-group bg-trans">
                             <a href="#" class="list-group-item">
                                 <div class="media-left pos-rel">
-                                    <img class="img-circle img-xs" src="{{asset('admin/asset/img/profile-photos/2.png')}}"
-                                        alt="Profile Picture">
+                                    <img class="img-circle img-xs"
+                                        src="{{asset('admin/asset/img/profile-photos/2.png')}}" alt="Profile Picture">
                                     <i class="badge badge-success badge-stat badge-icon pull-left"></i>
                                 </div>
                                 <div class="media-body">
@@ -53,8 +53,8 @@
                             </a>
                             <a href="#" class="list-group-item">
                                 <div class="media-left pos-rel">
-                                    <img class="img-circle img-xs" src="{{asset('admin/asset/img/profile-photos/7.png')}}"
-                                        alt="Profile Picture">
+                                    <img class="img-circle img-xs"
+                                        src="{{asset('admin/asset/img/profile-photos/7.png')}}" alt="Profile Picture">
                                 </div>
                                 <div class="media-body">
                                     <p class="mar-no text-main">Brittany Meyer</p>
@@ -63,8 +63,8 @@
                             </a>
                             <a href="#" class="list-group-item">
                                 <div class="media-left pos-rel">
-                                    <img class="img-circle img-xs" src="{{asset('admin/asset/img/profile-photos/1.png')}}"
-                                        alt="Profile Picture">
+                                    <img class="img-circle img-xs"
+                                        src="{{asset('admin/asset/img/profile-photos/1.png')}}" alt="Profile Picture">
                                     <i class="badge badge-info badge-stat badge-icon pull-left"></i>
                                 </div>
                                 <div class="media-body">
@@ -74,8 +74,8 @@
                             </a>
                             <a href="#" class="list-group-item">
                                 <div class="media-left pos-rel">
-                                    <img class="img-circle img-xs" src="{{asset('admin/asset/img/profile-photos/4.png')}}"
-                                        alt="Profile Picture">
+                                    <img class="img-circle img-xs"
+                                        src="{{asset('admin/asset/img/profile-photos/4.png')}}" alt="Profile Picture">
                                 </div>
                                 <div class="media-body">
                                     <p class="mar-no text-main">Donald Brown</p>
@@ -84,8 +84,8 @@
                             </a>
                             <a href="#" class="list-group-item">
                                 <div class="media-left pos-rel">
-                                    <img class="img-circle img-xs" src="{{asset('admin/asset/img/profile-photos/8.png')}}"
-                                        alt="Profile Picture">
+                                    <img class="img-circle img-xs"
+                                        src="{{asset('admin/asset/img/profile-photos/8.png')}}" alt="Profile Picture">
                                     <i class="badge badge-warning badge-stat badge-icon pull-left"></i>
                                 </div>
                                 <div class="media-body">
@@ -95,8 +95,8 @@
                             </a>
                             <a href="#" class="list-group-item">
                                 <div class="media-left pos-rel">
-                                    <img class="img-circle img-xs" src="{{asset('admin/asset/img/profile-photos/9.png')}}"
-                                        alt="Profile Picture">
+                                    <img class="img-circle img-xs"
+                                        src="{{asset('admin/asset/img/profile-photos/9.png')}}" alt="Profile Picture">
                                     <i class="badge badge-danger badge-stat badge-icon pull-left"></i>
                                 </div>
                                 <div class="media-body">
@@ -137,8 +137,8 @@
 
                         <div class="pad-hor">
                             <p>Lorem ipsum dolor sit amet, consectetuer
-                                <a data-title="45%" class="add-tooltip text-semibold text-main"
-                                    href="#">adipiscing elit</a>, sed diam nonummy nibh. Lorem ipsum dolor
+                                <a data-title="45%" class="add-tooltip text-semibold text-main" href="#">adipiscing
+                                    elit</a>, sed diam nonummy nibh. Lorem ipsum dolor
                                 sit amet.
                             </p>
                             <small><em>Last Update : Des 12, 2014</em></small>
@@ -177,16 +177,15 @@
 
                         <!--Simple Menu-->
                         <div class="list-group bg-trans">
-                            <a href="#" class="list-group-item"><i
-                                    class="demo-pli-information icon-lg icon-fw"></i> Service
+                            <a href="#" class="list-group-item"><i class="demo-pli-information icon-lg icon-fw"></i>
+                                Service
                                 Information</a>
-                            <a href="#" class="list-group-item"><i
-                                    class="demo-pli-mine icon-lg icon-fw"></i> Usage Profile</a>
-                            <a href="#" class="list-group-item"><span
-                                    class="label label-info pull-right">New</span><i
+                            <a href="#" class="list-group-item"><i class="demo-pli-mine icon-lg icon-fw"></i> Usage
+                                Profile</a>
+                            <a href="#" class="list-group-item"><span class="label label-info pull-right">New</span><i
                                     class="demo-pli-credit-card-2 icon-lg icon-fw"></i> Payment Options</a>
-                            <a href="#" class="list-group-item"><i
-                                    class="demo-pli-support icon-lg icon-fw"></i> Message Center</a>
+                            <a href="#" class="list-group-item"><i class="demo-pli-support icon-lg icon-fw"></i> Message
+                                Center</a>
                         </div>
 
 
