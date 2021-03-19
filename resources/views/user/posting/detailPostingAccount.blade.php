@@ -19,7 +19,7 @@
         <div class="float-right float-xs-none price">
             <div class="number">Like</div>
             <div class="id opacity-50">
-                <strong>56789</strong>
+                <strong id="likeCounter">{{$like['counter']}}</strong>
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@
     }
 
     #blah {
-        width: 210.5px;
+        width: 280px;
     }
 </style>
 
@@ -39,7 +39,7 @@
 @endsection
 
 @section('brand-logo')
-{{asset('user/assets/img/include_image/logo_adoptpets-inverted.png')}}
+{{asset('user/assets/img/include_image/logo_adoptpets.png')}}
 @endsection
 
 @section('hero-form')
@@ -47,6 +47,12 @@
 @endsection
 
 @section('background')
+<div class="background">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_akunsaya.jpg')}}" alt="">
+    </div>
+    <!--end background-image-->
+</div>
 @endsection
 
 @section('include-css')
@@ -68,7 +74,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="nama_klinik" class="col-form-label">Nama Klinik</label>
+                            <label for="nama_klinik" class="col-form-label required">Nama Klinik</label>
                             <input name="nama_klinik" type="text"
                                 class="form-control @error('nama_klinik') is-invalid @enderror" id="nama_klinik"
                                 placeholder="contoh : Klinik Bakti Husada" required value="{{old('nama_klinik')}}">
@@ -80,7 +86,7 @@
                     <!--end col-md-8-->
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="no_telepon" class="col-form-label">Nomer Telepon</label>
+                            <label for="no_telepon" class="col-form-label required">Nomer Telepon</label>
                             <input name="no_telepon" type="text"
                                 class="form-control @error('no_telepon') is-invalid @enderror" id="no_telepon"
                                 placeholder="contoh : 03321245161" required value="{{old('no_telepon')}}">
@@ -92,7 +98,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="email" class="col-form-label">Email</label>
+                            <label for="email" class="col-form-label required">Email</label>
                             <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                 id="email" placeholder="contoh : klinikhusada@gmail.com" value="{{old('email')}}">
                         </div>
@@ -107,7 +113,7 @@
                 <div class="row justify-content-end">
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label for="deskripsi" class="col-form-label">Deskripsi</label>
+                            <label for="deskripsi" class="col-form-label required">Deskripsi</label>
                             <textarea id="summernote" name="deskripsi"
                                 class="form-control  background @error('deskripsi') is-invalid @enderror">{{old('deskripsi')}}</textarea>
                         </div>
@@ -118,7 +124,7 @@
                     <div class="col-md-4 float-none">
                         <div class="row-md">
                             <div class="form-group">
-                                <label for="picture" class="col-form-label">Foto Klinik</label>
+                                <label for="picture" class="col-form-label required">Foto Klinik</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="imgInp" value="{{old('picture')}}"
                                         required name="picture" {{request()->is('*/clinic*')?"required":""}}>
@@ -140,7 +146,7 @@
                             {{-- request foto --}}
 
                             <img id="blah"
-                                src="{{request()->is('*submitclinic*')?asset('images/default/picture.svg'):asset($clinic->picture)}}"
+                                src="{{request()->is('*submitclinic*')?asset('images/default/noimage.png'):asset($clinic->picture)}}"
                                 class="img-fluid" src="" alt="image advertisement" />
                             {{-- akhir request foto --}}
                         </div>
@@ -159,7 +165,7 @@
                 <h2>Lokasi</h2>
                 <!--end row-->
                 <div class="form-group">
-                    <label for="input-location" class="col-form-label">Detail Lokasi</label>
+                    <label for="input-location" class="col-form-label required">Detail Lokasi</label>
                     <input name="city" type="text" class="form-control" id="city" placeholder="Location"
                         readonly="readonly" value="Jakarta" name="city">
                     <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
@@ -200,44 +206,77 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $('#summernote').summernote({
-    placeholder: 'Tulis Deskripsi Iklan Disini',
-    tabsize: 4,
-    height: 190,
-    minHeight: null,
-    maxHeight: null,
-    focus: true,
-    toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear']],
-        ['fontname', ['fontname']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['table', ['table']],
-        ['insert', ['link', 'picture']],
-    ]
-});
+        placeholder: 'Tulis Deskripsi Iklan Disini',
+        tabsize: 4,
+        height: 190,
+        minHeight: null,
+        maxHeight: null,
+        focus: true,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture']],
+        ]
+    });
 
-$(document).ready(function() {
-    $('#summernote').summernote();
-});
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
 </script>
 
 <script>
     function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-        reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
+            reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+            }
         }
-        $("#labelnya_gambar").html(input.files[0].name);
-        reader.readAsDataURL(input.files[0]); // convert to base64 string
-    }
-}
 
-$("#imgInp").change(function() {
-    readURL(this);
-});
+        $("#imgInp").change(function() {
+            readURL(this);
+        });
 </script>
+
+@error('nama_klinik')
+<script>
+    $("#register").form("show");
+</script>
+@enderror
+
+@error('no_telepon')
+<script>
+    $("#register").form("show");
+</script>
+@enderror
+
+@error('email')
+<script>
+    $("#register").form("show");
+</script>
+@enderror
+
+@error('deskripsi')
+<script>
+    $("#register").form("show");
+</script>
+@enderror
+
+@error('picture')
+<script>
+    $("#register").form("show");
+</script>
+@enderror
+
+@error('location')
+<script>
+    $("#register").form("show");
+</script>
+@enderror
 
 @endsection
