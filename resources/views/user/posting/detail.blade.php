@@ -342,15 +342,15 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Apakah anda ganteng?</label>
+                        <label for="">Apakah Anda Pernah Memelihara Hewan?</label>
                         <input type="text" name="satu" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="">Setampan Apa Anda?</label>
+                        <label for="">Jika Pernah Hewan Apa?</label>
                         <input type="text" name="dua" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="">Yakin dengan ketampanan anda?</label>
+                        <label for="">Deskripsikan Alasan Ingin Mengadopsi Hewan ini !!</label>
                         <input type="text" name="tiga" class="form-control" required>
                     </div>
                 </div>
