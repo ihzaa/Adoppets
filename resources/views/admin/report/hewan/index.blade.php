@@ -6,10 +6,45 @@ List Report Postingan Hewan
 
 {{-- my css --}}
 @section('custom-style')
+
+<!--STYLESHEET-->
+<!--=================================================-->
+
+<!--Open Sans Font [ OPTIONAL ]-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+<!--Bootstrap Stylesheet [ REQUIRED ]-->
+<link href="{{asset('admin/asset/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+<!--Nifty Stylesheet [ REQUIRED ]-->
+<link href="{{asset('admin/asset/css/nifty.min.css')}}" rel="stylesheet">
+
+
+<!--Nifty Premium Icon [ DEMONSTRATION ]-->
+<link href="{{asset('admin/asset/css/demo/nifty-demo-icons.min.css')}}" rel="stylesheet">
+
+
+<!--=================================================-->
+
+
+
+<!--Pace - Page Load Progress Par [OPTIONAL]-->
+<link href="{{asset('admin/asset/plugins/pace/pace.min.css')}}" rel="stylesheet">
+<script src="{{asset('admin/asset/plugins/pace/pace.min.js')}}"></script>
+
+
+<!--Demo [ DEMONSTRATION ]-->
+<link href="{{asset('admin/asset/css/demo/nifty-demo.min.css')}}" rel="stylesheet">
+
+
+
 <!--DataTables [ OPTIONAL ]-->
 <link href="{{asset('admin/asset/plugins/datatables/media/css/dataTables.bootstrap.css')}}" rel="stylesheet">
 <link href="{{asset('admin/asset/plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css')}}"
     rel="stylesheet">
+
 @endsection
 
 {{-- judul halaman pada bagian atas halaman --}}
@@ -38,7 +73,7 @@ List Report Postingan Hewan
 
 {{-- content halaman --}}
 @section('content')
-<div class="page-content">
+<div id="page-content">
     <!-- Basic Data Tables -->
     <!--===================================================-->
     <div class="panel">
@@ -49,38 +84,19 @@ List Report Postingan Hewan
             <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>Nama</th>
-                        <th>Position</th>
-                        <th class="min-tablet">Office</th>
-                        <th class="min-tablet">Extn.</th>
-                        <th class="min-desktop">Start date</th>
-                        <th class="min-desktop">Salary</th>
+                        <th>Judul Postingan</th>
+                        <th>Jumlah Laporan</th>
+                        <th class="min-tablet">Aksi</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009/01/12</td>
-                        <td>$86,000</td>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td><button class="btn btn-danger btn-rounded">Danger</button>
+                        <button class="btn btn-warning btn-rounded">Warning</button>
+                    </td>
+
                     </tr>
 
                 </tbody>
@@ -95,6 +111,30 @@ List Report Postingan Hewan
 
 {{-- cutom java script --}}
 @section('custom-js')
+
+<!--JAVASCRIPT-->
+<!--=================================================-->
+
+<!--jQuery [ REQUIRED ]-->
+<script src="{{asset('admin/asset/js/jquery.min.js')}}"></script>
+
+
+<!--BootstrapJS [ RECOMMENDED ]-->
+<script src="{{asset('admin/asset/js/bootstrap.min.js')}}"></script>
+
+
+<!--NiftyJS [ RECOMMENDED ]-->
+<script src="{{asset('admin/asset/js/nifty.min.js')}}"></script>
+
+
+
+
+<!--=================================================-->
+
+<!--Demo script [ DEMONSTRATION ]-->
+<script src="{{asset('admin/asset/js/demo/nifty-demo.min.js')}}"></script>
+
+
 <!--DataTables [ OPTIONAL ]-->
 <script src="{{asset('admin/asset/plugins/datatables/media/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('admin/asset/plugins/datatables/media/js/dataTables.bootstrap.js')}}"></script>

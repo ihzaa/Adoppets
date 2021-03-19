@@ -127,20 +127,20 @@ sub-page
                 <!--============ Side Bar ===============================================================-->
                 <aside class="sidebar">
                     <section>
-                        <h2>Search Blog</h2>
+                        <h2>Cari Klinik</h2>
                         <!--============ Side Bar Search Form ===========================================-->
                         <form class="sidebar-form form">
                             <div class="form-group">
-                                <label for="what" class="col-form-label">What?</label>
+                                <label for="what" class="col-form-label">Lokasi Klinik yang Anda Cari</label>
                                 <input name="keyword" type="text" class="form-control" id="what"
-                                    placeholder="Enter keyword and press enter">
+                                    placeholder="Masukkan Lokasi Klinik yang Anda Cari">
                             </div>
                             <!--end form-group-->
                         </form>
                         <!--============ End Side Bar Search Form =======================================-->
                     </section>
                     <section>
-                        <h2>Latest Clinics</h2>
+                        <h2>Postingan Klinik Terbaru</h2>
                         @foreach ($latest as $item)
                         <div class="sidebar-post">
                             <a href="{{route('readmore_clinic', ['id'=>$item->id])}}" class="background-image">

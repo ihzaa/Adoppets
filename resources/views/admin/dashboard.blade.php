@@ -6,6 +6,37 @@ Dashboard
 
 {{-- my css --}}
 @section('custom-style')
+
+<!--STYLESHEET-->
+<!--=================================================-->
+
+<!--Open Sans Font [ OPTIONAL ]-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+<!--Bootstrap Stylesheet [ REQUIRED ]-->
+<link href="{{asset('admin/asset/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+<!--Nifty Stylesheet [ REQUIRED ]-->
+<link href="{{asset('admin/asset/css/nifty.min.css')}}" rel="stylesheet">
+
+
+<!--Nifty Premium Icon [ DEMONSTRATION ]-->
+<link href="{{asset('admin/asset/css/demo/nifty-demo-icons.min.css')}}" rel="stylesheet">
+
+
+<!--=================================================-->
+
+
+<!--Pace - Page Load Progress Par [OPTIONAL]-->
+<link href="{{asset('admin/asset/plugins/pace/pace.min.css')}}" rel="stylesheet">
+{{-- <script src="{{asset('admin/asset/plugins/pace/pace.min.js')}}"></script> --}}
+
+<!--Demo [ DEMONSTRATION ]-->
+<link href="{{asset('admin/asset/css/demo/nifty-demo.min.css')}}" rel="stylesheet">
+
+
 <style>
     //Large devices (desktops, 992px and up)
     /* @media (min-width: 992px) {
@@ -104,5 +135,23 @@ Dashboard
 
 {{-- cutom java script --}}
 @section('custom-js')
+
+
+<!--jQuery [ REQUIRED ]-->
+<script src="{{asset('admin/asset/js/jquery.min.js')}}"></script>
+
+
+<!--BootstrapJS [ RECOMMENDED ]-->
+<script src="{{asset('admin/asset/js/bootstrap.min.js')}}"></script>
+
+<script src="{{asset('admin/asset/plugins/pace/pace.min.js')}}"></script>
+<!--NiftyJS [ RECOMMENDED ]-->
+<script src="{{asset('admin/asset/js/nifty.min.js')}}"></script>
+
+<!--=================================================-->
+
+<!--Demo script [ DEMONSTRATION ]-->
+<script src="{{asset('admin/asset/js/demo/nifty-demo.min.js')}}"></script>
+
 
 @endsection

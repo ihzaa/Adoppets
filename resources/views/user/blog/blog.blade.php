@@ -66,7 +66,7 @@ sub-page
 
                         </p>
                         <a href="{{route('readmore_blog', ['id'=>$item->id])}}"
-                            class="btn btn-primary btn-framed detail">Read more</a>
+                            class="btn btn-primary btn-framed detail">Baca Selengkapnya</a>
                     </div>
                 </article>
                 @endforeach
@@ -82,13 +82,13 @@ sub-page
                 <!--============ Side Bar ===============================================================-->
                 <aside class="sidebar">
                     <section>
-                        <h2>Search Blog</h2>
+                        <h2>Cari Blog</h2>
                         <!--============ Side Bar Search Form ===========================================-->
                         <form class="sidebar-form form" id="search_form">
                             <div class="form-group">
-                                <label for="what" class="col-form-label">What?</label>
+                                <label for="what" class="col-form-label">Judul Blog</label>
                                 <input type="text" class="form-control" id="what"
-                                    placeholder="Enter keyword and press enter">
+                                    placeholder="Masukkan judul blog yang ingin anda cari">
                             </div>
                             <!--end form-group-->
                         </form>

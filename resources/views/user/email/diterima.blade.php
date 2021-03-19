@@ -108,6 +108,29 @@
                                                                         disetujui oleh pemiliki hewan. silahkan
                                                                         menghubungi pemilik hewan untuk aktifitas
                                                                         selanjutnya.
+                                                                        <br>
+                                                                        berikut adalah infromasi pemilik hewan :
+                                                                        {{-- list --}}
+                                                                        <ul class="list-group list-group-horizontal">
+                                                                            <li class="list-group-item">Nama :
+
+                                                                            </li>
+                                                                        </ul>
+                                                                        <ul class="list-group list-group-horizontal-sm">
+                                                                            <li class="list-group-item">Nomor Telfon :
+                                                                            </li>
+                                                                        </ul>
+                                                                        <ul class="list-group list-group-horizontal-md">
+                                                                            <li class="list-group-item">Nomor Whatsapp :
+                                                                            </li>
+                                                                        </ul>
+                                                                        <ul class="list-group list-group-horizontal-lg">
+                                                                            <li class="list-group-item">Email : </li>
+                                                                        </ul>
+                                                                        <ul class="list-group list-group-horizontal-lg">
+                                                                            <li class="list-group-item">Alamat :</li>
+                                                                        </ul>
+                                                                        {{-- akhir list --}}
                                                                     </div>
                                                                 </td>
                                                             </tr>

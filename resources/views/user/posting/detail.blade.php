@@ -28,7 +28,7 @@
             </h4>
         </div>
         <div class="float-right float-xs-none price">
-            <div class="number">Like</div>
+            <div class="number">Suka</div>
             <div class="id opacity-50">
                 <strong id="likeCounter">{{$like['counter']}}</strong>
             </div>
@@ -98,7 +98,7 @@
                         <div class="row justify-content-end">
                             <button class="tombol btn @if ($reported!=1) btn-framed @endif  btn-primary btn-rounded"
                                 id="btn_report" data-id="{{$data->id}}" @if ($reported==1) disabled
-                                @endif>Report</button>
+                                @endif>Laporkan</button>
                             @if ($like['isLike'] == 0)
                             <button class="tombol btn btn-framed btn-info btn-rounded btn_like"
                                 data-id="{{$data->id}}">Like</button>
@@ -107,10 +107,10 @@
                                 data-id="{{$data->id}}">Dislike</button>
                             @endif
                             @if ($isAdopt=='' )
-                            <button class="tombol btn btn-framed btn-info btn-rounded" id="btn_adopt">Adopt</button>
+                            <button class="tombol btn btn-framed btn-info btn-rounded" id="btn_adopt">Adopsi</button>
                             @else
                             <button class="tombol btn btn-framed btn-danger btn-rounded" id="btn_unadopt"
-                                data-id="{{$isAdopt->id}}">Unadopt</button>
+                                data-id="{{$isAdopt->id}}">Batal Adopsi</button>
                             @endif
 
                         </div>
@@ -120,14 +120,14 @@
                     <section>
                         <div class="row justify-content-end">
                             <button class="tombol btn btn-framed btn-primary btn-rounded" id="btn_report"
-                                data-id="{{$data->id}}">Report</button>
+                                data-id="{{$data->id}}">Laporkan</button>
                             <button class="tombol btn btn-framed btn-info btn-rounded btn_like"
                                 data-id="{{$data->id}}">Like</button>
                             @if ($isAdopt=='' )
-                            <button class="tombol btn btn-framed btn-info btn-rounded" id="btn_adopt">Adopt</button>
+                            <button class="tombol btn btn-framed btn-info btn-rounded" id="btn_adopt">Adopsi</button>
                             @else
                             <button class="tombol btn-framed btn-danger btn-rounded" id="btn_unadopt"
-                                data-id="{{$isAdopt->id}}">Unadopt</button>
+                                data-id="{{$isAdopt->id}}">Batal Adopsi</button>
                             @endif
                         </div>
                     </section>
@@ -141,7 +141,7 @@
 
                     <!--Description-->
                     <section>
-                        <h2>Description</h2>
+                        <h2>Deskripsi</h2>
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -207,7 +207,7 @@
 
                             </div>
                             <div class="col-md-8">
-                                <h2>Location</h2>
+                                <h2>Lokasi</h2>
                                 {{-- <div class="map height-300px" id="map-small"></div> --}}
                                 {{-- <div id="map" style="width: 100%; height: 480px"></div> --}}
                                 {{-- <input name="latitude" type="text" class="form-control" id="latitude" value="{{$edit->}}"
@@ -276,7 +276,7 @@
                 <div class="col-md-3">
                     <aside class="sidebar">
                         <section>
-                            <h2>Popular Post</h2>
+                            <h2>Postingan Populer</h2>
                             <div class="items compact">
                                 @foreach ($popular as $item)
                                 <div class="item">
@@ -366,7 +366,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="my-modal-title">Report Posting</h5>
+                <h5 class="modal-title" id="my-modal-title">Laporkan Posting</h5>
                 <button class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -375,7 +375,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Alasan Report</label>
+                        <label for="exampleInputEmail1">Alasan Melaporkan</label>
                         <textarea name="excuse" rows="5" class="form-control" required></textarea>
                     </div>
                 </div>
