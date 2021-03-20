@@ -33,6 +33,9 @@ Route::get('/clinic/readMore/{id}', 'user_Controller\clinicinfo\ClinicController
 
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
+    //kelola contact
+    Route::get('/contact/list', 'admin\AdminController@contact')->name('contact_list');
+
 });
 
 Route::middleware('auth:user')->group(function () {

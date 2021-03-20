@@ -6,13 +6,13 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-    .note-modal-backdrop {
-        display: none !important;
-    }
+.note-modal-backdrop {
+    display: none !important;
+}
 
-    #blah {
-        width: 280px;
-    }
+#blah {
+    width: 280px;
+}
 </style>
 
 {{-- for maps --}}
@@ -198,78 +198,81 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    $('#summernote').summernote({
-        placeholder: 'Tulis Deskripsi Iklan Disini',
-        tabsize: 4,
-        height: 190,
-        minHeight: null,
-        maxHeight: null,
-        focus: true,
-        toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['fontname', ['fontname']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture']],
-        ]
-    });
+$('#summernote').summernote({
+    placeholder: 'Tulis Deskripsi Iklan Disini',
+    tabsize: 4,
+    height: 190,
+    minHeight: null,
+    maxHeight: null,
+    focus: true,
+    toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['fontname', ['fontname']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+    ]
+});
 
-    $(document).ready(function() {
-        $('#summernote').summernote();
-    });
+$(document).ready(function() {
+    $('#summernote').summernote();
+});
 </script>
 
 <script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-            reader.onload = function(e) {
-                $('#blah').attr('src', e.target.result);
-            }
+        reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
         }
+        $("#labelnya_gambar").html(input.files[0].name);
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+}
 
-        $("#imgInp").change(function() {
-            readURL(this);
-        });
+$("#imgInp").change(function() {
+    readURL(this);
+});
 </script>
 
 @error('nama_klinik')
 <script>
-    $("#register").form("show");
+$("#submitblog").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
-
 @error('no_telepon')
 <script>
-    $("#register").form("show");
+$("#submitblog").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
-
 @error('email')
 <script>
-    $("#register").form("show");
+$("#submitblog").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
-
 @error('deskripsi')
 <script>
-    $("#register").form("show");
+$("#submitblog").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
-
 @error('picture')
 <script>
-    $("#register").form("show");
+$("#submitblog").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
-
 @error('location')
 <script>
-    $("#register").form("show");
+$("#submitblog").form("show");
+// swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
-
 @endsection

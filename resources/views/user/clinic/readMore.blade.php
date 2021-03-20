@@ -205,14 +205,14 @@ sub-page
 
 @section('js_after')
 <script>
-    $("#btn_report").click(function() {
-        $("#modal_report").modal('show');
-    });
+$("#btn_report").click(function() {
+    $("#modal_report").modal('show');
+});
 </script>
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",

@@ -111,7 +111,7 @@
 
                 <!--Contact-->
                 <li class="">
-                    <a href="#">
+                    <a href="{{route('contact_list')}}">
                         <i class="demo-pli-home"></i>
                         <span class="menu-title">Contact</span>
                     </a>

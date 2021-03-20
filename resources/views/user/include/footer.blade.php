@@ -29,9 +29,6 @@
                                         <a href="{{route('clinic')}}">Info Klinik</a>
                                     </li>
                                     <li>
-                                        <a href="{{route('contact')}}">Kontak</a>
-                                    </li>
-                                    <li>
                                         <a href="{{route('get_submit_postingan')}}">Submit Posting</a>
                                     </li>
                                 </ul>
@@ -58,17 +55,22 @@
                 <div class="col-md-4">
                     <h2>Kontak</h2>
                     <address>
-                        <figure>
-                            Malang<br>
-                            Jawa Timur, Indonesia
+                        <figure class="with-icon">
+                            <i class="fa fa-map-marker"></i>
+                            <span><a href="https://goo.gl/maps/2UQANNTdu5QS5V2bA" target="_blank">Malang<br>Jawa Timur,
+                                    Indonesia</a></span>
+                        </figure>
+                        <figure class="with-icon">
+                            <i class="fa fa-envelope"></i>
+                            <a href="mailto:adoptpets477@gmail.com" target="_blank">adoptpets477@gmail.com</a>
+                        </figure>
+                        <figure class="with-icon">
+                            <i class="fa fa-instagram"></i>
+                            <a href="https://www.instagram.com/adoptpets477/?hl=en" target="_blank">@adoptpets</a>
                         </figure>
                         <br>
-                        <strong>Email:</strong> <a href="#">adoptpets@gmail.com</a>
                         <br>
-                        <strong>Instagram: </strong> @adoptpets
-                        <br>
-                        <br>
-                        <a href="contact.html" class="btn btn-primary text-caps btn-framed">Contact Us</a>
+                        <a href="{{route('contact')}}" class="btn btn-primary text-caps btn-framed">Contact Us</a>
                     </address>
                 </div>
                 <!--end col-md-4-->

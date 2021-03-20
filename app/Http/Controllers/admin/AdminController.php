@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
@@ -33,5 +32,10 @@ class AdminController extends Controller
     public function report_blog()
     {
         return view('admin/report/blog/index');
+    }
+
+    public function contact()
+    {
+        return view('admin/contact/index');
     }
 }
