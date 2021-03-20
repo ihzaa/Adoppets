@@ -97,6 +97,7 @@ List Report Postingan Clinic
                     <td>System Architect</td>
                     <td><button class="btn btn-danger btn-rounded">Hapus</button>
                         <a href="{{route('report_klinik_detail')}}" class="btn btn-warning btn-rounded">Detail</a>
+                        <button class="btn btn-danger btn-rounded">Blokir</button>
                     </td>
 
                     </tr>
