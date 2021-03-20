@@ -36,5 +36,7 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/report/clinic/{id}', 'user_Controller\clinicinfo\ClinicController@reportClinic')->name('clinic.report');
 });
 
-// Route::middleware('auth:admin')->group(function () {
-// });
+Route::middleware('auth:admin')->group(function () {
+    Route::get('report/delete/{id}', 'admin\ReportPostingController@deleteReport')->name('admin.delete.report.posting');
+    Route::get('report/BLOCK/{id}', 'admin\ReportPostingController@block')->name('admin.block.report.posting');
+});
