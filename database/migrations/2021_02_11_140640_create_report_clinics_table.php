@@ -21,7 +21,7 @@ class CreateReportClinicsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('posting_id')->references('id')->on('postings')->onDelete('cascade');
+            $table->foreign('posting_id')->references('id')->on('clinic_informations')->onDelete('cascade');
         });
     }
 
