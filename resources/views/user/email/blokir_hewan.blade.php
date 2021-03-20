@@ -40,7 +40,7 @@
                                             Pets</a> <br>
                                         <span style="margin-top: 10px;display: block;">Pemberitahuan
                                             Pemblokiran/Penurunan Posting Hewan
-                                            "ini judul"
+                                            {{$data['info']->title}}
                                         </span>
                                     </td>
                                 </tr>
@@ -58,33 +58,22 @@
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
                                                         Terdapat <strong
-                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">jumlah
-                                                            report</strong>
+                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">{{count($data['report'])}}</strong>
                                                         Laporan yang kami terima tentang postingan ini dengan rincian
                                                         laporan
                                                         sebagai berikut :
                                                     </td>
                                                 </tr>
-
+                                                @foreach ($data['report'] as $item)
                                                 <tr
                                                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <td class="content-block"
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
-                                                        1. ini adalah keterangan report
+                                                        {{$loop->iteration}}. {{$item->jawaban_report}}
                                                     </td>
                                                 </tr>
-
-                                                <tr
-                                                    style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                                    <td class="content-block"
-                                                        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                                        valign="top">
-                                                        2. ini adalah keterangan report
-                                                    </td>
-                                                </tr>
-
-
+                                                @endforeach
                                                 <tr
                                                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <td class="content-block"
