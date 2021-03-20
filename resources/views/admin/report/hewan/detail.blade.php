@@ -97,7 +97,7 @@ List Report Postingan {{ $data['posting']->title}}
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item->name}}</td>
-                        <td>{{$item->created_at}}</td>
+                        <td>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</td>
                         <td>{{$item->jawaban_report}}</td>
                     </tr>
                     @endforeach

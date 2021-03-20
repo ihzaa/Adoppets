@@ -48,7 +48,7 @@ Route::middleware('auth:admin')->group(function () {
 
     // Report Blog
     Route::get('/report/blog/list', 'admin\AdminController@report_blog')->name('report_blog_list');
-    Route::get('/report/blog/detail/', 'admin\AdminController@report_blog_detail')->name('report_blog_detail');
+    Route::get('/report/blog/detail/{id}', 'admin\AdminController@report_blog_detail')->name('report_blog_detail');
     Route::delete('/report/blog/delete/{id}', 'admin\AdminController@report_blog_delete')->name('report_blog_delete');
 
     // Report Klinik

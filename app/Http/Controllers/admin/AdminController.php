@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Blog;
 use App\Http\Controllers\Controller;
 use App\Kontak;
 use App\posting;
@@ -35,14 +36,24 @@ class AdminController extends Controller
     {
         $data = array();
         $data['posting'] = posting::find($id);
-        $data['reportList'] = DB::select('SELECT rp.*, u.name FROM report_postings as rp JOIN users as u ON u.id = rp.user_id');
-        return view('admin/report/hewan/detail',compact('data'));
+        $data['reportList'] = DB::select('SELECT rp.*, u.name FROM report_postings as rp JOIN users as u ON u.id = rp.user_id where rp.posting_id = ' . $id);
+        return view('admin/report/hewan/detail', compact('data'));
     }
 
     // POSTING BLOG
     public function report_blog()
     {
-        return view('admin/report/blog/index');
+        $data = array();
+        $data['reportList'] = DB::select('SELECT * FROM (SELECT p.id, p.title, (SELECT COUNT(*) FROM report_blogs as rp WHERE rp.posting_id = p.id) as total_report FROM blogs as p) subquery WHERE subquery.total_report > 0');
+        return view('admin/report/blog/index', compact('data'));
+    }
+
+    public function report_blog_detail($id)
+    {
+        $data = array();
+        $data['blog'] = Blog::find($id);
+        $data['reportList'] = DB::select('SELECT rp.*, u.name FROM report_blogs as rp JOIN users as u ON u.id = rp.user_id where rp.posting_id = ' . $id);
+        return view('admin/report/blog/detail', compact('data'));
     }
 
     // contact list
@@ -76,10 +87,5 @@ class AdminController extends Controller
     public function report_klinik()
     {
         return view('admin/report/clinic/index');
-    }
-
-    public function report_blog_detail()
-    {
-        return view('admin/report/blog/detail');
     }
 }
