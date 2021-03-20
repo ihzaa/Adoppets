@@ -26,7 +26,9 @@ Route::get('/verifikasi/registrasi', 'user_Controller\email\EmailController@veri
 Route::get('/verifikasi/HewanDiadopsi/Diterima', 'user_Controller\email\EmailController@diterima')->name('hewan_diterima');
 Route::get('/verifikasi/HewanDiadopsi/Ditolak', 'user_Controller\email\EmailController@ditolak')->name('hewan_ditolak');
 Route::get('/verifikasi/PemberitahuanPemilikHewan', 'user_Controller\email\EmailController@pemberitahuan')->name('pemberitahuan');
-
+Route::get('/blokir/PostingHewan', 'user_Controller\email\EmailController@blokir_hewan')->name('blokir_hewan');
+Route::get('/blokir/PostingBlog', 'user_Controller\email\EmailController@blokir_blog')->name('blokir_blog');
+Route::get('/blokir/PostingClinic', 'user_Controller\email\EmailController@blokir_clinic')->name('blokir_clinic');
 
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
