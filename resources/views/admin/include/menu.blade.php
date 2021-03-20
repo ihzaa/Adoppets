@@ -14,12 +14,12 @@
                         <span class="pull-right dropdown-toggle">
                             <i class="dropdown-caret"></i>
                         </span>
-                        <p class="mnp-name">Aaron Chavez</p>
-                        <span class="mnp-desc">aaron.cha@themeon.net</span>
+                        <p class="mnp-name">{{Auth::guard('admin')->user()->name}}</p>
+                        {{-- <span class="mnp-desc">aaron.cha@themeon.net</span> --}}
                     </a>
                 </div>
                 <div id="profile-nav" class="collapse list-group bg-trans">
-                    <a href="#" class="list-group-item">
+                    {{-- <a href="#" class="list-group-item">
                         <i class="demo-pli-male icon-lg icon-fw"></i> View Profile
                     </a>
                     <a href="#" class="list-group-item">
@@ -27,8 +27,8 @@
                     </a>
                     <a href="#" class="list-group-item">
                         <i class="demo-pli-information icon-lg icon-fw"></i> Help
-                    </a>
-                    <a href="#" class="list-group-item">
+                    </a> --}}
+                    <a href="{{route('logout')}}" class="list-group-item">
                         <i class="demo-pli-unlock icon-lg icon-fw"></i> Logout
                     </a>
                 </div>
@@ -79,7 +79,7 @@
                 <li class="list-header">Navigation</li>
 
                 <!--Dashboard Menu list item-->
-                <li class="active-sub">
+                <li class="@if(strpos(Route::currentRouteName(), 'dashboard_admin') !== false ) active-sub @endif ">
                     <a href="{{route('dashboard_admin')}}">
                         <i class="demo-pli-home"></i>
                         <span class="menu-title">Dashboard</span>
@@ -89,7 +89,7 @@
 
 
                 <!--Menu list item-->
-                <li class="sub">
+                <li class="sub @if(strpos(Route::currentRouteName(), 'report') !== false ) active-sub active @endif">
                     <a href="#">
                         <i class="demo-pli-gear"></i>
                         <span class="menu-title">
@@ -101,10 +101,16 @@
 
                     {{-- submenu --}}
                     <!--Submenu-->
-                    <ul class="collapse in">
-                        <li class="active-link"><a href="{{route('report_hewan_list')}}">Posting Hewan</a></li>
-                        <li><a href="{{route('report_blog_list')}}">Blog</a></li>
-                        <li><a href="{{route('report_klinik_list')}}">Informasi Klinik</a></li>
+                    <ul class="collapse">
+                        <li
+                            class="@if(strpos(Route::currentRouteName(), 'report_hewan_') !== false ) active-link @endif">
+                            <a href="{{route('report_hewan_list')}}">Posting Hewan</a></li>
+                        <li
+                            class="@if(strpos(Route::currentRouteName(), 'report_blog_') !== false ) active-link @endif">
+                            <a href="{{route('report_blog_list')}}">Blog</a></li>
+                        <li
+                            class="@if(strpos(Route::currentRouteName(), 'report_klinik_') !== false ) active-link @endif">
+                            <a href="{{route('report_klinik_list')}}">Informasi Klinik</a></li>
                     </ul>
                     {{-- akhir submenu --}}
                 </li>

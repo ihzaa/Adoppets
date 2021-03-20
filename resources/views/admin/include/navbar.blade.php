@@ -7,7 +7,7 @@
             <a href="index.html" class="navbar-brand">
                 <img src="{{asset('admin/asset/img/logo.png')}}" alt="Nifty Logo" class="brand-icon">
                 <div class="brand-title">
-                    <span class="brand-text">Nifty</span>
+                    <span class="brand-text">{{env('APP_NAME')}}</span>
                 </div>
             </a>
         </div>
@@ -18,7 +18,7 @@
         <!--Navbar Dropdown-->
         <!--================================-->
         <div class="navbar-content">
-            <ul class="nav navbar-top-links">
+            {{-- <ul class="nav navbar-top-links">
 
                 <!--Navigation toogle button-->
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -346,7 +346,7 @@
                         <i class="demo-pli-dot-vertical"></i>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
         <!--================================-->
         <!--End Navbar Dropdown-->

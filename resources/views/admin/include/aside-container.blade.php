@@ -1,4 +1,4 @@
-<aside id="aside-container">
+{{-- <aside id="aside-container">
     <div id="aside">
         <div class="nano">
             <div class="nano-content">
@@ -301,4 +301,4 @@
             </div>
         </div>
     </div>
-</aside>
+</aside> --}}
