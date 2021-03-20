@@ -57,6 +57,7 @@ Route::middleware('auth:admin')->group(function () {
     // contact
     Route::get('/contact/list', 'admin\AdminController@contact_list')->name('contact_list');
     Route::get('/contact/detail/{id}', 'admin\AdminController@contact_detail')->name('contact_detail');
+    Route::delete('/contact/delete/{id}', 'admin\AdminController@delete')->name('delete_contact');
 });
 
 Route::middleware('auth:user')->group(function () {

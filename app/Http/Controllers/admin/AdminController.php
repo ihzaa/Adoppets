@@ -37,10 +37,19 @@ class AdminController extends Controller
         return view('admin/report/blog/index');
     }
 
+    // contact list
     public function contact_list()
     {
         $data = Kontak::all();
         $user = User::pluck('name', 'id');
         return view('admin/contact/index', compact('data', 'user'));
+    }
+
+    // contact delete
+    public function delete($id)
+    {
+        $data = Kontak::find($id);
+        Kontak::destroy($data->id);
+        return redirect(route('contact_list'))->with('icon_delete', 'success')->with('title', 'Berhasil')->with('text', 'Contact Berjhasil di Hapus!');
     }
 }
