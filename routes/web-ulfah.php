@@ -42,7 +42,7 @@ Route::middleware('auth:admin')->group(function () {
 
     // Report Hewan
     Route::get('/report/hewan/list', 'admin\AdminController@report_Hewan')->name('report_hewan_list');
-    Route::get('/report/hewan/detail', 'admin\AdminController@report_hewan_detail')->name('report_hewan_detail');
+    Route::get('/report/hewan/detail/{id}', 'admin\AdminController@report_hewan_detail')->name('report_hewan_detail');
     Route::delete('/report/hewan/delete/{id}', 'admin\AdminController@report_hewan_delete')->name('report_hewan_delete');
 
 

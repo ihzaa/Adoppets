@@ -92,16 +92,20 @@ List Report Postingan Hewan
                     </tr>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td><button class="btn btn-danger btn-rounded">Hapus</button>
-                        <a href="{{route('report_hewan_detail')}}" class="btn btn-warning btn-rounded">Detail</a>
-                        <button class="btn btn-danger btn-rounded">Blokir</button>
-                    </td>
-
+                    @foreach ($data['reportList'] as $item)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$item->title}}</td>
+                        <td>{{$item->total_report}}</td>
+                        <td>
+                            <a class="btn btn-danger btn-rounded" href="">Hapus</a>
+                            <a href="{{route('report_hewan_detail',[$item->id])}}" class="btn btn-warning btn-rounded">
+                                Detail
+                            </a>
+                            <button class="btn btn-danger btn-rounded">Blokir</button>
+                        </td>
                     </tr>
-
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Kontak;
+use App\posting;
+use App\Report_posting;
 use App\User;
 // use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\DB;
@@ -24,12 +26,17 @@ class AdminController extends Controller
     // POSTING HEWAN
     public function report_hewan()
     {
-        return view('admin/report/hewan/index');
+        $data = array();
+        $data['reportList'] = DB::select('SELECT * FROM (SELECT p.id, p.title, (SELECT COUNT(*) FROM report_postings as rp WHERE rp.posting_id = p.id) as total_report FROM postings as p) subquery WHERE subquery.total_report > 0');
+        return view('admin/report/hewan/index', compact('data'));
     }
 
-    public function report_hewan_detail()
+    public function report_hewan_detail($id)
     {
-        return view('admin/report/hewan/detail');
+        $data = array();
+        $data['posting'] = posting::find($id);
+        $data['reportList'] = DB::select('SELECT rp.*, u.name FROM report_postings as rp JOIN users as u ON u.id = rp.user_id');
+        return view('admin/report/hewan/detail',compact('data'));
     }
 
     // POSTING BLOG
