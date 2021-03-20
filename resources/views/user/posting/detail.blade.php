@@ -549,10 +549,7 @@ $("#form_adopsi").submit(function(){
 </script>
 @endif
 <script>
-    navigator.geolocation.getCurrentPosition(
-    (pos) => {
-        localLoc = pos.coords;
-        objCoords = {
+    objCoords = {
             lat: "{{$data->latitude}}",
             lng: "{{$data->longitude}}",
         };
@@ -561,7 +558,7 @@ $("#form_adopsi").submit(function(){
             var marker = new H.map.Marker(objCoords, {
                 volatility: true,
             });
-            marker.draggable = true;
+            // marker.draggable = true;
             map.addObject(marker);
             map.addEventListener(
                 "dragstart",
@@ -626,8 +623,6 @@ $("#form_adopsi").submit(function(){
         var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
         addDraggableMarker(map, behavior);
 
-    }
-);
 
 </script>
 @endsection
