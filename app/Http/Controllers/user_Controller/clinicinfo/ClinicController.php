@@ -22,9 +22,9 @@ class ClinicController extends Controller
     public function index(Request $request)
     {
         $request->search == null ?
-        $list = Clinic_information::orderBy('created_at', 'DESC')->paginate(10)
-        :
-        $list = Clinic_information::where('lokasi', 'like', '%' . $request->search . '%')->orderBy('created_at', 'DESC')->paginate(10);
+            $list = Clinic_information::orderBy('created_at', 'DESC')->paginate(10)
+            :
+            $list = Clinic_information::where('lokasi', 'like', '%' . $request->search . '%')->orderBy('created_at', 'DESC')->paginate(10);
 
         $user = User::pluck('name', 'id');
         $latest = Clinic_information::orderBy('created_at', 'DESC')->limit(3)->get();
@@ -38,6 +38,7 @@ class ClinicController extends Controller
         $data = Clinic_information::find($id);
         $user = User::pluck('name', 'id');
         $latest = Clinic_information::orderBy('created_at', 'DESC')->limit(3)->get();
+        $reported = 0;
         if (Auth::guard('user')->check()) {
             $reported = Report_clinic::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->count();
         }

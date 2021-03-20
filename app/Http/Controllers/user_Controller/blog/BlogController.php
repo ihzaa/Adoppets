@@ -42,8 +42,10 @@ class BlogController extends Controller
         $deskripsi['alamat_asal'] = User::pluck('alamat_asal', 'id');
         $deskripsi['email'] = User::pluck('email', 'id');
         $data['popular'] = DB::select('SELECT b.*, (SELECT COUNT(*) FROM user_like_blogs as ulb where ulb.blog_id = b.id) as likes FROM blogs as b ORDER BY likes ASC LIMIT 3');
+        $data['repoted'] = 0;
         if (Auth::guard('user')->check())
             $data['repoted'] = Report_blog::where('posting_id', $id)->where('user_id', Auth::guard('user')->user()->id)->count();
+        // dd($data);
         return view('user/blog/readMore', compact('data', 'user', 'user_foto', 'deskripsi', 'data'));
     }
 

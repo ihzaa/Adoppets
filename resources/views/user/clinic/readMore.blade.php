@@ -46,12 +46,23 @@ sub-page
                     </a>
                     <div class="article-title">
                         <h2><a>{{$data->nama_klinik}}</a></h2>
+                        @if (Auth::guard('user')->check())
+                        @if (Auth::guard('user')->user()->id != $data->user_id)
+                        <div class="row justify-content-end">
+                            <button class="tombol btn @if ($reported != 1)
+                            btn-framed
+                            @endif  btn-primary btn-rounded" id="btn_report" data-id="" @if ($reported!=0) disabled
+                                @endif>Report</button>
+                        </div>
+                        @endif
+                        @else
                         <div class="row justify-content-end">
                             <button class="tombol btn @if ($reported == 0)
                             btn-framed
                             @endif  btn-primary btn-rounded" id="btn_report" data-id="" @if ($reported==1) disabled
                                 @endif>Report</button>
                         </div>
+                        @endif
                     </div>
                     <div class="meta">
                         <figure>
@@ -205,14 +216,14 @@ sub-page
 
 @section('js_after')
 <script>
-$("#btn_report").click(function() {
+    $("#btn_report").click(function() {
     $("#modal_report").modal('show');
 });
 </script>
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
