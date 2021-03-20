@@ -23,7 +23,8 @@ class CreateClinicInformationsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('lokasi');
             $table->timestamps();
-
+            $table->string('latitude')->nullable(true);
+            $table->string('longitude')->nullable(true);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

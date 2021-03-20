@@ -73,6 +73,8 @@ class ClinicController extends Controller
         $data->no_telepon = $request->no_telepon;
         $data->email = $request->email;
         $data->lokasi = $request->city;
+        $data->longitude = $request->longitude;
+        $data->latitude = $request->latitude;
         $data->user_id = Auth::user()->id;
         $data->save();
 
