@@ -92,16 +92,24 @@ List Report Postingan Clinic
                     </tr>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td><button class="btn btn-danger btn-rounded">Hapus</button>
-                        <a href="{{route('report_klinik_detail')}}" class="btn btn-warning btn-rounded">Detail</a>
-                        <button class="btn btn-danger btn-rounded">Blokir</button>
-                    </td>
-
+                    @foreach ($data['reportList'] as $item)
+                    <tr>
+                        <th>{{$loop->iteration}}</th>
+                        <td>{{$item->nama_klinik}}</td>
+                        <td>{{$item->total_report}}</td>
+                        <td>
+                            <button class="btn btn-danger btn-rounded btn_delete" data-id="{{$item->id}}">
+                                Hapus
+                            </button>
+                            <a href=" {{route('report_klinik_detail',$item->id)}}" class="btn btn-warning btn-rounded">
+                                Detail
+                            </a>
+                            <button class="btn btn-danger btn-rounded btn_block" data-id="{{$item->id}}">
+                                Blokir
+                            </button>
+                        </td>
                     </tr>
-
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -148,4 +156,54 @@ List Report Postingan Clinic
 <!--DataTables Sample [ SAMPLE ]-->
 <script src="{{asset('admin/asset/js/demo/tables-datatables.js')}}"></script>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@if(Session::get('icon'))
+<script>
+    Swal.fire({
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
+</script>
+@endif
+
+<script>
+    const URL = {
+        delete : "{{route('admin.delete.report.clinic','astaga')}}",
+        block : "{{route('admin.block.report.clinic','astaga')}}"
+    }
+
+    $(".btn_delete").click(function(){
+        let id = $(this).data('id')
+        Swal.fire({
+            icon:"question",
+            title: 'Yakin menghapus report?',
+            showCancelButton: true,
+            confirmButtonText: `Ya, Hapus!`,
+            cancelButtonText: `Batal`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                tmpUrl = URL.delete
+                window.location.replace(tmpUrl.replace('astaga',id));
+            }
+        })
+
+    })
+
+    $(".btn_block").click(function(){
+        let id = $(this).data('id')
+        Swal.fire({
+            icon:"question",
+            title: 'Yakin memblokir klinik?',
+            showCancelButton: true,
+            confirmButtonText: `Ya, Blokir!`,
+            cancelButtonText: `Batal`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                tmpUrl = URL.block
+                window.location.replace(tmpUrl.replace('astaga',id));
+            }
+        })
+    })
+</script>
 @endsection

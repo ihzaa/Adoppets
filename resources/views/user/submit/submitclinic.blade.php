@@ -6,13 +6,13 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
-.note-modal-backdrop {
-    display: none !important;
-}
+    .note-modal-backdrop {
+        display: none !important;
+    }
 
-#blah {
-    width: 280px;
-}
+    #blah {
+        width: 280px;
+    }
 </style>
 
 {{-- for maps --}}
@@ -87,7 +87,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="no_telepon" class="col-form-label required">Nomer Telepon</label>
-                            <input name="no_telepon" type="text"
+                            <input name="no_telepon" type="number"
                                 class="form-control @error('no_telepon') is-invalid @enderror" id="no_telepon"
                                 placeholder="contoh : 03321245161" required value="{{old('no_telepon')}}">
                         </div>
@@ -198,7 +198,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-$('#summernote').summernote({
+    $('#summernote').summernote({
     placeholder: 'Tulis Deskripsi Iklan Disini',
     tabsize: 4,
     height: 190,
@@ -222,7 +222,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-function readURL(input) {
+    function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -241,37 +241,37 @@ $("#imgInp").change(function() {
 
 @error('nama_klinik')
 <script>
-$("#submitblog").form("show");
+    $("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 @error('no_telepon')
 <script>
-$("#submitblog").form("show");
+    $("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 @error('email')
 <script>
-$("#submitblog").form("show");
+    $("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 @error('deskripsi')
 <script>
-$("#submitblog").form("show");
+    $("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 @error('picture')
 <script>
-$("#submitblog").form("show");
+    $("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 @error('location')
 <script>
-$("#submitblog").form("show");
+    $("#submitblog").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

@@ -53,7 +53,7 @@ Route::middleware('auth:admin')->group(function () {
 
     // Report Klinik
     Route::get('/report/klinik/list', 'admin\AdminController@report_klinik')->name('report_klinik_list');
-    Route::get('/report/klinik/detail/', 'admin\AdminController@report_klinik_detail')->name('report_klinik_detail');
+    Route::get('/report/klinik/detail/{id}', 'admin\AdminController@report_klinik_detail')->name('report_klinik_detail');
     Route::delete('/report/klinik/delete/{id}', 'admin\AdminController@report_klinik_delete')->name('report_klinik_delete');
 
     // contact

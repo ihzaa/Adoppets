@@ -1,7 +1,7 @@
 @extends('admin/master')
 
 @section('title')
-List Report Postingan Clinic
+List Report Postingan Clinic {{$data['clinic']->nama_klinik}}
 @endsection
 
 {{-- my css --}}
@@ -53,7 +53,7 @@ List Report Postingan Clinic
     <!--Page Title-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <div id="page-title">
-        <h1 class="page-header text-overflow">Detail Data Report Posting Clinic</h1>
+        <h1 class="page-header text-overflow">Detail Data Report Posting Clinic {{$data['clinic']->nama_klinik}}</h1>
     </div>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--End page title-->
@@ -62,8 +62,8 @@ List Report Postingan Clinic
     <!--Breadcrumb-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <ol class="breadcrumb">
-        <li><a href="#"><i class="demo-pli-home"></i></a></li>
-        <li><a href="#">Report</a></li>
+        <li><a href="{{route('dashboard_admin')}}"><i class="demo-pli-home"></i></a></li>
+        <li><a href="{{route('report_klinik_list')}}">Report</a></li>
         <li class="active">Data Report Posting Clinic</li>
         <li class="active">Detail</li>
     </ol>
@@ -79,7 +79,7 @@ List Report Postingan Clinic
     <!--===================================================-->
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title">Detail Report Posting Hewan</h3>
+            <h3 class="panel-title">Detail Report Posting Clinic {{$data['clinic']->nama_klinik}}</h3>
         </div>
         <div class="panel-body">
             <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -93,12 +93,13 @@ List Report Postingan Clinic
                     </tr>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>alasan</td>
-                    </tr>
-
+                    <@foreach ($data['reportList'] as $item) <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$item->name}}</td>
+                        <td>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</td>
+                        <td>{{$item->jawaban_report}}</td>
+                        </tr>
+                        @endforeach
                 </tbody>
             </table>
         </div>

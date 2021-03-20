@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Blog;
+use App\Clinic_information;
 use App\Http\Controllers\Controller;
 use App\Kontak;
 use App\posting;
@@ -56,6 +57,21 @@ class AdminController extends Controller
         return view('admin/report/blog/detail', compact('data'));
     }
 
+    public function report_klinik()
+    {
+        $data = array();
+        $data['reportList'] = DB::select('SELECT * FROM (SELECT p.id, p.nama_klinik, (SELECT COUNT(*) FROM report_clinics as rp WHERE rp.posting_id = p.id) as total_report FROM clinic_informations as p) subquery WHERE subquery.total_report > 0');
+        return view('admin/report/clinic/index', compact('data'));
+    }
+
+    public function report_klinik_detail($id)
+    {
+        $data = array();
+        $data['clinic'] = Clinic_information::find($id);
+        $data['reportList'] = DB::select('SELECT rp.*, u.name FROM report_clinics as rp JOIN users as u ON u.id = rp.user_id where rp.posting_id = ' . $id);
+        return view('admin/report/clinic/detail', compact('data'));
+    }
+
     // contact list
     public function contact_list()
     {
@@ -77,15 +93,5 @@ class AdminController extends Controller
         $data = Kontak::find($id);
         $user = DB::select('SELECT name, email, nomor_telpon, no_wa FROM users WHERE id = ' . $id, [1]);
         return view('admin/contact/detail', compact('data', 'user'));
-    }
-
-    public function report_klinik_detail()
-    {
-        return view('admin/report/clinic/detail');
-    }
-
-    public function report_klinik()
-    {
-        return view('admin/report/clinic/index');
     }
 }
