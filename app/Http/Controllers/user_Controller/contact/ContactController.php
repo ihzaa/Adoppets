@@ -45,7 +45,7 @@ class ContactController extends Controller
             'subject' => 'required',
             'message' => 'required',
         ]);
-        dd(Auth::user());
+        // dd(Auth::user());
         $data2 = User::where('id', Auth::user()->id)->first();
         $data = new Kontak();
 

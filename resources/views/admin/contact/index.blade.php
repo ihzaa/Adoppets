@@ -83,22 +83,25 @@ List Report Postingan Blog
             <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th>Nomor</th>
+                        <th>Nama</th>
                         <th>Subjek</th>
                         <th>Pesan</th>
                         <th class="min-tablet">Aksi</th>
-
                     </tr>
                 </thead>
+                @foreach ($data as $item)
                 <tbody>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$user[$item->user_id]}}</td>
+                    <td>{{$item->subject}}</td>
+                    <td>{{$item->message}}</td>
                     <td><button class="btn btn-danger btn-rounded">Hapus</button>
                         <a href="{{route('report_hewan_detail')}}" class="btn btn-warning btn-rounded">Detail</a>
                     </td>
-
-                    </tr>
-
                 </tbody>
+                @endforeach
+
             </table>
         </div>
     </div>

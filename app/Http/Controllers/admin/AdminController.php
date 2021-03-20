@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Kontak;
+use App\User;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class AdminController extends Controller
 {
@@ -34,8 +37,10 @@ class AdminController extends Controller
         return view('admin/report/blog/index');
     }
 
-    public function contact()
+    public function contact_list()
     {
-        return view('admin/contact/index');
+        $data = Kontak::all();
+        $user = User::pluck('name', 'id');
+        return view('admin/contact/index', compact('data', 'user'));
     }
 }
