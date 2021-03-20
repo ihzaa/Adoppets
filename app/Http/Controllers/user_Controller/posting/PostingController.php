@@ -64,6 +64,8 @@ class PostingController extends Controller
             'makanan' => $request->makanan,
             'warna' => $request->warna,
             'lokasi' => $request->city,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
             'informasi_lain' => $request->informasi_lain,
             'user_id' => Auth::user()->id,
             'category_id' => $request->submit_category,
