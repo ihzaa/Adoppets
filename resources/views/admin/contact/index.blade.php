@@ -135,9 +135,6 @@ List Report Postingan Blog
 <!--NiftyJS [ RECOMMENDED ]-->
 <script src="{{asset('admin/asset/js/nifty.min.js')}}"></script>
 
-
-
-
 <!--=================================================-->
 
 <!--Demo script [ DEMONSTRATION ]-->
@@ -154,7 +151,8 @@ List Report Postingan Blog
 <!--DataTables Sample [ SAMPLE ]-->
 <script src="{{asset('admin/asset/js/demo/tables-datatables.js')}}"></script>
 
-<<<<<<< HEAD @endsection======={{-- confirm delete --}} <script>
+{{-- confirm delete --}}
+<script>
     function ConfirmDelete() {
     var x = confirm("Are you sure you want to delete?");
     if (x)
@@ -162,19 +160,18 @@ List Report Postingan Blog
     else
     return false;
     }
-    </script>
-    {{-- akhir confirm delete --}}
+</script>
+{{-- akhir confirm delete --}}
 
-    @if(Session::get('icon_delete'))
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
+@if(Session::get('icon_delete'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
     swal({
         icon: "success",
         title: "{{Session::get('title')}}",
         text: "{{Session::get('text')}}",
     });
-    </script>
-    @endif
+</script>
+@endif
 
-    @endsection
-    >>>>>>> 20f9e9983e75c959d9af501d9bf6bcb4327a4cfa
+@endsection

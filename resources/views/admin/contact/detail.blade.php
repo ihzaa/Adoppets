@@ -92,16 +92,17 @@ Detail Data Keluhan Pengguna
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-4 mar-btm">
-                                        <input type="text" class="form-control" placeholder="Name">
+                                        <input type="text" class="form-control" value="{{$user[0]->name}}">
                                     </div>
                                     <div class="col-md-4 mar-btm">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="email" class="form-control" value="{{$user[0]->email}}">
                                     </div>
                                     <div class="col-md-4 mar-btm">
-                                        <input type="url" class="form-control" placeholder="no telepon">
+                                        <input type="url" class="form-control" value="{{$user[0]->nomor_telpon}}">
                                     </div>
                                 </div>
-                                <textarea placeholder="Message" rows="13" class="form-control"></textarea>
+                                <textarea placeholder="Message" rows="13" class="form-control">Subject : {{$data->subject}}
+                                    Message : {{$data->message}}</textarea>
                             </div>
                             <div class="panel-footer text-right">
                                 <button class="btn btn-info">BACK</button>

@@ -84,6 +84,7 @@ List Report Postingan Hewan
             <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th>Nomor</th>
                         <th>Judul Postingan</th>
                         <th>Jumlah Laporan</th>
                         <th class="min-tablet">Aksi</th>
@@ -91,6 +92,7 @@ List Report Postingan Hewan
                     </tr>
                 </thead>
                 <tbody>
+                    <td>1</td>
                     <td>Tiger Nixon</td>
                     <td>System Architect</td>
                     <td><button class="btn btn-danger btn-rounded">Hapus</button>

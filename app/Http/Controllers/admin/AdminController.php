@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Kontak;
 use App\User;
+// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -55,7 +57,22 @@ class AdminController extends Controller
     public function contact_detail($id)
     {
         $data = Kontak::find($id);
-        return view('admin/contact/detail', compact('data'));
+        $user = DB::select('SELECT name, email, nomor_telpon, no_wa FROM users WHERE id = ' . $id, [1]);
+        return view('admin/contact/detail', compact('data', 'user'));
     }
 
+    public function report_klinik_detail()
+    {
+        return view('admin/report/clinic/detail');
+    }
+
+    public function report_klinik()
+    {
+        return view('admin/report/clinic/index');
+    }
+
+    public function report_blog_detail()
+    {
+        return view('admin/report/blog/detail');
+    }
 }

@@ -85,13 +85,15 @@ List Report Postingan Hewan
             <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th>Nomor</th>
                         <th>Nama Akun</th>
-                        <th>Created</th>
+                        <th>Tanggal Ditulis</th>
                         <th class="min-tablet">Alasan</th>
 
                     </tr>
                 </thead>
                 <tbody>
+                    <td>1</td>
                     <td>Tiger Nixon</td>
                     <td>System Architect</td>
                     <td>alasan</td>

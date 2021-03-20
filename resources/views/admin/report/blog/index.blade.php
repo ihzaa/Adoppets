@@ -84,6 +84,7 @@ List Report Postingan Blog
             <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th>Nomor</th>
                         <th>Judul Postingan</th>
                         <th>Jumlah Laporan</th>
                         <th class="min-tablet">Aksi</th>
@@ -91,10 +92,11 @@ List Report Postingan Blog
                     </tr>
                 </thead>
                 <tbody>
+                    <th>1</th>
                     <td>Tiger Nixon</td>
                     <td>System Architect</td>
                     <td><button class="btn btn-danger btn-rounded">Hapus</button>
-                        <a href="{{route('report_hewan_detail')}}" class="btn btn-warning btn-rounded">Detail</a>
+                        <a href="{{route('report_blog_detail')}}" class="btn btn-warning btn-rounded">Detail</a>
                     </td>
 
                     </tr>

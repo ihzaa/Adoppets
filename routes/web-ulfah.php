@@ -46,17 +46,17 @@ Route::middleware('auth:admin')->group(function () {
 
     // Report Blog
     Route::get('/report/blog/list', 'admin\AdminController@report_blog')->name('report_blog_list');
-    Route::get('/report/blog/detail/{id}', 'admin\AdminController@report_blog_detail')->name('report_blog_detail');
+    Route::get('/report/blog/detail/', 'admin\AdminController@report_blog_detail')->name('report_blog_detail');
     Route::delete('/report/blog/delete/{id}', 'admin\AdminController@report_blog_delete')->name('report_blog_delete');
 
     // Report Klinik
     Route::get('/report/klinik/list', 'admin\AdminController@report_klinik')->name('report_klinik_list');
-    Route::get('/report/klinik/detail/{id}', 'admin\AdminController@report_klinik_detail')->name('report_klinik_detail');
+    Route::get('/report/klinik/detail/', 'admin\AdminController@report_klinik_detail')->name('report_klinik_detail');
     Route::delete('/report/klinik/delete/{id}', 'admin\AdminController@report_klinik_delete')->name('report_klinik_delete');
 
     // contact
     Route::get('/contact/list', 'admin\AdminController@contact_list')->name('contact_list');
-    Route::get('/contact/detail/{id}', 'admin\AdminController@contact_detail')->name('contact_detail');
+    Route::get('/contact/detail/', 'admin\AdminController@contact_detail')->name('contact_detail');
     Route::delete('/contact/delete/{id}', 'admin\AdminController@delete')->name('delete_contact');
 });
 
