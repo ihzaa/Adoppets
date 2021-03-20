@@ -1,7 +1,7 @@
 @extends('admin/master')
 
 @section('title')
-List Report Postingan Blog
+Detail Data Keluhan Pengguna
 @endsection
 
 {{-- my css --}}
@@ -64,6 +64,7 @@ List Report Postingan Blog
     <ol class="breadcrumb">
         <li><a href="#"><i class="demo-pli-home"></i></a></li>
         <li class="active">Data Keluhan Pengguna</li>
+        <li class="active">Detail</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--End breadcrumb-->
@@ -80,35 +81,38 @@ List Report Postingan Blog
             <h3 class="panel-title">Data Keluhan Pengguna</h3>
         </div>
         <div class="panel-body">
-            <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>Nomor</th>
-                        <th>Nama</th>
-                        <th>Subjek</th>
-                        <th>Pesan</th>
-                        <th class="min-tablet">Aksi</th>
-                    </tr>
-                </thead>
-                @foreach ($data as $item)
-                <tbody>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$user[$item->user_id]}}</td>
-                    <td>{{$item->subject}}</td>
-                    <td>{{$item->message}}</td>
-                    <td><button class="btn btn-danger btn-rounded">Hapus</button>
-                        <a href="{{route('contact_detail',['id'=>$item->id])}}"
-                            class="btn btn-warning btn-rounded">Detail</a>
-                    </td>
-                </tbody>
-                @endforeach
+            <div class="row">
 
-            </table>
+                <div class="col-lg-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Detail Pesan</h3>
+                        </div>
+                        <form class="form-horizontal">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4 mar-btm">
+                                        <input type="text" class="form-control" placeholder="Name">
+                                    </div>
+                                    <div class="col-md-4 mar-btm">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="col-md-4 mar-btm">
+                                        <input type="url" class="form-control" placeholder="no telepon">
+                                    </div>
+                                </div>
+                                <textarea placeholder="Message" rows="13" class="form-control"></textarea>
+                            </div>
+                            <div class="panel-footer text-right">
+                                <button class="btn btn-info">BACK</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-    <!--===================================================-->
-    <!-- End Striped Table -->
-
 </div>
 @endsection
 
