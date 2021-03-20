@@ -40,7 +40,7 @@ class PostingController extends Controller
     // menyimpan hasil posting hewan peliharaan
     public function store_posting(Request $request)
     {
-        // dd();
+        // dd($request);
         // validasi posting
         $request->validate([
             'title' => 'required',

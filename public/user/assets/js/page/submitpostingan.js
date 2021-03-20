@@ -1,5 +1,5 @@
-const elLat = document.getElementById("latitude");
-const elLng = document.getElementById("longitude");
+let elLat = document.getElementById("latitude");
+let elLng = document.getElementById("longitude");
 
 navigator.geolocation.getCurrentPosition(
     (pos) => {
@@ -8,6 +8,8 @@ navigator.geolocation.getCurrentPosition(
             lat: localLoc.latitude,
             lng: localLoc.longitude,
         };
+        elLat.value = localLoc.latitude;
+        elLng.value = localLoc.longitude;
         fetch(
             `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${localLoc.latitude}%2C${localLoc.longitude}&lang=en-US&apikey=IRYdcn93t9FECP0VLR1v8UrMcEO5042jdifi7QNoWKU`
         )
@@ -85,8 +87,8 @@ navigator.geolocation.getCurrentPosition(
         var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
         var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
         addDraggableMarker(map, behavior);
-        const elLat = document.getElementById("latitude");
-        const elLng = document.getElementById("longitude");
+        // const elLat = document.getElementById("latitude");
+        // const elLng = document.getElementById("longitude");
         map.addEventListener("dragend", function (ev) {
             let target = ev.target;
             if (target instanceof H.map.Marker) {
@@ -97,7 +99,6 @@ navigator.geolocation.getCurrentPosition(
                 );
                 elLat.value = res.lat;
                 elLng.value = res.lng;
-
                 fetch(
                     `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${res.lat}%2C${res.lng}&lang=en-US&apikey=IRYdcn93t9FECP0VLR1v8UrMcEO5042jdifi7QNoWKU`
                 )
