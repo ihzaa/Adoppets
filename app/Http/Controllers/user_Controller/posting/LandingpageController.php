@@ -11,6 +11,7 @@ use App\User;
 use App\User_accept_chioce;
 use App\User_accept_choice;
 use App\User_like_posting;
+use App\Vaccine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -204,7 +205,7 @@ class LandingpageController extends Controller
         $deskripsi['no_wa'] = User::pluck('no_wa', 'id');
         $deskripsi['domisili_sekarang'] = User::pluck('domisili_sekarang', 'id');
         $deskripsi['instagram'] = User::pluck('instagram', 'id');
-
+        $vaccineInfo = Vaccine::where('posting_id', $id)->orderBy('tanggal', 'ASC')->get();
         $adopted = User_accept_choice::where('posting_id', $id)->where('status', '1')->count();
 
         $isAdopt = '';
@@ -217,6 +218,6 @@ class LandingpageController extends Controller
         //$category = Category::pluck('nama', 'id');
         $popular = DB::select('SELECT p.*, (SELECT COUNT(*) FROM user_like_postings as ulp WHERE ulp.posting_id = p.id) as likeCounter, (SELECT ap.path FROM asset_postings as ap WHERE ap.posting_id = p.id LIMIT 1) as foto, c.nama FROM postings as p JOIN categories as c on c.id = p.category_id LIMIT 3');
         $latestAdopt = User_accept_choice::where('posting_id', $id)->orderBy('created_at', 'DESC')->get();
-        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt', 'like', 'adopted', 'reported', 'popular', 'latestAdopt'));
+        return view('user/posting/detail', compact('data', 'asset_posting', 'user', 'user_foto', 'deskripsi', 'edit', 'isAdopt', 'like', 'adopted', 'reported', 'popular', 'latestAdopt', 'vaccineInfo'));
     }
 }
