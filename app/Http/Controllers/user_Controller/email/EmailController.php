@@ -27,4 +27,19 @@ class EmailController extends Controller
     {
         return view('user/email/pemberitahuan');
     }
+
+    public function blokir_hewan()
+    {
+        return view('user/email/blokir_hewan');
+    }
+
+    public function blokir_blog()
+    {
+        return view('user/email/blokir_blog');
+    }
+
+    public function blokir_clinic()
+    {
+        return view('user/email/blokir_clinic');
+    }
 }

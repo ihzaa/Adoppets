@@ -36,5 +36,16 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/report/clinic/{id}', 'user_Controller\clinicinfo\ClinicController@reportClinic')->name('clinic.report');
 });
 
-// Route::middleware('auth:admin')->group(function () {
-// });
+Route::middleware('auth:admin')->group(function () {
+    // posting
+    Route::get('/posting/report/delete/{id}', 'admin\ReportPostingController@deleteReport')->name('admin.delete.report.posting');
+    Route::get('/posting/report/BLOCK/{id}', 'admin\ReportPostingController@block')->name('admin.block.report.posting');
+
+    // blog
+    Route::get('/blog/report/delete/{id}', 'admin\ReportBlogController@deleteReport')->name('admin.delete.report.blog');
+    Route::get('/blog/report/BLOCK/{id}', 'admin\ReportBlogController@block')->name('admin.block.report.blog');
+
+    // clinic
+    Route::get('/clinic/report/delete/{id}', 'admin\ReportClinicController@deleteReport')->name('admin.delete.report.clinic');
+    Route::get('/clinic/report/BLOCK/{id}', 'admin\ReportClinicController@block')->name('admin.block.report.clinic');
+});

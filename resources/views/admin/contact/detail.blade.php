@@ -92,19 +92,26 @@ Detail Data Keluhan Pengguna
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-4 mar-btm">
-                                        <input type="text" class="form-control" placeholder="Name">
+                                        <label for="name">Nama</label>
+                                        <input name="name" type="text" class="form-control" value="{{$user[0]->name}}">
                                     </div>
                                     <div class="col-md-4 mar-btm">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" class="form-control"
+                                            value="{{$user[0]->email}}">
                                     </div>
                                     <div class="col-md-4 mar-btm">
-                                        <input type="url" class="form-control" placeholder="no telepon">
+                                        <label for="nomor_telpon">Nomor Telpon</label>
+                                        <input type="url" id="nomor_telpon" class="form-control"
+                                            value="{{$user[0]->nomor_telpon}}">
                                     </div>
                                 </div>
-                                <textarea placeholder="Message" rows="13" class="form-control"></textarea>
+                                <label for="Message">Message</label>
+                                <textarea placeholder="Message" rows="10" class="form-control"
+                                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$data->message}}</textarea>
                             </div>
                             <div class="panel-footer text-right">
-                                <button class="btn btn-info">BACK</button>
+                                <a href="{{route('contact_list')}}" class="btn btn-info">BACK</a>
                             </div>
                         </form>
                     </div>

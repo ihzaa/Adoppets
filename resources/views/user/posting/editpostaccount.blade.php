@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-.delete {
-    background-color: #fd1200;
-    border: none;
-    color: white;
-    padding: 5px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+    .delete {
+        background-color: #fd1200;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
 
-.add_form_field {
-    background-color: #1c97f3;
-    border: none;
-    color: white;
-    padding: 8px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 1px solid #186dad;
-}
+    .add_form_field {
+        background-color: #1c97f3;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: 1px solid #186dad;
+    }
 </style>
 @endsection
 
@@ -104,7 +104,12 @@
                             <label for="category" class="col-form-label required">Jenis Hewan</label>
                             <select class="change-tab" data-change-tab-target="category-tabs" name="submit_category"
                                 id="submit-category" data-placeholder="Select Category">
-                                <option value=""></option>
+                                @foreach ($cat as $item)
+                                <option @if ($item->id == $data->category_id)
+                                    {{ "selected" }}
+                                    @endif value="{{$item->id}}">{{$item->nama}}
+                                </option>
+                                @endforeach
 
                             </select>
                         </div>
@@ -139,9 +144,13 @@
                         <div class="form-group">
                             <label for="ras" class="col-form-label required">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select">
-                                <option selected value="0">{{$data->jenis_kelamin}}</option>
-                                <option value="Betina">Betina</option>
-                                <option value="Jantan">Jantan</option>
+                                <option value="0">Pilih Jenis Kelamin</option>
+                                <option @if ($data->jenis_kelamin == "Betina")
+                                    selected
+                                    @endif value="Betina">Betina</option>
+                                <option @if ($data->jenis_kelamin == "Jantan")
+                                    selected
+                                    @endif value="Jantan">Jantan</option>
                             </select>
                             <!-- <div style="display: none;" class="alert alert-danger" id="message_jk">Silahkan pilih opsi
                             </div> -->
@@ -206,11 +215,39 @@
                         <div class="form-group container1">
                             {{-- button tambah vaksin --}}
                             <label for="informasi_vaksin" class="col-form-label">Informasi Vaksin</label><br>
-                            <button type="button"
-                                class="btn add_info_button add_form_field btn-info small icon float-left">Tambah
-                                Vaksin</i></button>
+                            @foreach ($vaccinInfo as $item)
+                            <div>
+                                <input name="informasi_vaksin[]" type="text" class="form-control
+                                @error('informasi_vaksin ')
+                                is-invalid
+                                @enderror" id=" informasi_vaksin" placeholder="" value="{{$item->keterangan}}"> <small
+                                    class="form-text">Masukkan Nama Vaksin</small>
+                                @error('informasi_vaksin') <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                <input name="tanggal[]" type="text" class="datepicker form-control
+                                @error('tanggal')
+                                is-invalid
+                                @enderror" id="tanggal" placeholder=""
+                                    value="{{\Carbon\Carbon::parse($item->tanggal)->format('m/d/Y')}}" /><small
+                                    class="form-text">Masukkan
+                                    Tanggal
+                                    Vaksin</small> <br>
+                                @error('tanggal ')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                <a href="#" class="btn small btn-danger delete">Delete</a>
+                                <hr>
+                            </div>
+                            @endforeach
+
+
                             {{-- akhir button tambah vaksin --}}
                         </div>
+                        <button type="button"
+                            class="btn add_info_button add_form_field btn-info small icon float-left">Tambah
+                            Vaksin</i></button>
                     </div>
                     <!--end col-md-8-->
                 </div>
@@ -220,6 +257,15 @@
             {{-- section foto hewan hewan --}}
             <section>
                 <h2>Foto Hewan</h2>
+                <div class="row">
+                    @foreach ($foto as $f)
+                    <div class="col">
+                        <img src="{{asset($f->path)}}" alt="" class="img-fluid" style="max-height: 100px !important">
+                        <input type="hidden" name="oldFoto[]" value="{{$f->id}}">
+                        <button type="button" class="btn btn-sm btn-danger btn_hapus_foto">x</button>
+                    </div>
+                    @endforeach
+                </div>
                 <div class="file-upload-previews"></div>
                 <div class="file-upload">
                     <input type="file" name="path[]"
@@ -240,7 +286,7 @@
                 <div class="form-group">
                     <label for="input-location" class="col-form-label">Detail Lokasi</label>
                     <input name="city" type="text" class="form-control" id="city" placeholder="Location"
-                        readonly="readonly" value="Jakarta" name="city">
+                        readonly="readonly" value="{{$data->lokasi}}" name="city">
                     <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
                         title="Find My Position"><i class="fa fa-map-marker"></i></span>
                 </div>
@@ -250,8 +296,10 @@
                 <label>Map</label>
                 <div id="map" style="width: 100%; height: 480px"></div>
                 {{-- <div class="map height-400px" id="map-submit"></div> --}}
-                <input name="latitude" type="text" class="form-control" id="latitude" value="-6.200000" hidden>
-                <input name="longitude" type="text" class="form-control" id="longitude" value="106.816666" hidden>
+                <input name="latitude" type="text" class="form-control" id="latitude" value="{{$data->latitude}}"
+                    hidden>
+                <input name="longitude" type="text" class="form-control" id="longitude" value="{{$data->longitude}}"
+                    hidden>
                 <small class="form-text text-muted">Geser Tanda Hijau Untuk Memindah</small>
             </section>
             <!--end location-->
@@ -275,17 +323,128 @@
 @endsection
 
 @section('js_after')
-<script src="{{asset('user/assets/js/page/submitpostingan.js')}}"></script>
+<script>
+    let elLat = document.getElementById("latitude");
+    let elLng = document.getElementById("longitude");
+
+        objCoords = {
+            lat: elLat.value,
+            lng: elLng.value,
+        };
+
+        function addDraggableMarker(map, behavior) {
+            var marker = new H.map.Marker(objCoords, {
+                volatility: true,
+            });
+            marker.draggable = true;
+            map.addObject(marker);
+            map.addEventListener(
+                "dragstart",
+                function (ev) {
+                    var target = ev.target,
+                        pointer = ev.currentPointer;
+                    if (target instanceof H.map.Marker) {
+                        var targetPosition = map.geoToScreen(
+                            target.getGeometry()
+                        );
+                        target["offset"] = new H.math.Point(
+                            pointer.viewportX - targetPosition.x,
+                            pointer.viewportY - targetPosition.y
+                        );
+                        behavior.disable();
+                    }
+                },
+                false
+            );
+            map.addEventListener(
+                "dragend",
+                function (ev) {
+                    var target = ev.target;
+                    if (target instanceof H.map.Marker) {
+                        behavior.enable();
+                    }
+                },
+                false
+            );
+            map.addEventListener(
+                "drag",
+                function (ev) {
+                    var target = ev.target,
+                        pointer = ev.currentPointer;
+                    if (target instanceof H.map.Marker) {
+                        target.setGeometry(
+                            map.screenToGeo(
+                                pointer.viewportX - target["offset"].x,
+                                pointer.viewportY - target["offset"].y
+                            )
+                        );
+                    }
+                },
+                false
+            );
+        }
+        var platform = new H.service.Platform({
+            apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
+        });
+        var defaultLayers = platform.createDefaultLayers();
+        var map = new H.Map(
+            document.getElementById("map"),
+            defaultLayers.vector.normal.map,
+            {
+                center: objCoords,
+                zoom: 12,
+                pixelRatio: window.devicePixelRatio || 1,
+            }
+        );
+        window.addEventListener("resize", () => map.getViewPort().resize());
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+        var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
+        addDraggableMarker(map, behavior);
+        // const elLat = document.getElementById("latitude");
+        // const elLng = document.getElementById("longitude");
+        map.addEventListener("dragend", function (ev) {
+            let target = ev.target;
+            if (target instanceof H.map.Marker) {
+                behavior.enable();
+                let res = map.screenToGeo(
+                    ev.currentPointer.viewportX,
+                    ev.currentPointer.viewportY
+                );
+                elLat.value = res.lat;
+                elLng.value = res.lng;
+                fetch(
+                    `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${res.lat}%2C${res.lng}&lang=en-US&apikey=IRYdcn93t9FECP0VLR1v8UrMcEO5042jdifi7QNoWKU`
+                )
+                    .then((res) => res.json())
+                    .then((data) => {
+                        document.getElementById("city").value =
+                            data.items[0].address.city;
+                    })
+                    .catch((err) => console.log(err));
+            }
+        });
+
+</script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@if(Session::get('icon'))
+<script>
+    swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
 {{-- js datepicker --}}
 <script>
-// add form dynamic
+    // add form dynamic
 $(document).ready(function() {
     var max_fields = 10;
     var wrapper = $(".container1");
     var add_button = $(".add_form_field");
 
-    var x = 1;
+    var x = "{{count($vaccinInfo)+1}}";
     $(add_button).click(function(e) {
         // console.log("1");
 
@@ -297,7 +456,7 @@ $(document).ready(function() {
                 informasi_vaksin ') is-invalid @enderror" id=" informasi_vaksin" placeholder="" value=""> <small class="form-text">Masukkan Nama Vaksin</small> @error('
                 informasi_vaksin ') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]"  type="text" class="datepicker form-control @error('
                 tanggal ') is-invalid @enderror" id="tanggal" placeholder="" value=""/><small class="form-text">Masukkan Tanggal Vaksin</small> <br> @error('
-                tanggal ') <div class="alert alert-danger">{{ $message }}</div> @enderror <a href="#" class=" btn small btn-danger delete">Delete</a></div>'
+                tanggal ') <div class="alert alert-danger">{{ $message }}</div> @enderror <a href="#" class=" btn small btn-danger delete">Delete</a><hr></div>'
             ); //add input box
 
         } else {
@@ -317,77 +476,86 @@ $(document).ready(function() {
         $(this).parent('div').remove();
         x--;
     })
-    $("#submitposting").on("submit", function() {
-        console.log(this);
+    // $("#submitposting").on("submit", function() {
+    //     console.log(this);
+    // })
+
+    $(".btn_hapus_foto").click(function(){
+        // console.log($(this).parent());
+        $(this).parent().remove();
+        event.preventDefault()
     })
 });
+
+
 </script>
 
 {{-- selecter jenis_kelamin --}}
-<script>
-$("#submitposting").on("submit", function() {
+{{-- <script>
+    $("#submitposting").on("submit", function() {
+        console.log($("#jenis_kelamin").val());
     if ($("#jenis_kelamin").val() == 0) {
         event.preventDefault();
         $("#message_jk").show();
     }
 })
-</script>
+</script> --}}
 
 
 
-@error('title')
+{{-- @error('title')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('ras')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('umur')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('makanan')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('warna')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('kondisi_fisik')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('path')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
 @error('informasi_lain')
 <script>
-$("#submitposting").form("show");
+    $("#submitposting").form("show");
 // swal("PESAN", "sub pesan", "error");
 </script>
-@enderror
+@enderror --}}
 @endsection

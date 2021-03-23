@@ -84,6 +84,7 @@ List Report Postingan Hewan
             <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th>Nomor</th>
                         <th>Judul Postingan</th>
                         <th>Jumlah Laporan</th>
                         <th class="min-tablet">Aksi</th>
@@ -91,14 +92,20 @@ List Report Postingan Hewan
                     </tr>
                 </thead>
                 <tbody>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td><button class="btn btn-danger btn-rounded">Hapus</button>
-                        <a href="{{route('report_hewan_detail')}}" class="btn btn-warning btn-rounded">Detail</a>
-                    </td>
-
+                    @foreach ($data['reportList'] as $item)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$item->title}}</td>
+                        <td>{{$item->total_report}}</td>
+                        <td>
+                            <button class="btn btn-danger btn-rounded btn_delete" data-id="{{$item->id}}">Hapus</button>
+                            <a href="{{route('report_hewan_detail',[$item->id])}}" class="btn btn-warning btn-rounded">
+                                Detail
+                            </a>
+                            <button class="btn btn-danger btn-rounded btn_block" data-id="{{$item->id}}">Blokir</button>
+                        </td>
                     </tr>
-
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -144,5 +151,56 @@ List Report Postingan Hewan
 
 <!--DataTables Sample [ SAMPLE ]-->
 <script src="{{asset('admin/asset/js/demo/tables-datatables.js')}}"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@if(Session::get('icon'))
+<script>
+    Swal.fire({
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
+</script>
+@endif
+
+<script>
+    const URL = {
+        delete : "{{route('admin.delete.report.posting','astaga')}}",
+        block : "{{route('admin.block.report.posting','astaga')}}"
+    }
+
+    $(".btn_delete").click(function(){
+        let id = $(this).data('id')
+        Swal.fire({
+            icon:"question",
+            title: 'Yakin menghapus report?',
+            showCancelButton: true,
+            confirmButtonText: `Ya, Hapus!`,
+            cancelButtonText: `Batal`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                tmpUrl = URL.delete
+                window.location.replace(tmpUrl.replace('astaga',id));
+            }
+        })
+
+    })
+
+    $(".btn_block").click(function(){
+        let id = $(this).data('id')
+        Swal.fire({
+            icon:"question",
+            title: 'Yakin memblokir posting?',
+            showCancelButton: true,
+            confirmButtonText: `Ya, Blokir!`,
+            cancelButtonText: `Batal`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                tmpUrl = URL.block
+                window.location.replace(tmpUrl.replace('astaga',id));
+            }
+        })
+    })
+</script>
 
 @endsection

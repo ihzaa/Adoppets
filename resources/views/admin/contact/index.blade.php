@@ -137,9 +137,6 @@ List Report Postingan Blog
 <!--NiftyJS [ RECOMMENDED ]-->
 <script src="{{asset('admin/asset/js/nifty.min.js')}}"></script>
 
-
-
-
 <!--=================================================-->
 
 <!--Demo script [ DEMONSTRATION ]-->
@@ -155,6 +152,8 @@ List Report Postingan Blog
 
 <!--DataTables Sample [ SAMPLE ]-->
 <script src="{{asset('admin/asset/js/demo/tables-datatables.js')}}"></script>
+
+{{-- confirm delete --}}
 <script>
 function ConfirmDelete() {
     var x = confirm("Are you sure you want to delete?");
@@ -176,4 +175,5 @@ swal({
 });
 </script>
 @endif
+
 @endsection

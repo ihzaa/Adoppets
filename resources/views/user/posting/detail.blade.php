@@ -208,9 +208,9 @@
                                             <th>Jenis Vaksin</th>
                                         </tr>
                                     </thead>
-                                    @foreach($edit as $dit)
+                                    @foreach($vaccineInfo as $dit)
                                     <tbody>
-                                        <td>{{$dit->tanggal}}</td>
+                                        <td>{{\Carbon\Carbon::parse($dit->tanggal)->format('d.m.Y')}}</td>
                                         <td>{{$dit->keterangan}}</td>
                                     </tbody>
                                     @endforeach

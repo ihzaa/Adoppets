@@ -10,9 +10,9 @@
 
     <!-- Visible when footer positions are static -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <div class="hide-fixed pull-right pad-rgt">
+    {{-- <div class="hide-fixed pull-right pad-rgt">
         14GB of <strong>512GB</strong> Free.
-    </div>
+    </div> --}}
 
 
 
@@ -20,7 +20,7 @@
     <!-- Remove the class "show-fixed" and "hide-fixed" to make the content always appears. -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-    <p class="pad-lft">&#0169; 2018 Your Company</p>
+    <p class="pad-lft">&#0169; {{date('Y')}} {{env('APP_NAME')}}</p>
 
 
 

@@ -165,12 +165,18 @@ class PostingController extends Controller
     public function edit($id)
     {
         $data = posting::find($id);
-        return view('user/posting/editpostaccount', compact('data'));
+        $cat = Category::all();
+        $vaccinInfo = Vaccine::where('posting_id', $id)->orderBy('tanggal', 'ASC')->get();
+        $foto = Asset_posting::where('posting_id', $id)->get();
+        return view('user/posting/editpostaccount', compact('data', 'vaccinInfo', 'cat', 'foto'));
     }
 
     //update postingan hewan di account
     public function update(Request $request, $id)
     {
+        if ($request->oldFoto == null && $request->path == null) {
+            return back()->with('icon', 'error')->with('text', 'Foto Tidak Boloh Kosong!');
+        }
         $request->validate([
             'title' => 'required',
             'jenis_kelamin' => 'required',
@@ -183,8 +189,17 @@ class PostingController extends Controller
             'informasi_lain' => '',
 
         ]);
+        if ($request->oldFoto == null) {
+            Asset_posting::where('posting_id', $id)->delete();
+        } else {
+            $oldFotoDelete = Asset_posting::where('posting_id', $id)->whereNotIn('id', $request->oldFoto)->get();
+            foreach ($oldFotoDelete as $o) {
+                File::delete($o->path);
+                $o->delete();
+            }
+        }
 
-        $posting = posting::create([
+        posting::find($id)->update([
             'title' => $request->title,
             'jenis_kelamin' => $request->jenis_kelamin,
             'ras' => $request->ras,
@@ -197,19 +212,19 @@ class PostingController extends Controller
             'user_id' => Auth::user()->id,
             'category_id' => $request->submit_category,
         ]);
+        Vaccine::where('posting_id', $id)->delete();
         if ($request->informasi_vaksin != null) {
             foreach ($request->informasi_vaksin as $k => $v) {
                 Vaccine::create([
                     'keterangan' => $v,
                     'tanggal' => Carbon::parse($request->tanggal[$k]),
-                    'posting_id' => $posting->id,
+                    'posting_id' => $id,
                 ]);
             }
         }
 
         // validasi asset posting
         $this->validate($request, [
-            'path' => 'required',
             'path.*' => 'mimes:jpeg,png,jpg,mp4,webm,mpg|max:6000',
         ]);
 
@@ -218,16 +233,15 @@ class PostingController extends Controller
                 Asset_posting::create([
                     $extension = $item->getClientOriginalName(),
                     $location = 'images/posting',
-                    $nameUpload = $posting->id . 'thumbnail.' . $extension,
+                    $nameUpload = $id . 'thumbnail.' . $extension,
                     $item->move('assets/' . $location, $nameUpload),
                     $filepath = 'assets/' . $location . '/' . $nameUpload,
                     $data_image = $filepath,
                     'path' => $data_image,
-                    'posting_id' => $posting->id,
+                    'posting_id' => $id,
                 ]);
             }
         }
-        $posting->save();
         return redirect(route('edit_posting'))->with('icon', 'success')->with('text', 'Informasi Berhasil di Edit!');
     }
 

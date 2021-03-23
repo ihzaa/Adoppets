@@ -162,7 +162,15 @@ sub-page
 {{-- sweet alert library --}}
 {{-- sweet alert --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+@if(Session::get('icon'))
+<script>
+    swal({
+    icon: "{{Session::get('icon')}}",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
 <script>
     const URL = {
     current: "{{route('edit_posting')}}"
@@ -188,7 +196,6 @@ $(document).on('change', '#sorting_post', function() {
 
 
 @if(Session::get('icon_delete'))
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     swal({
     icon: 'success',
