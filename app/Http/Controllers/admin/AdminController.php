@@ -17,7 +17,10 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin/dashboard');
+        $data = array();
+        $data['counter'] = DB::select('SELECT (SELECT count(*) FROM users) as users, (SELECT count(*) FROM postings) as postings, (SELECT count(*) FROM blogs) as blogs, (SELECT count(*) FROM clinic_informations) as clinics')[0];
+        // dd($data);
+        return view('admin/dashboard', compact('data'));
     }
     // dashboard admin
     public function dashboard()

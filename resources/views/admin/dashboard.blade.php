@@ -38,17 +38,17 @@ Dashboard
 
 
 <style>
-//Large devices (desktops, 992px and up)
-/* @media (min-width: 992px) {
+    //Large devices (desktops, 992px and up)
+    /* @media (min-width: 992px) {
         .card-informasi {
             margin-top: 150px
         }
     } */
 
-.panel {
-    width: 90px;
-    height: 200px;
-}
+    .panel {
+        width: 90px;
+        height: 200px;
+    }
 </style>
 
 
@@ -62,7 +62,7 @@ Dashboard
 <div id="page-head">
     <div class="pad-all text-center">
         <h3>Selamat Datang Admin Pada Halaman Kelola Website Adopt Pets.</h3>
-        <p1>Beriku Adalah Informasi Umum Website</p>
+        <p>Beriku Adalah Informasi Umum Website</p>
     </div>
 </div>
 @endsection
@@ -81,7 +81,7 @@ Dashboard
                     </div>
                 </div>
                 <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">241</p>
+                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->users,0,"",".")}}</p>
                     <p class="mar-no">Pengguna</p>
                 </div>
             </div>
@@ -94,7 +94,7 @@ Dashboard
                     </div>
                 </div>
                 <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">241</p>
+                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->postings,0,"",".")}}</p>
                     <p class="mar-no">Postingan</p>
                 </div>
             </div>
@@ -109,8 +109,8 @@ Dashboard
                     </div>
                 </div>
                 <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">241</p>
-                    <p class="mar-no">Iklan</p>
+                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->blogs,0,"",".")}}</p>
+                    <p class="mar-no">Blog</p>
                 </div>
             </div>
         </div>
@@ -122,8 +122,8 @@ Dashboard
                     </div>
                 </div>
                 <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">241</p>
-                    <p class="mar-no">Report</p>
+                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->clinics,0,"",".")}}</p>
+                    <p class="mar-no">Clinic</p>
                 </div>
             </div>
         </div>
