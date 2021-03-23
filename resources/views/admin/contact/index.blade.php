@@ -80,36 +80,38 @@ List Report Postingan Blog
             <h3 class="panel-title">Data Keluhan Pengguna</h3>
         </div>
         <div class="panel-body">
-            <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>Nomor</th>
-                        <th>Nama</th>
-                        <th>Subjek</th>
-                        <th>Pesan</th>
-                        <th class="min-tablet">Aksi</th>
-                    </tr>
-                </thead>
-                @foreach ($data as $item)
-                <tbody>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$user[$item->user_id]}}</td>
-                    <td>{{$item->subject}}</td>
-                    <td>{{$item->message}}</td>
-                    <td>
-                        <form action="{{route('delete_contact', ['id'=>$item->id])}}" method="POST" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" onclick=" return ConfirmDelete() "
-                                class="btn btn-danger btn-rounded">Hapus</button>
-                        </form>
-                        <a href="{{route('contact_detail',['id'=>$item->id])}}"
-                            class="btn btn-warning btn-rounded">Detail</a>
-                    </td>
-                </tbody>
-                @endforeach
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th>Nama</th>
+                            <th>Subjek</th>
+                            <th>Pesan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    @foreach ($data as $item)
+                    <tbody>
+                        <td class="text-center">{{$loop->iteration}}</td>
+                        <td>{{$user[$item->user_id]}}</td>
+                        <td>{{$item->subject}}</td>
+                        <td>{{$item->message}}</td>
+                        <td>
+                            <a action="{{route('delete_contact', ['id'=>$item->id])}}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" onclick=" return ConfirmDelete() "
+                                    class="btn btn-danger btn-rounded">Hapus</button>
+                            </a>
+                            <a href="{{route('contact_detail',['id'=>$item->id])}}"
+                                class="btn btn-warning btn-rounded">Detail</a>
+                        </td>
+                    </tbody>
+                    @endforeach
 
-            </table>
+                </table>
+            </div>
         </div>
     </div>
     <!--===================================================-->
@@ -153,28 +155,25 @@ List Report Postingan Blog
 
 <!--DataTables Sample [ SAMPLE ]-->
 <script src="{{asset('admin/asset/js/demo/tables-datatables.js')}}"></script>
-
-<<<<<<< HEAD @endsection======={{-- confirm delete --}} <script>
-    function ConfirmDelete() {
+<script>
+function ConfirmDelete() {
     var x = confirm("Are you sure you want to delete?");
     if (x)
-    return true;
+        return true;
     else
-    return false;
-    }
-    </script>
-    {{-- akhir confirm delete --}}
+        return false;
+}
+</script>
+{{-- akhir confirm delete --}}
 
-    @if(Session::get('icon_delete'))
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-    swal({
-        icon: "success",
-        title: "{{Session::get('title')}}",
-        text: "{{Session::get('text')}}",
-    });
-    </script>
-    @endif
-
-    @endsection
-    >>>>>>> 20f9e9983e75c959d9af501d9bf6bcb4327a4cfa
+@if(Session::get('icon_delete'))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+swal({
+    icon: "success",
+    title: "{{Session::get('title')}}",
+    text: "{{Session::get('text')}}",
+});
+</script>
+@endif
+@endsection

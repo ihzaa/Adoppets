@@ -2,6 +2,13 @@
 
 @section('include-css')
 <link rel="stylesheet" href="{{asset('user/assets/css/owl.carousel.min.css')}}" type="text/css">
+<link rel="stylesheet" href="{{asset('user/assets/fonts/font-awesome.css')}}" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
 @endsection
 
 @section('nama-page', 'sub-page')
@@ -9,11 +16,11 @@
 <div class="page-title">
     <div class="container clearfix">
         <div class="float-left float-xs-none">
-            <h1>Hewan Siap Adopsi
+            <h1>{{$data->title}}
                 <span class="tag">Offer</span>
             </h1>
             <h4 class="location">
-                <a href="#">Manhattan, NY</a>
+                <a href="#">{{$data->lokasi}}</a>
             </h4>
         </div>
         <div class="float-right float-xs-none price">
@@ -138,8 +145,16 @@
                                 </table>
                             </div>
                             <div class="col-md-8">
-                                <h2>Location</h2>
-                                <div class="map height-300px" id="map-small"></div>
+                                <h2>Lokasi</h2>
+                                {{-- <div class="map height-300px" id="map-small"></div> --}}
+                                <div id="map" style="width: 100%; height: 480px"></div>
+                                {{-- <input name="latitude" type="text" class="form-control" id="latitude" value="{{$edit->}}"
+                                hidden>
+                                <input name="longitude" type="text" class="form-control" id="longitude"
+                                    value="106.816666" hidden> --}}
+                                <a href="http://maps.google.com?q={{$data->latitude}},{{$data->longitude}}"
+                                    target="_blank" class="text-danger"><strong>Klik Disini Untuk
+                                        Navigasi Maps</strong></a>
                             </div>
                         </div>
                     </section>
@@ -165,4 +180,79 @@ var mapTheme = "light";
 var mapElement = "map-small";
 simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 </script>
+<script>
+objCoords = {
+    lat: "{{$data->latitude}}",
+    lng: "{{$data->longitude}}",
+};
+
+function addDraggableMarker(map, behavior) {
+    var marker = new H.map.Marker(objCoords, {
+        volatility: true,
+    });
+    // marker.draggable = true;
+    map.addObject(marker);
+    map.addEventListener(
+        "dragstart",
+        function(ev) {
+            var target = ev.target,
+                pointer = ev.currentPointer;
+            if (target instanceof H.map.Marker) {
+                var targetPosition = map.geoToScreen(
+                    target.getGeometry()
+                );
+                target["offset"] = new H.math.Point(
+                    pointer.viewportX - targetPosition.x,
+                    pointer.viewportY - targetPosition.y
+                );
+                behavior.disable();
+            }
+        },
+        false
+    );
+    map.addEventListener(
+        "dragend",
+        function(ev) {
+            var target = ev.target;
+            if (target instanceof H.map.Marker) {
+                behavior.enable();
+            }
+        },
+        false
+    );
+    map.addEventListener(
+        "drag",
+        function(ev) {
+            var target = ev.target,
+                pointer = ev.currentPointer;
+            if (target instanceof H.map.Marker) {
+                target.setGeometry(
+                    map.screenToGeo(
+                        pointer.viewportX - target["offset"].x,
+                        pointer.viewportY - target["offset"].y
+                    )
+                );
+            }
+        },
+        false
+    );
+}
+var platform = new H.service.Platform({
+    apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
+});
+var defaultLayers = platform.createDefaultLayers();
+var map = new H.Map(
+    document.getElementById("map"),
+    defaultLayers.vector.normal.map, {
+        center: objCoords,
+        zoom: 12,
+        pixelRatio: window.devicePixelRatio || 1,
+    }
+);
+window.addEventListener("resize", () => map.getViewPort().resize());
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
+addDraggableMarker(map, behavior);
+</script>
+
 @endsection

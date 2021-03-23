@@ -83,6 +83,12 @@ sub-page
                             {{$data->created_at}}
                         </figure>
                     </div>
+                    <div class="blog-post-content">
+                        <p>@php
+                            echo($data->deskripsi)
+                            @endphp
+                        </p>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="m-0">Lokasi</h2>
@@ -97,11 +103,8 @@ sub-page
                                     Navigasi Maps</strong></a>
                         </div>
                     </div>
+                    <br>
                     <div class="blog-post-content">
-                        <p>@php
-                            echo($data->deskripsi)
-                            @endphp
-                        </p>
                         <hr>
                         <div class="author">
                             <div class="author-image">
@@ -237,91 +240,88 @@ sub-page
 
 @section('js_after')
 <script>
-    $("#btn_report").click(function() {
+$("#btn_report").click(function() {
     $("#modal_report").modal('show');
 });
 </script>
 <script>
-    objCoords = {
-            lat: "{{$data->latitude}}",
-            lng: "{{$data->longitude}}",
-        };
+objCoords = {
+    lat: "{{$data->latitude}}",
+    lng: "{{$data->longitude}}",
+};
 
-        function addDraggableMarker(map, behavior) {
-            var marker = new H.map.Marker(objCoords, {
-                volatility: true,
-            });
-            // marker.draggable = true;
-            map.addObject(marker);
-            map.addEventListener(
-                "dragstart",
-                function (ev) {
-                    var target = ev.target,
-                        pointer = ev.currentPointer;
-                    if (target instanceof H.map.Marker) {
-                        var targetPosition = map.geoToScreen(
-                            target.getGeometry()
-                        );
-                        target["offset"] = new H.math.Point(
-                            pointer.viewportX - targetPosition.x,
-                            pointer.viewportY - targetPosition.y
-                        );
-                        behavior.disable();
-                    }
-                },
-                false
-            );
-            map.addEventListener(
-                "dragend",
-                function (ev) {
-                    var target = ev.target;
-                    if (target instanceof H.map.Marker) {
-                        behavior.enable();
-                    }
-                },
-                false
-            );
-            map.addEventListener(
-                "drag",
-                function (ev) {
-                    var target = ev.target,
-                        pointer = ev.currentPointer;
-                    if (target instanceof H.map.Marker) {
-                        target.setGeometry(
-                            map.screenToGeo(
-                                pointer.viewportX - target["offset"].x,
-                                pointer.viewportY - target["offset"].y
-                            )
-                        );
-                    }
-                },
-                false
-            );
-        }
-        var platform = new H.service.Platform({
-            apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
-        });
-        var defaultLayers = platform.createDefaultLayers();
-        var map = new H.Map(
-            document.getElementById("map"),
-            defaultLayers.vector.normal.map,
-            {
-                center: objCoords,
-                zoom: 12,
-                pixelRatio: window.devicePixelRatio || 1,
+function addDraggableMarker(map, behavior) {
+    var marker = new H.map.Marker(objCoords, {
+        volatility: true,
+    });
+    // marker.draggable = true;
+    map.addObject(marker);
+    map.addEventListener(
+        "dragstart",
+        function(ev) {
+            var target = ev.target,
+                pointer = ev.currentPointer;
+            if (target instanceof H.map.Marker) {
+                var targetPosition = map.geoToScreen(
+                    target.getGeometry()
+                );
+                target["offset"] = new H.math.Point(
+                    pointer.viewportX - targetPosition.x,
+                    pointer.viewportY - targetPosition.y
+                );
+                behavior.disable();
             }
-        );
-        window.addEventListener("resize", () => map.getViewPort().resize());
-        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-        var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
-        addDraggableMarker(map, behavior);
-
-
+        },
+        false
+    );
+    map.addEventListener(
+        "dragend",
+        function(ev) {
+            var target = ev.target;
+            if (target instanceof H.map.Marker) {
+                behavior.enable();
+            }
+        },
+        false
+    );
+    map.addEventListener(
+        "drag",
+        function(ev) {
+            var target = ev.target,
+                pointer = ev.currentPointer;
+            if (target instanceof H.map.Marker) {
+                target.setGeometry(
+                    map.screenToGeo(
+                        pointer.viewportX - target["offset"].x,
+                        pointer.viewportY - target["offset"].y
+                    )
+                );
+            }
+        },
+        false
+    );
+}
+var platform = new H.service.Platform({
+    apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
+});
+var defaultLayers = platform.createDefaultLayers();
+var map = new H.Map(
+    document.getElementById("map"),
+    defaultLayers.vector.normal.map, {
+        center: objCoords,
+        zoom: 12,
+        pixelRatio: window.devicePixelRatio || 1,
+    }
+);
+window.addEventListener("resize", () => map.getViewPort().resize());
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
+addDraggableMarker(map, behavior);
 </script>
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
