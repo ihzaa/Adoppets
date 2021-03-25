@@ -55,6 +55,12 @@ class PostingController extends Controller
 
         ]);
 
+        // validasi asset posting
+        $this->validate($request, [
+            'path' => 'required',
+            'path.*' => 'mimes:jpeg,png,jpg,mp4,webm,mpg|max:6000',
+        ]);
+
         $posting = posting::create([
             'title' => $request->title,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -80,11 +86,7 @@ class PostingController extends Controller
             }
         }
 
-        // validasi asset posting
-        $this->validate($request, [
-            'path' => 'required',
-            'path.*' => 'mimes:jpeg,png,jpg,mp4,webm,mpg|max:6000',
-        ]);
+
 
         if ($request->hasFile('path')) {
             foreach ($request->path as $item) {
