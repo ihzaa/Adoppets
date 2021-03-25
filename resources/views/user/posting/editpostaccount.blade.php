@@ -224,7 +224,7 @@
                                     class="form-text">Masukkan Nama Vaksin</small>
                                 @error('informasi_vaksin') <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                                <input name="tanggal[]" type="text" class="datepicker form-control
+                                <input name="tanggal[]" type="text" class="datepicker date_input form-control
                                 @error('tanggal')
                                 is-invalid
                                 @enderror" id="tanggal" placeholder=""
@@ -454,7 +454,7 @@ $(document).ready(function() {
             $(wrapper).append(
                 '<div><input name="informasi_vaksin[]" type="text" class="form-control @error('
                 informasi_vaksin ') is-invalid @enderror" id=" informasi_vaksin" placeholder="" value=""> <small class="form-text">Masukkan Nama Vaksin</small> @error('
-                informasi_vaksin ') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]"  type="text" class="datepicker form-control @error('
+                informasi_vaksin ') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]"  type="text" class="datepicker date_input form-control @error('
                 tanggal ') is-invalid @enderror" id="tanggal" placeholder="" value=""/><small class="form-text">Masukkan Tanggal Vaksin</small> <br> @error('
                 tanggal ') <div class="alert alert-danger">{{ $message }}</div> @enderror <a href="#" class=" btn small btn-danger delete">Delete</a><hr></div>'
             ); //add input box
@@ -476,9 +476,21 @@ $(document).ready(function() {
         $(this).parent('div').remove();
         x--;
     })
-    // $("#submitposting").on("submit", function() {
-    //     console.log(this);
-    // })
+    $("#submitposting").on("submit", function() {
+        let dateEl = $('.date_input')
+        for(let i = 0; i < dateEl.length ; i++){
+            console.log(moment(dateEl[i].value, "MM/DD/YYYY", true).isValid());
+            if(!moment(dateEl[i].value, "MM/DD/YYYY", true).isValid()){
+                swal({
+                    icon: "error",
+                    title: "Maaf!",
+                    text: "Tanggal Vaksin Salah!",
+                });
+                event.preventDefault();
+                return;
+            }
+        }
+    })
 
     $(".btn_hapus_foto").click(function(){
         // console.log($(this).parent());

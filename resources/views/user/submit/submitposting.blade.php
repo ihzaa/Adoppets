@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-.delete {
-    background-color: #fd1200;
-    border: none;
-    color: white;
-    padding: 5px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+    .delete {
+        background-color: #fd1200;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
 
-.add_form_field {
-    background-color: #1c97f3;
-    border: none;
-    color: white;
-    padding: 8px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 1px solid #186dad;
-}
+    .add_form_field {
+        background-color: #1c97f3;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: 1px solid #186dad;
+    }
 </style>
 @endsection
 
@@ -150,9 +150,12 @@
                         <div class="form-group">
                             <label for="ras" class="col-form-label required">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select">
-                                <option selected value="0">Pilih Jenis Kelamin</option>
-                                <option value="Betina">Betina</option>
-                                <option value="Jantan">Jantan</option>
+                                <option {{old('jenis_kelamin') == null ? "selected" : ""}} value="0">Pilih Jenis Kelamin
+                                </option>
+                                <option value="Betina" {{old('jenis_kelamin') == "Betina" ? "selected" : ""}}>Betina
+                                </option>
+                                <option value="Jantan" {{old('jenis_kelamin') == "Jantan" ? "selected" : ""}}>Jantan
+                                </option>
                             </select>
                             <!-- <div style="display: none;" class="alert alert-danger" id="message_jk">Silahkan pilih opsi
                             </div> -->
@@ -289,8 +292,13 @@
 <script src="{{asset('user/assets/js/page/submitpostingan.js')}}"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 {{-- js datepicker --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
-// add form dynamic
+    // add form dynamic
 $(document).ready(function() {
     var max_fields = 10;
     var wrapper = $(".container1");
@@ -306,7 +314,7 @@ $(document).ready(function() {
             $(wrapper).append(
                 '<div><input name="informasi_vaksin[]" type="text" class="form-control @error('
                 informasi_vaksin ') is-invalid @enderror" id=" informasi_vaksin" placeholder="" value=""> <small class="form-text">Masukkan Nama Vaksin</small> @error('
-                informasi_vaksin ') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]"  type="text" class="datepicker form-control @error('
+                informasi_vaksin ') <div class="alert alert-danger">{{ $message }}</div> @enderror <input name="tanggal[]"  type="text" class="datepicker form-control date_input @error('
                 tanggal ') is-invalid @enderror" id="tanggal" placeholder="" value=""/><small class="form-text">Masukkan Tanggal Vaksin</small> <br> @error('
                 tanggal ') <div class="alert alert-danger">{{ $message }}</div> @enderror <a href="#" class=" btn small btn-danger delete">Delete</a></div>'
             ); //add input box
@@ -329,14 +337,26 @@ $(document).ready(function() {
         x--;
     })
     $("#submitposting").on("submit", function() {
-        console.log(this);
+        let dateEl = $('.date_input')
+        for(let i = 0; i < dateEl.length ; i++){
+            console.log(moment(dateEl[i].value, "MM/DD/YYYY", true).isValid());
+            if(!moment(dateEl[i].value, "MM/DD/YYYY", true).isValid()){
+                swal({
+                    icon: "error",
+                    title: "Maaf!",
+                    text: "Tanggal Vaksin Salah!",
+                });
+                event.preventDefault();
+                return;
+            }
+        }
     })
 });
 </script>
 
 {{-- selecter jenis_kelamin --}}
 <script>
-$("#submitposting").on("submit", function() {
+    $("#submitposting").on("submit", function() {
     if ($("#jenis_kelamin").val() == 0) {
         event.preventDefault();
         $("#message_jk").show();
@@ -344,61 +364,15 @@ $("#submitposting").on("submit", function() {
 })
 </script>
 
-
-
-@error('title')
-<script>
-$("#submitposting").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('ras')
-<script>
-$("#submitposting").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('umur')
-<script>
-$("#submitposting").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('makanan')
-<script>
-$("#submitposting").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('warna')
-<script>
-$("#submitposting").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
-@error('kondisi_fisik')
-<script>
-$("#submitposting").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
-
 @error('path')
 <script>
-$("#submitposting").form("show");
+    swal({
+                    icon: "error",
+                    title: "Maaf!",
+                    text: "Foto tidak boleh kosong!",
+                });
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
 
-@error('informasi_lain')
-<script>
-$("#submitposting").form("show");
-// swal("PESAN", "sub pesan", "error");
-</script>
-@enderror
 @endsection
