@@ -28,6 +28,9 @@
                     <a href="#" class="list-group-item">
                         <i class="demo-pli-information icon-lg icon-fw"></i> Help
                     </a> --}}
+                    <a href="{{route('admin.change.password.get')}}" class="list-group-item">
+                        <i class="demo-pli-unlock icon-lg icon-fw"></i> Rubah Password
+                    </a>
                     <a href="{{route('logout')}}" class="list-group-item">
                         <i class="demo-pli-unlock icon-lg icon-fw"></i> Logout
                     </a>

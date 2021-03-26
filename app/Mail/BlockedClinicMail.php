@@ -28,6 +28,6 @@ class BlockedClinicMail extends Mailable
      */
     public function build()
     {
-        return $this->view('user.email.blokir_clinic')->from('adoptpets477@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - Clinic Blocked Notification');
+        return $this->view('user.email.delete_clinic')->from('adoptpets477@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - Clinic Blocked Notification');
     }
 }

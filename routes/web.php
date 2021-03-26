@@ -39,16 +39,19 @@ Route::middleware('auth:user')->group(function () {
 Route::middleware('auth:admin')->group(function () {
     // posting
     Route::get('/posting/report/delete/{id}', 'admin\ReportPostingController@deleteReport')->name('admin.delete.report.posting');
-    Route::get('/posting/report/BLOCK/{id}', 'admin\ReportPostingController@block')->name('admin.block.report.posting');
+    Route::post('/posting/report/BLOCK/{id}', 'admin\ReportPostingController@block')->name('admin.block.report.posting');
 
     // blog
     Route::get('/blog/report/delete/{id}', 'admin\ReportBlogController@deleteReport')->name('admin.delete.report.blog');
-    Route::get('/blog/report/BLOCK/{id}', 'admin\ReportBlogController@block')->name('admin.block.report.blog');
+    Route::post('/blog/report/BLOCK/{id}', 'admin\ReportBlogController@block')->name('admin.block.report.blog');
 
     // clinic
     Route::get('/clinic/report/delete/{id}', 'admin\ReportClinicController@deleteReport')->name('admin.delete.report.clinic');
-    Route::get('/clinic/report/BLOCK/{id}', 'admin\ReportClinicController@block')->name('admin.block.report.clinic');
+    Route::post('/clinic/report/BLOCK/{id}', 'admin\ReportClinicController@block')->name('admin.block.report.clinic');
 
     // category
     Route::post('add/category', 'admin\AdminController@add_category')->name('admin.add.category');
+
+    Route::get('admin/change/password', 'admin\PasswordController@get')->name('admin.change.password.get');
+    Route::post('admin/change/password', 'admin\PasswordController@post')->name('admin.change.password.post');
 });

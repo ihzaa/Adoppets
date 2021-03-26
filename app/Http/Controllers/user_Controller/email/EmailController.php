@@ -42,4 +42,19 @@ class EmailController extends Controller
     {
         return view('user/email/blokir_clinic');
     }
+
+    public function delete_hewan_admin()
+    {
+        return view('user/email/delete_hewan');
+    }
+
+    public function delete_blog_admin()
+    {
+        return view('user/email/delete_blog');
+    }
+
+    public function delete_clinic_admin()
+    {
+        return view('user/email/delete_clinic');
+    }
 }

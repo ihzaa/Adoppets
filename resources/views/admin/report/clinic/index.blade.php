@@ -190,20 +190,70 @@ List Report Postingan Clinic
 
     })
 
-    $(".btn_block").click(function(){
+    // $(".btn_block").click(function(){
+    //     let id = $(this).data('id')
+    //     Swal.fire({
+    //         icon:"question",
+    //         title: 'Yakin memblokir klinik?',
+    //         showCancelButton: true,
+    //         confirmButtonText: `Ya, Blokir!`,
+    //         cancelButtonText: `Batal`,
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             tmpUrl = URL.block
+    //             window.location.replace(tmpUrl.replace('astaga',id));
+    //         }
+    //     })
+    // })
+
+    $(".btn_block").click(async function(){
         let id = $(this).data('id')
-        Swal.fire({
-            icon:"question",
-            title: 'Yakin memblokir klinik?',
+        const { value: cause } = await Swal.fire({
+            title: 'Masukkan Alasan Blokir',
+            input: 'textarea',
+            inputLabel: 'Alasan Blokir',
             showCancelButton: true,
-            confirmButtonText: `Ya, Blokir!`,
-            cancelButtonText: `Batal`,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                tmpUrl = URL.block
-                window.location.replace(tmpUrl.replace('astaga',id));
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Harus Diisi!'
+                }
             }
         })
+
+        if (cause) {
+            tmpUrl = URL.block
+            tmpUrl = tmpUrl.replace('astaga',id)
+            $("#main_loading").css("display", "flex");
+            fetch(tmpUrl, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify({message:cause}) // body data type must match "Content-Type" header
+            })
+            .then(response => {
+                    return response.json()
+            })
+            .then(data => {
+                location.reload();
+            })
+            .catch(err => console.log(err))
+        }
+        // Swal.fire({
+        //     icon:"question",
+        //     title: 'Yakin memblokir posting?',
+        //     showCancelButton: true,
+        //     confirmButtonText: `Ya, Blokir!`,
+        //     cancelButtonText: `Batal`,
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         tmpUrl = URL.block
+        //         tmpUrl = tmpUrl.replace('astaga',id)
+        //     }
+        // })
     })
 </script>
 @endsection

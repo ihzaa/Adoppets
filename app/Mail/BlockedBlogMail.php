@@ -28,6 +28,6 @@ class BlockedBlogMail extends Mailable
      */
     public function build()
     {
-        return $this->view('user.email.blokir_blog')->from('adoptpets477@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - Blog Blocked Notification');
+        return $this->view('user.email.delete_blog')->from('adoptpets477@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - Blog Blocked Notification');
     }
 }
