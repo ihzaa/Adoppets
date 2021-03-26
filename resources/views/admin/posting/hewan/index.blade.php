@@ -101,7 +101,7 @@ List Postingan Hewan
                         <td>{{$item->title}}</td>
                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</td>
                         <td>
-                            <button id="alasan_delete_hewan" class="btn btn-danger btn-rounded"><i
+                            <button class="btn btn_block btn-danger btn-rounded" data-id="{{$item->id}}"><i
                                     class="demo-pli-plus"></i>Hapus</button>
 
                             <a href="{{route('posting_hewan_detail',$item->id)}}" class="btn btn-warning btn-rounded">
@@ -160,7 +160,7 @@ List Postingan Hewan
 <script src="{{asset('admin/asset/plugins/bootbox/bootbox.min.js')}}"></script>
 
 <!--Modals [ SAMPLE ]-->
-<script src="{{asset('admin/asset/js/demo/ui-modals.js')}}"></script>
+{{-- <script src="{{asset('admin/asset/js/demo/ui-modals.js')}}"></script> --}}
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @if(Session::get('icon'))
@@ -175,8 +175,9 @@ List Postingan Hewan
 
 <script>
     const URL = {
-    delete: "{{route('admin.delete.report.posting','astaga')}}",
-}
+        delete : "{{route('admin.delete.report.posting','astaga')}}",
+        block : "{{route('admin.block.report.posting','astaga')}}"
+    }
 
 $(".btn_delete").click(function() {
     let id = $(this).data('id')
@@ -194,6 +195,56 @@ $(".btn_delete").click(function() {
     })
 
 })
+
+$(".btn_block").click(async function(){
+        let id = $(this).data('id')
+        const { value: cause } = await Swal.fire({
+            title: 'Masukkan Alasan Blokir',
+            input: 'textarea',
+            inputLabel: 'Alasan Blokir',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Harus Diisi!'
+                }
+            }
+        })
+
+        if (cause) {
+            tmpUrl = URL.block
+            tmpUrl = tmpUrl.replace('astaga',id)
+            $("#main_loading").css("display", "flex");
+            fetch(tmpUrl, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify({message:cause}) // body data type must match "Content-Type" header
+            })
+            .then(response => {
+                    return response.json()
+            })
+            .then(data => {
+                location.reload();
+            })
+            .catch(err => console.log(err))
+        }
+        // Swal.fire({
+        //     icon:"question",
+        //     title: 'Yakin memblokir posting?',
+        //     showCancelButton: true,
+        //     confirmButtonText: `Ya, Blokir!`,
+        //     cancelButtonText: `Batal`,
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         tmpUrl = URL.block
+        //         tmpUrl = tmpUrl.replace('astaga',id)
+        //     }
+        // })
+    })
 </script>
 
 @endsection
