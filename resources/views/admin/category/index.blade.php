@@ -103,13 +103,13 @@ Data Kategori Hewan
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td>{{$item->nama}}</td>
                                     <td>
-                                        <a action="{{route('delete_category', ['id'=>$item->id])}}" method="POST"
+                                        <form action="{{route('delete_category', ['id'=>$item->id])}}" method="POST"
                                             class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button type="submit" onclick=" return ConfirmDelete() "
                                                 class="btn btn-danger btn-rounded">Hapus</button>
-                                        </a>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
