@@ -14,32 +14,32 @@
 
 {{-- form informasi vaksin --}}
 <style>
-    .delete {
-        background-color: #fd1200;
-        border: none;
-        color: white;
-        padding: 5px 15px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
+.delete {
+    background-color: #fd1200;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
-    .add_form_field {
-        background-color: #1c97f3;
-        border: none;
-        color: white;
-        padding: 8px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border: 1px solid #186dad;
-    }
+.add_form_field {
+    background-color: #1c97f3;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 1px solid #186dad;
+}
 </style>
 @endsection
 
@@ -234,12 +234,15 @@
             {{-- section foto hewan hewan --}}
             <section>
                 <h2>Foto Hewan</h2>
+                <label for="kondisi_fisik" class="col-form-label required">Upload Foto Hewan</label>
                 <div class="file-upload-previews"></div>
                 <div class="file-upload">
                     <input type="file" name="path[]"
                         class="file-upload-input with-preview @error('path') is-invalid @enderror" multiple
                         title="Click to add path" maxlength="10" accept="gif|jpg|png|mp4|webm|mpg">
                     <span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
+                    <small class="form-text text-muted">- Ukuran max 6MB</small>
+                    <br>
                 </div>
                 @error('path')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -252,7 +255,7 @@
                 <h2>Lokasi</h2>
                 <!--end row-->
                 <div class="form-group">
-                    <label for="input-location" class="col-form-label">Detail Lokasi</label>
+                    <label for="input-location" class="col-form-label required">Detail Lokasi</label>
                     <input name="city" type="text" class="form-control" id="city" placeholder="Location"
                         readonly="readonly" value="Jakarta" name="city">
                     <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top"
@@ -298,7 +301,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-    // add form dynamic
+// add form dynamic
 $(document).ready(function() {
     var max_fields = 10;
     var wrapper = $(".container1");
@@ -338,9 +341,9 @@ $(document).ready(function() {
     })
     $("#submitposting").on("submit", function() {
         let dateEl = $('.date_input')
-        for(let i = 0; i < dateEl.length ; i++){
+        for (let i = 0; i < dateEl.length; i++) {
             console.log(moment(dateEl[i].value, "MM/DD/YYYY", true).isValid());
-            if(!moment(dateEl[i].value, "MM/DD/YYYY", true).isValid()){
+            if (!moment(dateEl[i].value, "MM/DD/YYYY", true).isValid()) {
                 swal({
                     icon: "error",
                     title: "Maaf!",
@@ -356,7 +359,7 @@ $(document).ready(function() {
 
 {{-- selecter jenis_kelamin --}}
 <script>
-    $("#submitposting").on("submit", function() {
+$("#submitposting").on("submit", function() {
     if ($("#jenis_kelamin").val() == 0) {
         event.preventDefault();
         $("#message_jk").show();
@@ -366,11 +369,11 @@ $(document).ready(function() {
 
 @error('path')
 <script>
-    swal({
-                    icon: "error",
-                    title: "Maaf!",
-                    text: "Foto tidak boleh kosong!",
-                });
+swal({
+    icon: "error",
+    title: "Maaf!",
+    text: "Foto tidak boleh kosong!",
+});
 // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror

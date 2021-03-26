@@ -24,7 +24,7 @@ Dashboard
 
 <!--Nifty Premium Icon [ DEMONSTRATION ]-->
 <link href="{{asset('admin/asset/css/demo/nifty-demo-icons.min.css')}}" rel="stylesheet">
-
+<link href="premium/icon-sets/icons/line-icons/premium-line-icons.min.css" rel="stylesheet">
 
 <!--=================================================-->
 
@@ -62,7 +62,7 @@ Dashboard
 <div id="page-head">
     <div class="pad-all text-center">
         <h3>Selamat Datang Admin Pada Halaman Kelola Website Adopt Pets.</h3>
-        <p>Beriku Adalah Informasi Umum Website</p>
+        <p>Berikut Adalah Informasi Umum Website</p>
     </div>
 </div>
 @endsection
@@ -77,7 +77,7 @@ Dashboard
             <div class="panel panel-warning panel-colorful media middle pad-all">
                 <div class="media-left">
                     <div class="pad-hor">
-                        <i class="demo-pli-add-user-star icon-2x"></i>
+                        <i class="demo-pli-male-female icon-3x"></i>
                     </div>
                 </div>
                 <div class="media-body">
@@ -90,11 +90,12 @@ Dashboard
             <div class="panel panel-info panel-colorful media middle pad-all">
                 <div class="media-left">
                     <div class="pad-hor">
-                        <i class="demo-pli-file-zip icon-3x"></i>
+                        <i class="demo-pli-camera-2 icon-3x"></i>
                     </div>
                 </div>
-                <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->postings,0,"",".")}}</p>
+                <div class=" media-body">
+                    <p class="text-2x mar-no text-semibold">
+                        {{number_format($data['counter']->postings,0,"",".")}}</p>
                     <p class="mar-no">Postingan</p>
                 </div>
             </div>
@@ -105,7 +106,7 @@ Dashboard
             <div class="panel panel-mint panel-colorful media middle pad-all">
                 <div class="media-left">
                     <div class="pad-hor">
-                        <i class="demo-pli-camera-2 icon-3x"></i>
+                        <i class="demo-pli-speech-bubble-5 icon-3x"></i>
                     </div>
                 </div>
                 <div class="media-body">
@@ -118,11 +119,12 @@ Dashboard
             <div class="panel panel-danger panel-colorful media middle pad-all">
                 <div class="media-left">
                     <div class="pad-hor">
-                        <i class="demo-pli-video icon-3x"></i>
+                        <i class="demo-pli-building icon-3x"></i>
                     </div>
                 </div>
                 <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->clinics,0,"",".")}}</p>
+                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->clinics,0,"",".")}}
+                    </p>
                     <p class="mar-no">Clinic</p>
                 </div>
             </div>

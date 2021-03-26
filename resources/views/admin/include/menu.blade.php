@@ -91,7 +91,7 @@
                 <!--Menu list item-->
                 <li class="sub @if(strpos(Route::currentRouteName(), 'report') !== false ) active-sub active @endif">
                     <a href="#">
-                        <i class="demo-pli-gear"></i>
+                        <i class="demo-pli-receipt-4 icon-lg"></i>
                         <span class="menu-title">
                             Report
                             <span class="pull-right badge badge-warning"></span>
@@ -121,7 +121,7 @@
                 <!--Contact-->
                 <li class="">
                     <a href="{{route('contact_list')}}">
-                        <i class="demo-pli-home"></i>
+                        <i class="demo-pli-mail"></i>
                         <span class="menu-title">Contact</span>
                     </a>
                 </li>
@@ -131,7 +131,7 @@
 
                 <li class="">
                     <a href="{{route('category_list')}}">
-                        <i class="demo-pli-home"></i>
+                        <i class="demo-pli-pen-5"></i>
                         <span class="menu-title">Category</span>
                     </a>
                 </li>
