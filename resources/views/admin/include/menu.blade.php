@@ -87,7 +87,31 @@
                 </li>
                 {{-- akhir menu dashboard --}}
 
+                <li class="">
+                    <a href="#">
+                        <i class="demo-pli-receipt-4 icon-lg"></i>
+                        <span class="menu-title">
+                            Postingan
+                            <span class="pull-right badge badge-warning"></span>
+                            <i class="arrow"></i>
+                        </span>
+                    </a>
 
+                    {{-- submenu --}}
+                    <!--Submenu-->
+                    <ul class="collapse">
+                        <li class="">
+                            <a href="{{route('admin_posting_hewan')}}">Posting Hewan</a>
+                        </li>
+                        <li class="">
+                            <a href="{{route('admin_posting_blog')}}">Blog</a>
+                        </li>
+                        <li class="">
+                            <a href="{{route('admin_posting_clinic')}}">Informasi Klinik</a>
+                        </li>
+                    </ul>
+                    {{-- akhir submenu --}}
+                </li>
                 <!--Menu list item-->
                 <li class="sub @if(strpos(Route::currentRouteName(), 'report') !== false ) active-sub active @endif">
                     <a href="#">

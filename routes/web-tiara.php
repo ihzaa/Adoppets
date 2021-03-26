@@ -37,6 +37,20 @@ Route::middleware('auth:admin')->group(function () {
     // Route::get('/contact/list', 'admin\AdminController@contact')->name('contact_list');
     Route::get('/category/list', 'admin\AdminController@category')->name('category_list');
 
+    //postingan
+
+    //hewan
+    Route::get('/posting/hewan/list', 'admin\AdminController@posting_hewan')->name('admin_posting_hewan');
+    Route::get('/posting/hewan/detail/{id}', 'admin\AdminController@posting_hewan_detail')->name('posting_hewan_detail');
+
+    //blog
+    Route::get('/posting/blog/list', 'admin\AdminController@posting_blog')->name('admin_posting_blog');
+    Route::get('/posting/blog/detail/{id}', 'admin\AdminController@posting_blog_detail')->name('posting_blog_detail');
+
+    //clinic
+    Route::get('/posting/clinic/list', 'admin\AdminController@posting_clinic')->name('admin_posting_clinic');
+    Route::get('/posting/clinic/detail/{id}', 'admin\AdminController@posting_clinic_detail')->name('posting_clinic_detail');
+
 });
 
 Route::middleware('auth:user')->group(function () {

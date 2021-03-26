@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Asset_posting;
 use App\Blog;
 use App\Category;
 use App\Clinic_information;
@@ -10,8 +11,8 @@ use App\Kontak;
 use App\posting;
 use App\User;
 // use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -123,7 +124,7 @@ class AdminController extends Controller
             $resp['status'] = 'fail';
         } else {
             Category::create([
-                'nama' => $request->cat
+                'nama' => $request->cat,
             ]);
             $resp['status'] = 'ok';
             Session::flash('icon_delete', 'success');
@@ -132,4 +133,49 @@ class AdminController extends Controller
         }
         return response()->json($resp);
     }
+    public function posting_hewan()
+    {
+        $data = posting::all();
+        return view('admin/posting/hewan/index', compact('data'));
+    }
+
+    public function posting_hewan_detail($id)
+    {
+        $data = posting::find($id);
+        $user = User::pluck('name', 'id');
+        $asset_posting = Asset_posting::where('posting_id', $id)->get();
+        $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p WHERE p.id = ' . $id);
+        if (count($edit) == 0) {
+            return redirect(route('landingpage'));
+        }
+        return view('admin/posting/hewan/detail', compact('data', 'asset_posting', 'edit', 'user'));
+
+    }
+
+    public function posting_blog()
+    {
+        $data = Blog::all();
+        return view('admin/posting/blog/index', compact('data'));
+    }
+
+    public function posting_blog_detail($id)
+    {
+        $data = Blog::find($id);
+        $user = User::pluck('name', 'id');
+        return view('admin/posting/blog/detail', compact('data', 'user'));
+    }
+
+    public function posting_clinic()
+    {
+        $data = Clinic_information::all();
+        return view('admin/posting/klinik/index', compact('data'));
+    }
+
+    public function posting_clinic_detail($id)
+    {
+        $data = Clinic_information::find($id);
+        $user = User::pluck('name', 'id');
+        return view('admin/posting/klinik/detail', compact('data', 'user'));
+    }
+
 }
