@@ -168,7 +168,7 @@ Data Kategori Hewan
 
 {{-- confirm delete --}}
 <script>
-    function ConfirmDelete() {
+function ConfirmDelete() {
     var x = confirm("Are you sure you want to delete?");
     if (x)
         return true;
@@ -181,7 +181,7 @@ Data Kategori Hewan
 @if(Session::get('icon_delete'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "success",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
