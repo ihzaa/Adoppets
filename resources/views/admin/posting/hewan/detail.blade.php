@@ -46,7 +46,12 @@ Detail Postingan Hewan
     rel="stylesheet">
 <link rel="stylesheet" href="{{asset('user/assets/css/owl.carousel.min.css')}}" type="text/css">
 
-
+<style>
+    .splide__slide img {
+        width: 100%;
+        height: auto;
+    }
+</style>
 @endsection
 
 {{-- judul halaman pada bagian atas halaman --}}
@@ -90,14 +95,36 @@ Detail Postingan Hewan
                     </a>
                 </div>
             </div>
-            <div class="splide">
+            <div id="primary-slider" class="splide">
                 <div class="splide__track">
                     <ul class="splide__list">
                         @foreach ($asset_posting as $item)
-                        <li class="splide__slide" style="display: flex;justify-content: center;
+                        {{-- <li class="splide__slide" style="display: flex;justify-content: center;
                         align-items: center;">
                             <img class="img-fluid" style="max-height: 250px;" src="{{asset($item->path)}}">
+                        </li> --}}
+
+                        <li class="splide__slide">
+                            <img src="{{asset($item->path)}}">
                         </li>
+
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div id="secondary-slider" class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        @foreach ($asset_posting as $item)
+                        {{-- <li class="splide__slide" style="display: flex;justify-content: center;
+                        align-items: center;">
+                            <img class="img-fluid" style="max-height: 250px;" src="{{asset($item->path)}}">
+                        </li> --}}
+
+                        <li class="splide__slide">
+                            <img src="{{asset($item->path)}}">
+                        </li>
+
                         @endforeach
                     </ul>
                 </div>
@@ -219,10 +246,36 @@ Detail Postingan Hewan
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script>
+    // document.addEventListener( 'DOMContentLoaded', function () {
+	// 	new Splide( '.splide',{type     : 'slide',
+	// autoWidth: true,
+	// focus    : 'center',} ).mount();
+	// } );
     document.addEventListener( 'DOMContentLoaded', function () {
-		new Splide( '.splide',{type     : 'loop',
-	autoWidth: true,
-	focus    : 'center',} ).mount();
-	} );
+	var secondarySlider = new Splide( '#secondary-slider', {
+		fixedWidth  : 100,
+		height      : 60,
+		gap         : 10,
+		cover       : true,
+		isNavigation: true,
+		focus       : 'center',
+		breakpoints : {
+			'600': {
+				fixedWidth: 66,
+				height    : 40,
+			}
+		},
+	} ).mount();
+
+	var primarySlider = new Splide( '#primary-slider', {
+		type       : 'fade',
+		heightRatio: 0.5,
+		pagination : false,
+		arrows     : false,
+		cover      : true,
+	} ); // do not call mount() here.
+
+	primarySlider.sync( secondarySlider ).mount();
+} );
 </script>
 @endsection
