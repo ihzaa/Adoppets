@@ -103,4 +103,12 @@ class AdminController extends Controller
         $data = Category::all();
         return view('admin/category/index', compact('data'));
     }
+
+    public function delete_category($id)
+    {
+        $data = Category::find($id);
+        dd($data);
+        Category::destroy($data->id);
+        return redirect(route('category_list'))->with('icon_delete', 'success')->with('title', 'Berhasil')->with('text', 'Kategori Berjhasil di Hapus!');
+    }
 }

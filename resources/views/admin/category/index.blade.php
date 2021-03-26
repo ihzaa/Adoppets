@@ -83,58 +83,6 @@ Data Kategori Hewan
             <button id="demo-bootbox-zoom" class="btn btn-primary"><i class="demo-pli-plus"></i> Add Category</button>
         </div>
 
-        <!-- Modal -->
-        <!--Default Bootstrap Modal-->
-        <!--===================================================-->
-        <div class="modal fade" id="demo-default-modal" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal"
-            aria-hidden="true">
-            <div class="modal-dialog animated zoomInDown">
-                <div class="modal-content">
-
-                    <!--Modal header-->
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><i
-                                class="pci-cross pci-circle"></i></button>
-                        <h4 class="modal-title">Modal Heading</h4>
-                    </div>
-
-                    <!--Modal body-->
-                    <div class="modal-body">
-                        <p class="text-semibold text-main">Bootstrap Modal Vertical Alignment Center</p>
-                        <textarea name="" id="" cols="30"
-                            rows="10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae et eum eveniet vel. Cupiditate in est asperiores natus odit perspiciatis. ulfa</textarea>
-                        <br>
-                        
-                        <p class="text-semibold text-main">Popover in a modal</p>
-                        <p>This
-                            <button class="btn btn-sm btn-warning demo-modal-popover add-popover" data-toggle="popover"
-                                data-trigger="focus"
-                                data-content="And here's some amazing content. It's very engaging. right?"
-                                data-original-title="Popover Title">button</button>
-                            should trigger a popover on click.
-                        </p>
-                        <br>
-                        <p class="text-semibold text-main">Tooltips in a modal</p>
-                        <p>
-                            <a class="btn-link text-bold add-tooltip" href="#" data-original-title="Tooltip">This
-                                link</a> and
-                            <a class="btn-link text-bold add-tooltip" href="#" data-original-title="Tooltip">that
-                                link</a> should have tooltips on hover.
-                        </p>
-                    </div>
-
-                    <!--Modal footer-->
-                    <div class="modal-footer">
-                        <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                        <button class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--===================================================-->
-        <!--End Default Bootstrap Modal-->
-
-        {{-- akhir modal --}}
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-8">
@@ -149,16 +97,23 @@ Data Kategori Hewan
                                 </tr>
                             </thead>
 
+                            @foreach ($data as $item)
                             <tbody>
-                                <td class="text-center"></td>
-                                <td></td>
-                                <td>
-                                    <a action="" method="" class="d-inline">
-                                        <button type="submit" onclick="  "
-                                            class="btn btn-danger btn-rounded">Hapus</button>
-                                    </a>
-                                </td>
+                                <tr>
+                                    <td class="text-center">{{$loop->iteration}}</td>
+                                    <td>{{$item->nama}}</td>
+                                    <td>
+                                        <a action="{{route('delete_category', ['id'=>$item->id])}}" method="POST"
+                                            class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit" onclick=" return ConfirmDelete() "
+                                                class="btn btn-danger btn-rounded">Hapus</button>
+                                        </a>
+                                    </td>
+                                </tr>
                             </tbody>
+                            @endforeach
                         </table>
                     </div>
                 </div>

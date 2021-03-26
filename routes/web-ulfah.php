@@ -60,6 +60,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/contact/list', 'admin\AdminController@contact_list')->name('contact_list');
     Route::get('/contact/detail/{id}', 'admin\AdminController@contact_detail')->name('contact_detail');
     Route::delete('/contact/delete/{id}', 'admin\AdminController@delete')->name('delete_contact');
+
+    // Category
+    Route::delete('/category/delete/{id}', 'admin\AdminController@delete_category')->name('delete_category');
 });
 
 Route::middleware('auth:user')->group(function () {
