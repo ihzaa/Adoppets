@@ -228,7 +228,53 @@ $(document).ready(function () {
         });
     });
 
+    $('#alasan_delete_hewan').on('click', function () {
+        bootbox.confirm({
+            message: `<p class='text-semibold text-main'>Alasan Delete Posting</p> <textarea class="form-control" type="text" rows=5 placeholder="Masukkan alasan anda melakukan delete pada postingan ini"></textarea>`,
+            buttons: {
+                confirm: {
+                    label: "Save"
+                }
+            },
+            callback: function (result) {
+                //Callback function here
+            },
+            animateIn: 'zoomInDown',
+            animateOut: 'zoomOutUp'
+        });
+    });
 
+    $('#alasan_delete_blog').on('click', function () {
+        bootbox.confirm({
+            message: `<p class='text-semibold text-main'>Alasan Delete Posting</p> <textarea class="form-control" type="text" rows=5 placeholder="Masukkan alasan anda melakukan delete pada postingan ini"></textarea>`,
+            buttons: {
+                confirm: {
+                    label: "Save"
+                }
+            },
+            callback: function (result) {
+                //Callback function here
+            },
+            animateIn: 'zoomInDown',
+            animateOut: 'zoomOutUp'
+        });
+    });
+
+    $('#alasan_delete_clinic').on('click', function () {
+        bootbox.confirm({
+            message: `<p class='text-semibold text-main'>Alasan Delete Posting</p> <textarea class="form-control" type="text" rows=5 placeholder="Masukkan alasan anda melakukan delete pada postingan ini"></textarea>`,
+            buttons: {
+                confirm: {
+                    label: "Save"
+                }
+            },
+            callback: function (result) {
+                //Callback function here
+            },
+            animateIn: 'zoomInDown',
+            animateOut: 'zoomOutUp'
+        });
+    });
 
     // BOOTBOX - BOUNCE IN/OUT ANIMATION
     // =================================================================

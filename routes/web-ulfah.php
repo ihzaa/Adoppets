@@ -30,6 +30,12 @@ Route::get('/blokir/PostingHewan', 'user_Controller\email\EmailController@blokir
 Route::get('/blokir/PostingBlog', 'user_Controller\email\EmailController@blokir_blog')->name('blokir_blog');
 Route::get('/blokir/PostingClinic', 'user_Controller\email\EmailController@blokir_clinic')->name('blokir_clinic');
 
+// email delete posting hewan, klinik, dan blog
+Route::get('/delete/PostingHewan/admin', 'user_Controller\email\EmailController@delete_hewan_admin')->name('delete_hewan_admin');
+Route::get('/delete/PostingClinic/admin', 'user_Controller\email\EmailController@delete_clinic_admin')->name('delete_clinic_admin');
+Route::get('/delete/PostingBlog/admin', 'user_Controller\email\EmailController@delete_blog_admin')->name('delete_blog_admin');
+
+
 Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
     Route::get('/home_admin', 'admin\AdminController@index')->name('home_admin');

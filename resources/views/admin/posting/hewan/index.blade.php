@@ -45,6 +45,9 @@ List Postingan Hewan
 <link href="{{asset('admin/asset/plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css')}}"
     rel="stylesheet">
 
+<!--Animate.css [ OPTIONAL ]-->
+<link href="{{asset('admin/asset/plugins/animate-css/animate.min.css')}}" rel="stylesheet">
+
 @endsection
 
 {{-- judul halaman pada bagian atas halaman --}}
@@ -98,7 +101,9 @@ List Postingan Hewan
                         <td>{{$item->title}}</td>
                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</td>
                         <td>
-                            <button class="btn btn-danger btn-rounded btn_delete" data-id="">Hapus</button>
+                            <button id="alasan_delete_hewan" class="btn btn-danger btn-rounded"><i
+                                    class="demo-pli-plus"></i>Hapus</button>
+
                             <a href="{{route('posting_hewan_detail',$item->id)}}" class="btn btn-warning btn-rounded">
                                 Detail
                             </a>
@@ -151,10 +156,16 @@ List Postingan Hewan
 <!--DataTables Sample [ SAMPLE ]-->
 <script src="{{asset('admin/asset/js/demo/tables-datatables.js')}}"></script>
 
+<!--Bootbox Modals [ OPTIONAL ]-->
+<script src="{{asset('admin/asset/plugins/bootbox/bootbox.min.js')}}"></script>
+
+<!--Modals [ SAMPLE ]-->
+<script src="{{asset('admin/asset/js/demo/ui-modals.js')}}"></script>
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @if(Session::get('icon'))
 <script>
-Swal.fire({
+    Swal.fire({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
@@ -163,7 +174,7 @@ Swal.fire({
 @endif
 
 <script>
-const URL = {
+    const URL = {
     delete: "{{route('admin.delete.report.posting','astaga')}}",
 }
 
