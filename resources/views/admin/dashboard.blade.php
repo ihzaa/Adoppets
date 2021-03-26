@@ -38,17 +38,17 @@ Dashboard
 
 
 <style>
-    //Large devices (desktops, 992px and up)
-    /* @media (min-width: 992px) {
+//Large devices (desktops, 992px and up)
+/* @media (min-width: 992px) {
         .card-informasi {
             margin-top: 150px
         }
     } */
 
-    .panel {
-        width: 90px;
-        height: 200px;
-    }
+.panel {
+    width: 90px;
+    height: 200px;
+}
 </style>
 
 
@@ -77,7 +77,7 @@ Dashboard
             <div class="panel panel-warning panel-colorful media middle pad-all">
                 <div class="media-left">
                     <div class="pad-hor">
-                        <i class="demo-ion-ionic icon-5x"></i>
+                        <i class="demo-pli-add-user-star icon-2x"></i>
                     </div>
                 </div>
                 <div class="media-body">

@@ -104,13 +104,16 @@
                     <ul class="collapse">
                         <li
                             class="@if(strpos(Route::currentRouteName(), 'report_hewan_') !== false ) active-link @endif">
-                            <a href="{{route('report_hewan_list')}}">Posting Hewan</a></li>
+                            <a href="{{route('report_hewan_list')}}">Posting Hewan</a>
+                        </li>
                         <li
                             class="@if(strpos(Route::currentRouteName(), 'report_blog_') !== false ) active-link @endif">
-                            <a href="{{route('report_blog_list')}}">Blog</a></li>
+                            <a href="{{route('report_blog_list')}}">Blog</a>
+                        </li>
                         <li
                             class="@if(strpos(Route::currentRouteName(), 'report_klinik_') !== false ) active-link @endif">
-                            <a href="{{route('report_klinik_list')}}">Informasi Klinik</a></li>
+                            <a href="{{route('report_klinik_list')}}">Informasi Klinik</a>
+                        </li>
                     </ul>
                     {{-- akhir submenu --}}
                 </li>
@@ -125,6 +128,13 @@
                 {{-- akhir Contact --}}
 
                 {{-- <li class="list-divider">Contact</li> --}}
+
+                <li class="">
+                    <a href="{{route('category_list')}}">
+                        <i class="demo-pli-home"></i>
+                        <span class="menu-title">Category</span>
+                    </a>
+                </li>
 
                 <!--End widget-->
 

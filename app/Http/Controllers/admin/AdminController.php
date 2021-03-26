@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Blog;
+use App\Category;
 use App\Clinic_information;
 use App\Http\Controllers\Controller;
 use App\Kontak;
 use App\posting;
-use App\Report_posting;
 use App\User;
 // use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\DB;
@@ -96,5 +96,11 @@ class AdminController extends Controller
         $data = Kontak::find($id);
         $user = DB::select('SELECT name, email, nomor_telpon, no_wa FROM users WHERE id = ' . $id, [1]);
         return view('admin/contact/detail', compact('data', 'user'));
+    }
+
+    public function category()
+    {
+        $data = Category::all();
+        return view('admin/category/index', compact('data'));
     }
 }

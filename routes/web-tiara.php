@@ -35,6 +35,7 @@ Route::middleware('auth:admin')->group(function () {
     // HALAMAN YG HARUS LOGIN ADMIN
     //kelola contact
     // Route::get('/contact/list', 'admin\AdminController@contact')->name('contact_list');
+    Route::get('/category/list', 'admin\AdminController@category')->name('category_list');
 
 });
 
