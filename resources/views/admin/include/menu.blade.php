@@ -79,8 +79,8 @@
                 <li class="list-header">Navigation</li>
 
                 <!--Dashboard Menu list item-->
-                <li class="@if(strpos(Route::currentRouteName(), 'dashboard_admin') !== false ) active-sub @endif ">
-                    <a href="{{route('dashboard_admin')}}">
+                <li class="@if(strpos(Route::currentRouteName(), 'home_admin') !== false ) active-sub @endif ">
+                    <a href="{{route('home_admin')}}">
                         <i class="demo-pli-home"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
