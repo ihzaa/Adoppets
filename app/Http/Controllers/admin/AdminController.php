@@ -11,6 +11,8 @@ use App\posting;
 use App\User;
 // use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -107,8 +109,27 @@ class AdminController extends Controller
     public function delete_category($id)
     {
         $data = Category::find($id);
-        dd($data);
+        // dd($data);
         Category::destroy($data->id);
         return redirect(route('category_list'))->with('icon_delete', 'success')->with('title', 'Berhasil')->with('text', 'Kategori Berjhasil di Hapus!');
+    }
+
+    public function add_category(Request $request)
+    {
+        // dd($request->cat);
+        $cat = Category::where('nama', 'like', $request->cat)->get();
+        $resp = array();
+        if (count($cat) != 0) {
+            $resp['status'] = 'fail';
+        } else {
+            Category::create([
+                'nama' => $request->cat
+            ]);
+            $resp['status'] = 'ok';
+            Session::flash('icon_delete', 'success');
+            Session::flash('title', 'Berhasil');
+            Session::flash('text', 'Kategori Berhasil Ditambahkan!');
+        }
+        return response()->json($resp);
     }
 }
