@@ -86,6 +86,7 @@ List Pengguna Adopt Pets
                         <th>Nomor</th>
                         <th>Username</th>
                         <th>Nama Lengkap</th>
+                        <th>Email</th>
                         <th>Tanggal Daftar</th>
                     </tr>
                 </thead>
@@ -95,6 +96,7 @@ List Pengguna Adopt Pets
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item->username}}</td>
                         <td>{{$item->name}}</td>
+                        <td>{{$item->email}}</td>
                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</td>
                     </tr>
                     @endforeach
