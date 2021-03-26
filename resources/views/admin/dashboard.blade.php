@@ -38,17 +38,17 @@ Dashboard
 
 
 <style>
-//Large devices (desktops, 992px and up)
-/* @media (min-width: 992px) {
+    //Large devices (desktops, 992px and up)
+    /* @media (min-width: 992px) {
         .card-informasi {
             margin-top: 150px
         }
     } */
 
-.panel {
-    width: 90px;
-    height: 200px;
-}
+    .panel {
+        width: 90px;
+        height: 200px;
+    }
 </style>
 
 
@@ -73,62 +73,74 @@ Dashboard
 
     {{-- card informasi --}}
     <div class="row card-informasi">
-        <div class="col-md-3 col-md-offset-3">
-            <div class="panel panel-warning panel-colorful media middle pad-all">
-                <div class="media-left">
-                    <div class="pad-hor">
-                        <i class="demo-pli-male-female icon-3x"></i>
+        <a href="{{route('contact_list')}}">
+            <div class="col-md-3 col-md-offset-3">
+                <div class="panel panel-warning panel-colorful media middle pad-all">
+                    <div class="media-left">
+                        <div class="pad-hor">
+                            <i class="demo-pli-male-female icon-3x"></i>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->kontaks,0,"",".")}}
+                        </p>
+                        <p class="mar-no">Contact</p>
                     </div>
                 </div>
-                <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->users,0,"",".")}}</p>
-                    <p class="mar-no">Pengguna</p>
-                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-info panel-colorful media middle pad-all">
-                <div class="media-left">
-                    <div class="pad-hor">
-                        <i class="demo-pli-camera-2 icon-3x"></i>
+        </a>
+        <a href="{{route('report_hewan_list')}}">
+            <div class="col-md-3">
+                <div class="panel panel-info panel-colorful media middle pad-all">
+                    <div class="media-left">
+                        <div class="pad-hor">
+                            <i class="demo-pli-camera-2 icon-3x"></i>
+                        </div>
+                    </div>
+                    <div class=" media-body">
+                        <p class="text-2x mar-no text-semibold">
+                            {{number_format($data['counter']->report_postings,0,"",".")}}</p>
+                        <p class="mar-no">Report Hewan</p>
                     </div>
                 </div>
-                <div class=" media-body">
-                    <p class="text-2x mar-no text-semibold">
-                        {{number_format($data['counter']->postings,0,"",".")}}</p>
-                    <p class="mar-no">Postingan</p>
-                </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="row">
-        <div class="col-md-3 col-md-offset-3">
-            <div class="panel panel-mint panel-colorful media middle pad-all">
-                <div class="media-left">
-                    <div class="pad-hor">
-                        <i class="demo-pli-speech-bubble-5 icon-3x"></i>
+        <a href="{{route('report_blog_list')}}">
+            <div class="col-md-3 col-md-offset-3">
+                <div class="panel panel-mint panel-colorful media middle pad-all">
+                    <div class="media-left">
+                        <div class="pad-hor">
+                            <i class="demo-pli-speech-bubble-5 icon-3x"></i>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <p class="text-2x mar-no text-semibold">
+                            {{number_format($data['counter']->report_blogs,0,"",".")}}
+                        </p>
+                        <p class="mar-no">Report Blog</p>
                     </div>
                 </div>
-                <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->blogs,0,"",".")}}</p>
-                    <p class="mar-no">Blog</p>
-                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-danger panel-colorful media middle pad-all">
-                <div class="media-left">
-                    <div class="pad-hor">
-                        <i class="demo-pli-building icon-3x"></i>
+        </a>
+        <a href="{{route('report_klinik_list')}}">
+            <div class="col-md-3">
+                <div class="panel panel-danger panel-colorful media middle pad-all">
+                    <div class="media-left">
+                        <div class="pad-hor">
+                            <i class="demo-pli-building icon-3x"></i>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <p class="text-2x mar-no text-semibold">
+                            {{number_format($data['counter']->report_clinics,0,"",".")}}
+                        </p>
+                        <p class="mar-no">Report Clinic</p>
                     </div>
                 </div>
-                <div class="media-body">
-                    <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->clinics,0,"",".")}}
-                    </p>
-                    <p class="mar-no">Clinic</p>
-                </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 {{-- akhir card informasi --}}

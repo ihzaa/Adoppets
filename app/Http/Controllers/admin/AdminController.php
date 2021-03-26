@@ -11,6 +11,8 @@ use App\posting;
 use App\User;
 // use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -18,7 +20,7 @@ class AdminController extends Controller
     public function index()
     {
         $data = array();
-        $data['counter'] = DB::select('SELECT (SELECT count(*) FROM users) as users, (SELECT count(*) FROM postings) as postings, (SELECT count(*) FROM blogs) as blogs, (SELECT count(*) FROM clinic_informations) as clinics')[0];
+        $data['counter'] = DB::select('SELECT (SELECT count(*) FROM kontaks) as kontaks, (SELECT count(*) FROM report_postings) as report_postings, (SELECT count(*) FROM report_blogs) as report_blogs, (SELECT count(*) FROM report_clinics) as report_clinics')[0];
         // dd($data);
         return view('admin/dashboard', compact('data'));
     }
@@ -107,8 +109,27 @@ class AdminController extends Controller
     public function delete_category($id)
     {
         $data = Category::find($id);
-        dd($data);
+        // dd($data);
         Category::destroy($data->id);
         return redirect(route('category_list'))->with('icon_delete', 'success')->with('title', 'Berhasil')->with('text', 'Kategori Berjhasil di Hapus!');
+    }
+
+    public function add_category(Request $request)
+    {
+        // dd($request->cat);
+        $cat = Category::where('nama', 'like', $request->cat)->get();
+        $resp = array();
+        if (count($cat) != 0) {
+            $resp['status'] = 'fail';
+        } else {
+            Category::create([
+                'nama' => $request->cat
+            ]);
+            $resp['status'] = 'ok';
+            Session::flash('icon_delete', 'success');
+            Session::flash('title', 'Berhasil');
+            Session::flash('text', 'Kategori Berhasil Ditambahkan!');
+        }
+        return response()->json($resp);
     }
 }
