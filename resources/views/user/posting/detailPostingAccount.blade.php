@@ -48,8 +48,8 @@
 
 @section('background')
 <div class="background">
-    <div class="background-image original-size">
-        <img src="{{asset('user/assets/img/footer-background-icons.jpg')}}" alt="">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_akunsaya.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
@@ -150,10 +150,8 @@
                                 <div id="map" style="width: 100%; height: 480px"></div>
                                 {{-- <input name="latitude" type="text" class="form-control" id="latitude" value="{{$edit->}}"
                                 hidden>
-                                <input name="longitude" type="text" class="form-control" id="longitude"
-                                    value="106.816666" hidden> --}}
-                                <a href="http://maps.google.com?q={{$data->latitude}},{{$data->longitude}}"
-                                    target="_blank" class="text-danger"><strong>Klik Disini Untuk
+                                <input name="longitude" type="text" class="form-control" id="longitude" value="106.816666" hidden> --}}
+                                <a href="http://maps.google.com?q={{$data->latitude}},{{$data->longitude}}" target="_blank" class="text-danger"><strong>Klik Disini Untuk
                                         Navigasi Maps</strong></a>
                             </div>
                         </div>
@@ -173,86 +171,86 @@
 <script src="{{asset('user/assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('user/assets/js/custom.js')}}"></script>
 <script>
-var latitude = 51.511971;
-var longitude = -0.137597;
-var markerImage = "{{asset('user/assets/img/map-marker.png')}}";
-var mapTheme = "light";
-var mapElement = "map-small";
-simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
+    var latitude = 51.511971;
+    var longitude = -0.137597;
+    var markerImage = "{{asset('user/assets/img/map-marker.png')}}";
+    var mapTheme = "light";
+    var mapElement = "map-small";
+    simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 </script>
 <script>
-objCoords = {
-    lat: "{{$data->latitude}}",
-    lng: "{{$data->longitude}}",
-};
+    objCoords = {
+        lat: "{{$data->latitude}}",
+        lng: "{{$data->longitude}}",
+    };
 
-function addDraggableMarker(map, behavior) {
-    var marker = new H.map.Marker(objCoords, {
-        volatility: true,
-    });
-    // marker.draggable = true;
-    map.addObject(marker);
-    map.addEventListener(
-        "dragstart",
-        function(ev) {
-            var target = ev.target,
-                pointer = ev.currentPointer;
-            if (target instanceof H.map.Marker) {
-                var targetPosition = map.geoToScreen(
-                    target.getGeometry()
-                );
-                target["offset"] = new H.math.Point(
-                    pointer.viewportX - targetPosition.x,
-                    pointer.viewportY - targetPosition.y
-                );
-                behavior.disable();
-            }
-        },
-        false
-    );
-    map.addEventListener(
-        "dragend",
-        function(ev) {
-            var target = ev.target;
-            if (target instanceof H.map.Marker) {
-                behavior.enable();
-            }
-        },
-        false
-    );
-    map.addEventListener(
-        "drag",
-        function(ev) {
-            var target = ev.target,
-                pointer = ev.currentPointer;
-            if (target instanceof H.map.Marker) {
-                target.setGeometry(
-                    map.screenToGeo(
-                        pointer.viewportX - target["offset"].x,
-                        pointer.viewportY - target["offset"].y
-                    )
-                );
-            }
-        },
-        false
-    );
-}
-var platform = new H.service.Platform({
-    apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
-});
-var defaultLayers = platform.createDefaultLayers();
-var map = new H.Map(
-    document.getElementById("map"),
-    defaultLayers.vector.normal.map, {
-        center: objCoords,
-        zoom: 12,
-        pixelRatio: window.devicePixelRatio || 1,
+    function addDraggableMarker(map, behavior) {
+        var marker = new H.map.Marker(objCoords, {
+            volatility: true,
+        });
+        // marker.draggable = true;
+        map.addObject(marker);
+        map.addEventListener(
+            "dragstart",
+            function(ev) {
+                var target = ev.target,
+                    pointer = ev.currentPointer;
+                if (target instanceof H.map.Marker) {
+                    var targetPosition = map.geoToScreen(
+                        target.getGeometry()
+                    );
+                    target["offset"] = new H.math.Point(
+                        pointer.viewportX - targetPosition.x,
+                        pointer.viewportY - targetPosition.y
+                    );
+                    behavior.disable();
+                }
+            },
+            false
+        );
+        map.addEventListener(
+            "dragend",
+            function(ev) {
+                var target = ev.target;
+                if (target instanceof H.map.Marker) {
+                    behavior.enable();
+                }
+            },
+            false
+        );
+        map.addEventListener(
+            "drag",
+            function(ev) {
+                var target = ev.target,
+                    pointer = ev.currentPointer;
+                if (target instanceof H.map.Marker) {
+                    target.setGeometry(
+                        map.screenToGeo(
+                            pointer.viewportX - target["offset"].x,
+                            pointer.viewportY - target["offset"].y
+                        )
+                    );
+                }
+            },
+            false
+        );
     }
-);
-window.addEventListener("resize", () => map.getViewPort().resize());
-var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
-addDraggableMarker(map, behavior);
+    var platform = new H.service.Platform({
+        apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
+    });
+    var defaultLayers = platform.createDefaultLayers();
+    var map = new H.Map(
+        document.getElementById("map"),
+        defaultLayers.vector.normal.map, {
+            center: objCoords,
+            zoom: 12,
+            pixelRatio: window.devicePixelRatio || 1,
+        }
+    );
+    window.addEventListener("resize", () => map.getViewPort().resize());
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
+    addDraggableMarker(map, behavior);
 </script>
 
 @endsection
