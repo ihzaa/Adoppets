@@ -52,8 +52,8 @@
 
 @section('background')
 <div class="background">
-    <div class="background-image original-size">
-        <img src="{{asset('user/assets/img/footer-background-icons.jpg')}}" alt="">
+    <div class="background-image">
+        <img src="{{asset('user/assets/img/include_image/bg_akunsaya.jpg')}}" alt="">
     </div>
     <!--end background-image-->
 </div>
@@ -99,7 +99,8 @@
                     @else
                     <h3 class="text-left text-muted">{{strtok($user[$latestAdopt[0]->user_id], " ")}} dan
                         {{count($latestAdopt)-1}} lainnya
-                        berminat dengan hewan ini</h3>
+                        berminat dengan hewan ini
+                    </h3>
                     @endif
                     @endif
                     <!--end Gallery Carousel-->
@@ -108,21 +109,16 @@
                     @if (Auth::guard('user')->user()->id != $data->user_id)
                     <section>
                         <div class="row justify-content-end">
-                            <button class="tombol btn @if ($reported!=1) btn-framed @endif  btn-primary btn-rounded"
-                                id="btn_report" data-id="{{$data->id}}" @if ($reported==1) disabled
-                                @endif>Laporkan</button>
+                            <button class="tombol btn @if ($reported!=1) btn-framed @endif  btn-primary btn-rounded" id="btn_report" data-id="{{$data->id}}" @if ($reported==1) disabled @endif>Laporkan</button>
                             @if ($like['isLike'] == 0)
-                            <button class="tombol btn btn-framed btn-info btn-rounded btn_like"
-                                data-id="{{$data->id}}">Like</button>
+                            <button class="tombol btn btn-framed btn-info btn-rounded btn_like" data-id="{{$data->id}}">Like</button>
                             @else
-                            <button class="tombol btn btn-framed btn-primary btn-rounded btn_dislike"
-                                data-id="{{$data->id}}">Dislike</button>
+                            <button class="tombol btn btn-framed btn-primary btn-rounded btn_dislike" data-id="{{$data->id}}">Dislike</button>
                             @endif
                             @if ($isAdopt=='' )
                             <button class="tombol btn btn-framed btn-info btn-rounded" id="btn_adopt">Adopsi</button>
                             @else
-                            <button class="tombol btn btn-framed btn-danger btn-rounded" id="btn_unadopt"
-                                data-id="{{$isAdopt->id}}">Batal Adopsi</button>
+                            <button class="tombol btn btn-framed btn-danger btn-rounded" id="btn_unadopt" data-id="{{$isAdopt->id}}">Batal Adopsi</button>
                             @endif
 
                         </div>
@@ -131,15 +127,12 @@
                     @else
                     <section>
                         <div class="row justify-content-end">
-                            <button class="tombol btn btn-framed btn-primary btn-rounded" id="btn_report"
-                                data-id="{{$data->id}}">Laporkan</button>
-                            <button class="tombol btn btn-framed btn-info btn-rounded btn_like"
-                                data-id="{{$data->id}}">Like</button>
+                            <button class="tombol btn btn-framed btn-primary btn-rounded" id="btn_report" data-id="{{$data->id}}">Laporkan</button>
+                            <button class="tombol btn btn-framed btn-info btn-rounded btn_like" data-id="{{$data->id}}">Like</button>
                             @if ($isAdopt=='' )
                             <button class="tombol btn btn-framed btn-info btn-rounded" id="btn_adopt">Adopsi</button>
                             @else
-                            <button class="tombol btn-framed btn-danger btn-rounded" id="btn_unadopt"
-                                data-id="{{$isAdopt->id}}">Batal Adopsi</button>
+                            <button class="tombol btn-framed btn-danger btn-rounded" id="btn_unadopt" data-id="{{$isAdopt->id}}">Batal Adopsi</button>
                             @endif
                         </div>
                     </section>
@@ -223,10 +216,8 @@
                                 <div id="map" style="width: 100%; height: 480px"></div>
                                 {{-- <input name="latitude" type="text" class="form-control" id="latitude" value="{{$edit->}}"
                                 hidden>
-                                <input name="longitude" type="text" class="form-control" id="longitude"
-                                    value="106.816666" hidden> --}}
-                                <a href="http://maps.google.com?q={{$data->latitude}},{{$data->longitude}}"
-                                    target="_blank" class="text-danger"><strong>Klik Disini Untuk
+                                <input name="longitude" type="text" class="form-control" id="longitude" value="106.816666" hidden> --}}
+                                <a href="http://maps.google.com?q={{$data->latitude}},{{$data->longitude}}" target="_blank" class="text-danger"><strong>Klik Disini Untuk
                                         Navigasi Maps</strong></a>
                             </div>
                         </div>
@@ -253,19 +244,14 @@
                                                         {{$deskripsi['domisili_sekarang'][$data->user_id]}}</a></h5>
                                                 <hr>
                                                 <h4 class="phone">
-                                                    <a
-                                                        href="sms:+62{{$deskripsi['nomor_telpon'][$data->user_id]}}&body=Hallo..."><i
-                                                            class="fa fa-phone"></i>
+                                                    <a href="sms:+62{{$deskripsi['nomor_telpon'][$data->user_id]}}&body=Hallo..."><i class="fa fa-phone"></i>
                                                         {{$deskripsi['nomor_telpon'][$data->user_id]}}</a>
                                                 </h4>
                                                 <h4 class="phone">
-                                                    <a
-                                                        href="https://api.whatsapp.com/send?phone=+62{{$deskripsi['no_wa'][$data->user_id]}}"><i
-                                                            class="fa fa-whatsapp "></i>
+                                                    <a href="https://api.whatsapp.com/send?phone=+62{{$deskripsi['no_wa'][$data->user_id]}}"><i class="fa fa-whatsapp "></i>
                                                         {{$deskripsi['no_wa'][$data->user_id]}}</a>
                                                 </h4 class="email">
-                                                <h4><a href="mailto:{{$deskripsi['email'][$data->user_id]}}"><i
-                                                            class="fa fa-envelope"></i>
+                                                <h4><a href="mailto:{{$deskripsi['email'][$data->user_id]}}"><i class="fa fa-envelope"></i>
                                                         {{$deskripsi['email'][$data->user_id]}}</a></h4>
 
                                             </div>
@@ -297,14 +283,11 @@
                                     <div class="wrapper">
                                         <div class="image">
                                             <h3>
-                                                <a href="{{route('detail_posting',['id'=>$item->id])}}"
-                                                    class="tag category">{{$item->nama}}</a>
-                                                <a href="{{route('detail_posting',['id'=>$item->id])}}"
-                                                    class="title">{{$item->title}}</a>
+                                                <a href="{{route('detail_posting',['id'=>$item->id])}}" class="tag category">{{$item->nama}}</a>
+                                                <a href="{{route('detail_posting',['id'=>$item->id])}}" class="title">{{$item->title}}</a>
                                                 {{-- <span class="tag">Offer</span> --}}
                                             </h3>
-                                            <a href="{{route('detail_posting',['id'=>$item->id])}}"
-                                                class="image-wrapper background-image">
+                                            <a href="{{route('detail_posting',['id'=>$item->id])}}" class="image-wrapper background-image">
                                                 <img src="{{asset($item->foto)}}" alt="">
                                             </a>
                                         </div>
@@ -315,8 +298,7 @@
                                         <div class="price">{{$item->ras}}</div>
                                         <div class="meta">
                                             <figure>
-                                                <i
-                                                    class="fa fa-calendar-o"></i>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}
+                                                <i class="fa fa-calendar-o"></i>{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}
                                             </figure>
                                             <figure>
                                                 <a href="#">
@@ -342,8 +324,7 @@
     </section>
     <!--end block-->
 </section>
-<div id="modal_adopt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
-    aria-hidden="true">
+<div id="modal_adopt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -375,8 +356,7 @@
         </div>
     </div>
 </div>
-<div id="modal_report" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
-    aria-hidden="true">
+<div id="modal_report" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -417,212 +397,209 @@ simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
 
 <script>
     const post_id = "{{$data->id}}"
-$("#btn_adopt").on("click", function() {
-    $("#modal_adopt").modal('show');
-})
-$("#btn_unadopt").on("click", function() {
-    let data = {
-        id: $(this).data('id')
-    }
-    $("#main_loading").show();
-    fetch("{{route('unadopt')}}", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        })
-        .then(response => {
-            if (response.status == 201) {
-                return "EROR"
-            } else {
-                return response.json()
-            }
-        })
-        .then(data => {
-            if (data == "EROR") {
-                window.location.replace("{{route('get_login')}}");
-            } else {
-                location.reload();
-            }
-        })
-        .catch(err => console.log(err))
-        .finally(() => {
-            $("#main_loading").hide();
-        });
-})
+    $("#btn_adopt").on("click", function() {
+        $("#modal_adopt").modal('show');
+    })
+    $("#btn_unadopt").on("click", function() {
+        let data = {
+            id: $(this).data('id')
+        }
+        $("#main_loading").show();
+        fetch("{{route('unadopt')}}", {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            })
+            .then(response => {
+                if (response.status == 201) {
+                    return "EROR"
+                } else {
+                    return response.json()
+                }
+            })
+            .then(data => {
+                if (data == "EROR") {
+                    window.location.replace("{{route('get_login')}}");
+                } else {
+                    location.reload();
+                }
+            })
+            .catch(err => console.log(err))
+            .finally(() => {
+                $("#main_loading").hide();
+            });
+    })
 
-$(document).on('click', '.btn_like', function() {
-    let data = {
-        id: $(this).data('id')
-    }
-    // $("#main_loading").show();
-    $(this).html(`Loading...`);
-    $(this).removeClass('btn_like');
-    fetch("{{route('likePosting')}}", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        })
-        .then(response => {
-            if (response.status == 201) {
-                return "EROR"
-            } else {
-                return response.json()
-            }
-        })
-        .then(data => {
-            if (data == "EROR") {
-                window.location.replace("{{route('get_login')}}");
-            } else {
-                $(this).removeClass('btn-info');
-                $(this).addClass('btn_dislike btn-primary')
-                $(this).html(`Dislike`);
-                $("#likeCounter").html(data.like)
-            }
-        })
-        .catch(err => console.log(err))
+    $(document).on('click', '.btn_like', function() {
+        let data = {
+            id: $(this).data('id')
+        }
+        // $("#main_loading").show();
+        $(this).html(`Loading...`);
+        $(this).removeClass('btn_like');
+        fetch("{{route('likePosting')}}", {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            })
+            .then(response => {
+                if (response.status == 201) {
+                    return "EROR"
+                } else {
+                    return response.json()
+                }
+            })
+            .then(data => {
+                if (data == "EROR") {
+                    window.location.replace("{{route('get_login')}}");
+                } else {
+                    $(this).removeClass('btn-info');
+                    $(this).addClass('btn_dislike btn-primary')
+                    $(this).html(`Dislike`);
+                    $("#likeCounter").html(data.like)
+                }
+            })
+            .catch(err => console.log(err))
 
-});
+    });
 
-$(document).on('click', '.btn_dislike', function() {
-    let data = {
-        id: $(this).data('id')
-    }
-    // $("#main_loading").show();
-    $(this).html(`Loading...`);
-    $(this).removeClass('btn_dislike');
-    fetch("{{route('dislikePosting')}}", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        })
-        .then(response => {
-            if (response.status == 201) {
-                return "EROR"
-            } else {
-                return response.json()
-            }
-        })
-        .then(data => {
-            if (data == "EROR") {
-                window.location.replace("{{route('get_login')}}");
-            } else {
-                $(this).removeClass('btn-primary');
-                $(this).addClass('btn_like btn-info')
-                $(this).html(`Like`);
-                $("#likeCounter").html(data.like)
-            }
-        })
-        .catch(err => console.log(err))
+    $(document).on('click', '.btn_dislike', function() {
+        let data = {
+            id: $(this).data('id')
+        }
+        // $("#main_loading").show();
+        $(this).html(`Loading...`);
+        $(this).removeClass('btn_dislike');
+        fetch("{{route('dislikePosting')}}", {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            })
+            .then(response => {
+                if (response.status == 201) {
+                    return "EROR"
+                } else {
+                    return response.json()
+                }
+            })
+            .then(data => {
+                if (data == "EROR") {
+                    window.location.replace("{{route('get_login')}}");
+                } else {
+                    $(this).removeClass('btn-primary');
+                    $(this).addClass('btn_like btn-info')
+                    $(this).html(`Like`);
+                    $("#likeCounter").html(data.like)
+                }
+            })
+            .catch(err => console.log(err))
 
-});
+    });
 
-$("#btn_report").click(function() {
-    $("#modal_report").modal('show');
-});
+    $("#btn_report").click(function() {
+        $("#modal_report").modal('show');
+    });
 
-$("#form_adopsi").submit(function(){
-    $("#main_loading").show();
-})
+    $("#form_adopsi").submit(function() {
+        $("#main_loading").show();
+    })
 </script>
 @if(Session::get('icon'))
 <script>
     swal({
-    icon: "{{Session::get('icon')}}",
-    title: "{{Session::get('title')}}",
-    text: "{{Session::get('text')}}",
-});
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
 </script>
 @endif
 <script>
     objCoords = {
-            lat: "{{$data->latitude}}",
-            lng: "{{$data->longitude}}",
-        };
+        lat: "{{$data->latitude}}",
+        lng: "{{$data->longitude}}",
+    };
 
-        function addDraggableMarker(map, behavior) {
-            var marker = new H.map.Marker(objCoords, {
-                volatility: true,
-            });
-            // marker.draggable = true;
-            map.addObject(marker);
-            map.addEventListener(
-                "dragstart",
-                function (ev) {
-                    var target = ev.target,
-                        pointer = ev.currentPointer;
-                    if (target instanceof H.map.Marker) {
-                        var targetPosition = map.geoToScreen(
-                            target.getGeometry()
-                        );
-                        target["offset"] = new H.math.Point(
-                            pointer.viewportX - targetPosition.x,
-                            pointer.viewportY - targetPosition.y
-                        );
-                        behavior.disable();
-                    }
-                },
-                false
-            );
-            map.addEventListener(
-                "dragend",
-                function (ev) {
-                    var target = ev.target;
-                    if (target instanceof H.map.Marker) {
-                        behavior.enable();
-                    }
-                },
-                false
-            );
-            map.addEventListener(
-                "drag",
-                function (ev) {
-                    var target = ev.target,
-                        pointer = ev.currentPointer;
-                    if (target instanceof H.map.Marker) {
-                        target.setGeometry(
-                            map.screenToGeo(
-                                pointer.viewportX - target["offset"].x,
-                                pointer.viewportY - target["offset"].y
-                            )
-                        );
-                    }
-                },
-                false
-            );
-        }
-        var platform = new H.service.Platform({
-            apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
+    function addDraggableMarker(map, behavior) {
+        var marker = new H.map.Marker(objCoords, {
+            volatility: true,
         });
-        var defaultLayers = platform.createDefaultLayers();
-        var map = new H.Map(
-            document.getElementById("map"),
-            defaultLayers.vector.normal.map,
-            {
-                center: objCoords,
-                zoom: 12,
-                pixelRatio: window.devicePixelRatio || 1,
-            }
+        // marker.draggable = true;
+        map.addObject(marker);
+        map.addEventListener(
+            "dragstart",
+            function(ev) {
+                var target = ev.target,
+                    pointer = ev.currentPointer;
+                if (target instanceof H.map.Marker) {
+                    var targetPosition = map.geoToScreen(
+                        target.getGeometry()
+                    );
+                    target["offset"] = new H.math.Point(
+                        pointer.viewportX - targetPosition.x,
+                        pointer.viewportY - targetPosition.y
+                    );
+                    behavior.disable();
+                }
+            },
+            false
         );
-        window.addEventListener("resize", () => map.getViewPort().resize());
-        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-        var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
-        addDraggableMarker(map, behavior);
-
-
+        map.addEventListener(
+            "dragend",
+            function(ev) {
+                var target = ev.target;
+                if (target instanceof H.map.Marker) {
+                    behavior.enable();
+                }
+            },
+            false
+        );
+        map.addEventListener(
+            "drag",
+            function(ev) {
+                var target = ev.target,
+                    pointer = ev.currentPointer;
+                if (target instanceof H.map.Marker) {
+                    target.setGeometry(
+                        map.screenToGeo(
+                            pointer.viewportX - target["offset"].x,
+                            pointer.viewportY - target["offset"].y
+                        )
+                    );
+                }
+            },
+            false
+        );
+    }
+    var platform = new H.service.Platform({
+        apikey: "nnHrOmFFjmffnY9Xp68b7iIBObnxTfgzwnerEaYVKqg",
+    });
+    var defaultLayers = platform.createDefaultLayers();
+    var map = new H.Map(
+        document.getElementById("map"),
+        defaultLayers.vector.normal.map, {
+            center: objCoords,
+            zoom: 12,
+            pixelRatio: window.devicePixelRatio || 1,
+        }
+    );
+    window.addEventListener("resize", () => map.getViewPort().resize());
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    var ui = H.ui.UI.createDefault(map, defaultLayers, "en-US");
+    addDraggableMarker(map, behavior);
 </script>
 @endsection
