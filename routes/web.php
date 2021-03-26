@@ -48,4 +48,7 @@ Route::middleware('auth:admin')->group(function () {
     // clinic
     Route::get('/clinic/report/delete/{id}', 'admin\ReportClinicController@deleteReport')->name('admin.delete.report.clinic');
     Route::get('/clinic/report/BLOCK/{id}', 'admin\ReportClinicController@block')->name('admin.block.report.clinic');
+
+    // category
+    Route::post('add/category', 'admin\AdminController@add_category')->name('admin.add.category');
 });
