@@ -51,4 +51,7 @@ Route::middleware('auth:admin')->group(function () {
 
     // category
     Route::post('add/category', 'admin\AdminController@add_category')->name('admin.add.category');
+
+    Route::get('admin/change/password', 'admin\PasswordController@get')->name('admin.change.password.get');
+    Route::post('admin/change/password', 'admin\PasswordController@post')->name('admin.change.password.post');
 });
