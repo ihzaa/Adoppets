@@ -91,7 +91,7 @@
                 {{-- akhir menu dashboard --}}
                 <li class=" ">
                     <a href="{{route('pengguna_list')}}">
-                        <i class="demo-pli-home"></i>
+                        <i class="demo-pli-male-female"></i>
                         <span class="menu-title">List User</span>
                     </a>
                 </li>
