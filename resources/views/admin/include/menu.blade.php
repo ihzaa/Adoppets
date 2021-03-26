@@ -86,7 +86,12 @@
                     </a>
                 </li>
                 {{-- akhir menu dashboard --}}
-
+                <li class=" ">
+                    <a href="{{route('pengguna_list')}}">
+                        <i class="demo-pli-home"></i>
+                        <span class="menu-title">List User</span>
+                    </a>
+                </li>
                 <li class="">
                     <a href="#">
                         <i class="demo-pli-receipt-4 icon-lg"></i>

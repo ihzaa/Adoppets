@@ -36,6 +36,8 @@ Route::middleware('auth:admin')->group(function () {
     //kelola contact
     // Route::get('/contact/list', 'admin\AdminController@contact')->name('contact_list');
     Route::get('/category/list', 'admin\AdminController@category')->name('category_list');
+    //pengguna
+    Route::get('/pengguna/list', 'admin\AdminController@pengguna')->name('pengguna_list');
 
     //postingan
 

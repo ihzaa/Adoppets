@@ -178,4 +178,9 @@ class AdminController extends Controller
         return view('admin/posting/klinik/detail', compact('data', 'user'));
     }
 
+    public function pengguna()
+    {
+        $data = User::all();
+        return view('admin/pengguna/index', compact('data'));
+    }
 }
