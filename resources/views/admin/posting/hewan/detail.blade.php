@@ -90,75 +90,93 @@ Detail Postingan Hewan
                     </a>
                 </div>
             </div>
-            <section>
+            <div class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        @foreach ($asset_posting as $item)
+                        <li class="splide__slide" style="display: flex;justify-content: center;
+                        align-items: center;">
+                            <img class="img-fluid" style="max-height: 250px;" src="{{asset($item->path)}}">
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            {{-- <section>
                 <div class="gallery-carousel owl-carousel">
                     @foreach ($asset_posting as $item)
                     <img src="{{asset($item->path)}}" alt="" data-hash="{{$loop->iteration}}">
-                    @endforeach
-                </div>
-                <div class="gallery-carousel-thumbs owl-carousel">
-                    @foreach ($asset_posting as $item)
-                    <a href="#{{$loop->iteration}}" class="owl-thumb active-thumb background-image">
-                        <img src="{{asset($item->path)}}" alt="">
-                    </a>
-                    @endforeach
-                </div>
-            </section>
-            <div class="blog-content">
+            @endforeach
+        </div>
+        <div class="gallery-carousel-thumbs owl-carousel">
+            @foreach ($asset_posting as $item)
+            <a href="#{{$loop->iteration}}" class="owl-thumb active-thumb background-image">
+                <img src="{{asset($item->path)}}" alt="">
+            </a>
+            @endforeach
+        </div>
+        </section> --}}
+        <div class="blog-content">
 
-                <div class="blog-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Ras</td>
-                                <td width="10">:</td>
-                                <td>{{$data->ras}}</td>
-                            </tr>
-                            <tr>
-                                <td>Jenis Kelamin</td>
-                                <td>:</td>
-                                <td>{{$data->jenis_kelamin}}</td>
-                            </tr>
-                            <tr>
-                                <td>Umur</td>
-                                <td>:</td>
-                                <td>{{$data->umur}}</td>
-                            </tr>
-                            <tr>
-                                <td>Makanan</td>
-                                <td>:</td>
-                                <td>{{$data->makanan}}</td>
-                            </tr>
-                            <tr>
-                                <td>Warna</td>
-                                <td>:</td>
-                                <td>{{$data->warna}}</td>
-                            </tr>
-                            <tr>
-                                <td>Kondisi Fisik</td>
-                                <td>:</td>
-                                <td>{{$data->kondisi_fisik}}</td>
-                            </tr>
-                            <tr>
-                                <td>Informasi Lain</td>
-                                <td>:</td>
-                                <td>{{$data->informasi_lain}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="blog-body">
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Ras</td>
+                            <td width="10">:</td>
+                            <td>{{$data->ras}}</td>
+                        </tr>
+                        <tr>
+                            <td>Jenis Kelamin</td>
+                            <td>:</td>
+                            <td>{{$data->jenis_kelamin}}</td>
+                        </tr>
+                        <tr>
+                            <td>Umur</td>
+                            <td>:</td>
+                            <td>{{$data->umur}}</td>
+                        </tr>
+                        <tr>
+                            <td>Makanan</td>
+                            <td>:</td>
+                            <td>{{$data->makanan}}</td>
+                        </tr>
+                        <tr>
+                            <td>Warna</td>
+                            <td>:</td>
+                            <td>{{$data->warna}}</td>
+                        </tr>
+                        <tr>
+                            <td>Kondisi Fisik</td>
+                            <td>:</td>
+                            <td>{{$data->kondisi_fisik}}</td>
+                        </tr>
+                        <tr>
+                            <td>Informasi Lain</td>
+                            <td>:</td>
+                            <td>{{$data->informasi_lain}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul>
+                    List Vaksin:
+                    @foreach ($vaccines as $item)
+                    <li>{{$item->keterangan}} - {{\Carbon\Carbon::parse($item->tanggal)->format('d.m.Y')}}</li>
+                    @endforeach
+                </ul>
             </div>
-            <div class="blog-footer">
-                <div class="media-left">
-                    <span
-                        class="label label-success">{{\Carbon\Carbon::parse($data->created_at)->format('d.m.Y')}}</span>
-                    <small>Diposting Oleh : <a href="#" class="btn-link">{{$user[$data->user_id]}}</a></small>
-                </div>
+        </div>
+        <div class="blog-footer">
+            <div class="media-left">
+                <span class="label label-success">{{\Carbon\Carbon::parse($data->created_at)->format('d.m.Y')}}</span>
+                <small>Diposting Oleh : <a href="#" class="btn-link">{{$user[$data->user_id]}}</a></small>
             </div>
         </div>
     </div>
-    <!--===================================================-->
-    <!-- End Striped Table -->
+</div>
+<!--===================================================-->
+<!-- End Striped Table -->
 
 </div>
 @endsection
@@ -188,7 +206,6 @@ Detail Postingan Hewan
 <!--Demo script [ DEMONSTRATION ]-->
 <script src="{{asset('admin/asset/js/demo/nifty-demo.min.js')}}"></script>
 
-
 <!--DataTables [ OPTIONAL ]-->
 <script src="{{asset('admin/asset/plugins/datatables/media/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('admin/asset/plugins/datatables/media/js/dataTables.bootstrap.js')}}"></script>
@@ -199,4 +216,13 @@ Detail Postingan Hewan
 <!--DataTables Sample [ SAMPLE ]-->
 <script src="{{asset('admin/asset/js/demo/tables-datatables.js')}}"></script>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script>
+    document.addEventListener( 'DOMContentLoaded', function () {
+		new Splide( '.splide',{type     : 'loop',
+	autoWidth: true,
+	focus    : 'center',} ).mount();
+	} );
+</script>
 @endsection

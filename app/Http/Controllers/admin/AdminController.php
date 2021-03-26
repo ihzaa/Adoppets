@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Kontak;
 use App\posting;
 use App\User;
+use App\Vaccine;
 // use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -145,11 +146,11 @@ class AdminController extends Controller
         $user = User::pluck('name', 'id');
         $asset_posting = Asset_posting::where('posting_id', $id)->get();
         $edit = DB::select('SELECT p.*, (SELECT v.keterangan FROM vaccines as v where v.posting_id = p.id LIMIT 1) as keterangan, (SELECT v.tanggal FROM vaccines as v where v.posting_id = p.id LIMIT 1) as tanggal FROM postings as p WHERE p.id = ' . $id);
+        $vaccines = Vaccine::where('posting_id', $id)->get();
         if (count($edit) == 0) {
             return redirect(route('landingpage'));
         }
-        return view('admin/posting/hewan/detail', compact('data', 'asset_posting', 'edit', 'user'));
-
+        return view('admin/posting/hewan/detail', compact('data', 'asset_posting', 'edit', 'user', 'vaccines'));
     }
 
     public function posting_blog()
