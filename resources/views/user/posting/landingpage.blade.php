@@ -141,7 +141,7 @@ has-dark-background
                             </a>
                         </div>
                         <!--end image-->
-                        <h4 class="location">
+                        <h4 class="location text-white bg-dark p-2">
                             {{$post->lokasi}}
                         </h4>
                         {{-- <div class="price">$80</div> --}}
