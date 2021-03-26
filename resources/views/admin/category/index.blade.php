@@ -45,6 +45,9 @@ Data Kategori Hewan
 <link href="{{asset('admin/asset/plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css')}}"
     rel="stylesheet">
 
+<!--Animate.css [ OPTIONAL ]-->
+<link href="{{asset('admin/asset/plugins/animate-css/animate.min.css')}}" rel="stylesheet">
+
 @endsection
 
 {{-- judul halaman pada bagian atas halaman --}}
@@ -76,9 +79,62 @@ Data Kategori Hewan
     <!-- Basic Data Tables -->
     <!--===================================================-->
     <div class="panel">
-        <div id="demo-custom-toolbar2" class="table-toolbar-left">
-            <button id="demo-dt-addrow-btn" class="btn btn-primary"><i class="demo-pli-plus"></i> Add Category</button>
+        <div id="demo-custom-toolbar2" class="table-toolbar-left" data-toggle="modal" data-target="#exampleModal">
+            <button id="demo-bootbox-zoom" class="btn btn-primary"><i class="demo-pli-plus"></i> Add Category</button>
         </div>
+
+        <!-- Modal -->
+        <!--Default Bootstrap Modal-->
+        <!--===================================================-->
+        <div class="modal fade" id="demo-default-modal" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal"
+            aria-hidden="true">
+            <div class="modal-dialog animated zoomInDown">
+                <div class="modal-content">
+
+                    <!--Modal header-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><i
+                                class="pci-cross pci-circle"></i></button>
+                        <h4 class="modal-title">Modal Heading</h4>
+                    </div>
+
+                    <!--Modal body-->
+                    <div class="modal-body">
+                        <p class="text-semibold text-main">Bootstrap Modal Vertical Alignment Center</p>
+                        <textarea name="" id="" cols="30"
+                            rows="10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae et eum eveniet vel. Cupiditate in est asperiores natus odit perspiciatis. ulfa</textarea>
+                        <br>
+                        
+                        <p class="text-semibold text-main">Popover in a modal</p>
+                        <p>This
+                            <button class="btn btn-sm btn-warning demo-modal-popover add-popover" data-toggle="popover"
+                                data-trigger="focus"
+                                data-content="And here's some amazing content. It's very engaging. right?"
+                                data-original-title="Popover Title">button</button>
+                            should trigger a popover on click.
+                        </p>
+                        <br>
+                        <p class="text-semibold text-main">Tooltips in a modal</p>
+                        <p>
+                            <a class="btn-link text-bold add-tooltip" href="#" data-original-title="Tooltip">This
+                                link</a> and
+                            <a class="btn-link text-bold add-tooltip" href="#" data-original-title="Tooltip">that
+                                link</a> should have tooltips on hover.
+                        </p>
+                    </div>
+
+                    <!--Modal footer-->
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                        <button class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--===================================================-->
+        <!--End Default Bootstrap Modal-->
+
+        {{-- akhir modal --}}
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-8">
@@ -144,12 +200,20 @@ Data Kategori Hewan
 </script>
 
 
+<!--Bootbox Modals [ OPTIONAL ]-->
+<script src="{{asset('admin/asset/plugins/bootbox/bootbox.min.js')}}"></script>
+
+
+<!--Modals [ SAMPLE ]-->
+<script src="{{asset('admin/asset/js/demo/ui-modals.js')}}"></script>
+
+
 <!--DataTables Sample [ SAMPLE ]-->
 <script src="{{asset('admin/asset/js/demo/tables-datatables.js')}}"></script>
 
 {{-- confirm delete --}}
 <script>
-function ConfirmDelete() {
+    function ConfirmDelete() {
     var x = confirm("Are you sure you want to delete?");
     if (x)
         return true;
@@ -162,7 +226,7 @@ function ConfirmDelete() {
 @if(Session::get('icon_delete'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-swal({
+    swal({
     icon: "success",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
