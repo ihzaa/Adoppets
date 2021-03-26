@@ -9,6 +9,7 @@ use App\Report_clinic;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class ReportClinicController extends Controller
 {
@@ -18,13 +19,16 @@ class ReportClinicController extends Controller
         return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Report berhasil dihapus!');
     }
 
-    public function block($id)
+    public function block($id, Request $request)
     {
         $clinic = Clinic_information::find($id);
         $report = Report_clinic::where('posting_id', $id)->get();
         $user = User::find($clinic->user_id);
-        Mail::to($user->email)->send(new BlockedClinicMail(['info' => $clinic, 'user' => $user, 'report' => $report]));
+        Mail::to($user->email)->send(new BlockedClinicMail(['info' => $clinic, 'user' => $user, 'report' => $report, 'message' => $request->message]));
         $clinic->delete();
-        return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Clinic berhasil dihapus!');
+        Session::flash('icon', 'success');
+        Session::flash('title', 'Berhasil');
+        Session::flash('text', 'Posting berhasil dihapus!');
+        return response()->json(['ok']);
     }
 }

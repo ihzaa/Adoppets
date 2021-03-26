@@ -29,6 +29,6 @@ class BlockedPostMail extends Mailable
      */
     public function build()
     {
-        return $this->view('user.email.blokir_hewan')->from('adoptpets477@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - Post Blocked Notification');
+        return $this->view('user.email.delete_hewan')->from('adoptpets477@gmail.com', env('APP_NAME'))->subject(env('APP_NAME') . ' - Post Blocked Notification');
     }
 }
