@@ -78,43 +78,47 @@ Data Kategori Hewan
 <div id="page-content">
     <!-- Basic Data Tables -->
     <!--===================================================-->
-    <div class="panel">
-        <div id="demo-custom-toolbar2" class="table-toolbar-left" data-toggle="modal" data-target="#exampleModal">
-            <button id="demo-bootbox-zoom" class="btn btn-primary"><i class="demo-pli-plus"></i> Add Category</button>
-        </div>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="panel">
+            <div id="demo-custom-toolbar2" class="table-toolbar-left" data-toggle="modal" data-target="#exampleModal">
+                <button id="demo-bootbox-zoom" class="btn btn-primary"><i class="demo-pli-plus"></i> Add
+                    Category</button>
+            </div>
 
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="table-responsive">
-                        <table id="demo-dt-addrow" class="table table-striped table-bordered" cellspacing="0"
-                            width="100%">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No</th>
-                                    <th>Kategori</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table id="demo-dt-addrow" class="table table-striped table-bordered" cellspacing="0"
+                                width="100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th>Kategori</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
 
-                            @foreach ($data as $item)
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">{{$loop->iteration}}</td>
-                                    <td>{{$item->nama}}</td>
-                                    <td>
-                                        <form action="{{route('delete_category', ['id'=>$item->id])}}" method="POST"
-                                            class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" onclick=" return ConfirmDelete() "
-                                                class="btn btn-danger btn-rounded">Hapus</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            @endforeach
-                        </table>
+                                @foreach ($data as $item)
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">{{$loop->iteration}}</td>
+                                        <td>{{$item->nama}}</td>
+                                        <td>
+                                            <form action="{{route('delete_category', ['id'=>$item->id])}}" method="POST"
+                                                class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" onclick=" return ConfirmDelete() "
+                                                    class="btn btn-danger btn-rounded">Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                @endforeach
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
