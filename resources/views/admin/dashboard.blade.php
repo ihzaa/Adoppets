@@ -38,17 +38,17 @@ Dashboard
 
 
 <style>
-    //Large devices (desktops, 992px and up)
-    /* @media (min-width: 992px) {
+//Large devices (desktops, 992px and up)
+/* @media (min-width: 992px) {
         .card-informasi {
             margin-top: 150px
         }
     } */
 
-    .panel {
-        width: 90px;
-        height: 200px;
-    }
+.panel {
+    width: 90px;
+    height: 200px;
+}
 </style>
 
 
@@ -73,12 +73,78 @@ Dashboard
 
     {{-- card informasi --}}
     <div class="row card-informasi">
-        <a href="{{route('contact_list')}}">
-            <div class="col-md-3 col-md-offset-3">
+        <a href="{{route('pengguna_list')}}">
+            <div class="col-md-3">
                 <div class="panel panel-warning panel-colorful media middle pad-all">
                     <div class="media-left">
                         <div class="pad-hor">
                             <i class="demo-pli-male-female icon-3x"></i>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <p class="text-2x mar-no text-semibold">0
+                        </p>
+                        <p class="mar-no">Pengguna</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="">
+            <div class="col-md-3">
+                <div class="panel panel-info panel-colorful media middle pad-all">
+                    <div class="media-left">
+                        <div class="pad-hor">
+                            <i class="demo-pli-video icon-lg icon-3x"></i>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <p class="text-2x mar-no text-semibold">0
+                        </p>
+                        <p class="mar-no">Postingan Hewan</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="">
+            <div class="col-md-3">
+                <div class="panel panel-mint panel-colorful media middle pad-all">
+                    <div class="media-left">
+                        <div class="pad-hor">
+                            <i class="demo-pli-file icon-3x"></i>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <p class="text-2x mar-no text-semibold">0
+                        </p>
+                        <p class="mar-no">Postingan Blog</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="">
+            <div class="col-md-3">
+                <div class="panel panel-danger panel-colorful media middle pad-all">
+                    <div class="media-left">
+                        <div class="pad-hor">
+                            <i class="demo-pli-receipt-4 icon-3x"></i>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <p class="text-2x mar-no text-semibold">0
+                        </p>
+                        <p class="mar-no">Postingan Klinik</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="row">
+        <a href="{{route('contact_list')}}">
+            <div class="col-md-3">
+                <div class="panel panel-warning panel-colorful media middle pad-all">
+                    <div class="media-left">
+                        <div class="pad-hor">
+                            <i class="demo-pli-old-telephone icon-lg icon-3x"></i>
                         </div>
                     </div>
                     <div class="media-body">
@@ -105,10 +171,8 @@ Dashboard
                 </div>
             </div>
         </a>
-    </div>
-    <div class="row">
         <a href="{{route('report_blog_list')}}">
-            <div class="col-md-3 col-md-offset-3">
+            <div class="col-md-3">
                 <div class="panel panel-mint panel-colorful media middle pad-all">
                     <div class="media-left">
                         <div class="pad-hor">

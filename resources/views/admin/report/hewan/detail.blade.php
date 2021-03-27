@@ -63,8 +63,8 @@ List Report Postingan {{ $data['posting']->title}}
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <ol class="breadcrumb">
         <li><a href="{{route('dashboard_admin')}}"><i class="demo-pli-home"></i></a></li>
-        <li><a href="{{route('report_hewan_list')}}">Report</a></li>
-        <li class="active">Data Report Posting Hewan</li>
+        <li><a href="#">Report</a></li>
+        <li class="{{route('report_hewan_list')}}">Data Report Posting Hewan</li>
         <li class="active">Detail</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

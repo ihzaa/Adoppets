@@ -63,8 +63,8 @@ List Report Postingan Clinic {{$data['clinic']->nama_klinik}}
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <ol class="breadcrumb">
         <li><a href="{{route('dashboard_admin')}}"><i class="demo-pli-home"></i></a></li>
-        <li><a href="{{route('report_klinik_list')}}">Report</a></li>
-        <li class="active">Data Report Posting Clinic</li>
+        <li><a href="#">Report</a></li>
+        <li class="{{route('report_klinik_list')}}">Data Report Posting Clinic</li>
         <li class="active">Detail</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
