@@ -47,10 +47,10 @@ Detail Postingan Hewan
 <link rel="stylesheet" href="{{asset('user/assets/css/owl.carousel.min.css')}}" type="text/css">
 
 <style>
-    .splide__slide img {
-        width: 100%;
-        height: auto;
-    }
+.splide__slide img {
+    width: 100%;
+    height: auto;
+}
 </style>
 @endsection
 
@@ -71,7 +71,7 @@ Detail Postingan Hewan
     <ol class="breadcrumb">
         <li><a href="{{route('dashboard_admin')}}"><i class="demo-pli-home"></i></a></li>
         <li><a href="">Posting</a></li>
-        <li><a href="{{route('admin_posting_hewan')}}">Data Postingan Hewan</a></li>
+        <li><a href="{{route('posting_hewan_list')}}">Data Postingan Hewan</a></li>
         <li class="active">Detail</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -246,36 +246,36 @@ Detail Postingan Hewan
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script>
-    // document.addEventListener( 'DOMContentLoaded', function () {
-	// 	new Splide( '.splide',{type     : 'slide',
-	// autoWidth: true,
-	// focus    : 'center',} ).mount();
-	// } );
-    document.addEventListener( 'DOMContentLoaded', function () {
-	var secondarySlider = new Splide( '#secondary-slider', {
-		fixedWidth  : 100,
-		height      : 60,
-		gap         : 10,
-		cover       : true,
-		isNavigation: true,
-		focus       : 'center',
-		breakpoints : {
-			'600': {
-				fixedWidth: 66,
-				height    : 40,
-			}
-		},
-	} ).mount();
+// document.addEventListener( 'DOMContentLoaded', function () {
+// 	new Splide( '.splide',{type     : 'slide',
+// autoWidth: true,
+// focus    : 'center',} ).mount();
+// } );
+document.addEventListener('DOMContentLoaded', function() {
+    var secondarySlider = new Splide('#secondary-slider', {
+        fixedWidth: 100,
+        height: 60,
+        gap: 10,
+        cover: true,
+        isNavigation: true,
+        focus: 'center',
+        breakpoints: {
+            '600': {
+                fixedWidth: 66,
+                height: 40,
+            }
+        },
+    }).mount();
 
-	var primarySlider = new Splide( '#primary-slider', {
-		type       : 'fade',
-		heightRatio: 0.5,
-		pagination : false,
-		arrows     : false,
-		cover      : true,
-	} ); // do not call mount() here.
+    var primarySlider = new Splide('#primary-slider', {
+        type: 'fade',
+        heightRatio: 0.5,
+        pagination: false,
+        arrows: false,
+        cover: true,
+    }); // do not call mount() here.
 
-	primarySlider.sync( secondarySlider ).mount();
-} );
+    primarySlider.sync(secondarySlider).mount();
+});
 </script>
 @endsection
