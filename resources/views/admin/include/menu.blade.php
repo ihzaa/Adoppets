@@ -95,7 +95,8 @@
                         <span class="menu-title">List User</span>
                     </a>
                 </li>
-                <li class="">
+                <li
+                    class="sub @if(strpos(Route::currentRouteName(), 'posting/hewan') !== false ) active-sub active @endif">
                     <a href="#">
                         <i class="demo-pli-receipt-4 icon-lg"></i>
                         <span class="menu-title">
