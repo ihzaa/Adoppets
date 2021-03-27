@@ -95,8 +95,7 @@
                         <span class="menu-title">List User</span>
                     </a>
                 </li>
-                <li
-                    class="sub @if(strpos(Route::currentRouteName(), 'posting/hewan') !== false ) active-sub active @endif">
+                <li class="sub @if(strpos(Route::currentRouteName(), 'posting') !== false ) active-sub active @endif">
                     <a href="#">
                         <i class="demo-pli-receipt-4 icon-lg"></i>
                         <span class="menu-title">
@@ -109,13 +108,16 @@
                     {{-- submenu --}}
                     <!--Submenu-->
                     <ul class="collapse">
-                        <li class="">
+                        <li
+                            class="@if(strpos(Route::currentRouteName(), 'posting_hewan_') !== false ) active-link @endif">
                             <a href="{{route('posting_hewan_list')}}">Posting Hewan</a>
                         </li>
-                        <li class="">
+                        <li
+                            class="@if(strpos(Route::currentRouteName(), 'posting_blog_') !== false ) active-link @endif">
                             <a href="{{route('posting_blog_list')}}">Blog</a>
                         </li>
-                        <li class="">
+                        <li
+                            class="@if(strpos(Route::currentRouteName(), 'posting_clinic_') !== false ) active-link @endif">
                             <a href="{{route('posting_clinic_list')}}">Informasi Klinik</a>
                         </li>
                     </ul>

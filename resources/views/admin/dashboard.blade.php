@@ -38,17 +38,17 @@ Dashboard
 
 
 <style>
-//Large devices (desktops, 992px and up)
-/* @media (min-width: 992px) {
+    //Large devices (desktops, 992px and up)
+    /* @media (min-width: 992px) {
         .card-informasi {
             margin-top: 150px
         }
     } */
 
-.panel {
-    width: 90px;
-    height: 200px;
-}
+    .panel {
+        width: 90px;
+        height: 200px;
+    }
 </style>
 
 
@@ -82,14 +82,14 @@ Dashboard
                         </div>
                     </div>
                     <div class="media-body">
-                        <p class="text-2x mar-no text-semibold">0
+                        <p class="text-2x mar-no text-semibold">{{number_format($data['counter']->users,0,"",".")}}
                         </p>
                         <p class="mar-no">Pengguna</p>
                     </div>
                 </div>
             </div>
         </a>
-        <a href="">
+        <a href="{{route('posting_hewan_list')}}">
             <div class="col-md-3">
                 <div class="panel panel-info panel-colorful media middle pad-all">
                     <div class="media-left">
@@ -98,14 +98,15 @@ Dashboard
                         </div>
                     </div>
                     <div class="media-body">
-                        <p class="text-2x mar-no text-semibold">0
+                        <p class="text-2x mar-no text-semibold">
+                            {{number_format($data['counter']->posting_hewan,0,"",".")}}
                         </p>
                         <p class="mar-no">Postingan Hewan</p>
                     </div>
                 </div>
             </div>
         </a>
-        <a href="">
+        <a href="{{route('posting_blog_list')}}">
             <div class="col-md-3">
                 <div class="panel panel-mint panel-colorful media middle pad-all">
                     <div class="media-left">
@@ -114,14 +115,15 @@ Dashboard
                         </div>
                     </div>
                     <div class="media-body">
-                        <p class="text-2x mar-no text-semibold">0
+                        <p class="text-2x mar-no text-semibold">
+                            {{number_format($data['counter']->posting_blog,0,"",".")}}
                         </p>
                         <p class="mar-no">Postingan Blog</p>
                     </div>
                 </div>
             </div>
         </a>
-        <a href="">
+        <a href="{{route('posting_clinic_list')}}">
             <div class="col-md-3">
                 <div class="panel panel-danger panel-colorful media middle pad-all">
                     <div class="media-left">
@@ -130,7 +132,8 @@ Dashboard
                         </div>
                     </div>
                     <div class="media-body">
-                        <p class="text-2x mar-no text-semibold">0
+                        <p class="text-2x mar-no text-semibold">
+                            {{number_format($data['counter']->posting_clinic,0,"",".")}}
                         </p>
                         <p class="mar-no">Postingan Klinik</p>
                     </div>

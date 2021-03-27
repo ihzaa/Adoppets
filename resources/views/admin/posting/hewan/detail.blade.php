@@ -47,10 +47,15 @@ Detail Postingan Hewan
 <link rel="stylesheet" href="{{asset('user/assets/css/owl.carousel.min.css')}}" type="text/css">
 
 <style>
-.splide__slide img {
-    width: 100%;
-    height: auto;
-}
+    .splide__slide img {
+        width: 100%;
+        height: auto;
+    }
+
+    #primary-slider img {
+        width: 10px;
+        height: 10px;
+    }
 </style>
 @endsection
 
@@ -99,15 +104,11 @@ Detail Postingan Hewan
                 <div class="splide__track">
                     <ul class="splide__list">
                         @foreach ($asset_posting as $item)
-                        {{-- <li class="splide__slide" style="display: flex;justify-content: center;
-                        align-items: center;">
-                            <img class="img-fluid" style="max-height: 250px;" src="{{asset($item->path)}}">
-                        </li> --}}
-
                         <li class="splide__slide">
-                            <img src="{{asset($item->path)}}">
+                            <img src="{{asset($item->path)}}" style="display: block;
+                            margin-left: auto;
+                            margin-right: auto">
                         </li>
-
                         @endforeach
                     </ul>
                 </div>
@@ -116,11 +117,6 @@ Detail Postingan Hewan
                 <div class="splide__track">
                     <ul class="splide__list">
                         @foreach ($asset_posting as $item)
-                        {{-- <li class="splide__slide" style="display: flex;justify-content: center;
-                        align-items: center;">
-                            <img class="img-fluid" style="max-height: 250px;" src="{{asset($item->path)}}">
-                        </li> --}}
-
                         <li class="splide__slide">
                             <img src="{{asset($item->path)}}">
                         </li>
@@ -129,81 +125,66 @@ Detail Postingan Hewan
                     </ul>
                 </div>
             </div>
-            {{-- <section>
-                <div class="gallery-carousel owl-carousel">
-                    @foreach ($asset_posting as $item)
-                    <img src="{{asset($item->path)}}" alt="" data-hash="{{$loop->iteration}}">
-            @endforeach
-        </div>
-        <div class="gallery-carousel-thumbs owl-carousel">
-            @foreach ($asset_posting as $item)
-            <a href="#{{$loop->iteration}}" class="owl-thumb active-thumb background-image">
-                <img src="{{asset($item->path)}}" alt="">
-            </a>
-            @endforeach
-        </div>
-        </section> --}}
-        <div class="blog-content">
-
-            <div class="blog-body">
-
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>Ras</td>
-                            <td width="10">:</td>
-                            <td>{{$data->ras}}</td>
-                        </tr>
-                        <tr>
-                            <td>Jenis Kelamin</td>
-                            <td>:</td>
-                            <td>{{$data->jenis_kelamin}}</td>
-                        </tr>
-                        <tr>
-                            <td>Umur</td>
-                            <td>:</td>
-                            <td>{{$data->umur}}</td>
-                        </tr>
-                        <tr>
-                            <td>Makanan</td>
-                            <td>:</td>
-                            <td>{{$data->makanan}}</td>
-                        </tr>
-                        <tr>
-                            <td>Warna</td>
-                            <td>:</td>
-                            <td>{{$data->warna}}</td>
-                        </tr>
-                        <tr>
-                            <td>Kondisi Fisik</td>
-                            <td>:</td>
-                            <td>{{$data->kondisi_fisik}}</td>
-                        </tr>
-                        <tr>
-                            <td>Informasi Lain</td>
-                            <td>:</td>
-                            <td>{{$data->informasi_lain}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <ul>
-                    List Vaksin:
-                    @foreach ($vaccines as $item)
-                    <li>{{$item->keterangan}} - {{\Carbon\Carbon::parse($item->tanggal)->format('d.m.Y')}}</li>
-                    @endforeach
-                </ul>
+            <div class="blog-content">
+                <div class="blog-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Ras</td>
+                                <td width="10">:</td>
+                                <td>{{$data->ras}}</td>
+                            </tr>
+                            <tr>
+                                <td>Jenis Kelamin</td>
+                                <td>:</td>
+                                <td>{{$data->jenis_kelamin}}</td>
+                            </tr>
+                            <tr>
+                                <td>Umur</td>
+                                <td>:</td>
+                                <td>{{$data->umur}}</td>
+                            </tr>
+                            <tr>
+                                <td>Makanan</td>
+                                <td>:</td>
+                                <td>{{$data->makanan}}</td>
+                            </tr>
+                            <tr>
+                                <td>Warna</td>
+                                <td>:</td>
+                                <td>{{$data->warna}}</td>
+                            </tr>
+                            <tr>
+                                <td>Kondisi Fisik</td>
+                                <td>:</td>
+                                <td>{{$data->kondisi_fisik}}</td>
+                            </tr>
+                            <tr>
+                                <td>Informasi Lain</td>
+                                <td>:</td>
+                                <td>{{$data->informasi_lain}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul>
+                        List Vaksin:
+                        @foreach ($vaccines as $item)
+                        <li>{{$item->keterangan}} - {{\Carbon\Carbon::parse($item->tanggal)->format('d.m.Y')}}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="blog-footer">
-            <div class="media-left">
-                <span class="label label-success">{{\Carbon\Carbon::parse($data->created_at)->format('d.m.Y')}}</span>
-                <small>Diposting Oleh : <a href="#" class="btn-link">{{$user[$data->user_id]}}</a></small>
+            <div class="blog-footer">
+                <div class="media-left">
+                    <span
+                        class="label label-success">{{\Carbon\Carbon::parse($data->created_at)->format('d.m.Y')}}</span>
+                    <small>Diposting Oleh : <a href="#" class="btn-link">{{$user[$data->user_id]}}</a></small>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!--===================================================-->
-<!-- End Striped Table -->
+    <!--===================================================-->
+    <!-- End Striped Table -->
 
 </div>
 @endsection
@@ -246,15 +227,10 @@ Detail Postingan Hewan
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script>
-// document.addEventListener( 'DOMContentLoaded', function () {
-// 	new Splide( '.splide',{type     : 'slide',
-// autoWidth: true,
-// focus    : 'center',} ).mount();
-// } );
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     var secondarySlider = new Splide('#secondary-slider', {
-        fixedWidth: 100,
-        height: 60,
+        fixedWidth: 200,
+        height: 180,
         gap: 10,
         cover: true,
         isNavigation: true,
@@ -269,7 +245,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var primarySlider = new Splide('#primary-slider', {
         type: 'fade',
-        heightRatio: 0.5,
+        autoWidth : true,
+        // heightRatio: 0.4,
+        // fixedWidth: 700,
+        focus: 'center',
         pagination: false,
         arrows: false,
         cover: true,
