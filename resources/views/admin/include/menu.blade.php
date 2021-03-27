@@ -109,13 +109,13 @@
                     <!--Submenu-->
                     <ul class="collapse">
                         <li class="">
-                            <a href="{{route('admin_posting_hewan')}}">Posting Hewan</a>
+                            <a href="{{route('posting_hewan_list')}}">Posting Hewan</a>
                         </li>
                         <li class="">
-                            <a href="{{route('admin_posting_blog')}}">Blog</a>
+                            <a href="{{route('posting_blog_list')}}">Blog</a>
                         </li>
                         <li class="">
-                            <a href="{{route('admin_posting_clinic')}}">Informasi Klinik</a>
+                            <a href="{{route('posting_clinic_list')}}">Informasi Klinik</a>
                         </li>
                     </ul>
                     {{-- akhir submenu --}}

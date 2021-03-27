@@ -64,7 +64,7 @@ Detail Postingan Blog
     <ol class="breadcrumb">
         <li><a href="{{route('dashboard_admin')}}"><i class="demo-pli-home"></i></a></li>
         <li><a href="">Posting</a></li>
-        <li><a href="{{route('admin_posting_blog')}}">Data Postingan Blog</a></li>
+        <li><a href="{{route('posting_blog_list')}}">Data Postingan Blog</a></li>
         <li class="active">Detail</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
