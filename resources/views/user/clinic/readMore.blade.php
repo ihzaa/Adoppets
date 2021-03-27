@@ -59,7 +59,7 @@ sub-page
                             <button class="tombol btn @if ($reported != 1)
                             btn-framed
                             @endif  btn-primary btn-rounded" id="btn_report" data-id="" @if ($reported!=0) disabled
-                                @endif>Report</button>
+                                @endif>Laporkan</button>
                         </div>
                         @endif
                         @else

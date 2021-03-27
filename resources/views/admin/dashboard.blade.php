@@ -38,17 +38,17 @@ Dashboard
 
 
 <style>
-    //Large devices (desktops, 992px and up)
-    /* @media (min-width: 992px) {
+//Large devices (desktops, 992px and up)
+/* @media (min-width: 992px) {
         .card-informasi {
             margin-top: 150px
         }
     } */
 
-    .panel {
-        width: 90px;
-        height: 200px;
-    }
+.panel {
+    width: 90px;
+    height: 200px;
+}
 </style>
 
 
@@ -75,7 +75,7 @@ Dashboard
     <div class="row card-informasi">
         <a href="{{route('pengguna_list')}}">
             <div class="col-md-3">
-                <div class="panel panel-warning panel-colorful media middle pad-all">
+                <div class="panel panel-mint panel-colorful media middle pad-all">
                     <div class="media-left">
                         <div class="pad-hor">
                             <i class="demo-pli-male-female icon-3x"></i>
@@ -108,7 +108,7 @@ Dashboard
         </a>
         <a href="{{route('posting_blog_list')}}">
             <div class="col-md-3">
-                <div class="panel panel-mint panel-colorful media middle pad-all">
+                <div class="panel panel-success panel-colorful media middle pad-all">
                     <div class="media-left">
                         <div class="pad-hor">
                             <i class="demo-pli-file icon-3x"></i>
@@ -125,7 +125,7 @@ Dashboard
         </a>
         <a href="{{route('posting_clinic_list')}}">
             <div class="col-md-3">
-                <div class="panel panel-danger panel-colorful media middle pad-all">
+                <div class="panel panel-pink panel-colorful media middle pad-all">
                     <div class="media-left">
                         <div class="pad-hor">
                             <i class="demo-pli-receipt-4 icon-3x"></i>
@@ -160,7 +160,7 @@ Dashboard
         </a>
         <a href="{{route('report_hewan_list')}}">
             <div class="col-md-3">
-                <div class="panel panel-info panel-colorful media middle pad-all">
+                <div class="panel panel-primary panel-colorful media middle pad-all">
                     <div class="media-left">
                         <div class="pad-hor">
                             <i class="demo-pli-camera-2 icon-3x"></i>
