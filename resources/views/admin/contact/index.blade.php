@@ -98,12 +98,20 @@ List Report Postingan Blog
                         <td>{{$item->subject}}</td>
                         <td>{{$item->message}}</td>
                         <td>
-                            <a action="{{route('delete_contact', ['id'=>$item->id])}}" method="POST" class="d-inline">
+                            <!-- <form action="{{route('delete_contact', ['id'=>$item->id])}}" method="POST"
+                                class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" onclick=" return ConfirmDelete() "
                                     class="btn btn-danger btn-rounded">Hapus</button>
-                            </a>
+                            </form> -->
+                            <form action="{{route('delete_contact', ['id'=>$item->id])}}" method="POST"
+                                class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" onclick=" return ConfirmDelete() "
+                                    class="btn btn-danger btn-rounded">Hapus</button>
+                            </form>
                             <a href="{{route('contact_detail',['id'=>$item->id])}}"
                                 class="btn btn-warning btn-rounded">Detail</a>
                         </td>

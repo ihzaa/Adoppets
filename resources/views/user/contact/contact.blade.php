@@ -8,7 +8,7 @@ sub-page
 @section('page-title')
 <div class="page-title">
     <div class="container">
-        <h1><strong>Contact Us</strong></h1>
+        <h1><strong>Kontak Kami</strong></h1>
     </div>
     <!--end container-->
 </div>
@@ -65,7 +65,7 @@ sub-page
             </div>
             <!--end col-md-4-->
             <div class="col-md-8">
-                <h2>Contact Form</h2>
+                <h2>Beritahu Kami Keluhan Anda</h2>
                 <form class="form form-submit" action="{{route('post_contact')}}" method="POST" id="contact">
                     @csrf
                     <div class="form-group">
@@ -104,7 +104,7 @@ sub-page
 @if(Session::get('icon'))
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    swal({
+swal({
     icon: "{{Session::get('icon')}}",
     title: "{{Session::get('title')}}",
     text: "{{Session::get('text')}}",
