@@ -9,11 +9,11 @@ $(document).ready(function ($) {
 
     //  Geo Location button
 
-    if ($(".geo-location").length > 0 && $(".map").length === 0) {
-        $("body").append("<div id='map-helper' style='display: none'></div>");
-        var map = new google.maps.Map(document.getElementById("map-helper"));
-        autoComplete(map);
-    }
+    // if ($(".geo-location").length > 0 && $(".map").length === 0) {
+    //     $("body").append("<div id='map-helper' style='display: none'></div>");
+    //     var map = new google.maps.Map(document.getElementById("map-helper"));
+    //     autoComplete(map);
+    // }
 
     //  Selectize
 
