@@ -142,7 +142,7 @@ sub-page
                                 required name="foto_profil" {{request()->is('/postregister')?"required":""}}
                                 name="foto">
                             <label class="custom-file-label" id="labelnya_gambar"
-                                for="imgInp">{{request()->is('/postregister')?"Image Advertisement":"Foto Profile.jpg"}}</label>
+                                for="imgInp">{{request()->is('/postregister')?"Image Advertisement":"Pilih Foto"}}</label>
                             <small class="form-text text-muted">- Ukuran max 256KB</small>
                             <small class="form-text text-muted">- Harus berupa gambar (format:
                                 jpg, jpeg, svg, jfif,

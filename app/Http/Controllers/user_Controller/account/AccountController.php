@@ -145,6 +145,7 @@ class AccountController extends Controller
         $user = Auth::guard('user')->user();
 
         if (Hash::check($request->old, $user->password)) {
+            dd($User);
             User::find($user->id)->update([
                 'password' => Hash::make($request->new)
             ]);
