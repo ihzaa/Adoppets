@@ -145,10 +145,12 @@ class AccountController extends Controller
         $user = Auth::guard('user')->user();
 
         if (Hash::check($request->old, $user->password)) {
-            dd($User);
-            User::find($user->id)->update([
-                'password' => Hash::make($request->new)
-            ]);
+            $current = User::find($user->id);
+            $current->password = Hash::make($request->new);
+            $current->save();
+            // User::find($user->id)->update([
+            //     'password' => Hash::make($request->new)
+            // ]);
             return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil Merubah Password!');
         } else {
             return back()->with('icon', 'error')->with('title', 'Maaf')->with('text', 'Password Lama Anda Salah!');
